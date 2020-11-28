@@ -1,0 +1,14 @@
+#endpoint: https://eu1.prisma.sh/mikhail-kochkin/savvvy-development/dev
+endpoint: https://besavvy-dev-server-39dfb2ee55.herokuapp.com/besavvy-dev/dev
+datamodel: datamodel.prisma
+# secret: ${env:PRISMA_SECRET}
+disableAuth: true
+
+generate:
+  - generator: graphql-schema
+    output: ./src/generated/prisma.graphql
+
+hooks:
+  post-deploy:
+    # - graphql get-schema -p prisma
+    - prisma generate

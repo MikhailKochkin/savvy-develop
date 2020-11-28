@@ -1,0 +1,581 @@
+enum Permission {
+  ADMIN
+  USER
+}
+
+enum CourseType {
+  PUBLIC
+  PRIVATE
+  FORMONEY
+  UNI
+  CHALLENGE
+}
+
+enum Status {
+  STUDENT
+  LAWYER
+  AUTHOR
+  SAVVY_AUTHOR
+  HR
+}
+
+enum Type {
+  STORY
+  REGULAR
+  CHALLENGE
+}
+
+enum TaskType {
+  TEST
+  FORM
+}
+
+enum Level {
+  STANDARD
+  ADVANCED
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  surname: String
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  status: Status @default(value: STUDENT)
+  legalPortfolio: LegalPortfolio @relation(name: "UserPortfolio")
+  uni: Uni
+  company: Company
+  uniID: String
+  description: String
+  resume: String
+  coverLetter: String
+  careerTrack: CareerTrack @relation(name: "CareerForUser")
+  careerTrackID: String
+  shots: [Shot]
+  favourites: [String] @scalarList(strategy: RELATION)
+  subjects: [String] @scalarList(strategy: RELATION)
+  new_subjects: [CoursePage] @relation(name: "UserSubjects")
+  permissions: [Permission] @scalarList(strategy: RELATION)
+  textEditorResults: [TextEditorResult] @relation(name: "UserTextEditorResults")
+  coursePages: [CoursePage] @relation(name: "UserCoursePage")
+  new_coursePages: [CoursePage] @relation(name: "CoursePageAuthors")
+  lessonResults: [LessonResult] @relation(name: "UserLessonResults")
+  challengeResults: [ChallengeResult] @relation(name: "UserChallengeResults")
+  testResults: [TestResult] @relation(name: "UserTestResults")
+  quizResults: [QuizResult] @relation(name: "UserQuizResults")
+  problemResults: [ProblemResult] @relation(name: "UserProblemResults")
+  constructionResults: [ConstructionResult] @relation(name: "UserConstructionResults")
+  shotResults: [ShotResult]
+  examResults: [ExamResult]
+  examAnswers: [ExamAnswer] @relation(name: "UserExamAnswer")
+  lessons: [Lesson]
+  notes: [Note]
+  newTests: [NewTest]
+  quizes: [Quiz]
+  problems: [Problem]
+  construction: [Construction]
+  orders: [Order]
+  exams: [Exam]
+  textEditor: [TextEditor]
+  teacherFeedback: [Feedback] @relation(name: "TeacherFeedback")
+  studentFeedback: [Feedback] @relation(name: "StudentFeedback")
+  forums: [Forum] @relation(name: "UserForums")
+  statements: [Statement] @relation(name: "UserStatements")
+  articles: [Article] @relation(name: "UserArticles")
+  isFamiliar: Boolean! @default(value: false)
+  courseVisits: [CourseVisit] @relation(name: "UserCourseVisits")
+  documents: [Document]
+  clauses: [Clause] @relation(name: "ClauseToUser")
+  ratings: [Rating] @relation(name: "UserRating")
+  level: UserLevel @relation(name: "UserLevel")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Uni {
+  id: ID! @id
+  title: String!
+  teachers: [User]
+  capacity: Int @default(value: 2)
+  paidMonths: Int @default(value: 0)
+  uniCoursePages: [CoursePage] @relation(name: "UniCoursePage")
+}
+
+type Company {
+  id: ID! @id
+  name: String!
+  hrs: [User]
+  paidMonths: Int @default(value: 0)
+  coursePages: [CoursePage] @relation(name: "CompanyCoursePage")
+}
+
+type CoursePage {
+  id: ID! @id
+  title: String!
+  description: String
+  image: String!
+  banner: String
+  problem: String
+  target_audience: String
+  skills: [String] @scalarList(strategy: RELATION)
+  news: String @default(value: "Добро пожаловать на курс! Проходите уроки, выполняйте задания и выполняйте финальное задание!")
+  user: User! @relation(name: "UserCoursePage")
+  authors: [User] @relation(name: "CoursePageAuthors")
+  audience: String
+  result: String
+  tariffs: String
+  methods: String
+  video: String
+  reviews: Json
+  lessons: [Lesson] @relation(name: "LessonsOnCoursePage")
+  applications: [Application] @relation(name: "ApplicationOnCoursePage")
+  careerTrack: [CareerTrack] @relation(name: "CoursePageForCareer")
+  numInCareerTrack: Int
+  examQuestion: ExamQuestion @relation(name: "CoursePageExamQuestion")
+  published: Boolean @default(value: false)
+  uni: Uni @relation(name: "UniCoursePage")
+  uniID: String
+  articles: [Article] @relation(name: "ArticleCoursePages")
+  tags: [String] @scalarList(strategy: RELATION)
+  courseType: CourseType
+  students: [String] @scalarList(strategy: RELATION)
+  new_students: [User] @relation(name: "UserSubjects")
+  price: Int
+  discountPrice: Int
+  orders: [Order] @relation(name: "CoursePageOrders")
+  company: Company @relation(name: "CompanyCoursePage")
+  promocode: [Json] @scalarList(strategy: RELATION)
+  visits: [CourseVisit] @relation(name: "CourseVisits")
+  package: [CoursePage]
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Lesson {
+  id: ID! @id
+  name: String!
+  number: Int
+  text: String!
+  user: User
+  type: Type @default(value: REGULAR)
+  description: String
+  map: [Json] @scalarList(strategy: RELATION)
+  structure: Json
+  coursePage: CoursePage @relation(name: "LessonsOnCoursePage")
+  notes: [Note] @relation(name: "LessonNotes")
+  shots: [Shot] @relation(name: "LessonShots")
+  newTests: [NewTest] @relation(name: "LessonNewTests")
+  quizes: [Quiz] @relation(name: "LessonQuizes")
+  problems: [Problem] @relation(name: "LessonProblems")
+  constructions: [Construction] @relation(name: "LessonConstructions")
+  texteditors: [TextEditor] @relation(name: "LessonTextEditors")
+  exams: [Exam] @relation(name: "LessonExams")
+  documents: [Document] @relation(name: "LessonDocuments")
+  examResults: [ExamResult] @relation(name: "LessonExamResults")
+  lessonResults: [LessonResult] @relation(name: "LessonResults")
+  challengeResults: [ChallengeResult] @relation(name: "ChallengeResults")
+  testResults: [TestResult] @relation(name: "TestResults")
+  quizResults: [QuizResult] @relation(name: "QuizResults")
+  shotResults: [ShotResult] @relation(name: "ShotLessonResults")
+  textEditorResults: [TextEditorResult] @relation(name: "TextEditorResults")
+  problemResults: [ProblemResult] @relation(name: "ProblemResults")
+  documentResults: [DocumentResult] @relation(name: "LessonDocumentResults")
+  constructionResults: [ConstructionResult] @relation(name: "ConstructionResults")
+  lessonFeedback: [Feedback] @relation(name: "LessonFeedback")
+  forum: Forum @relation(name: "LessonForum")
+  open: Boolean @default(value: false)
+  coursePageID: String!
+  change: String
+  challenge_num: Int @default(value: 10)
+  published: Boolean @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Construction {
+  id: ID! @id
+  name: String!
+  variants: [String] @scalarList(strategy: RELATION)
+  answer: [String] @scalarList(strategy: RELATION)
+  hint: String
+  type: String!
+  user: User
+  lesson: Lesson! @relation(name: "LessonConstructions")
+  lessonID: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  constructionResults: [ConstructionResult] @relation(name: "SingleConstructionResults")
+}
+
+type NewTest {
+  id: ID! @id
+  question: [String] @scalarList(strategy: RELATION)
+  answers: [String] @scalarList(strategy: RELATION)
+  correct: [Boolean] @scalarList(strategy: RELATION)
+  ifRight: String
+  ifWrong: String
+  user: User
+  lesson: Lesson @relation(name: "LessonNewTests")
+  type: TaskType @default(value: TEST)
+  lessonNum: Int
+  lessonID: String
+  next: Json
+  testResults: [TestResult] @relation(name: "NewTestResults")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Quiz {
+  id: ID! @id
+  question: String!
+  answer: String!
+  lang: String
+  lessonNum: Int
+  type: TaskType @default(value: TEST)
+  user: User
+  ifRight: String
+  ifWrong: String
+  lessonID: String
+  lesson: Lesson @relation(name: "LessonQuizes")
+  quizResults: [QuizResult] @relation(name: "NewQuizResults")
+  next: Json
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Problem {
+  id: ID! @id
+  text: String!
+  hints: String
+  solution: String
+  lessonNum: Int
+  answer: String
+  hintsList: [String] @scalarList(strategy: RELATION)
+  solutionList: [String] @scalarList(strategy: RELATION)
+  user: User
+  lesson: Lesson! @relation(name: "LessonProblems")
+  problemResults: [ProblemResult] @relation(name: "SingleProblemResults")
+  lessonID: String!
+  nodeType: String
+  nodeID: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type TextEditor {
+  id: ID! @id
+  name: String!
+  text: String!
+  totalMistakes: Int
+  user: User
+  lesson: Lesson! @relation(name: "LessonTextEditors")
+  lessonID: String!
+  textEditorResults: [TextEditorResult] @relation(name: "SingleTextEditorResults")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Application {
+  id: ID! @id
+  applicantId: String!
+  applicantName: String!
+  message: String
+  coursePage: CoursePage @relation(name: "ApplicationOnCoursePage")
+  coursePageID: String!
+}
+
+type Order {
+  id: ID! @id
+  user: User
+  paymentID: String
+  coursePage: CoursePage @relation(name: "CoursePageOrders")
+  price: Int
+  level: Level
+  comment: String
+  promocode: String
+  isPaid: Boolean
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type CareerTrack {
+  id: ID! @id
+  name: String!
+  img: String
+  members: User @relation(name: "CareerForUser")
+  coursePages: [CoursePage] @relation(name: "CoursePageForCareer")
+  careerTrackUnits: [CareerTrackUnit] @relation(name: "CareerTrackUnits")
+}
+
+type CareerTrackUnit {
+  id: ID! @id
+  title: String!
+  number: Int
+  img: String
+  topics: [String] @scalarList(strategy: RELATION)
+  articles: [String] @scalarList(strategy: RELATION)
+  coursePages: [CoursePage]
+  careerTrack: CareerTrack! @relation(name: "CareerTrackUnits")
+}
+
+type TestResult {
+  id: ID! @id
+  student: User! @relation(name: "UserTestResults")
+  answer: String
+  attempts: Int
+  lesson: Lesson @relation(name: "TestResults")
+  lessonID: String
+  test: NewTest @relation(name: "NewTestResults")
+  testID: String
+}
+
+type QuizResult {
+  id: ID! @id
+  student: User! @relation(name: "UserQuizResults")
+  answer: String
+  attempts: Int
+  correct: Boolean
+  quiz: Quiz @relation(name: "NewQuizResults")
+  lesson: Lesson @relation(name: "QuizResults")
+  lessonID: String
+}
+
+type ProblemResult {
+  id: ID! @id
+  student: User! @relation(name: "UserProblemResults")
+  answer: String
+  revealed: [String] @scalarList(strategy: RELATION)
+  lesson: Lesson @relation(name: "ProblemResults")
+  lessonID: String
+  problem: Problem @relation(name: "SingleProblemResults")
+  problemID: String
+}
+
+type TextEditorResult {
+  id: ID! @id
+  student: User! @relation(name: "UserTextEditorResults")
+  attempts: Int
+  wrong: String!
+  correct: String!
+  result: Boolean
+  guess: String!
+  lesson: Lesson @relation(name: "TextEditorResults")
+  textEditor: TextEditor @relation(name: "SingleTextEditorResults")
+}
+
+type LessonResult {
+  id: ID! @id
+  student: User! @relation(name: "UserLessonResults")
+  visitsNumber: Int @default(value: 0)
+  lesson: Lesson! @relation(name: "LessonResults")
+  lessonID: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ConstructionResult {
+  id: ID! @id
+  student: User! @relation(name: "UserConstructionResults")
+  answer: String
+  attempts: Int
+  inputs: [String] @scalarList(strategy: RELATION)
+  construction: Construction @relation(name: "SingleConstructionResults")
+  constructionID: String
+  lesson: Lesson @relation(name: "ConstructionResults")
+  lessonID: String
+}
+
+type ExamQuestion {
+  id: ID! @id
+  coursePage: CoursePage! @relation(name: "CoursePageExamQuestion")
+  coursePageID: String!
+  question: String!
+  answers: [ExamAnswer] @relation(name: "ExamQuestionAnswer")
+}
+
+type ExamAnswer {
+  id: ID! @id
+  student: User! @relation(name: "UserExamAnswer")
+  answer: String!
+  examQuestion: ExamQuestion! @relation(name: "ExamQuestionAnswer")
+  examQuestionID: String!
+}
+
+type LegalPortfolio {
+  id: ID! @id
+  user: User! @relation(name: "UserPortfolio")
+  cv: String
+  portfolio: [ExamAnswer]
+  portfolioIDs: [String] @scalarList(strategy: RELATION)
+  resume: String
+  open: Boolean! @default(value: false)
+}
+
+type Article {
+  id: ID! @id
+  user: User! @relation(name: "UserArticles")
+  tag: String
+  img: String
+  title: String
+  text: String
+  coursePages: [CoursePage] @relation(name: "ArticleCoursePages")
+  coursePageIDs: [String] @scalarList(strategy: RELATION)
+}
+
+type Shot {
+  id: ID! @id
+  user: User
+  title: String!
+  parts: [String] @scalarList(strategy: RELATION)
+  comments: [String] @scalarList(strategy: RELATION)
+  shotResults: [ShotResult] @relation(name: "ShotResults")
+  lessonID: String
+  lesson: Lesson @relation(name: "LessonShots")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ShotResult {
+  id: ID! @id
+  student: User
+  answer: String!
+  lessonID: String
+  lesson: Lesson @relation(name: "ShotLessonResults")
+  shot: Shot @relation(name: "ShotResults")
+  shotID: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Note {
+  id: ID! @id
+  text: String!
+  user: User
+  next: Json
+  lessonID: String
+  lesson: Lesson @relation(name: "LessonNotes")
+}
+
+type Feedback {
+  id: ID! @id
+  text: String!
+  lesson: Lesson @relation(name: "LessonFeedback")
+  teacher: User! @relation(name: "TeacherFeedback")
+  student: User! @relation(name: "StudentFeedback")
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type CourseVisit {
+  id: ID! @id
+  student: User! @relation(name: "UserCourseVisits")
+  visitsNumber: Int @default(value: 0)
+  coursePage: CoursePage! @relation(name: "CourseVisits")
+  reminders: [DateTime] @scalarList(strategy: RELATION)
+  finish: DateTime
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Exam {
+  id: ID! @id
+  user: User
+  name: String
+  lesson: Lesson! @relation(name: "LessonExams")
+  examResults: [ExamResult] @relation(name: "ExamResults")
+  nodeType: String
+  nodeID: String
+  question: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ExamResult {
+  id: ID! @id
+  user: User
+  answers: [String] @scalarList(strategy: RELATION)
+  lesson: Lesson @relation(name: "LessonExamResults")
+  exam: Exam @relation(name: "ExamResults")
+}
+
+type Document {
+  id: ID! @id
+  title: String!
+  user: User
+  lesson: Lesson! @relation(name: "LessonDocuments")
+  documentResults: [DocumentResult] @relation(name: "DocumentResults")
+  clauses: [Clause] @relation(name: "DocumentClauses")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Clause {
+  id: ID! @id
+  user: User! @relation(name: "ClauseToUser")
+  number: Int!
+  commentary: String!
+  keywords: [String] @scalarList(strategy: RELATION)
+  sample: String
+  document: Document @relation(name: "DocumentClauses")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type DocumentResult {
+  id: ID! @id
+  user: User
+  answers: [String] @scalarList(strategy: RELATION)
+  drafts: [String] @scalarList(strategy: RELATION)
+  lesson: Lesson @relation(name: "LessonDocumentResults")
+  document: Document @relation(name: "DocumentResults")
+}
+
+type Forum {
+  id: ID! @id
+  text: String
+  lesson: Lesson @relation(name: "LessonForum")
+  user: User @relation(name: "UserForums")
+  rating: [Rating] @relation(name: "ForumRating")
+  statements: [Statement] @relation(name: "ForumStatements")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Rating {
+  id: ID! @id
+  rating: Int
+  forum: Forum @relation(name: "ForumRating")
+  user: User @relation(name: "UserRating")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Statement {
+  id: ID! @id
+  text: String
+  forum: Forum @relation(name: "ForumStatements")
+  user: User @relation(name: "UserStatements")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ChallengeResult {
+  id: ID! @id
+  student: User! @relation(name: "UserChallengeResults")
+  correct: Int
+  wrong: Int
+  time: Int
+  lesson: Lesson! @relation(name: "ChallengeResults")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type UserLevel {
+  id: ID! @id
+  level: Float @default(value: 0)
+  user: User @relation(name: "UserLevel")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

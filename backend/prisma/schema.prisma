@@ -1,0 +1,657 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model Application {
+//   id            String     @default(cuid()) @id
+//   applicantId   String     @default(cuid())
+//   applicantName String
+//   message       String?
+//   coursePageID  String     @default(cuid())
+//   createdAt     DateTime   @default(now())
+//   updatedAt     DateTime   @updatedAt
+//   coursePageId  String
+//   coursePage    CoursePage @relation("Application_coursePageIdToCoursePage", fields: [coursePageId], references: [id])
+// }
+
+
+model Toy {
+  id            String     @default(cuid()) @id
+  applicantId   String     
+}
+
+// model CareerTrack {
+//   id               String            @default(cuid()) @id
+//   name             String
+//   img              String?
+//   createdAt        DateTime          @default(now())
+//   updatedAt        DateTime          @updatedAt
+//   careerTrackUnits CareerTrackUnit[] @relation("CareerTrackToCareerTrackUnit_careerTrackId")
+//   members          User?
+//   coursePages      CoursePage[]      @relation("CoursePageForCareer")
+// }
+
+// model CareerTrackUnit {
+//   id            String       @default(cuid()) @id
+//   title         String
+//   number        Int?
+//   img           String?
+//   createdAt     DateTime     @default(now())
+//   updatedAt     DateTime     @updatedAt
+//   topics        String[]
+//   articles      String[]
+//   careerTrackId String
+//   careerTrack   CareerTrack  @relation("CareerTrackToCareerTrackUnit_careerTrackId", fields: [careerTrackId], references: [id])
+//   coursePages   CoursePage[]
+// }
+
+// model ChallengeResult {
+//   id        String   @default(cuid()) @id
+//   correct   Int?
+//   wrong     Int?
+//   time      Int?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   studentId String
+//   lessonId  String
+//   lesson    Lesson   @relation("ChallengeResult_lessonIdToLesson", fields: [lessonId], references: [id])
+//   student   User     @relation("ChallengeResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model Clause {
+//   id         String   @default(cuid()) @id
+//   number     Int
+//   commentary String
+//   sample     String?
+//   createdAt  DateTime @default(now())
+//   updatedAt  DateTime @updatedAt
+//   keywords   String[]
+//   userId     String
+//   documentId String
+//   document   Document @relation("Clause_documentIdToDocument", fields: [documentId], references: [id])
+//   user       User     @relation("Clause_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model Company {
+//   id          String       @default(cuid()) @id
+//   name        String
+//   paidMonths  Int?         @default(0)
+//   createdAt   DateTime     @default(now())
+//   updatedAt   DateTime     @updatedAt
+//   coursePages CoursePage[]
+//   hrs         User[]       @relation("CompanyToUser_companyId")
+// }
+
+// model Construction {
+//   id                  String               @default(cuid()) @id
+//   name                String
+//   hint                String?
+//   type                String
+//   lessonID            String               @default(cuid())
+//   createdAt           DateTime             @default(now())
+//   updatedAt           DateTime             @updatedAt
+//   variants            String[]
+//   answer              String[]
+//   userId              String
+//   lessonId            String
+//   lesson              Lesson               @relation("Construction_lessonIdToLesson", fields: [lessonId], references: [id])
+//   user                User                 @relation("Construction_userIdToUser", fields: [userId], references: [id])
+//   constructionResults ConstructionResult[] @relation("ConstructionToConstructionResult_constructionId")
+// }
+
+// model ConstructionResult {
+//   id             String        @default(cuid()) @id
+//   answer         String?
+//   attempts       Int?
+//   constructionID String?       @default(cuid())
+//   lessonID       String?       @default(cuid())
+//   createdAt      DateTime      @default(now())
+//   updatedAt      DateTime      @updatedAt
+//   inputs         String[]
+//   studentId      String
+//   lessonId       String?
+//   constructionId String?
+//   construction   Construction? @relation("ConstructionToConstructionResult_constructionId", fields: [constructionId], references: [id])
+//   lesson         Lesson?       @relation("ConstructionResult_lessonIdToLesson", fields: [lessonId], references: [id])
+//   student        User          @relation("ConstructionResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model CoursePage {
+//   id                String            @default(cuid()) @id
+//   title             String
+//   description       String
+//   image             String
+//   banner            String?
+//   news              String?           @default("Добро пожаловать на курс! Проходите уроки, выполняйте задания и выполняйте финальное задание!")
+//   audience          String?
+//   result            String?
+//   tariffs           String?
+//   methods           String?
+//   video             String?
+//   reviews           Json?
+//   numInCareerTrack  Int?
+//   published         Boolean?          @default(false)
+//   uniID             String?           @default(cuid())
+//   courseType        CourseType?       @map("courseType")
+//   price             Int?
+//   discountPrice     Int?
+//   createdAt         DateTime          @default(now())
+//   updatedAt         DateTime          @updatedAt
+//   companyId         String?           @map("company")
+//   weeks             Int?
+//   subscription      Boolean?          @default(false)
+//   subscriptionPrice Int?
+//   batch             String?
+//   openLesson        String?           @default(cuid())
+//   tags              String[]
+//   students          String[]          
+//   promocode         Json[]
+//   uniId             String?
+//   company           Company?          @relation(fields: [companyId], references: [id])
+//   uni               Uni?              @relation("CoursePage_uniIdToUni", fields: [uniId], references: [id])
+//   new_studentsId    User[]            @relation("CoursePage_userIdToUser")
+//   userId            String
+//   applications      Application[]     @relation("Application_coursePageIdToCoursePage")
+//   visits            CourseVisit[]     @relation("CoursePageToCourseVisit_coursePageId")
+//   lessons           Lesson[]          @relation("CoursePageToLesson_coursePageId")
+//   orders            Order[]           @relation("CoursePageToOrder_coursePageId")
+//   // new_studentsId    User[]            @map("new_students") @relation("AuthorsCoursePage")
+//   CareerTrackUnit   CareerTrackUnit[]
+//   careerTrack       CareerTrack[]     @relation("CoursePageForCareer")
+//   packageId         CoursePage[]      @relation("CoursePageToCoursePage")
+//   package           CoursePage[]      @relation("CoursePageToCoursePage")
+//   posts             Post[]            @relation("PostCoursePages")
+//   new_students      User[]            @relation("UserSubjects")
+// }
+
+// model CourseVisit {
+//   id           String     @default(cuid()) @id
+//   visitsNumber Int?       @default(0)
+//   finish       DateTime?
+//   createdAt    DateTime   @default(now())
+//   updatedAt    DateTime   @updatedAt
+//   reminders    DateTime[]
+//   studentId    String
+//   coursePageId String
+//   coursePage   CoursePage @relation("CoursePageToCourseVisit_coursePageId", fields: [coursePageId], references: [id])
+//   student      User       @relation("CourseVisit_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model Document {
+//   id              String           @default(cuid()) @id
+//   title           String
+//   createdAt       DateTime         @default(now())
+//   updatedAt       DateTime         @updatedAt
+//   userId          String
+//   lessonId        String
+//   lesson          Lesson           @relation("Document_lessonIdToLesson", fields: [lessonId], references: [id])
+//   user            User             @relation("Document_userIdToUser", fields: [userId], references: [id])
+//   clauses         Clause[]         @relation("Clause_documentIdToDocument")
+//   documentResults DocumentResult[] @relation("DocumentToDocumentResult_documentId")
+// }
+
+// model DocumentResult {
+//   id         String    @default(cuid()) @id
+//   createdAt  DateTime  @default(now())
+//   updatedAt  DateTime  @updatedAt
+//   answers    String[]
+//   drafts     String[]
+//   userId     String?
+//   lessonId   String?
+//   documentId String?
+//   document   Document? @relation("DocumentToDocumentResult_documentId", fields: [documentId], references: [id])
+//   lesson     Lesson?   @relation("DocumentResult_lessonIdToLesson", fields: [lessonId], references: [id])
+//   user       User?     @relation("DocumentResult_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model Feedback {
+//   id        String   @default(cuid()) @id
+//   text      String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   lessonId  String?
+//   lesson    Lesson?  @relation("Feedback_lessonIdToLesson", fields: [lessonId], references: [id])
+//   student User     @relation("Feedback_studentIdToUser", fields: [studentId], references: [id])
+//   studentId String
+//   teacher   User     @relation("Feedback_teacherIdToUser", fields: [teacherId], references: [id])
+//   teacherId String
+// }
+
+// model Forum {
+//   id         String      @default(cuid()) @id
+//   text       String?
+//   createdAt  DateTime    @default(now())
+//   updatedAt  DateTime    @updatedAt
+//   userId     String?
+//   user       User?       @relation("Forum_userIdToUser", fields: [userId], references: [id])
+//   lesson     Lesson?
+//   rating     Rating[]    @relation("ForumToRating_forumId")
+//   statements Statement[] @relation("ForumToStatement_forumId")
+// }
+
+// model LegalPortfolio {
+//   id        String   @default(cuid()) @id
+//   cv        String?
+//   resume    String?
+//   open      Boolean  @default(false)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User?
+// }
+
+// model Lesson {
+//   id                  String               @default(cuid()) @id
+//   name                String
+//   number              Int?
+//   text                String
+//   type                String?              @default("REGULAR")
+//   description         String?
+//   structure           Json?
+//   open                Boolean?             @default(false)
+//   coursePageID        String               @default(cuid())
+//   change              String?
+//   challenge_num       Int?                 @default(10)
+//   published           Boolean?             @default(false)
+//   createdAt           DateTime             @default(now())
+//   updatedAt           DateTime             @updatedAt
+//   map                 Json[]
+//   userId              String
+//   coursePageId        String
+//   forumId             String?              @unique
+//   coursePage          CoursePage           @relation("CoursePageToLesson_coursePageId", fields: [coursePageId], references: [id])
+//   forum               Forum?               @relation(fields: [forumId], references: [id])
+//   user                User                 @relation("Lesson_userIdToUser", fields: [userId], references: [id])
+//   challengeResults    ChallengeResult[]    @relation("ChallengeResult_lessonIdToLesson")
+//   constructions       Construction[]       @relation("Construction_lessonIdToLesson")
+//   constructionResults ConstructionResult[] @relation("ConstructionResult_lessonIdToLesson")
+//   documents           Document[]           @relation("Document_lessonIdToLesson")
+//   documentResults     DocumentResult[]     @relation("DocumentResult_lessonIdToLesson")
+//   lessonFeedback      Feedback[]           @relation("Feedback_lessonIdToLesson")
+//   lessonResults       LessonResult[]       @relation("LessonToLessonResult_lessonId")
+//   newTests            NewTest[]            @relation("LessonToNewTest_lessonId")
+//   notes               Note[]               @relation("LessonToNote_lessonId")
+//   problems            Problem[]            @relation("LessonToProblem_lessonId")
+//   problemResults      ProblemResult[]      @relation("LessonToProblemResult_lessonId")
+//   quizes              Quiz[]               @relation("LessonToQuiz_lessonId")
+//   quizResults         QuizResult[]         @relation("LessonToQuizResult_lessonId")
+//   shots               Shot[]               @relation("LessonToShot_lessonId")
+//   shotResults         ShotResult[]         @relation("LessonToShotResult_lessonId")
+//   testResults         TestResult[]         @relation("LessonToTestResult_lessonId")
+//   texteditors         TextEditor[]         @relation("LessonToTextEditor_lessonId")
+//   textEditorResults   TextEditorResult[]   @relation("LessonToTextEditorResult_lessonId")
+// }
+
+// model LessonResult {
+//   id           String   @default(cuid()) @id
+//   visitsNumber Int?     @default(0)
+//   lessonID     String?  @default(cuid())
+//   createdAt    DateTime @default(now())
+//   updatedAt    DateTime @updatedAt
+//   progress     Int?     @default(0)
+//   studentId    String
+//   lessonId     String
+//   lesson       Lesson   @relation("LessonToLessonResult_lessonId", fields: [lessonId], references: [id])
+//   student      User     @relation("LessonResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model NewTest {
+//   id          String       @default(cuid()) @id
+//   ifRight     String?
+//   ifWrong     String?
+//   type        String?      @default("TEST")
+//   lessonID    String?      @default(cuid())
+//   next        Json?
+//   createdAt   DateTime     @default(now())
+//   updatedAt   DateTime     @updatedAt
+//   question    String[]
+//   answers     String[]
+//   correct     Boolean[]
+//   userId      String
+//   lessonId    String?
+//   lesson      Lesson?      @relation("LessonToNewTest_lessonId", fields: [lessonId], references: [id])
+//   user        User         @relation("NewTest_userIdToUser", fields: [userId], references: [id])
+//   testResults TestResult[] @relation("NewTestToTestResult_testId")
+// }
+
+// model Note {
+//   id        String   @default(cuid()) @id
+//   text      String
+//   next      Json?
+//   lessonID  String?  @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   userId    String?
+//   lessonId  String?
+//   lesson    Lesson?  @relation("LessonToNote_lessonId", fields: [lessonId], references: [id])
+//   user      User?    @relation("Note_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model Order {
+//   id           String     @default(cuid()) @id
+//   paymentID    String?
+//   price        Int?
+//   level        Level?     @map("level")
+//   comment      String?
+//   promocode    String?
+//   isPaid       Boolean?
+//   createdAt    DateTime   @default(now())
+//   updatedAt    DateTime   @updatedAt
+//   userId       String
+//   coursePageId String
+//   coursePage   CoursePage @relation("CoursePageToOrder_coursePageId", fields: [coursePageId], references: [id])
+//   user         User       @relation("Order_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model Post {
+//   id          String       @default(cuid()) @id
+//   title       String?
+//   text        String?
+//   likes       Int?         @default(1)
+//   createdAt   DateTime     @default(now())
+//   updatedAt   DateTime     @updatedAt
+//   userId      String
+//   tags        String[]
+//   user        User         @relation("Post_userIdToUser", fields: [userId], references: [id])
+//   coursePages CoursePage[] @relation("PostCoursePages")
+// }
+
+// model Problem {
+//   id             String          @default(cuid()) @id
+//   text           String
+//   hints          String?
+//   solution       String?
+//   answer         String?
+//   lessonID       String          @default(cuid())
+//   nodeType       String?
+//   nodeID         String?         @default(cuid())
+//   createdAt      DateTime        @default(now())
+//   updatedAt      DateTime        @updatedAt
+//   hintsList      String[]
+//   solutionList   String[]
+//   userId         String
+//   lessonId       String
+//   lesson         Lesson          @relation("LessonToProblem_lessonId", fields: [lessonId], references: [id])
+//   user           User            @relation("Problem_userIdToUser", fields: [userId], references: [id])
+//   problemResults ProblemResult[] @relation("ProblemToProblemResult_problemId")
+// }
+
+// model ProblemResult {
+//   id        String   @default(cuid()) @id
+//   answer    String?
+//   lessonID  String?  @default(cuid())
+//   problemID String?  @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   revealed  String[]
+//   studentId String
+//   lessonId  String?
+//   problemId String?
+//   lesson    Lesson?  @relation("LessonToProblemResult_lessonId", fields: [lessonId], references: [id])
+//   problem   Problem? @relation("ProblemToProblemResult_problemId", fields: [problemId], references: [id])
+//   student   User     @relation("ProblemResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model Quiz {
+//   id          String       @default(cuid()) @id
+//   question    String
+//   answer      String
+//   type        String?      @default("TEST")
+//   ifRight     String?
+//   ifWrong     String?
+//   lessonID    String?      @default(cuid())
+//   next        Json?
+//   createdAt   DateTime     @default(now())
+//   updatedAt   DateTime     @updatedAt
+//   check       String?      @default("IDEA")
+//   userId      String
+//   lessonId    String?
+//   lesson      Lesson?      @relation("LessonToQuiz_lessonId", fields: [lessonId], references: [id])
+//   user        User         @relation("Quiz_userIdToUser", fields: [userId], references: [id])
+//   quizResults QuizResult[] @relation("QuizToQuizResult_quizId")
+// }
+
+// model QuizResult {
+//   id        String   @default(cuid()) @id
+//   answer    String?
+//   attempts  Int?
+//   correct   Boolean?
+//   lessonID  String?  @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   studentId String
+//   lessonId  String?
+//   quizId    String?
+//   lesson    Lesson?  @relation("LessonToQuizResult_lessonId", fields: [lessonId], references: [id])
+//   quiz      Quiz?    @relation("QuizToQuizResult_quizId", fields: [quizId], references: [id])
+//   student   User     @relation("QuizResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model Rating {
+//   id        String   @default(cuid()) @id
+//   rating    Int?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   userId    String?
+//   forumId   String?
+//   forum     Forum?   @relation("ForumToRating_forumId", fields: [forumId], references: [id])
+//   user      User?    @relation("Rating_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model Shot {
+//   id          String       @default(cuid()) @id
+//   title       String
+//   lessonID    String?      @default(cuid())
+//   createdAt   DateTime     @default(now())
+//   updatedAt   DateTime     @updatedAt
+//   parts       String[]
+//   comments    String[]
+//   userId      String
+//   lessonId    String?
+//   lesson      Lesson?      @relation("LessonToShot_lessonId", fields: [lessonId], references: [id])
+//   user        User         @relation("Shot_userIdToUser", fields: [userId], references: [id])
+//   shotResults ShotResult[] @relation("ShotToShotResult_shotId")
+// }
+
+// model ShotResult {
+//   id        String   @default(cuid()) @id
+//   answer    String
+//   lessonID  String?  @default(cuid())
+//   shotID    String?  @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   studentId String
+//   lessonId  String?
+//   shotId    String?
+//   lesson    Lesson?  @relation("LessonToShotResult_lessonId", fields: [lessonId], references: [id])
+//   shot      Shot?    @relation("ShotToShotResult_shotId", fields: [shotId], references: [id])
+//   student   User     @relation("ShotResult_studentIdToUser", fields: [studentId], references: [id])
+// }
+
+// model Statement {
+//   id        String   @default(cuid()) @id
+//   text      String?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   userId    String?
+//   forumId   String?
+//   forum     Forum?   @relation("ForumToStatement_forumId", fields: [forumId], references: [id])
+//   user      User?    @relation("Statement_userIdToUser", fields: [userId], references: [id])
+// }
+
+// model TestResult {
+//   id        String   @default(cuid()) @id
+//   answer    String?
+//   attempts  Int?
+//   lessonID  String?  @default(cuid())
+//   testID    String?  @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   studentId String
+//   lessonId  String?
+//   testId    String?
+//   lesson    Lesson?  @relation("LessonToTestResult_lessonId", fields: [lessonId], references: [id])
+//   student   User     @relation("TestResult_studentIdToUser", fields: [studentId], references: [id])
+//   test      NewTest? @relation("NewTestToTestResult_testId", fields: [testId], references: [id])
+// }
+
+// model TextEditor {
+//   id                String             @default(cuid()) @id
+//   name              String
+//   text              String
+//   totalMistakes     Int?
+//   lessonID          String             @default(cuid())
+//   createdAt         DateTime           @default(now())
+//   updatedAt         DateTime           @updatedAt
+//   userId            String
+//   lessonId          String
+//   lesson            Lesson             @relation("LessonToTextEditor_lessonId", fields: [lessonId], references: [id])
+//   user              User               @relation("TextEditor_userIdToUser", fields: [userId], references: [id])
+//   textEditorResults TextEditorResult[] @relation("TextEditorToTextEditorResult_textEditorId")
+// }
+
+// model TextEditorResult {
+//   id           String      @default(cuid()) @id
+//   attempts     Int?
+//   wrong        String
+//   correct      String
+//   result       Boolean?
+//   guess        String
+//   createdAt    DateTime    @default(now())
+//   updatedAt    DateTime    @updatedAt
+//   studentId    String
+//   lessonId     String?
+//   textEditorId String?
+//   lesson       Lesson?     @relation("LessonToTextEditorResult_lessonId", fields: [lessonId], references: [id])
+//   student      User        @relation("TextEditorResult_studentIdToUser", fields: [studentId], references: [id])
+//   textEditor   TextEditor? @relation("TextEditorToTextEditorResult_textEditorId", fields: [textEditorId], references: [id])
+// }
+
+// model Uni {
+//   id             String       @default(cuid()) @id
+//   title          String
+//   capacity       Int?         @default(2)
+//   paidMonths     Int?         @default(0)
+//   createdAt      DateTime     @default(now())
+//   updatedAt      DateTime     @updatedAt
+//   uniCoursePages CoursePage[] @relation("CoursePage_uniIdToUni")
+//   teachers       User[]       @relation("UniToUser_uniId")
+// }
+
+// model User {
+//   id                  String               @default(cuid()) @id
+//   name                String
+//   surname             String?
+//   email               String               @unique
+//   password            String
+//   resetToken          String?
+//   resetTokenExpiry    Float?
+//   status              String?              @default("STUDENT")
+//   uniID               String?              @default(cuid())
+//   description         String?
+//   resume              String?
+//   coverLetter         String?
+//   careerTrackID       String?              @default(cuid())
+//   isFamiliar          Boolean              @default(false)
+//   createdAt           DateTime             @default(now())
+//   updatedAt           DateTime             @updatedAt
+//   image               String?
+//   favourites          String[]             
+//   subjects            String[]             
+//   interests           String[]
+//   permissions         Permission[]         @map("permissions")
+//   uniId               String?
+//   companyId           String?
+//   legalPortfolioId    String?              @unique
+//   careerTrackId       String?              @unique
+//   levelId             String?              @unique
+//   careerTrack         CareerTrack?         @relation(fields: [careerTrackId], references: [id])
+//   company             Company?             @relation("CompanyToUser_companyId", fields: [companyId], references: [id])
+//   legalPortfolio      LegalPortfolio?      @relation(fields: [legalPortfolioId], references: [id])
+//   level               UserLevel?           @relation(fields: [levelId], references: [id])
+//   uni                 Uni?                 @relation("UniToUser_uniId", fields: [uniId], references: [id])
+//   challengeResults    ChallengeResult[]    @relation("ChallengeResult_studentIdToUser")
+//   clauses             Clause[]             @relation("Clause_userIdToUser")
+//   construction        Construction[]       @relation("Construction_userIdToUser")
+//   constructionResults ConstructionResult[] @relation("ConstructionResult_studentIdToUser")
+//   co_coursePagesId    CoursePage[]         @relation("CoursePage_userIdToUser")
+//   courseVisits        CourseVisit[]        @relation("CourseVisit_studentIdToUser")
+//   documents           Document[]           @relation("Document_userIdToUser")
+//   documentResults     DocumentResult[]     @relation("DocumentResult_userIdToUser")
+//   studentFeedbackId   Feedback[]           @relation("Feedback_studentIdToUser")
+//   studentFeedback     Feedback[]           @relation("Feedback_teacherIdToUser")
+//   forums              Forum[]              @relation("Forum_userIdToUser")
+//   lessons             Lesson[]             @relation("Lesson_userIdToUser")
+//   lessonResults       LessonResult[]       @relation("LessonResult_studentIdToUser")
+//   newTests            NewTest[]            @relation("NewTest_userIdToUser")
+//   notes               Note[]               @relation("Note_userIdToUser")
+//   orders              Order[]              @relation("Order_userIdToUser")
+//   posts               Post[]               @relation("Post_userIdToUser")
+//   problems            Problem[]            @relation("Problem_userIdToUser")
+//   problemResults      ProblemResult[]      @relation("ProblemResult_studentIdToUser")
+//   quizes              Quiz[]               @relation("Quiz_userIdToUser")
+//   quizResults         QuizResult[]         @relation("QuizResult_studentIdToUser")
+//   ratings             Rating[]             @relation("Rating_userIdToUser")
+//   shots               Shot[]               @relation("Shot_userIdToUser")
+//   shotResults         ShotResult[]         @relation("ShotResult_studentIdToUser")
+//   statements          Statement[]          @relation("Statement_userIdToUser")
+//   testResults         TestResult[]         @relation("TestResult_studentIdToUser")
+//   textEditor          TextEditor[]         @relation("TextEditor_userIdToUser")
+//   textEditorResults   TextEditorResult[]   @relation("TextEditorResult_studentIdToUser")
+//   // co_coursePagesId    CoursePage[]         @map("co_coursePages") @relation("AuthorsCoursePage")
+//   co_coursePages      CoursePage[]         @relation("UserSubjects")
+// }
+
+// model UserLevel {
+//   id        String   @default(cuid()) @id
+//   level     Float?   @default(1)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   user      User?
+// }
+
+// enum CheckType {
+//   IDEA
+//   WORD
+// }
+
+// enum CourseType {
+//   CHALLENGE
+//   FORMONEY
+//   PRIVATE
+//   PUBLIC
+//   UNI
+// }
+
+// enum Level {
+//   ADVANCED
+//   STANDARD
+// }
+
+// enum Permission {
+//   ADMIN
+//   USER
+// }
+
+// enum Status {
+//   AUTHOR
+//   HR
+//   LAWYER
+//   SAVVY_AUTHOR
+//   STUDENT
+// }
+
+// enum TaskType {
+//   FORM
+//   TEST
+// }
+
+// enum Type {
+//   CHALLENGE
+//   REGULAR
+//   STORY
+// }

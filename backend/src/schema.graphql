@@ -1,0 +1,17512 @@
+#
+type Query {
+  #
+  coursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    first: Int
+  ): [CoursePage]!
+
+  #
+  coursePage(where: CoursePageWhereUniqueInput!): CoursePage
+
+  #
+  pointA(where: PointAWhereUniqueInput!): PointA
+
+  #
+  pointAs(
+    where: PointAWhereInput
+    orderBy: PointAOrderByInput
+    skip: Int
+    first: Int
+  ): [PointA]!
+
+  #
+  pointATest(where: PointATestWhereUniqueInput!): PointATest
+
+  #
+  pointATests(
+    where: PointATestWhereInput
+    orderBy: PointATestOrderByInput
+    skip: Int
+    first: Int
+  ): [PointATest]!
+
+  #
+  sandboxPages(
+    where: SandboxPageWhereInput
+    orderBy: SandboxPageOrderByInput
+    skip: Int
+    first: Int
+  ): [SandboxPage]!
+
+  #
+  sandboxPagesConnection(where: SandboxPageWhereInput): SandboxPageConnection!
+
+  #
+  sandboxPageGoals(
+    where: SandboxPageGoalWhereInput
+    orderBy: SandboxPageGoalOrderByInput
+    skip: Int
+    first: Int
+  ): [SandboxPageGoal]!
+
+  #
+  sandboxPage(where: SandboxPageWhereUniqueInput!): SandboxPage
+
+  #
+  sandboxes(
+    where: SandboxWhereInput
+    orderBy: SandboxOrderByInput
+    skip: Int
+    first: Int
+  ): [Sandbox]!
+
+  #
+  sandbox(where: SandboxWhereUniqueInput!): Sandbox
+
+  #
+  sandboxesConnection(where: SandboxWhereInput): SandboxConnection!
+
+  #
+  lessons(
+    where: LessonWhereInput
+    orderBy: LessonOrderByInput
+    skip: Int
+    first: Int
+  ): [Lesson]!
+
+  #
+  lesson(where: LessonWhereUniqueInput!): Lesson
+
+  #
+  lessonResults(
+    where: LessonResultWhereInput
+    orderBy: LessonResultOrderByInput
+  ): [LessonResult]!
+
+  #
+  textEditor(where: TextEditorWhereUniqueInput!): TextEditor
+
+  #
+  textEditors(
+    where: TextEditorWhereInput
+    orderBy: TextEditorOrderByInput
+    skip: Int
+    first: Int
+  ): [TextEditor]!
+
+  #
+  applications(
+    where: ApplicationWhereInput
+    orderBy: ApplicationOrderByInput
+    skip: Int
+    first: Int
+  ): [Application]!
+
+  #
+  coursePagesConnection(where: CoursePageWhereInput): CoursePageConnection!
+
+  #
+  lessonsConnection(where: LessonWhereInput): LessonConnection!
+
+  #
+  testsConnection(where: TestWhereInput): TestConnection!
+
+  #
+  usersConnection(where: UserWhereInput): UserConnection!
+
+  #
+  tests(
+    where: TestWhereInput
+    orderBy: TestOrderByInput
+    skip: Int
+    first: Int
+  ): [Test]!
+
+  #
+  test(where: TestWhereUniqueInput!): Test
+
+  #
+  construction(where: ConstructionWhereUniqueInput!): Construction
+
+  #
+  constructions(
+    where: ConstructionWhereInput
+    orderBy: ConstructionOrderByInput
+    skip: Int
+    first: Int
+  ): [Construction]!
+
+  #
+  problems(
+    where: ProblemWhereInput
+    orderBy: ProblemOrderByInput
+    skip: Int
+    first: Int
+  ): [Problem]!
+
+  #
+  problem(where: ProblemWhereUniqueInput!): Problem
+
+  #
+  problemsConnection(where: ProblemWhereInput): ProblemConnection!
+
+  #
+  me: User
+
+  #
+  user(where: UserWhereUniqueInput!): User
+
+  #
+  users(where: UserWhereInput): [User]!
+
+  #
+  order(where: OrderWhereUniqueInput!): Order
+
+  #
+  orders(where: OrderWhereInput): [Order]!
+
+  #
+  careerTrack(where: CareerTrackWhereUniqueInput!): CareerTrack
+
+  #
+  careerTracks(
+    where: CareerTrackWhereInput
+    orderBy: CareerTrackOrderByInput
+    skip: Int
+    first: Int
+  ): [CareerTrack]!
+
+  #
+  newTest(where: NewTestWhereUniqueInput!): NewTest
+
+  #
+  newTests(
+    where: NewTestWhereInput
+    orderBy: NewTestOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [NewTest]!
+
+  #
+  quiz(where: QuizWhereUniqueInput!): Quiz
+
+  #
+  quizzes(
+    where: QuizWhereInput
+    orderBy: QuizOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Quiz]!
+
+  #
+  examQuestions(
+    where: ExamQuestionWhereInput
+    orderBy: ExamQuestionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExamQuestion]!
+
+  #
+  post(where: PostWhereUniqueInput!): Post
+
+  #
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post]!
+
+  #
+  courseVisits(
+    where: CourseVisitWhereInput
+    orderBy: CourseVisitOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CourseVisit]!
+
+  #
+  note(where: NoteWhereUniqueInput!): Note
+
+  #
+  notes(
+    where: NoteWhereInput
+    orderBy: NoteOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Note!]
+
+  #
+  exams(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Exam]!
+
+  #
+  documents(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+  ): [Document]!
+
+  #
+  clause(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int): [Clause]!
+
+  #
+  documentResults(
+    where: DocumentResultWhereInput
+    orderBy: DocumentResultOrderByInput
+    skip: Int
+  ): [DocumentResult!]
+
+  #
+  testResults(
+    where: TestResultWhereInput
+    orderBy: TestResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TestResult!]
+
+  #
+  quizResults(
+    where: QuizResultWhereInput
+    orderBy: QuizResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [QuizResult!]
+}
+
+#
+input CoursePageWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  description: String
+
+  #
+  description_not: String
+
+  #
+  description_in: [String!]
+
+  #
+  description_not_in: [String!]
+
+  #
+  description_lt: String
+
+  #
+  description_lte: String
+
+  #
+  description_gt: String
+
+  #
+  description_gte: String
+
+  #
+  description_contains: String
+
+  #
+  description_not_contains: String
+
+  #
+  description_starts_with: String
+
+  #
+  description_not_starts_with: String
+
+  #
+  description_ends_with: String
+
+  #
+  description_not_ends_with: String
+
+  #
+  image: String
+
+  #
+  image_not: String
+
+  #
+  image_in: [String!]
+
+  #
+  image_not_in: [String!]
+
+  #
+  image_lt: String
+
+  #
+  image_lte: String
+
+  #
+  image_gt: String
+
+  #
+  image_gte: String
+
+  #
+  image_contains: String
+
+  #
+  image_not_contains: String
+
+  #
+  image_starts_with: String
+
+  #
+  image_not_starts_with: String
+
+  #
+  image_ends_with: String
+
+  #
+  image_not_ends_with: String
+
+  #
+  banner: String
+
+  #
+  banner_not: String
+
+  #
+  banner_in: [String!]
+
+  #
+  banner_not_in: [String!]
+
+  #
+  banner_lt: String
+
+  #
+  banner_lte: String
+
+  #
+  banner_gt: String
+
+  #
+  banner_gte: String
+
+  #
+  banner_contains: String
+
+  #
+  banner_not_contains: String
+
+  #
+  banner_starts_with: String
+
+  #
+  banner_not_starts_with: String
+
+  #
+  banner_ends_with: String
+
+  #
+  banner_not_ends_with: String
+
+  #
+  weeks: Int
+
+  #
+  weeks_not: Int
+
+  #
+  weeks_in: [Int!]
+
+  #
+  weeks_not_in: [Int!]
+
+  #
+  weeks_lt: Int
+
+  #
+  weeks_lte: Int
+
+  #
+  weeks_gt: Int
+
+  #
+  weeks_gte: Int
+
+  #
+  subscription: Boolean
+
+  #
+  subscription_not: Boolean
+
+  #
+  news: String
+
+  #
+  news_not: String
+
+  #
+  news_in: [String!]
+
+  #
+  news_not_in: [String!]
+
+  #
+  news_lt: String
+
+  #
+  news_lte: String
+
+  #
+  news_gt: String
+
+  #
+  news_gte: String
+
+  #
+  news_contains: String
+
+  #
+  news_not_contains: String
+
+  #
+  news_starts_with: String
+
+  #
+  news_not_starts_with: String
+
+  #
+  news_ends_with: String
+
+  #
+  news_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  authors_every: UserWhereInput
+
+  #
+  authors_some: UserWhereInput
+
+  #
+  authors_none: UserWhereInput
+
+  #
+  lessons_every: LessonWhereInput
+
+  #
+  lessons_some: LessonWhereInput
+
+  #
+  lessons_none: LessonWhereInput
+
+  #
+  pointsA_every: PointAWhereInput
+
+  #
+  pointsA_some: PointAWhereInput
+
+  #
+  pointsA_none: PointAWhereInput
+
+  #
+  applications_every: ApplicationWhereInput
+
+  #
+  applications_some: ApplicationWhereInput
+
+  #
+  applications_none: ApplicationWhereInput
+
+  #
+  pointATests_every: PointATestWhereInput
+
+  #
+  pointATests_some: PointATestWhereInput
+
+  #
+  pointATests_none: PointATestWhereInput
+
+  #
+  careerTrack_every: CareerTrackWhereInput
+
+  #
+  careerTrack_some: CareerTrackWhereInput
+
+  #
+  careerTrack_none: CareerTrackWhereInput
+
+  #
+  numInCareerTrack: Int
+
+  #
+  numInCareerTrack_not: Int
+
+  #
+  numInCareerTrack_in: [Int!]
+
+  #
+  numInCareerTrack_not_in: [Int!]
+
+  #
+  numInCareerTrack_lt: Int
+
+  #
+  numInCareerTrack_lte: Int
+
+  #
+  numInCareerTrack_gt: Int
+
+  #
+  numInCareerTrack_gte: Int
+
+  #
+  examQuestion: ExamQuestionWhereInput
+
+  #
+  published: Boolean
+
+  #
+  published_not: Boolean
+
+  #
+  uni: UniWhereInput
+
+  #
+  uniID: ID
+
+  #
+  uniID_not: ID
+
+  #
+  uniID_in: [ID!]
+
+  #
+  uniID_not_in: [ID!]
+
+  #
+  uniID_lt: ID
+
+  #
+  uniID_lte: ID
+
+  #
+  uniID_gt: ID
+
+  #
+  uniID_gte: ID
+
+  #
+  uniID_contains: ID
+
+  #
+  uniID_not_contains: ID
+
+  #
+  uniID_starts_with: ID
+
+  #
+  uniID_not_starts_with: ID
+
+  #
+  uniID_ends_with: ID
+
+  #
+  uniID_not_ends_with: ID
+
+  #
+  posts_every: PostWhereInput
+
+  #
+  posts_some: PostWhereInput
+
+  #
+  posts_none: PostWhereInput
+
+  #
+  courseType: CourseType
+
+  #
+  courseType_not: CourseType
+
+  #
+  courseType_in: [CourseType!]
+
+  #
+  courseType_not_in: [CourseType!]
+
+  #
+  new_students_every: UserWhereInput
+
+  #
+  new_students_some: UserWhereInput
+
+  #
+  new_students_none: UserWhereInput
+
+  #
+  price: Int
+
+  #
+  price_not: Int
+
+  #
+  price_in: [Int!]
+
+  #
+  price_not_in: [Int!]
+
+  #
+  price_lt: Int
+
+  #
+  price_lte: Int
+
+  #
+  price_gt: Int
+
+  #
+  price_gte: Int
+
+  #
+  subscriptionPrice: Int
+
+  #
+  subscriptionPrice_not: Int
+
+  #
+  subscriptionPrice_in: [Int!]
+
+  #
+  subscriptionPrice_not_in: [Int!]
+
+  #
+  subscriptionPrice_lt: Int
+
+  #
+  subscriptionPrice_lte: Int
+
+  #
+  subscriptionPrice_gt: Int
+
+  #
+  subscriptionPrice_gte: Int
+
+  #
+  discountPrice: Int
+
+  #
+  discountPrice_not: Int
+
+  #
+  discountPrice_in: [Int!]
+
+  #
+  discountPrice_not_in: [Int!]
+
+  #
+  discountPrice_lt: Int
+
+  #
+  discountPrice_lte: Int
+
+  #
+  discountPrice_gt: Int
+
+  #
+  discountPrice_gte: Int
+
+  #
+  orders_every: OrderWhereInput
+
+  #
+  orders_some: OrderWhereInput
+
+  #
+  orders_none: OrderWhereInput
+
+  #
+  company: CompanyWhereInput
+
+  #
+  visits_every: CourseVisitWhereInput
+
+  #
+  visits_some: CourseVisitWhereInput
+
+  #
+  visits_none: CourseVisitWhereInput
+
+  #
+  audience: String
+
+  #
+  audience_not: String
+
+  #
+  audience_in: [String!]
+
+  #
+  audience_not_in: [String!]
+
+  #
+  audience_lt: String
+
+  #
+  audience_lte: String
+
+  #
+  audience_gt: String
+
+  #
+  audience_gte: String
+
+  #
+  audience_contains: String
+
+  #
+  audience_not_contains: String
+
+  #
+  audience_starts_with: String
+
+  #
+  audience_not_starts_with: String
+
+  #
+  audience_ends_with: String
+
+  #
+  audience_not_ends_with: String
+
+  #
+  result: String
+
+  #
+  result_not: String
+
+  #
+  result_in: [String!]
+
+  #
+  result_not_in: [String!]
+
+  #
+  result_lt: String
+
+  #
+  result_lte: String
+
+  #
+  result_gt: String
+
+  #
+  result_gte: String
+
+  #
+  result_contains: String
+
+  #
+  result_not_contains: String
+
+  #
+  result_starts_with: String
+
+  #
+  result_not_starts_with: String
+
+  #
+  result_ends_with: String
+
+  #
+  result_not_ends_with: String
+
+  #
+  tariffs: String
+
+  #
+  tariffs_not: String
+
+  #
+  tariffs_in: [String!]
+
+  #
+  tariffs_not_in: [String!]
+
+  #
+  tariffs_lt: String
+
+  #
+  tariffs_lte: String
+
+  #
+  tariffs_gt: String
+
+  #
+  tariffs_gte: String
+
+  #
+  tariffs_contains: String
+
+  #
+  tariffs_not_contains: String
+
+  #
+  tariffs_starts_with: String
+
+  #
+  tariffs_not_starts_with: String
+
+  #
+  tariffs_ends_with: String
+
+  #
+  tariffs_not_ends_with: String
+
+  #
+  methods: String
+
+  #
+  methods_not: String
+
+  #
+  methods_in: [String!]
+
+  #
+  methods_not_in: [String!]
+
+  #
+  methods_lt: String
+
+  #
+  methods_lte: String
+
+  #
+  methods_gt: String
+
+  #
+  methods_gte: String
+
+  #
+  methods_contains: String
+
+  #
+  methods_not_contains: String
+
+  #
+  methods_starts_with: String
+
+  #
+  methods_not_starts_with: String
+
+  #
+  methods_ends_with: String
+
+  #
+  methods_not_ends_with: String
+
+  #
+  batch: String
+
+  #
+  batch_not: String
+
+  #
+  batch_in: [String!]
+
+  #
+  batch_not_in: [String!]
+
+  #
+  batch_lt: String
+
+  #
+  batch_lte: String
+
+  #
+  batch_gt: String
+
+  #
+  batch_gte: String
+
+  #
+  batch_contains: String
+
+  #
+  batch_not_contains: String
+
+  #
+  batch_starts_with: String
+
+  #
+  batch_not_starts_with: String
+
+  #
+  batch_ends_with: String
+
+  #
+  batch_not_ends_with: String
+
+  #
+  openLesson: ID
+
+  #
+  openLesson_not: ID
+
+  #
+  openLesson_in: [ID!]
+
+  #
+  openLesson_not_in: [ID!]
+
+  #
+  openLesson_lt: ID
+
+  #
+  openLesson_lte: ID
+
+  #
+  openLesson_gt: ID
+
+  #
+  openLesson_gte: ID
+
+  #
+  openLesson_contains: ID
+
+  #
+  openLesson_not_contains: ID
+
+  #
+  openLesson_starts_with: ID
+
+  #
+  openLesson_not_starts_with: ID
+
+  #
+  openLesson_ends_with: ID
+
+  #
+  openLesson_not_ends_with: ID
+
+  #
+  video: String
+
+  #
+  video_not: String
+
+  #
+  video_in: [String!]
+
+  #
+  video_not_in: [String!]
+
+  #
+  video_lt: String
+
+  #
+  video_lte: String
+
+  #
+  video_gt: String
+
+  #
+  video_gte: String
+
+  #
+  video_contains: String
+
+  #
+  video_not_contains: String
+
+  #
+  video_starts_with: String
+
+  #
+  video_not_starts_with: String
+
+  #
+  video_ends_with: String
+
+  #
+  video_not_ends_with: String
+
+  #
+  package_every: CoursePageWhereInput
+
+  #
+  package_some: CoursePageWhereInput
+
+  #
+  package_none: CoursePageWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [CoursePageWhereInput!]
+
+  #
+  OR: [CoursePageWhereInput!]
+
+  #
+  NOT: [CoursePageWhereInput!]
+}
+
+#
+input UserWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  surname: String
+
+  #
+  surname_not: String
+
+  #
+  surname_in: [String!]
+
+  #
+  surname_not_in: [String!]
+
+  #
+  surname_lt: String
+
+  #
+  surname_lte: String
+
+  #
+  surname_gt: String
+
+  #
+  surname_gte: String
+
+  #
+  surname_contains: String
+
+  #
+  surname_not_contains: String
+
+  #
+  surname_starts_with: String
+
+  #
+  surname_not_starts_with: String
+
+  #
+  surname_ends_with: String
+
+  #
+  surname_not_ends_with: String
+
+  #
+  email: String
+
+  #
+  email_not: String
+
+  #
+  email_in: [String!]
+
+  #
+  email_not_in: [String!]
+
+  #
+  email_lt: String
+
+  #
+  email_lte: String
+
+  #
+  email_gt: String
+
+  #
+  email_gte: String
+
+  #
+  email_contains: String
+
+  #
+  email_not_contains: String
+
+  #
+  email_starts_with: String
+
+  #
+  email_not_starts_with: String
+
+  #
+  email_ends_with: String
+
+  #
+  email_not_ends_with: String
+
+  #
+  password: String
+
+  #
+  password_not: String
+
+  #
+  password_in: [String!]
+
+  #
+  password_not_in: [String!]
+
+  #
+  password_lt: String
+
+  #
+  password_lte: String
+
+  #
+  password_gt: String
+
+  #
+  password_gte: String
+
+  #
+  password_contains: String
+
+  #
+  password_not_contains: String
+
+  #
+  password_starts_with: String
+
+  #
+  password_not_starts_with: String
+
+  #
+  password_ends_with: String
+
+  #
+  password_not_ends_with: String
+
+  #
+  resetToken: String
+
+  #
+  resetToken_not: String
+
+  #
+  resetToken_in: [String!]
+
+  #
+  resetToken_not_in: [String!]
+
+  #
+  resetToken_lt: String
+
+  #
+  resetToken_lte: String
+
+  #
+  resetToken_gt: String
+
+  #
+  resetToken_gte: String
+
+  #
+  resetToken_contains: String
+
+  #
+  resetToken_not_contains: String
+
+  #
+  resetToken_starts_with: String
+
+  #
+  resetToken_not_starts_with: String
+
+  #
+  resetToken_ends_with: String
+
+  #
+  resetToken_not_ends_with: String
+
+  #
+  resetTokenExpiry: Float
+
+  #
+  resetTokenExpiry_not: Float
+
+  #
+  resetTokenExpiry_in: [Float!]
+
+  #
+  resetTokenExpiry_not_in: [Float!]
+
+  #
+  resetTokenExpiry_lt: Float
+
+  #
+  resetTokenExpiry_lte: Float
+
+  #
+  resetTokenExpiry_gt: Float
+
+  #
+  resetTokenExpiry_gte: Float
+
+  #
+  image: String
+
+  #
+  image_not: String
+
+  #
+  image_in: [String!]
+
+  #
+  image_not_in: [String!]
+
+  #
+  image_lt: String
+
+  #
+  image_lte: String
+
+  #
+  image_gt: String
+
+  #
+  image_gte: String
+
+  #
+  image_contains: String
+
+  #
+  image_not_contains: String
+
+  #
+  image_starts_with: String
+
+  #
+  image_not_starts_with: String
+
+  #
+  image_ends_with: String
+
+  #
+  image_not_ends_with: String
+
+  #
+  status: Status
+
+  #
+  status_not: Status
+
+  #
+  status_in: [Status!]
+
+  #
+  status_not_in: [Status!]
+
+  #
+  legalPortfolio: LegalPortfolioWhereInput
+
+  #
+  uni: UniWhereInput
+
+  #
+  company: CompanyWhereInput
+
+  #
+  uniID: ID
+
+  #
+  uniID_not: ID
+
+  #
+  uniID_in: [ID!]
+
+  #
+  uniID_not_in: [ID!]
+
+  #
+  uniID_lt: ID
+
+  #
+  uniID_lte: ID
+
+  #
+  uniID_gt: ID
+
+  #
+  uniID_gte: ID
+
+  #
+  uniID_contains: ID
+
+  #
+  uniID_not_contains: ID
+
+  #
+  uniID_starts_with: ID
+
+  #
+  uniID_not_starts_with: ID
+
+  #
+  uniID_ends_with: ID
+
+  #
+  uniID_not_ends_with: ID
+
+  #
+  description: String
+
+  #
+  description_not: String
+
+  #
+  description_in: [String!]
+
+  #
+  description_not_in: [String!]
+
+  #
+  description_lt: String
+
+  #
+  description_lte: String
+
+  #
+  description_gt: String
+
+  #
+  description_gte: String
+
+  #
+  description_contains: String
+
+  #
+  description_not_contains: String
+
+  #
+  description_starts_with: String
+
+  #
+  description_not_starts_with: String
+
+  #
+  description_ends_with: String
+
+  #
+  description_not_ends_with: String
+
+  #
+  resume: String
+
+  #
+  resume_not: String
+
+  #
+  resume_in: [String!]
+
+  #
+  resume_not_in: [String!]
+
+  #
+  resume_lt: String
+
+  #
+  resume_lte: String
+
+  #
+  resume_gt: String
+
+  #
+  resume_gte: String
+
+  #
+  resume_contains: String
+
+  #
+  resume_not_contains: String
+
+  #
+  resume_starts_with: String
+
+  #
+  resume_not_starts_with: String
+
+  #
+  resume_ends_with: String
+
+  #
+  resume_not_ends_with: String
+
+  #
+  coverLetter: String
+
+  #
+  coverLetter_not: String
+
+  #
+  coverLetter_in: [String!]
+
+  #
+  coverLetter_not_in: [String!]
+
+  #
+  coverLetter_lt: String
+
+  #
+  coverLetter_lte: String
+
+  #
+  coverLetter_gt: String
+
+  #
+  coverLetter_gte: String
+
+  #
+  coverLetter_contains: String
+
+  #
+  coverLetter_not_contains: String
+
+  #
+  coverLetter_starts_with: String
+
+  #
+  coverLetter_not_starts_with: String
+
+  #
+  coverLetter_ends_with: String
+
+  #
+  coverLetter_not_ends_with: String
+
+  #
+  careerTrack: CareerTrackWhereInput
+
+  #
+  careerTrackID: ID
+
+  #
+  careerTrackID_not: ID
+
+  #
+  careerTrackID_in: [ID!]
+
+  #
+  careerTrackID_not_in: [ID!]
+
+  #
+  careerTrackID_lt: ID
+
+  #
+  careerTrackID_lte: ID
+
+  #
+  careerTrackID_gt: ID
+
+  #
+  careerTrackID_gte: ID
+
+  #
+  careerTrackID_contains: ID
+
+  #
+  careerTrackID_not_contains: ID
+
+  #
+  careerTrackID_starts_with: ID
+
+  #
+  careerTrackID_not_starts_with: ID
+
+  #
+  careerTrackID_ends_with: ID
+
+  #
+  careerTrackID_not_ends_with: ID
+
+  #
+  new_sandboxes_every: SandboxWhereInput
+
+  #
+  new_sandboxes_some: SandboxWhereInput
+
+  #
+  new_sandboxes_none: SandboxWhereInput
+
+  #
+  new_subjects_every: CoursePageWhereInput
+
+  #
+  new_subjects_some: CoursePageWhereInput
+
+  #
+  new_subjects_none: CoursePageWhereInput
+
+  #
+  coursePages_every: CoursePageWhereInput
+
+  #
+  coursePages_some: CoursePageWhereInput
+
+  #
+  coursePages_none: CoursePageWhereInput
+
+  #
+  co_coursePages_every: CoursePageWhereInput
+
+  #
+  co_coursePages_some: CoursePageWhereInput
+
+  #
+  co_coursePages_none: CoursePageWhereInput
+
+  #
+  sandboxPages_every: SandboxPageWhereInput
+
+  #
+  sandboxPages_some: SandboxPageWhereInput
+
+  #
+  sandboxPages_none: SandboxPageWhereInput
+
+  #
+  sandboxPageGoals_every: SandboxPageGoalWhereInput
+
+  #
+  sandboxPageGoals_some: SandboxPageGoalWhereInput
+
+  #
+  sandboxPageGoals_none: SandboxPageGoalWhereInput
+
+  #
+  lessons_every: LessonWhereInput
+
+  #
+  lessons_some: LessonWhereInput
+
+  #
+  lessons_none: LessonWhereInput
+
+  #
+  tests_every: TestWhereInput
+
+  #
+  tests_some: TestWhereInput
+
+  #
+  tests_none: TestWhereInput
+
+  #
+  newTests_every: NewTestWhereInput
+
+  #
+  newTests_some: NewTestWhereInput
+
+  #
+  newTests_none: NewTestWhereInput
+
+  #
+  quizes_every: QuizWhereInput
+
+  #
+  quizes_some: QuizWhereInput
+
+  #
+  quizes_none: QuizWhereInput
+
+  #
+  lessonResults_every: LessonResultWhereInput
+
+  #
+  lessonResults_some: LessonResultWhereInput
+
+  #
+  lessonResults_none: LessonResultWhereInput
+
+  #
+  testResults_every: TestResultWhereInput
+
+  #
+  testResults_some: TestResultWhereInput
+
+  #
+  testResults_none: TestResultWhereInput
+
+  #
+  quizResults_every: QuizResultWhereInput
+
+  #
+  quizResults_some: QuizResultWhereInput
+
+  #
+  quizResults_none: QuizResultWhereInput
+
+  #
+  problemResults_every: ProblemResultWhereInput
+
+  #
+  problemResults_some: ProblemResultWhereInput
+
+  #
+  problemResults_none: ProblemResultWhereInput
+
+  #
+  textEditorResults_every: TextEditorResultWhereInput
+
+  #
+  textEditorResults_some: TextEditorResultWhereInput
+
+  #
+  textEditorResults_none: TextEditorResultWhereInput
+
+  #
+  constructionResults_every: ConstructionResultWhereInput
+
+  #
+  constructionResults_some: ConstructionResultWhereInput
+
+  #
+  constructionResults_none: ConstructionResultWhereInput
+
+  #
+  pointsA_every: PointAWhereInput
+
+  #
+  pointsA_some: PointAWhereInput
+
+  #
+  pointsA_none: PointAWhereInput
+
+  #
+  pointATests_every: PointATestWhereInput
+
+  #
+  pointATests_some: PointATestWhereInput
+
+  #
+  pointATests_none: PointATestWhereInput
+
+  #
+  problems_every: ProblemWhereInput
+
+  #
+  problems_some: ProblemWhereInput
+
+  #
+  problems_none: ProblemWhereInput
+
+  #
+  construction_every: ConstructionWhereInput
+
+  #
+  construction_some: ConstructionWhereInput
+
+  #
+  construction_none: ConstructionWhereInput
+
+  #
+  orders_every: OrderWhereInput
+
+  #
+  orders_some: OrderWhereInput
+
+  #
+  orders_none: OrderWhereInput
+
+  #
+  textEditor_every: TextEditorWhereInput
+
+  #
+  textEditor_some: TextEditorWhereInput
+
+  #
+  textEditor_none: TextEditorWhereInput
+
+  #
+  isFamiliar: Boolean
+
+  #
+  isFamiliar_not: Boolean
+
+  #
+  posts_every: PostWhereInput
+
+  #
+  posts_some: PostWhereInput
+
+  #
+  posts_none: PostWhereInput
+
+  #
+  examAnswers_every: ExamAnswerWhereInput
+
+  #
+  examAnswers_some: ExamAnswerWhereInput
+
+  #
+  examAnswers_none: ExamAnswerWhereInput
+
+  #
+  shots_every: ShotWhereInput
+
+  #
+  shots_some: ShotWhereInput
+
+  #
+  shots_none: ShotWhereInput
+
+  #
+  shotResults_every: ShotResultWhereInput
+
+  #
+  shotResults_some: ShotResultWhereInput
+
+  #
+  shotResults_none: ShotResultWhereInput
+
+  #
+  notes_every: NoteWhereInput
+
+  #
+  notes_some: NoteWhereInput
+
+  #
+  notes_none: NoteWhereInput
+
+  #
+  teacherFeedback_every: FeedbackWhereInput
+
+  #
+  teacherFeedback_some: FeedbackWhereInput
+
+  #
+  teacherFeedback_none: FeedbackWhereInput
+
+  #
+  studentFeedback_every: FeedbackWhereInput
+
+  #
+  studentFeedback_some: FeedbackWhereInput
+
+  #
+  studentFeedback_none: FeedbackWhereInput
+
+  #
+  forums_every: ForumWhereInput
+
+  #
+  forums_some: ForumWhereInput
+
+  #
+  forums_none: ForumWhereInput
+
+  #
+  ratings_every: RatingWhereInput
+
+  #
+  ratings_some: RatingWhereInput
+
+  #
+  ratings_none: RatingWhereInput
+
+  #
+  statements_every: StatementWhereInput
+
+  #
+  statements_some: StatementWhereInput
+
+  #
+  statements_none: StatementWhereInput
+
+  #
+  courseVisits_every: CourseVisitWhereInput
+
+  #
+  courseVisits_some: CourseVisitWhereInput
+
+  #
+  courseVisits_none: CourseVisitWhereInput
+
+  #
+  examResults_every: ExamResultWhereInput
+
+  #
+  examResults_some: ExamResultWhereInput
+
+  #
+  examResults_none: ExamResultWhereInput
+
+  #
+  exams_every: ExamWhereInput
+
+  #
+  exams_some: ExamWhereInput
+
+  #
+  exams_none: ExamWhereInput
+
+  #
+  documents_every: DocumentWhereInput
+
+  #
+  documents_some: DocumentWhereInput
+
+  #
+  documents_none: DocumentWhereInput
+
+  #
+  documentResults_every: DocumentResultWhereInput
+
+  #
+  documentResults_some: DocumentResultWhereInput
+
+  #
+  documentResults_none: DocumentResultWhereInput
+
+  #
+  clauses_every: ClauseWhereInput
+
+  #
+  clauses_some: ClauseWhereInput
+
+  #
+  clauses_none: ClauseWhereInput
+
+  #
+  challengeResults_every: ChallengeResultWhereInput
+
+  #
+  challengeResults_some: ChallengeResultWhereInput
+
+  #
+  challengeResults_none: ChallengeResultWhereInput
+
+  #
+  level: UserLevelWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [UserWhereInput!]
+
+  #
+  OR: [UserWhereInput!]
+
+  #
+  NOT: [UserWhereInput!]
+}
+
+#
+enum Status {
+  #
+  STUDENT
+
+  #
+  LAWYER
+
+  #
+  AUTHOR
+
+  #
+  SAVVY_AUTHOR
+
+  #
+  HR
+}
+
+#
+input LegalPortfolioWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  cv: String
+
+  #
+  cv_not: String
+
+  #
+  cv_in: [String!]
+
+  #
+  cv_not_in: [String!]
+
+  #
+  cv_lt: String
+
+  #
+  cv_lte: String
+
+  #
+  cv_gt: String
+
+  #
+  cv_gte: String
+
+  #
+  cv_contains: String
+
+  #
+  cv_not_contains: String
+
+  #
+  cv_starts_with: String
+
+  #
+  cv_not_starts_with: String
+
+  #
+  cv_ends_with: String
+
+  #
+  cv_not_ends_with: String
+
+  #
+  portfolio_every: ExamAnswerWhereInput
+
+  #
+  portfolio_some: ExamAnswerWhereInput
+
+  #
+  portfolio_none: ExamAnswerWhereInput
+
+  #
+  resume: String
+
+  #
+  resume_not: String
+
+  #
+  resume_in: [String!]
+
+  #
+  resume_not_in: [String!]
+
+  #
+  resume_lt: String
+
+  #
+  resume_lte: String
+
+  #
+  resume_gt: String
+
+  #
+  resume_gte: String
+
+  #
+  resume_contains: String
+
+  #
+  resume_not_contains: String
+
+  #
+  resume_starts_with: String
+
+  #
+  resume_not_starts_with: String
+
+  #
+  resume_ends_with: String
+
+  #
+  resume_not_ends_with: String
+
+  #
+  open: Boolean
+
+  #
+  open_not: Boolean
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [LegalPortfolioWhereInput!]
+
+  #
+  OR: [LegalPortfolioWhereInput!]
+
+  #
+  NOT: [LegalPortfolioWhereInput!]
+}
+
+#
+input ExamAnswerWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  examQuestion: ExamQuestionWhereInput
+
+  #
+  examQuestionID: ID
+
+  #
+  examQuestionID_not: ID
+
+  #
+  examQuestionID_in: [ID!]
+
+  #
+  examQuestionID_not_in: [ID!]
+
+  #
+  examQuestionID_lt: ID
+
+  #
+  examQuestionID_lte: ID
+
+  #
+  examQuestionID_gt: ID
+
+  #
+  examQuestionID_gte: ID
+
+  #
+  examQuestionID_contains: ID
+
+  #
+  examQuestionID_not_contains: ID
+
+  #
+  examQuestionID_starts_with: ID
+
+  #
+  examQuestionID_not_starts_with: ID
+
+  #
+  examQuestionID_ends_with: ID
+
+  #
+  examQuestionID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ExamAnswerWhereInput!]
+
+  #
+  OR: [ExamAnswerWhereInput!]
+
+  #
+  NOT: [ExamAnswerWhereInput!]
+}
+
+#
+input ExamQuestionWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  coursePageID: ID
+
+  #
+  coursePageID_not: ID
+
+  #
+  coursePageID_in: [ID!]
+
+  #
+  coursePageID_not_in: [ID!]
+
+  #
+  coursePageID_lt: ID
+
+  #
+  coursePageID_lte: ID
+
+  #
+  coursePageID_gt: ID
+
+  #
+  coursePageID_gte: ID
+
+  #
+  coursePageID_contains: ID
+
+  #
+  coursePageID_not_contains: ID
+
+  #
+  coursePageID_starts_with: ID
+
+  #
+  coursePageID_not_starts_with: ID
+
+  #
+  coursePageID_ends_with: ID
+
+  #
+  coursePageID_not_ends_with: ID
+
+  #
+  question: String
+
+  #
+  question_not: String
+
+  #
+  question_in: [String!]
+
+  #
+  question_not_in: [String!]
+
+  #
+  question_lt: String
+
+  #
+  question_lte: String
+
+  #
+  question_gt: String
+
+  #
+  question_gte: String
+
+  #
+  question_contains: String
+
+  #
+  question_not_contains: String
+
+  #
+  question_starts_with: String
+
+  #
+  question_not_starts_with: String
+
+  #
+  question_ends_with: String
+
+  #
+  question_not_ends_with: String
+
+  #
+  answers_every: ExamAnswerWhereInput
+
+  #
+  answers_some: ExamAnswerWhereInput
+
+  #
+  answers_none: ExamAnswerWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ExamQuestionWhereInput!]
+
+  #
+  OR: [ExamQuestionWhereInput!]
+
+  #
+  NOT: [ExamQuestionWhereInput!]
+}
+
+#
+scalar DateTime
+
+#
+input UniWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  teachers_every: UserWhereInput
+
+  #
+  teachers_some: UserWhereInput
+
+  #
+  teachers_none: UserWhereInput
+
+  #
+  capacity: Int
+
+  #
+  capacity_not: Int
+
+  #
+  capacity_in: [Int!]
+
+  #
+  capacity_not_in: [Int!]
+
+  #
+  capacity_lt: Int
+
+  #
+  capacity_lte: Int
+
+  #
+  capacity_gt: Int
+
+  #
+  capacity_gte: Int
+
+  #
+  paidMonths: Int
+
+  #
+  paidMonths_not: Int
+
+  #
+  paidMonths_in: [Int!]
+
+  #
+  paidMonths_not_in: [Int!]
+
+  #
+  paidMonths_lt: Int
+
+  #
+  paidMonths_lte: Int
+
+  #
+  paidMonths_gt: Int
+
+  #
+  paidMonths_gte: Int
+
+  #
+  uniCoursePages_every: CoursePageWhereInput
+
+  #
+  uniCoursePages_some: CoursePageWhereInput
+
+  #
+  uniCoursePages_none: CoursePageWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [UniWhereInput!]
+
+  #
+  OR: [UniWhereInput!]
+
+  #
+  NOT: [UniWhereInput!]
+}
+
+#
+input CompanyWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  hrs_every: UserWhereInput
+
+  #
+  hrs_some: UserWhereInput
+
+  #
+  hrs_none: UserWhereInput
+
+  #
+  paidMonths: Int
+
+  #
+  paidMonths_not: Int
+
+  #
+  paidMonths_in: [Int!]
+
+  #
+  paidMonths_not_in: [Int!]
+
+  #
+  paidMonths_lt: Int
+
+  #
+  paidMonths_lte: Int
+
+  #
+  paidMonths_gt: Int
+
+  #
+  paidMonths_gte: Int
+
+  #
+  coursePages_every: CoursePageWhereInput
+
+  #
+  coursePages_some: CoursePageWhereInput
+
+  #
+  coursePages_none: CoursePageWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [CompanyWhereInput!]
+
+  #
+  OR: [CompanyWhereInput!]
+
+  #
+  NOT: [CompanyWhereInput!]
+}
+
+#
+input CareerTrackWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  img: String
+
+  #
+  img_not: String
+
+  #
+  img_in: [String!]
+
+  #
+  img_not_in: [String!]
+
+  #
+  img_lt: String
+
+  #
+  img_lte: String
+
+  #
+  img_gt: String
+
+  #
+  img_gte: String
+
+  #
+  img_contains: String
+
+  #
+  img_not_contains: String
+
+  #
+  img_starts_with: String
+
+  #
+  img_not_starts_with: String
+
+  #
+  img_ends_with: String
+
+  #
+  img_not_ends_with: String
+
+  #
+  members: UserWhereInput
+
+  #
+  coursePages_every: CoursePageWhereInput
+
+  #
+  coursePages_some: CoursePageWhereInput
+
+  #
+  coursePages_none: CoursePageWhereInput
+
+  #
+  careerTrackUnits_every: CareerTrackUnitWhereInput
+
+  #
+  careerTrackUnits_some: CareerTrackUnitWhereInput
+
+  #
+  careerTrackUnits_none: CareerTrackUnitWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [CareerTrackWhereInput!]
+
+  #
+  OR: [CareerTrackWhereInput!]
+
+  #
+  NOT: [CareerTrackWhereInput!]
+}
+
+#
+input CareerTrackUnitWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  number: Int
+
+  #
+  number_not: Int
+
+  #
+  number_in: [Int!]
+
+  #
+  number_not_in: [Int!]
+
+  #
+  number_lt: Int
+
+  #
+  number_lte: Int
+
+  #
+  number_gt: Int
+
+  #
+  number_gte: Int
+
+  #
+  img: String
+
+  #
+  img_not: String
+
+  #
+  img_in: [String!]
+
+  #
+  img_not_in: [String!]
+
+  #
+  img_lt: String
+
+  #
+  img_lte: String
+
+  #
+  img_gt: String
+
+  #
+  img_gte: String
+
+  #
+  img_contains: String
+
+  #
+  img_not_contains: String
+
+  #
+  img_starts_with: String
+
+  #
+  img_not_starts_with: String
+
+  #
+  img_ends_with: String
+
+  #
+  img_not_ends_with: String
+
+  #
+  coursePages_every: CoursePageWhereInput
+
+  #
+  coursePages_some: CoursePageWhereInput
+
+  #
+  coursePages_none: CoursePageWhereInput
+
+  #
+  careerTrack: CareerTrackWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [CareerTrackUnitWhereInput!]
+
+  #
+  OR: [CareerTrackUnitWhereInput!]
+
+  #
+  NOT: [CareerTrackUnitWhereInput!]
+}
+
+#
+input SandboxWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  video: String
+
+  #
+  video_not: String
+
+  #
+  video_in: [String!]
+
+  #
+  video_not_in: [String!]
+
+  #
+  video_lt: String
+
+  #
+  video_lte: String
+
+  #
+  video_gt: String
+
+  #
+  video_gte: String
+
+  #
+  video_contains: String
+
+  #
+  video_not_contains: String
+
+  #
+  video_starts_with: String
+
+  #
+  video_not_starts_with: String
+
+  #
+  video_ends_with: String
+
+  #
+  video_not_ends_with: String
+
+  #
+  sandboxPage: SandboxPageWhereInput
+
+  #
+  sandboxPageID: ID
+
+  #
+  sandboxPageID_not: ID
+
+  #
+  sandboxPageID_in: [ID!]
+
+  #
+  sandboxPageID_not_in: [ID!]
+
+  #
+  sandboxPageID_lt: ID
+
+  #
+  sandboxPageID_lte: ID
+
+  #
+  sandboxPageID_gt: ID
+
+  #
+  sandboxPageID_gte: ID
+
+  #
+  sandboxPageID_contains: ID
+
+  #
+  sandboxPageID_not_contains: ID
+
+  #
+  sandboxPageID_starts_with: ID
+
+  #
+  sandboxPageID_not_starts_with: ID
+
+  #
+  sandboxPageID_ends_with: ID
+
+  #
+  sandboxPageID_not_ends_with: ID
+
+  #
+  link: String
+
+  #
+  link_not: String
+
+  #
+  link_in: [String!]
+
+  #
+  link_not_in: [String!]
+
+  #
+  link_lt: String
+
+  #
+  link_lte: String
+
+  #
+  link_gt: String
+
+  #
+  link_gte: String
+
+  #
+  link_contains: String
+
+  #
+  link_not_contains: String
+
+  #
+  link_starts_with: String
+
+  #
+  link_not_starts_with: String
+
+  #
+  link_ends_with: String
+
+  #
+  link_not_ends_with: String
+
+  #
+  likes: Int
+
+  #
+  likes_not: Int
+
+  #
+  likes_in: [Int!]
+
+  #
+  likes_not_in: [Int!]
+
+  #
+  likes_lt: Int
+
+  #
+  likes_lte: Int
+
+  #
+  likes_gt: Int
+
+  #
+  likes_gte: Int
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [SandboxWhereInput!]
+
+  #
+  OR: [SandboxWhereInput!]
+
+  #
+  NOT: [SandboxWhereInput!]
+}
+
+#
+input SandboxPageWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  description: String
+
+  #
+  description_not: String
+
+  #
+  description_in: [String!]
+
+  #
+  description_not_in: [String!]
+
+  #
+  description_lt: String
+
+  #
+  description_lte: String
+
+  #
+  description_gt: String
+
+  #
+  description_gte: String
+
+  #
+  description_contains: String
+
+  #
+  description_not_contains: String
+
+  #
+  description_starts_with: String
+
+  #
+  description_not_starts_with: String
+
+  #
+  description_ends_with: String
+
+  #
+  description_not_ends_with: String
+
+  #
+  image: String
+
+  #
+  image_not: String
+
+  #
+  image_in: [String!]
+
+  #
+  image_not_in: [String!]
+
+  #
+  image_lt: String
+
+  #
+  image_lte: String
+
+  #
+  image_gt: String
+
+  #
+  image_gte: String
+
+  #
+  image_contains: String
+
+  #
+  image_not_contains: String
+
+  #
+  image_starts_with: String
+
+  #
+  image_not_starts_with: String
+
+  #
+  image_ends_with: String
+
+  #
+  image_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  sandboxes_every: SandboxWhereInput
+
+  #
+  sandboxes_some: SandboxWhereInput
+
+  #
+  sandboxes_none: SandboxWhereInput
+
+  #
+  sandboxPageGoals_every: SandboxPageGoalWhereInput
+
+  #
+  sandboxPageGoals_some: SandboxPageGoalWhereInput
+
+  #
+  sandboxPageGoals_none: SandboxPageGoalWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [SandboxPageWhereInput!]
+
+  #
+  OR: [SandboxPageWhereInput!]
+
+  #
+  NOT: [SandboxPageWhereInput!]
+}
+
+#
+input SandboxPageGoalWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  goal: String
+
+  #
+  goal_not: String
+
+  #
+  goal_in: [String!]
+
+  #
+  goal_not_in: [String!]
+
+  #
+  goal_lt: String
+
+  #
+  goal_lte: String
+
+  #
+  goal_gt: String
+
+  #
+  goal_gte: String
+
+  #
+  goal_contains: String
+
+  #
+  goal_not_contains: String
+
+  #
+  goal_starts_with: String
+
+  #
+  goal_not_starts_with: String
+
+  #
+  goal_ends_with: String
+
+  #
+  goal_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  completed: Boolean
+
+  #
+  completed_not: Boolean
+
+  #
+  sandboxPage: SandboxPageWhereInput
+
+  #
+  sandboxPageID: ID
+
+  #
+  sandboxPageID_not: ID
+
+  #
+  sandboxPageID_in: [ID!]
+
+  #
+  sandboxPageID_not_in: [ID!]
+
+  #
+  sandboxPageID_lt: ID
+
+  #
+  sandboxPageID_lte: ID
+
+  #
+  sandboxPageID_gt: ID
+
+  #
+  sandboxPageID_gte: ID
+
+  #
+  sandboxPageID_contains: ID
+
+  #
+  sandboxPageID_not_contains: ID
+
+  #
+  sandboxPageID_starts_with: ID
+
+  #
+  sandboxPageID_not_starts_with: ID
+
+  #
+  sandboxPageID_ends_with: ID
+
+  #
+  sandboxPageID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [SandboxPageGoalWhereInput!]
+
+  #
+  OR: [SandboxPageGoalWhereInput!]
+
+  #
+  NOT: [SandboxPageGoalWhereInput!]
+}
+
+#
+input LessonWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  number: Int
+
+  #
+  number_not: Int
+
+  #
+  number_in: [Int!]
+
+  #
+  number_not_in: [Int!]
+
+  #
+  number_lt: Int
+
+  #
+  number_lte: Int
+
+  #
+  number_gt: Int
+
+  #
+  number_gte: Int
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  type: Type
+
+  #
+  type_not: Type
+
+  #
+  type_in: [Type!]
+
+  #
+  type_not_in: [Type!]
+
+  #
+  notes_every: NoteWhereInput
+
+  #
+  notes_some: NoteWhereInput
+
+  #
+  notes_none: NoteWhereInput
+
+  #
+  shots_every: ShotWhereInput
+
+  #
+  shots_some: ShotWhereInput
+
+  #
+  shots_none: ShotWhereInput
+
+  #
+  shotResults_every: ShotResultWhereInput
+
+  #
+  shotResults_some: ShotResultWhereInput
+
+  #
+  shotResults_none: ShotResultWhereInput
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  tests_every: TestWhereInput
+
+  #
+  tests_some: TestWhereInput
+
+  #
+  tests_none: TestWhereInput
+
+  #
+  newTests_every: NewTestWhereInput
+
+  #
+  newTests_some: NewTestWhereInput
+
+  #
+  newTests_none: NewTestWhereInput
+
+  #
+  quizes_every: QuizWhereInput
+
+  #
+  quizes_some: QuizWhereInput
+
+  #
+  quizes_none: QuizWhereInput
+
+  #
+  problems_every: ProblemWhereInput
+
+  #
+  problems_some: ProblemWhereInput
+
+  #
+  problems_none: ProblemWhereInput
+
+  #
+  constructions_every: ConstructionWhereInput
+
+  #
+  constructions_some: ConstructionWhereInput
+
+  #
+  constructions_none: ConstructionWhereInput
+
+  #
+  texteditors_every: TextEditorWhereInput
+
+  #
+  texteditors_some: TextEditorWhereInput
+
+  #
+  texteditors_none: TextEditorWhereInput
+
+  #
+  lessonResults_every: LessonResultWhereInput
+
+  #
+  lessonResults_some: LessonResultWhereInput
+
+  #
+  lessonResults_none: LessonResultWhereInput
+
+  #
+  challengeResults_every: ChallengeResultWhereInput
+
+  #
+  challengeResults_some: ChallengeResultWhereInput
+
+  #
+  challengeResults_none: ChallengeResultWhereInput
+
+  #
+  testResults_every: TestResultWhereInput
+
+  #
+  testResults_some: TestResultWhereInput
+
+  #
+  testResults_none: TestResultWhereInput
+
+  #
+  quizResults_every: QuizResultWhereInput
+
+  #
+  quizResults_some: QuizResultWhereInput
+
+  #
+  quizResults_none: QuizResultWhereInput
+
+  #
+  textEditorResults_every: TextEditorResultWhereInput
+
+  #
+  textEditorResults_some: TextEditorResultWhereInput
+
+  #
+  textEditorResults_none: TextEditorResultWhereInput
+
+  #
+  problemResults_every: ProblemResultWhereInput
+
+  #
+  problemResults_some: ProblemResultWhereInput
+
+  #
+  problemResults_none: ProblemResultWhereInput
+
+  #
+  constructionResults_every: ConstructionResultWhereInput
+
+  #
+  constructionResults_some: ConstructionResultWhereInput
+
+  #
+  constructionResults_none: ConstructionResultWhereInput
+
+  #
+  lessonFeedback_every: FeedbackWhereInput
+
+  #
+  lessonFeedback_some: FeedbackWhereInput
+
+  #
+  lessonFeedback_none: FeedbackWhereInput
+
+  #
+  forum: ForumWhereInput
+
+  #
+  open: Boolean
+
+  #
+  open_not: Boolean
+
+  #
+  coursePageID: ID
+
+  #
+  coursePageID_not: ID
+
+  #
+  coursePageID_in: [ID!]
+
+  #
+  coursePageID_not_in: [ID!]
+
+  #
+  coursePageID_lt: ID
+
+  #
+  coursePageID_lte: ID
+
+  #
+  coursePageID_gt: ID
+
+  #
+  coursePageID_gte: ID
+
+  #
+  coursePageID_contains: ID
+
+  #
+  coursePageID_not_contains: ID
+
+  #
+  coursePageID_starts_with: ID
+
+  #
+  coursePageID_not_starts_with: ID
+
+  #
+  coursePageID_ends_with: ID
+
+  #
+  coursePageID_not_ends_with: ID
+
+  #
+  published: Boolean
+
+  #
+  published_not: Boolean
+
+  #
+  description: String
+
+  #
+  description_not: String
+
+  #
+  description_in: [String!]
+
+  #
+  description_not_in: [String!]
+
+  #
+  description_lt: String
+
+  #
+  description_lte: String
+
+  #
+  description_gt: String
+
+  #
+  description_gte: String
+
+  #
+  description_contains: String
+
+  #
+  description_not_contains: String
+
+  #
+  description_starts_with: String
+
+  #
+  description_not_starts_with: String
+
+  #
+  description_ends_with: String
+
+  #
+  description_not_ends_with: String
+
+  #
+  exams_every: ExamWhereInput
+
+  #
+  exams_some: ExamWhereInput
+
+  #
+  exams_none: ExamWhereInput
+
+  #
+  examResults_every: ExamResultWhereInput
+
+  #
+  examResults_some: ExamResultWhereInput
+
+  #
+  examResults_none: ExamResultWhereInput
+
+  #
+  documents_every: DocumentWhereInput
+
+  #
+  documents_some: DocumentWhereInput
+
+  #
+  documents_none: DocumentWhereInput
+
+  #
+  documentResults_every: DocumentResultWhereInput
+
+  #
+  documentResults_some: DocumentResultWhereInput
+
+  #
+  documentResults_none: DocumentResultWhereInput
+
+  #
+  change: String
+
+  #
+  change_not: String
+
+  #
+  change_in: [String!]
+
+  #
+  change_not_in: [String!]
+
+  #
+  change_lt: String
+
+  #
+  change_lte: String
+
+  #
+  change_gt: String
+
+  #
+  change_gte: String
+
+  #
+  change_contains: String
+
+  #
+  change_not_contains: String
+
+  #
+  change_starts_with: String
+
+  #
+  change_not_starts_with: String
+
+  #
+  change_ends_with: String
+
+  #
+  change_not_ends_with: String
+
+  #
+  challenge_num: Int
+
+  #
+  challenge_num_not: Int
+
+  #
+  challenge_num_in: [Int!]
+
+  #
+  challenge_num_not_in: [Int!]
+
+  #
+  challenge_num_lt: Int
+
+  #
+  challenge_num_lte: Int
+
+  #
+  challenge_num_gt: Int
+
+  #
+  challenge_num_gte: Int
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [LessonWhereInput!]
+
+  #
+  OR: [LessonWhereInput!]
+
+  #
+  NOT: [LessonWhereInput!]
+}
+
+#
+enum Type {
+  #
+  STORY
+
+  #
+  REGULAR
+
+  #
+  CHALLENGE
+}
+
+#
+input NoteWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [NoteWhereInput!]
+
+  #
+  OR: [NoteWhereInput!]
+
+  #
+  NOT: [NoteWhereInput!]
+}
+
+#
+input ShotWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  shotResults_every: ShotResultWhereInput
+
+  #
+  shotResults_some: ShotResultWhereInput
+
+  #
+  shotResults_none: ShotResultWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ShotWhereInput!]
+
+  #
+  OR: [ShotWhereInput!]
+
+  #
+  NOT: [ShotWhereInput!]
+}
+
+#
+input ShotResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  shot: ShotWhereInput
+
+  #
+  shotID: ID
+
+  #
+  shotID_not: ID
+
+  #
+  shotID_in: [ID!]
+
+  #
+  shotID_not_in: [ID!]
+
+  #
+  shotID_lt: ID
+
+  #
+  shotID_lte: ID
+
+  #
+  shotID_gt: ID
+
+  #
+  shotID_gte: ID
+
+  #
+  shotID_contains: ID
+
+  #
+  shotID_not_contains: ID
+
+  #
+  shotID_starts_with: ID
+
+  #
+  shotID_not_starts_with: ID
+
+  #
+  shotID_ends_with: ID
+
+  #
+  shotID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ShotResultWhereInput!]
+
+  #
+  OR: [ShotResultWhereInput!]
+
+  #
+  NOT: [ShotResultWhereInput!]
+}
+
+#
+input TestWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  question: String
+
+  #
+  question_not: String
+
+  #
+  question_in: [String!]
+
+  #
+  question_not_in: [String!]
+
+  #
+  question_lt: String
+
+  #
+  question_lte: String
+
+  #
+  question_gt: String
+
+  #
+  question_gte: String
+
+  #
+  question_contains: String
+
+  #
+  question_not_contains: String
+
+  #
+  question_starts_with: String
+
+  #
+  question_not_starts_with: String
+
+  #
+  question_ends_with: String
+
+  #
+  question_not_ends_with: String
+
+  #
+  answer1: String
+
+  #
+  answer1_not: String
+
+  #
+  answer1_in: [String!]
+
+  #
+  answer1_not_in: [String!]
+
+  #
+  answer1_lt: String
+
+  #
+  answer1_lte: String
+
+  #
+  answer1_gt: String
+
+  #
+  answer1_gte: String
+
+  #
+  answer1_contains: String
+
+  #
+  answer1_not_contains: String
+
+  #
+  answer1_starts_with: String
+
+  #
+  answer1_not_starts_with: String
+
+  #
+  answer1_ends_with: String
+
+  #
+  answer1_not_ends_with: String
+
+  #
+  answer1Correct: String
+
+  #
+  answer1Correct_not: String
+
+  #
+  answer1Correct_in: [String!]
+
+  #
+  answer1Correct_not_in: [String!]
+
+  #
+  answer1Correct_lt: String
+
+  #
+  answer1Correct_lte: String
+
+  #
+  answer1Correct_gt: String
+
+  #
+  answer1Correct_gte: String
+
+  #
+  answer1Correct_contains: String
+
+  #
+  answer1Correct_not_contains: String
+
+  #
+  answer1Correct_starts_with: String
+
+  #
+  answer1Correct_not_starts_with: String
+
+  #
+  answer1Correct_ends_with: String
+
+  #
+  answer1Correct_not_ends_with: String
+
+  #
+  answer2: String
+
+  #
+  answer2_not: String
+
+  #
+  answer2_in: [String!]
+
+  #
+  answer2_not_in: [String!]
+
+  #
+  answer2_lt: String
+
+  #
+  answer2_lte: String
+
+  #
+  answer2_gt: String
+
+  #
+  answer2_gte: String
+
+  #
+  answer2_contains: String
+
+  #
+  answer2_not_contains: String
+
+  #
+  answer2_starts_with: String
+
+  #
+  answer2_not_starts_with: String
+
+  #
+  answer2_ends_with: String
+
+  #
+  answer2_not_ends_with: String
+
+  #
+  answer2Correct: String
+
+  #
+  answer2Correct_not: String
+
+  #
+  answer2Correct_in: [String!]
+
+  #
+  answer2Correct_not_in: [String!]
+
+  #
+  answer2Correct_lt: String
+
+  #
+  answer2Correct_lte: String
+
+  #
+  answer2Correct_gt: String
+
+  #
+  answer2Correct_gte: String
+
+  #
+  answer2Correct_contains: String
+
+  #
+  answer2Correct_not_contains: String
+
+  #
+  answer2Correct_starts_with: String
+
+  #
+  answer2Correct_not_starts_with: String
+
+  #
+  answer2Correct_ends_with: String
+
+  #
+  answer2Correct_not_ends_with: String
+
+  #
+  answer3: String
+
+  #
+  answer3_not: String
+
+  #
+  answer3_in: [String!]
+
+  #
+  answer3_not_in: [String!]
+
+  #
+  answer3_lt: String
+
+  #
+  answer3_lte: String
+
+  #
+  answer3_gt: String
+
+  #
+  answer3_gte: String
+
+  #
+  answer3_contains: String
+
+  #
+  answer3_not_contains: String
+
+  #
+  answer3_starts_with: String
+
+  #
+  answer3_not_starts_with: String
+
+  #
+  answer3_ends_with: String
+
+  #
+  answer3_not_ends_with: String
+
+  #
+  answer3Correct: String
+
+  #
+  answer3Correct_not: String
+
+  #
+  answer3Correct_in: [String!]
+
+  #
+  answer3Correct_not_in: [String!]
+
+  #
+  answer3Correct_lt: String
+
+  #
+  answer3Correct_lte: String
+
+  #
+  answer3Correct_gt: String
+
+  #
+  answer3Correct_gte: String
+
+  #
+  answer3Correct_contains: String
+
+  #
+  answer3Correct_not_contains: String
+
+  #
+  answer3Correct_starts_with: String
+
+  #
+  answer3Correct_not_starts_with: String
+
+  #
+  answer3Correct_ends_with: String
+
+  #
+  answer3Correct_not_ends_with: String
+
+  #
+  answer4: String
+
+  #
+  answer4_not: String
+
+  #
+  answer4_in: [String!]
+
+  #
+  answer4_not_in: [String!]
+
+  #
+  answer4_lt: String
+
+  #
+  answer4_lte: String
+
+  #
+  answer4_gt: String
+
+  #
+  answer4_gte: String
+
+  #
+  answer4_contains: String
+
+  #
+  answer4_not_contains: String
+
+  #
+  answer4_starts_with: String
+
+  #
+  answer4_not_starts_with: String
+
+  #
+  answer4_ends_with: String
+
+  #
+  answer4_not_ends_with: String
+
+  #
+  answer4Correct: String
+
+  #
+  answer4Correct_not: String
+
+  #
+  answer4Correct_in: [String!]
+
+  #
+  answer4Correct_not_in: [String!]
+
+  #
+  answer4Correct_lt: String
+
+  #
+  answer4Correct_lte: String
+
+  #
+  answer4Correct_gt: String
+
+  #
+  answer4Correct_gte: String
+
+  #
+  answer4Correct_contains: String
+
+  #
+  answer4Correct_not_contains: String
+
+  #
+  answer4Correct_starts_with: String
+
+  #
+  answer4Correct_not_starts_with: String
+
+  #
+  answer4Correct_ends_with: String
+
+  #
+  answer4Correct_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [TestWhereInput!]
+
+  #
+  OR: [TestWhereInput!]
+
+  #
+  NOT: [TestWhereInput!]
+}
+
+#
+input NewTestWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  type: TaskType
+
+  #
+  type_not: TaskType
+
+  #
+  type_in: [TaskType!]
+
+  #
+  type_not_in: [TaskType!]
+
+  #
+  testResults_every: TestResultWhereInput
+
+  #
+  testResults_some: TestResultWhereInput
+
+  #
+  testResults_none: TestResultWhereInput
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  ifRight: String
+
+  #
+  ifRight_not: String
+
+  #
+  ifRight_in: [String!]
+
+  #
+  ifRight_not_in: [String!]
+
+  #
+  ifRight_lt: String
+
+  #
+  ifRight_lte: String
+
+  #
+  ifRight_gt: String
+
+  #
+  ifRight_gte: String
+
+  #
+  ifRight_contains: String
+
+  #
+  ifRight_not_contains: String
+
+  #
+  ifRight_starts_with: String
+
+  #
+  ifRight_not_starts_with: String
+
+  #
+  ifRight_ends_with: String
+
+  #
+  ifRight_not_ends_with: String
+
+  #
+  ifWrong: String
+
+  #
+  ifWrong_not: String
+
+  #
+  ifWrong_in: [String!]
+
+  #
+  ifWrong_not_in: [String!]
+
+  #
+  ifWrong_lt: String
+
+  #
+  ifWrong_lte: String
+
+  #
+  ifWrong_gt: String
+
+  #
+  ifWrong_gte: String
+
+  #
+  ifWrong_contains: String
+
+  #
+  ifWrong_not_contains: String
+
+  #
+  ifWrong_starts_with: String
+
+  #
+  ifWrong_not_starts_with: String
+
+  #
+  ifWrong_ends_with: String
+
+  #
+  ifWrong_not_ends_with: String
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [NewTestWhereInput!]
+
+  #
+  OR: [NewTestWhereInput!]
+
+  #
+  NOT: [NewTestWhereInput!]
+}
+
+#
+enum TaskType {
+  #
+  TEST
+
+  #
+  FORM
+}
+
+#
+input TestResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  attempts: Int
+
+  #
+  attempts_not: Int
+
+  #
+  attempts_in: [Int!]
+
+  #
+  attempts_not_in: [Int!]
+
+  #
+  attempts_lt: Int
+
+  #
+  attempts_lte: Int
+
+  #
+  attempts_gt: Int
+
+  #
+  attempts_gte: Int
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  test: NewTestWhereInput
+
+  #
+  testID: ID
+
+  #
+  testID_not: ID
+
+  #
+  testID_in: [ID!]
+
+  #
+  testID_not_in: [ID!]
+
+  #
+  testID_lt: ID
+
+  #
+  testID_lte: ID
+
+  #
+  testID_gt: ID
+
+  #
+  testID_gte: ID
+
+  #
+  testID_contains: ID
+
+  #
+  testID_not_contains: ID
+
+  #
+  testID_starts_with: ID
+
+  #
+  testID_not_starts_with: ID
+
+  #
+  testID_ends_with: ID
+
+  #
+  testID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [TestResultWhereInput!]
+
+  #
+  OR: [TestResultWhereInput!]
+
+  #
+  NOT: [TestResultWhereInput!]
+}
+
+#
+input QuizWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  question: String
+
+  #
+  question_not: String
+
+  #
+  question_in: [String!]
+
+  #
+  question_not_in: [String!]
+
+  #
+  question_lt: String
+
+  #
+  question_lte: String
+
+  #
+  question_gt: String
+
+  #
+  question_gte: String
+
+  #
+  question_contains: String
+
+  #
+  question_not_contains: String
+
+  #
+  question_starts_with: String
+
+  #
+  question_not_starts_with: String
+
+  #
+  question_ends_with: String
+
+  #
+  question_not_ends_with: String
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  type: TaskType
+
+  #
+  type_not: TaskType
+
+  #
+  type_in: [TaskType!]
+
+  #
+  type_not_in: [TaskType!]
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  quizResults_every: QuizResultWhereInput
+
+  #
+  quizResults_some: QuizResultWhereInput
+
+  #
+  quizResults_none: QuizResultWhereInput
+
+  #
+  ifRight: String
+
+  #
+  ifRight_not: String
+
+  #
+  ifRight_in: [String!]
+
+  #
+  ifRight_not_in: [String!]
+
+  #
+  ifRight_lt: String
+
+  #
+  ifRight_lte: String
+
+  #
+  ifRight_gt: String
+
+  #
+  ifRight_gte: String
+
+  #
+  ifRight_contains: String
+
+  #
+  ifRight_not_contains: String
+
+  #
+  ifRight_starts_with: String
+
+  #
+  ifRight_not_starts_with: String
+
+  #
+  ifRight_ends_with: String
+
+  #
+  ifRight_not_ends_with: String
+
+  #
+  ifWrong: String
+
+  #
+  ifWrong_not: String
+
+  #
+  ifWrong_in: [String!]
+
+  #
+  ifWrong_not_in: [String!]
+
+  #
+  ifWrong_lt: String
+
+  #
+  ifWrong_lte: String
+
+  #
+  ifWrong_gt: String
+
+  #
+  ifWrong_gte: String
+
+  #
+  ifWrong_contains: String
+
+  #
+  ifWrong_not_contains: String
+
+  #
+  ifWrong_starts_with: String
+
+  #
+  ifWrong_not_starts_with: String
+
+  #
+  ifWrong_ends_with: String
+
+  #
+  ifWrong_not_ends_with: String
+
+  #
+  check: CheckType
+
+  #
+  check_not: CheckType
+
+  #
+  check_in: [CheckType!]
+
+  #
+  check_not_in: [CheckType!]
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [QuizWhereInput!]
+
+  #
+  OR: [QuizWhereInput!]
+
+  #
+  NOT: [QuizWhereInput!]
+}
+
+#
+input QuizResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  attempts: Int
+
+  #
+  attempts_not: Int
+
+  #
+  attempts_in: [Int!]
+
+  #
+  attempts_not_in: [Int!]
+
+  #
+  attempts_lt: Int
+
+  #
+  attempts_lte: Int
+
+  #
+  attempts_gt: Int
+
+  #
+  attempts_gte: Int
+
+  #
+  correct: Boolean
+
+  #
+  correct_not: Boolean
+
+  #
+  quiz: QuizWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [QuizResultWhereInput!]
+
+  #
+  OR: [QuizResultWhereInput!]
+
+  #
+  NOT: [QuizResultWhereInput!]
+}
+
+#
+enum CheckType {
+  #
+  WORD
+
+  #
+  IDEA
+}
+
+#
+input ProblemWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  hints: String
+
+  #
+  hints_not: String
+
+  #
+  hints_in: [String!]
+
+  #
+  hints_not_in: [String!]
+
+  #
+  hints_lt: String
+
+  #
+  hints_lte: String
+
+  #
+  hints_gt: String
+
+  #
+  hints_gte: String
+
+  #
+  hints_contains: String
+
+  #
+  hints_not_contains: String
+
+  #
+  hints_starts_with: String
+
+  #
+  hints_not_starts_with: String
+
+  #
+  hints_ends_with: String
+
+  #
+  hints_not_ends_with: String
+
+  #
+  solution: String
+
+  #
+  solution_not: String
+
+  #
+  solution_in: [String!]
+
+  #
+  solution_not_in: [String!]
+
+  #
+  solution_lt: String
+
+  #
+  solution_lte: String
+
+  #
+  solution_gt: String
+
+  #
+  solution_gte: String
+
+  #
+  solution_contains: String
+
+  #
+  solution_not_contains: String
+
+  #
+  solution_starts_with: String
+
+  #
+  solution_not_starts_with: String
+
+  #
+  solution_ends_with: String
+
+  #
+  solution_not_ends_with: String
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  problemResults_every: ProblemResultWhereInput
+
+  #
+  problemResults_some: ProblemResultWhereInput
+
+  #
+  problemResults_none: ProblemResultWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  nodeType: String
+
+  #
+  nodeType_not: String
+
+  #
+  nodeType_in: [String!]
+
+  #
+  nodeType_not_in: [String!]
+
+  #
+  nodeType_lt: String
+
+  #
+  nodeType_lte: String
+
+  #
+  nodeType_gt: String
+
+  #
+  nodeType_gte: String
+
+  #
+  nodeType_contains: String
+
+  #
+  nodeType_not_contains: String
+
+  #
+  nodeType_starts_with: String
+
+  #
+  nodeType_not_starts_with: String
+
+  #
+  nodeType_ends_with: String
+
+  #
+  nodeType_not_ends_with: String
+
+  #
+  nodeID: ID
+
+  #
+  nodeID_not: ID
+
+  #
+  nodeID_in: [ID!]
+
+  #
+  nodeID_not_in: [ID!]
+
+  #
+  nodeID_lt: ID
+
+  #
+  nodeID_lte: ID
+
+  #
+  nodeID_gt: ID
+
+  #
+  nodeID_gte: ID
+
+  #
+  nodeID_contains: ID
+
+  #
+  nodeID_not_contains: ID
+
+  #
+  nodeID_starts_with: ID
+
+  #
+  nodeID_not_starts_with: ID
+
+  #
+  nodeID_ends_with: ID
+
+  #
+  nodeID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ProblemWhereInput!]
+
+  #
+  OR: [ProblemWhereInput!]
+
+  #
+  NOT: [ProblemWhereInput!]
+}
+
+#
+input ProblemResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  problem: ProblemWhereInput
+
+  #
+  problemID: ID
+
+  #
+  problemID_not: ID
+
+  #
+  problemID_in: [ID!]
+
+  #
+  problemID_not_in: [ID!]
+
+  #
+  problemID_lt: ID
+
+  #
+  problemID_lte: ID
+
+  #
+  problemID_gt: ID
+
+  #
+  problemID_gte: ID
+
+  #
+  problemID_contains: ID
+
+  #
+  problemID_not_contains: ID
+
+  #
+  problemID_starts_with: ID
+
+  #
+  problemID_not_starts_with: ID
+
+  #
+  problemID_ends_with: ID
+
+  #
+  problemID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ProblemResultWhereInput!]
+
+  #
+  OR: [ProblemResultWhereInput!]
+
+  #
+  NOT: [ProblemResultWhereInput!]
+}
+
+#
+input ConstructionWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  hint: String
+
+  #
+  hint_not: String
+
+  #
+  hint_in: [String!]
+
+  #
+  hint_not_in: [String!]
+
+  #
+  hint_lt: String
+
+  #
+  hint_lte: String
+
+  #
+  hint_gt: String
+
+  #
+  hint_gte: String
+
+  #
+  hint_contains: String
+
+  #
+  hint_not_contains: String
+
+  #
+  hint_starts_with: String
+
+  #
+  hint_not_starts_with: String
+
+  #
+  hint_ends_with: String
+
+  #
+  hint_not_ends_with: String
+
+  #
+  type: String
+
+  #
+  type_not: String
+
+  #
+  type_in: [String!]
+
+  #
+  type_not_in: [String!]
+
+  #
+  type_lt: String
+
+  #
+  type_lte: String
+
+  #
+  type_gt: String
+
+  #
+  type_gte: String
+
+  #
+  type_contains: String
+
+  #
+  type_not_contains: String
+
+  #
+  type_starts_with: String
+
+  #
+  type_not_starts_with: String
+
+  #
+  type_ends_with: String
+
+  #
+  type_not_ends_with: String
+
+  #
+  constructionResults_every: ConstructionResultWhereInput
+
+  #
+  constructionResults_some: ConstructionResultWhereInput
+
+  #
+  constructionResults_none: ConstructionResultWhereInput
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ConstructionWhereInput!]
+
+  #
+  OR: [ConstructionWhereInput!]
+
+  #
+  NOT: [ConstructionWhereInput!]
+}
+
+#
+input ConstructionResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  answer: String
+
+  #
+  answer_not: String
+
+  #
+  answer_in: [String!]
+
+  #
+  answer_not_in: [String!]
+
+  #
+  answer_lt: String
+
+  #
+  answer_lte: String
+
+  #
+  answer_gt: String
+
+  #
+  answer_gte: String
+
+  #
+  answer_contains: String
+
+  #
+  answer_not_contains: String
+
+  #
+  answer_starts_with: String
+
+  #
+  answer_not_starts_with: String
+
+  #
+  answer_ends_with: String
+
+  #
+  answer_not_ends_with: String
+
+  #
+  attempts: Int
+
+  #
+  attempts_not: Int
+
+  #
+  attempts_in: [Int!]
+
+  #
+  attempts_not_in: [Int!]
+
+  #
+  attempts_lt: Int
+
+  #
+  attempts_lte: Int
+
+  #
+  attempts_gt: Int
+
+  #
+  attempts_gte: Int
+
+  #
+  construction: ConstructionWhereInput
+
+  #
+  constructionID: ID
+
+  #
+  constructionID_not: ID
+
+  #
+  constructionID_in: [ID!]
+
+  #
+  constructionID_not_in: [ID!]
+
+  #
+  constructionID_lt: ID
+
+  #
+  constructionID_lte: ID
+
+  #
+  constructionID_gt: ID
+
+  #
+  constructionID_gte: ID
+
+  #
+  constructionID_contains: ID
+
+  #
+  constructionID_not_contains: ID
+
+  #
+  constructionID_starts_with: ID
+
+  #
+  constructionID_not_starts_with: ID
+
+  #
+  constructionID_ends_with: ID
+
+  #
+  constructionID_not_ends_with: ID
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ConstructionResultWhereInput!]
+
+  #
+  OR: [ConstructionResultWhereInput!]
+
+  #
+  NOT: [ConstructionResultWhereInput!]
+}
+
+#
+input TextEditorWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  totalMistakes: Int
+
+  #
+  totalMistakes_not: Int
+
+  #
+  totalMistakes_in: [Int!]
+
+  #
+  totalMistakes_not_in: [Int!]
+
+  #
+  totalMistakes_lt: Int
+
+  #
+  totalMistakes_lte: Int
+
+  #
+  totalMistakes_gt: Int
+
+  #
+  totalMistakes_gte: Int
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  textEditorResults_every: TextEditorResultWhereInput
+
+  #
+  textEditorResults_some: TextEditorResultWhereInput
+
+  #
+  textEditorResults_none: TextEditorResultWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [TextEditorWhereInput!]
+
+  #
+  OR: [TextEditorWhereInput!]
+
+  #
+  NOT: [TextEditorWhereInput!]
+}
+
+#
+input TextEditorResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  attempts: Int
+
+  #
+  attempts_not: Int
+
+  #
+  attempts_in: [Int!]
+
+  #
+  attempts_not_in: [Int!]
+
+  #
+  attempts_lt: Int
+
+  #
+  attempts_lte: Int
+
+  #
+  attempts_gt: Int
+
+  #
+  attempts_gte: Int
+
+  #
+  wrong: String
+
+  #
+  wrong_not: String
+
+  #
+  wrong_in: [String!]
+
+  #
+  wrong_not_in: [String!]
+
+  #
+  wrong_lt: String
+
+  #
+  wrong_lte: String
+
+  #
+  wrong_gt: String
+
+  #
+  wrong_gte: String
+
+  #
+  wrong_contains: String
+
+  #
+  wrong_not_contains: String
+
+  #
+  wrong_starts_with: String
+
+  #
+  wrong_not_starts_with: String
+
+  #
+  wrong_ends_with: String
+
+  #
+  wrong_not_ends_with: String
+
+  #
+  correct: String
+
+  #
+  correct_not: String
+
+  #
+  correct_in: [String!]
+
+  #
+  correct_not_in: [String!]
+
+  #
+  correct_lt: String
+
+  #
+  correct_lte: String
+
+  #
+  correct_gt: String
+
+  #
+  correct_gte: String
+
+  #
+  correct_contains: String
+
+  #
+  correct_not_contains: String
+
+  #
+  correct_starts_with: String
+
+  #
+  correct_not_starts_with: String
+
+  #
+  correct_ends_with: String
+
+  #
+  correct_not_ends_with: String
+
+  #
+  guess: String
+
+  #
+  guess_not: String
+
+  #
+  guess_in: [String!]
+
+  #
+  guess_not_in: [String!]
+
+  #
+  guess_lt: String
+
+  #
+  guess_lte: String
+
+  #
+  guess_gt: String
+
+  #
+  guess_gte: String
+
+  #
+  guess_contains: String
+
+  #
+  guess_not_contains: String
+
+  #
+  guess_starts_with: String
+
+  #
+  guess_not_starts_with: String
+
+  #
+  guess_ends_with: String
+
+  #
+  guess_not_ends_with: String
+
+  #
+  result: Boolean
+
+  #
+  result_not: Boolean
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  textEditor: TextEditorWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [TextEditorResultWhereInput!]
+
+  #
+  OR: [TextEditorResultWhereInput!]
+
+  #
+  NOT: [TextEditorResultWhereInput!]
+}
+
+#
+input LessonResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  visitsNumber: Int
+
+  #
+  visitsNumber_not: Int
+
+  #
+  visitsNumber_in: [Int!]
+
+  #
+  visitsNumber_not_in: [Int!]
+
+  #
+  visitsNumber_lt: Int
+
+  #
+  visitsNumber_lte: Int
+
+  #
+  visitsNumber_gt: Int
+
+  #
+  visitsNumber_gte: Int
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  progress: Int
+
+  #
+  progress_not: Int
+
+  #
+  progress_in: [Int!]
+
+  #
+  progress_not_in: [Int!]
+
+  #
+  progress_lt: Int
+
+  #
+  progress_lte: Int
+
+  #
+  progress_gt: Int
+
+  #
+  progress_gte: Int
+
+  #
+  lessonID: ID
+
+  #
+  lessonID_not: ID
+
+  #
+  lessonID_in: [ID!]
+
+  #
+  lessonID_not_in: [ID!]
+
+  #
+  lessonID_lt: ID
+
+  #
+  lessonID_lte: ID
+
+  #
+  lessonID_gt: ID
+
+  #
+  lessonID_gte: ID
+
+  #
+  lessonID_contains: ID
+
+  #
+  lessonID_not_contains: ID
+
+  #
+  lessonID_starts_with: ID
+
+  #
+  lessonID_not_starts_with: ID
+
+  #
+  lessonID_ends_with: ID
+
+  #
+  lessonID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [LessonResultWhereInput!]
+
+  #
+  OR: [LessonResultWhereInput!]
+
+  #
+  NOT: [LessonResultWhereInput!]
+}
+
+#
+input ChallengeResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  correct: Int
+
+  #
+  correct_not: Int
+
+  #
+  correct_in: [Int!]
+
+  #
+  correct_not_in: [Int!]
+
+  #
+  correct_lt: Int
+
+  #
+  correct_lte: Int
+
+  #
+  correct_gt: Int
+
+  #
+  correct_gte: Int
+
+  #
+  wrong: Int
+
+  #
+  wrong_not: Int
+
+  #
+  wrong_in: [Int!]
+
+  #
+  wrong_not_in: [Int!]
+
+  #
+  wrong_lt: Int
+
+  #
+  wrong_lte: Int
+
+  #
+  wrong_gt: Int
+
+  #
+  wrong_gte: Int
+
+  #
+  time: Int
+
+  #
+  time_not: Int
+
+  #
+  time_in: [Int!]
+
+  #
+  time_not_in: [Int!]
+
+  #
+  time_lt: Int
+
+  #
+  time_lte: Int
+
+  #
+  time_gt: Int
+
+  #
+  time_gte: Int
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ChallengeResultWhereInput!]
+
+  #
+  OR: [ChallengeResultWhereInput!]
+
+  #
+  NOT: [ChallengeResultWhereInput!]
+}
+
+#
+input FeedbackWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  teacher: UserWhereInput
+
+  #
+  student: UserWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [FeedbackWhereInput!]
+
+  #
+  OR: [FeedbackWhereInput!]
+
+  #
+  NOT: [FeedbackWhereInput!]
+}
+
+#
+input ForumWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  user: UserWhereInput
+
+  #
+  rating_every: RatingWhereInput
+
+  #
+  rating_some: RatingWhereInput
+
+  #
+  rating_none: RatingWhereInput
+
+  #
+  statements_every: StatementWhereInput
+
+  #
+  statements_some: StatementWhereInput
+
+  #
+  statements_none: StatementWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ForumWhereInput!]
+
+  #
+  OR: [ForumWhereInput!]
+
+  #
+  NOT: [ForumWhereInput!]
+}
+
+#
+input RatingWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  rating: Int
+
+  #
+  rating_not: Int
+
+  #
+  rating_in: [Int!]
+
+  #
+  rating_not_in: [Int!]
+
+  #
+  rating_lt: Int
+
+  #
+  rating_lte: Int
+
+  #
+  rating_gt: Int
+
+  #
+  rating_gte: Int
+
+  #
+  forum: ForumWhereInput
+
+  #
+  user: UserWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [RatingWhereInput!]
+
+  #
+  OR: [RatingWhereInput!]
+
+  #
+  NOT: [RatingWhereInput!]
+}
+
+#
+input StatementWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  forum: ForumWhereInput
+
+  #
+  user: UserWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [StatementWhereInput!]
+
+  #
+  OR: [StatementWhereInput!]
+
+  #
+  NOT: [StatementWhereInput!]
+}
+
+#
+input ExamWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  name: String
+
+  #
+  name_not: String
+
+  #
+  name_in: [String!]
+
+  #
+  name_not_in: [String!]
+
+  #
+  name_lt: String
+
+  #
+  name_lte: String
+
+  #
+  name_gt: String
+
+  #
+  name_gte: String
+
+  #
+  name_contains: String
+
+  #
+  name_not_contains: String
+
+  #
+  name_starts_with: String
+
+  #
+  name_not_starts_with: String
+
+  #
+  name_ends_with: String
+
+  #
+  name_not_ends_with: String
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  examResults_every: ExamResultWhereInput
+
+  #
+  examResults_some: ExamResultWhereInput
+
+  #
+  examResults_none: ExamResultWhereInput
+
+  #
+  nodeType: String
+
+  #
+  nodeType_not: String
+
+  #
+  nodeType_in: [String!]
+
+  #
+  nodeType_not_in: [String!]
+
+  #
+  nodeType_lt: String
+
+  #
+  nodeType_lte: String
+
+  #
+  nodeType_gt: String
+
+  #
+  nodeType_gte: String
+
+  #
+  nodeType_contains: String
+
+  #
+  nodeType_not_contains: String
+
+  #
+  nodeType_starts_with: String
+
+  #
+  nodeType_not_starts_with: String
+
+  #
+  nodeType_ends_with: String
+
+  #
+  nodeType_not_ends_with: String
+
+  #
+  nodeID: ID
+
+  #
+  nodeID_not: ID
+
+  #
+  nodeID_in: [ID!]
+
+  #
+  nodeID_not_in: [ID!]
+
+  #
+  nodeID_lt: ID
+
+  #
+  nodeID_lte: ID
+
+  #
+  nodeID_gt: ID
+
+  #
+  nodeID_gte: ID
+
+  #
+  nodeID_contains: ID
+
+  #
+  nodeID_not_contains: ID
+
+  #
+  nodeID_starts_with: ID
+
+  #
+  nodeID_not_starts_with: ID
+
+  #
+  nodeID_ends_with: ID
+
+  #
+  nodeID_not_ends_with: ID
+
+  #
+  question: String
+
+  #
+  question_not: String
+
+  #
+  question_in: [String!]
+
+  #
+  question_not_in: [String!]
+
+  #
+  question_lt: String
+
+  #
+  question_lte: String
+
+  #
+  question_gt: String
+
+  #
+  question_gte: String
+
+  #
+  question_contains: String
+
+  #
+  question_not_contains: String
+
+  #
+  question_starts_with: String
+
+  #
+  question_not_starts_with: String
+
+  #
+  question_ends_with: String
+
+  #
+  question_not_ends_with: String
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ExamWhereInput!]
+
+  #
+  OR: [ExamWhereInput!]
+
+  #
+  NOT: [ExamWhereInput!]
+}
+
+#
+input ExamResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  exam: ExamWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ExamResultWhereInput!]
+
+  #
+  OR: [ExamResultWhereInput!]
+
+  #
+  NOT: [ExamResultWhereInput!]
+}
+
+#
+input DocumentWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  documentResults_every: DocumentResultWhereInput
+
+  #
+  documentResults_some: DocumentResultWhereInput
+
+  #
+  documentResults_none: DocumentResultWhereInput
+
+  #
+  clauses_every: ClauseWhereInput
+
+  #
+  clauses_some: ClauseWhereInput
+
+  #
+  clauses_none: ClauseWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [DocumentWhereInput!]
+
+  #
+  OR: [DocumentWhereInput!]
+
+  #
+  NOT: [DocumentWhereInput!]
+}
+
+#
+input DocumentResultWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  lesson: LessonWhereInput
+
+  #
+  document: DocumentWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [DocumentResultWhereInput!]
+
+  #
+  OR: [DocumentResultWhereInput!]
+
+  #
+  NOT: [DocumentResultWhereInput!]
+}
+
+#
+input ClauseWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  number: Int
+
+  #
+  number_not: Int
+
+  #
+  number_in: [Int!]
+
+  #
+  number_not_in: [Int!]
+
+  #
+  number_lt: Int
+
+  #
+  number_lte: Int
+
+  #
+  number_gt: Int
+
+  #
+  number_gte: Int
+
+  #
+  commentary: String
+
+  #
+  commentary_not: String
+
+  #
+  commentary_in: [String!]
+
+  #
+  commentary_not_in: [String!]
+
+  #
+  commentary_lt: String
+
+  #
+  commentary_lte: String
+
+  #
+  commentary_gt: String
+
+  #
+  commentary_gte: String
+
+  #
+  commentary_contains: String
+
+  #
+  commentary_not_contains: String
+
+  #
+  commentary_starts_with: String
+
+  #
+  commentary_not_starts_with: String
+
+  #
+  commentary_ends_with: String
+
+  #
+  commentary_not_ends_with: String
+
+  #
+  sample: String
+
+  #
+  sample_not: String
+
+  #
+  sample_in: [String!]
+
+  #
+  sample_not_in: [String!]
+
+  #
+  sample_lt: String
+
+  #
+  sample_lte: String
+
+  #
+  sample_gt: String
+
+  #
+  sample_gte: String
+
+  #
+  sample_contains: String
+
+  #
+  sample_not_contains: String
+
+  #
+  sample_starts_with: String
+
+  #
+  sample_not_starts_with: String
+
+  #
+  sample_ends_with: String
+
+  #
+  sample_not_ends_with: String
+
+  #
+  document: DocumentWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ClauseWhereInput!]
+
+  #
+  OR: [ClauseWhereInput!]
+
+  #
+  NOT: [ClauseWhereInput!]
+}
+
+#
+input PointAWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  description: String
+
+  #
+  description_not: String
+
+  #
+  description_in: [String!]
+
+  #
+  description_not_in: [String!]
+
+  #
+  description_lt: String
+
+  #
+  description_lte: String
+
+  #
+  description_gt: String
+
+  #
+  description_gte: String
+
+  #
+  description_contains: String
+
+  #
+  description_not_contains: String
+
+  #
+  description_starts_with: String
+
+  #
+  description_not_starts_with: String
+
+  #
+  description_ends_with: String
+
+  #
+  description_not_ends_with: String
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  coursePageID: ID
+
+  #
+  coursePageID_not: ID
+
+  #
+  coursePageID_in: [ID!]
+
+  #
+  coursePageID_not_in: [ID!]
+
+  #
+  coursePageID_lt: ID
+
+  #
+  coursePageID_lte: ID
+
+  #
+  coursePageID_gt: ID
+
+  #
+  coursePageID_gte: ID
+
+  #
+  coursePageID_contains: ID
+
+  #
+  coursePageID_not_contains: ID
+
+  #
+  coursePageID_starts_with: ID
+
+  #
+  coursePageID_not_starts_with: ID
+
+  #
+  coursePageID_ends_with: ID
+
+  #
+  coursePageID_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  pointATests_every: PointATestWhereInput
+
+  #
+  pointATests_some: PointATestWhereInput
+
+  #
+  pointATests_none: PointATestWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [PointAWhereInput!]
+
+  #
+  OR: [PointAWhereInput!]
+
+  #
+  NOT: [PointAWhereInput!]
+}
+
+#
+input PointATestWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  question: String
+
+  #
+  question_not: String
+
+  #
+  question_in: [String!]
+
+  #
+  question_not_in: [String!]
+
+  #
+  question_lt: String
+
+  #
+  question_lte: String
+
+  #
+  question_gt: String
+
+  #
+  question_gte: String
+
+  #
+  question_contains: String
+
+  #
+  question_not_contains: String
+
+  #
+  question_starts_with: String
+
+  #
+  question_not_starts_with: String
+
+  #
+  question_ends_with: String
+
+  #
+  question_not_ends_with: String
+
+  #
+  answer1: String
+
+  #
+  answer1_not: String
+
+  #
+  answer1_in: [String!]
+
+  #
+  answer1_not_in: [String!]
+
+  #
+  answer1_lt: String
+
+  #
+  answer1_lte: String
+
+  #
+  answer1_gt: String
+
+  #
+  answer1_gte: String
+
+  #
+  answer1_contains: String
+
+  #
+  answer1_not_contains: String
+
+  #
+  answer1_starts_with: String
+
+  #
+  answer1_not_starts_with: String
+
+  #
+  answer1_ends_with: String
+
+  #
+  answer1_not_ends_with: String
+
+  #
+  answer1Correct: String
+
+  #
+  answer1Correct_not: String
+
+  #
+  answer1Correct_in: [String!]
+
+  #
+  answer1Correct_not_in: [String!]
+
+  #
+  answer1Correct_lt: String
+
+  #
+  answer1Correct_lte: String
+
+  #
+  answer1Correct_gt: String
+
+  #
+  answer1Correct_gte: String
+
+  #
+  answer1Correct_contains: String
+
+  #
+  answer1Correct_not_contains: String
+
+  #
+  answer1Correct_starts_with: String
+
+  #
+  answer1Correct_not_starts_with: String
+
+  #
+  answer1Correct_ends_with: String
+
+  #
+  answer1Correct_not_ends_with: String
+
+  #
+  answer2: String
+
+  #
+  answer2_not: String
+
+  #
+  answer2_in: [String!]
+
+  #
+  answer2_not_in: [String!]
+
+  #
+  answer2_lt: String
+
+  #
+  answer2_lte: String
+
+  #
+  answer2_gt: String
+
+  #
+  answer2_gte: String
+
+  #
+  answer2_contains: String
+
+  #
+  answer2_not_contains: String
+
+  #
+  answer2_starts_with: String
+
+  #
+  answer2_not_starts_with: String
+
+  #
+  answer2_ends_with: String
+
+  #
+  answer2_not_ends_with: String
+
+  #
+  answer2Correct: String
+
+  #
+  answer2Correct_not: String
+
+  #
+  answer2Correct_in: [String!]
+
+  #
+  answer2Correct_not_in: [String!]
+
+  #
+  answer2Correct_lt: String
+
+  #
+  answer2Correct_lte: String
+
+  #
+  answer2Correct_gt: String
+
+  #
+  answer2Correct_gte: String
+
+  #
+  answer2Correct_contains: String
+
+  #
+  answer2Correct_not_contains: String
+
+  #
+  answer2Correct_starts_with: String
+
+  #
+  answer2Correct_not_starts_with: String
+
+  #
+  answer2Correct_ends_with: String
+
+  #
+  answer2Correct_not_ends_with: String
+
+  #
+  answer3: String
+
+  #
+  answer3_not: String
+
+  #
+  answer3_in: [String!]
+
+  #
+  answer3_not_in: [String!]
+
+  #
+  answer3_lt: String
+
+  #
+  answer3_lte: String
+
+  #
+  answer3_gt: String
+
+  #
+  answer3_gte: String
+
+  #
+  answer3_contains: String
+
+  #
+  answer3_not_contains: String
+
+  #
+  answer3_starts_with: String
+
+  #
+  answer3_not_starts_with: String
+
+  #
+  answer3_ends_with: String
+
+  #
+  answer3_not_ends_with: String
+
+  #
+  answer3Correct: String
+
+  #
+  answer3Correct_not: String
+
+  #
+  answer3Correct_in: [String!]
+
+  #
+  answer3Correct_not_in: [String!]
+
+  #
+  answer3Correct_lt: String
+
+  #
+  answer3Correct_lte: String
+
+  #
+  answer3Correct_gt: String
+
+  #
+  answer3Correct_gte: String
+
+  #
+  answer3Correct_contains: String
+
+  #
+  answer3Correct_not_contains: String
+
+  #
+  answer3Correct_starts_with: String
+
+  #
+  answer3Correct_not_starts_with: String
+
+  #
+  answer3Correct_ends_with: String
+
+  #
+  answer3Correct_not_ends_with: String
+
+  #
+  answer4: String
+
+  #
+  answer4_not: String
+
+  #
+  answer4_in: [String!]
+
+  #
+  answer4_not_in: [String!]
+
+  #
+  answer4_lt: String
+
+  #
+  answer4_lte: String
+
+  #
+  answer4_gt: String
+
+  #
+  answer4_gte: String
+
+  #
+  answer4_contains: String
+
+  #
+  answer4_not_contains: String
+
+  #
+  answer4_starts_with: String
+
+  #
+  answer4_not_starts_with: String
+
+  #
+  answer4_ends_with: String
+
+  #
+  answer4_not_ends_with: String
+
+  #
+  answer4Correct: String
+
+  #
+  answer4Correct_not: String
+
+  #
+  answer4Correct_in: [String!]
+
+  #
+  answer4Correct_not_in: [String!]
+
+  #
+  answer4Correct_lt: String
+
+  #
+  answer4Correct_lte: String
+
+  #
+  answer4Correct_gt: String
+
+  #
+  answer4Correct_gte: String
+
+  #
+  answer4Correct_contains: String
+
+  #
+  answer4Correct_not_contains: String
+
+  #
+  answer4Correct_starts_with: String
+
+  #
+  answer4Correct_not_starts_with: String
+
+  #
+  answer4Correct_ends_with: String
+
+  #
+  answer4Correct_not_ends_with: String
+
+  #
+  user: UserWhereInput
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  coursePageID: ID
+
+  #
+  coursePageID_not: ID
+
+  #
+  coursePageID_in: [ID!]
+
+  #
+  coursePageID_not_in: [ID!]
+
+  #
+  coursePageID_lt: ID
+
+  #
+  coursePageID_lte: ID
+
+  #
+  coursePageID_gt: ID
+
+  #
+  coursePageID_gte: ID
+
+  #
+  coursePageID_contains: ID
+
+  #
+  coursePageID_not_contains: ID
+
+  #
+  coursePageID_starts_with: ID
+
+  #
+  coursePageID_not_starts_with: ID
+
+  #
+  coursePageID_ends_with: ID
+
+  #
+  coursePageID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [PointATestWhereInput!]
+
+  #
+  OR: [PointATestWhereInput!]
+
+  #
+  NOT: [PointATestWhereInput!]
+}
+
+#
+input OrderWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  paymentID: String
+
+  #
+  paymentID_not: String
+
+  #
+  paymentID_in: [String!]
+
+  #
+  paymentID_not_in: [String!]
+
+  #
+  paymentID_lt: String
+
+  #
+  paymentID_lte: String
+
+  #
+  paymentID_gt: String
+
+  #
+  paymentID_gte: String
+
+  #
+  paymentID_contains: String
+
+  #
+  paymentID_not_contains: String
+
+  #
+  paymentID_starts_with: String
+
+  #
+  paymentID_not_starts_with: String
+
+  #
+  paymentID_ends_with: String
+
+  #
+  paymentID_not_ends_with: String
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  price: Int
+
+  #
+  price_not: Int
+
+  #
+  price_in: [Int!]
+
+  #
+  price_not_in: [Int!]
+
+  #
+  price_lt: Int
+
+  #
+  price_lte: Int
+
+  #
+  price_gt: Int
+
+  #
+  price_gte: Int
+
+  #
+  promocode: String
+
+  #
+  promocode_not: String
+
+  #
+  promocode_in: [String!]
+
+  #
+  promocode_not_in: [String!]
+
+  #
+  promocode_lt: String
+
+  #
+  promocode_lte: String
+
+  #
+  promocode_gt: String
+
+  #
+  promocode_gte: String
+
+  #
+  promocode_contains: String
+
+  #
+  promocode_not_contains: String
+
+  #
+  promocode_starts_with: String
+
+  #
+  promocode_not_starts_with: String
+
+  #
+  promocode_ends_with: String
+
+  #
+  promocode_not_ends_with: String
+
+  #
+  isPaid: Boolean
+
+  #
+  isPaid_not: Boolean
+
+  #
+  level: Level
+
+  #
+  level_not: Level
+
+  #
+  level_in: [Level!]
+
+  #
+  level_not_in: [Level!]
+
+  #
+  comment: String
+
+  #
+  comment_not: String
+
+  #
+  comment_in: [String!]
+
+  #
+  comment_not_in: [String!]
+
+  #
+  comment_lt: String
+
+  #
+  comment_lte: String
+
+  #
+  comment_gt: String
+
+  #
+  comment_gte: String
+
+  #
+  comment_contains: String
+
+  #
+  comment_not_contains: String
+
+  #
+  comment_starts_with: String
+
+  #
+  comment_not_starts_with: String
+
+  #
+  comment_ends_with: String
+
+  #
+  comment_not_ends_with: String
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [OrderWhereInput!]
+
+  #
+  OR: [OrderWhereInput!]
+
+  #
+  NOT: [OrderWhereInput!]
+}
+
+#
+enum Level {
+  #
+  STANDARD
+
+  #
+  ADVANCED
+}
+
+#
+input PostWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  user: UserWhereInput
+
+  #
+  title: String
+
+  #
+  title_not: String
+
+  #
+  title_in: [String!]
+
+  #
+  title_not_in: [String!]
+
+  #
+  title_lt: String
+
+  #
+  title_lte: String
+
+  #
+  title_gt: String
+
+  #
+  title_gte: String
+
+  #
+  title_contains: String
+
+  #
+  title_not_contains: String
+
+  #
+  title_starts_with: String
+
+  #
+  title_not_starts_with: String
+
+  #
+  title_ends_with: String
+
+  #
+  title_not_ends_with: String
+
+  #
+  text: String
+
+  #
+  text_not: String
+
+  #
+  text_in: [String!]
+
+  #
+  text_not_in: [String!]
+
+  #
+  text_lt: String
+
+  #
+  text_lte: String
+
+  #
+  text_gt: String
+
+  #
+  text_gte: String
+
+  #
+  text_contains: String
+
+  #
+  text_not_contains: String
+
+  #
+  text_starts_with: String
+
+  #
+  text_not_starts_with: String
+
+  #
+  text_ends_with: String
+
+  #
+  text_not_ends_with: String
+
+  #
+  likes: Int
+
+  #
+  likes_not: Int
+
+  #
+  likes_in: [Int!]
+
+  #
+  likes_not_in: [Int!]
+
+  #
+  likes_lt: Int
+
+  #
+  likes_lte: Int
+
+  #
+  likes_gt: Int
+
+  #
+  likes_gte: Int
+
+  #
+  coursePages_every: CoursePageWhereInput
+
+  #
+  coursePages_some: CoursePageWhereInput
+
+  #
+  coursePages_none: CoursePageWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [PostWhereInput!]
+
+  #
+  OR: [PostWhereInput!]
+
+  #
+  NOT: [PostWhereInput!]
+}
+
+#
+input CourseVisitWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  student: UserWhereInput
+
+  #
+  visitsNumber: Int
+
+  #
+  visitsNumber_not: Int
+
+  #
+  visitsNumber_in: [Int!]
+
+  #
+  visitsNumber_not_in: [Int!]
+
+  #
+  visitsNumber_lt: Int
+
+  #
+  visitsNumber_lte: Int
+
+  #
+  visitsNumber_gt: Int
+
+  #
+  visitsNumber_gte: Int
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  finish: DateTime
+
+  #
+  finish_not: DateTime
+
+  #
+  finish_in: [DateTime!]
+
+  #
+  finish_not_in: [DateTime!]
+
+  #
+  finish_lt: DateTime
+
+  #
+  finish_lte: DateTime
+
+  #
+  finish_gt: DateTime
+
+  #
+  finish_gte: DateTime
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [CourseVisitWhereInput!]
+
+  #
+  OR: [CourseVisitWhereInput!]
+
+  #
+  NOT: [CourseVisitWhereInput!]
+}
+
+#
+input UserLevelWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  level: Float
+
+  #
+  level_not: Float
+
+  #
+  level_in: [Float!]
+
+  #
+  level_not_in: [Float!]
+
+  #
+  level_lt: Float
+
+  #
+  level_lte: Float
+
+  #
+  level_gt: Float
+
+  #
+  level_gte: Float
+
+  #
+  user: UserWhereInput
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [UserLevelWhereInput!]
+
+  #
+  OR: [UserLevelWhereInput!]
+
+  #
+  NOT: [UserLevelWhereInput!]
+}
+
+#
+input ApplicationWhereInput {
+  #
+  id: ID
+
+  #
+  id_not: ID
+
+  #
+  id_in: [ID!]
+
+  #
+  id_not_in: [ID!]
+
+  #
+  id_lt: ID
+
+  #
+  id_lte: ID
+
+  #
+  id_gt: ID
+
+  #
+  id_gte: ID
+
+  #
+  id_contains: ID
+
+  #
+  id_not_contains: ID
+
+  #
+  id_starts_with: ID
+
+  #
+  id_not_starts_with: ID
+
+  #
+  id_ends_with: ID
+
+  #
+  id_not_ends_with: ID
+
+  #
+  applicantId: ID
+
+  #
+  applicantId_not: ID
+
+  #
+  applicantId_in: [ID!]
+
+  #
+  applicantId_not_in: [ID!]
+
+  #
+  applicantId_lt: ID
+
+  #
+  applicantId_lte: ID
+
+  #
+  applicantId_gt: ID
+
+  #
+  applicantId_gte: ID
+
+  #
+  applicantId_contains: ID
+
+  #
+  applicantId_not_contains: ID
+
+  #
+  applicantId_starts_with: ID
+
+  #
+  applicantId_not_starts_with: ID
+
+  #
+  applicantId_ends_with: ID
+
+  #
+  applicantId_not_ends_with: ID
+
+  #
+  applicantName: String
+
+  #
+  applicantName_not: String
+
+  #
+  applicantName_in: [String!]
+
+  #
+  applicantName_not_in: [String!]
+
+  #
+  applicantName_lt: String
+
+  #
+  applicantName_lte: String
+
+  #
+  applicantName_gt: String
+
+  #
+  applicantName_gte: String
+
+  #
+  applicantName_contains: String
+
+  #
+  applicantName_not_contains: String
+
+  #
+  applicantName_starts_with: String
+
+  #
+  applicantName_not_starts_with: String
+
+  #
+  applicantName_ends_with: String
+
+  #
+  applicantName_not_ends_with: String
+
+  #
+  message: String
+
+  #
+  message_not: String
+
+  #
+  message_in: [String!]
+
+  #
+  message_not_in: [String!]
+
+  #
+  message_lt: String
+
+  #
+  message_lte: String
+
+  #
+  message_gt: String
+
+  #
+  message_gte: String
+
+  #
+  message_contains: String
+
+  #
+  message_not_contains: String
+
+  #
+  message_starts_with: String
+
+  #
+  message_not_starts_with: String
+
+  #
+  message_ends_with: String
+
+  #
+  message_not_ends_with: String
+
+  #
+  coursePage: CoursePageWhereInput
+
+  #
+  coursePageID: ID
+
+  #
+  coursePageID_not: ID
+
+  #
+  coursePageID_in: [ID!]
+
+  #
+  coursePageID_not_in: [ID!]
+
+  #
+  coursePageID_lt: ID
+
+  #
+  coursePageID_lte: ID
+
+  #
+  coursePageID_gt: ID
+
+  #
+  coursePageID_gte: ID
+
+  #
+  coursePageID_contains: ID
+
+  #
+  coursePageID_not_contains: ID
+
+  #
+  coursePageID_starts_with: ID
+
+  #
+  coursePageID_not_starts_with: ID
+
+  #
+  coursePageID_ends_with: ID
+
+  #
+  coursePageID_not_ends_with: ID
+
+  #
+  createdAt: DateTime
+
+  #
+  createdAt_not: DateTime
+
+  #
+  createdAt_in: [DateTime!]
+
+  #
+  createdAt_not_in: [DateTime!]
+
+  #
+  createdAt_lt: DateTime
+
+  #
+  createdAt_lte: DateTime
+
+  #
+  createdAt_gt: DateTime
+
+  #
+  createdAt_gte: DateTime
+
+  #
+  updatedAt: DateTime
+
+  #
+  updatedAt_not: DateTime
+
+  #
+  updatedAt_in: [DateTime!]
+
+  #
+  updatedAt_not_in: [DateTime!]
+
+  #
+  updatedAt_lt: DateTime
+
+  #
+  updatedAt_lte: DateTime
+
+  #
+  updatedAt_gt: DateTime
+
+  #
+  updatedAt_gte: DateTime
+
+  #
+  AND: [ApplicationWhereInput!]
+
+  #
+  OR: [ApplicationWhereInput!]
+
+  #
+  NOT: [ApplicationWhereInput!]
+}
+
+#
+enum CourseType {
+  #
+  PUBLIC
+
+  #
+  PRIVATE
+
+  #
+  FORMONEY
+
+  #
+  UNI
+
+  #
+  CHALLENGE
+}
+
+#
+enum CoursePageOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  description_ASC
+
+  #
+  description_DESC
+
+  #
+  image_ASC
+
+  #
+  image_DESC
+
+  #
+  banner_ASC
+
+  #
+  banner_DESC
+
+  #
+  weeks_ASC
+
+  #
+  weeks_DESC
+
+  #
+  subscription_ASC
+
+  #
+  subscription_DESC
+
+  #
+  news_ASC
+
+  #
+  news_DESC
+
+  #
+  numInCareerTrack_ASC
+
+  #
+  numInCareerTrack_DESC
+
+  #
+  published_ASC
+
+  #
+  published_DESC
+
+  #
+  uniID_ASC
+
+  #
+  uniID_DESC
+
+  #
+  courseType_ASC
+
+  #
+  courseType_DESC
+
+  #
+  price_ASC
+
+  #
+  price_DESC
+
+  #
+  subscriptionPrice_ASC
+
+  #
+  subscriptionPrice_DESC
+
+  #
+  discountPrice_ASC
+
+  #
+  discountPrice_DESC
+
+  #
+  audience_ASC
+
+  #
+  audience_DESC
+
+  #
+  result_ASC
+
+  #
+  result_DESC
+
+  #
+  tariffs_ASC
+
+  #
+  tariffs_DESC
+
+  #
+  methods_ASC
+
+  #
+  methods_DESC
+
+  #
+  batch_ASC
+
+  #
+  batch_DESC
+
+  #
+  reviews_ASC
+
+  #
+  reviews_DESC
+
+  #
+  openLesson_ASC
+
+  #
+  openLesson_DESC
+
+  #
+  video_ASC
+
+  #
+  video_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type CoursePage {
+  #
+  id: ID!
+
+  #
+  title: String!
+
+  #
+  description: String!
+
+  #
+  image: String!
+
+  #
+  banner: String
+
+  #
+  weeks: Int
+
+  #
+  subscription: Boolean
+
+  #
+  news: String
+
+  #
+  user: User!
+
+  #
+  authors(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User!]
+
+  #
+  lessons(
+    where: LessonWhereInput
+    orderBy: LessonOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Lesson!]
+
+  #
+  pointsA(
+    where: PointAWhereInput
+    orderBy: PointAOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [PointA!]
+
+  #
+  applications(
+    where: ApplicationWhereInput
+    orderBy: ApplicationOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Application!]
+
+  #
+  pointATests(
+    where: PointATestWhereInput
+    orderBy: PointATestOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [PointATest!]
+
+  #
+  careerTrack(
+    where: CareerTrackWhereInput
+    orderBy: CareerTrackOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CareerTrack!]
+
+  #
+  numInCareerTrack: Int
+
+  #
+  examQuestion: ExamQuestion
+
+  #
+  published: Boolean
+
+  #
+  uni: Uni
+
+  #
+  uniID: ID
+
+  #
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post!]
+
+  #
+  tags: [String!]!
+
+  #
+  courseType: CourseType
+
+  #
+  students: [ID!]!
+
+  #
+  new_students(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User!]
+
+  #
+  price: Int
+
+  #
+  subscriptionPrice: Int
+
+  #
+  discountPrice: Int
+
+  #
+  orders(
+    where: OrderWhereInput
+    orderBy: OrderOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Order!]
+
+  #
+  company: Company
+
+  #
+  promocode: [Json!]!
+
+  #
+  visits(
+    where: CourseVisitWhereInput
+    orderBy: CourseVisitOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CourseVisit!]
+
+  #
+  audience: String
+
+  #
+  result: String
+
+  #
+  tariffs: String
+
+  #
+  methods: String
+
+  #
+  batch: String
+
+  #
+  reviews: Json
+
+  #
+  openLesson: ID
+
+  #
+  video: String
+
+  #
+  package(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type User {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  surname: String
+
+  #
+  email: String!
+
+  #
+  image: String
+
+  #
+  interests: [String]
+
+  #
+  description: String
+
+  #
+  permissions: [Permission!]!
+
+  #
+  isFamiliar: Boolean!
+
+  #
+  favourites: [ID]
+
+  #
+  subjects: [ID]
+
+  #
+  new_subjects: [CoursePage]
+
+  #
+  coursePages: [CoursePage]
+
+  #
+  lessons: [Lesson]!
+
+  #
+  orders: [Order]!
+
+  #
+  careerTrack: CareerTrack
+
+  #
+  courseVisits: [CourseVisit]
+
+  #
+  visitedLessons: [String]
+
+  #
+  careerTrackID: ID
+
+  #
+  status: Status
+
+  #
+  coverLetter: String
+
+  #
+  resume: String
+
+  #
+  uni: Uni
+
+  #
+  uniID: ID
+
+  #
+  company: Company
+
+  #
+  level: UserLevel
+
+  #
+  testResults: [TestResult]
+
+  #
+  quizResults: [QuizResult]
+
+  #
+  problemResults: [ProblemResult]
+
+  #
+  textEditorResults: [TextEditorResult]
+
+  #
+  lessonResults: [LessonResult]
+
+  #
+  examAnswers: [ExamAnswer]
+
+  #
+  documentResults: [DocumentResult]
+
+  #
+  studentFeedback: [Feedback]
+
+  #
+  teacherFeedback: [Feedback]
+}
+
+#
+enum Permission {
+  #
+  ADMIN
+
+  #
+  USER
+}
+
+#
+type Lesson {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  number: Int
+
+  #
+  text: String!
+
+  #
+  user: User!
+
+  #
+  type: Type
+
+  #
+  map: [Json!]!
+
+  #
+  structure: Json
+
+  #
+  notes(
+    where: NoteWhereInput
+    orderBy: NoteOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Note!]
+
+  #
+  shots(
+    where: ShotWhereInput
+    orderBy: ShotOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Shot!]
+
+  #
+  shotResults(
+    where: ShotResultWhereInput
+    orderBy: ShotResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ShotResult!]
+
+  #
+  coursePage: CoursePage!
+
+  #
+  tests(
+    where: TestWhereInput
+    orderBy: TestOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Test!]
+
+  #
+  newTests(
+    where: NewTestWhereInput
+    orderBy: NewTestOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [NewTest!]
+
+  #
+  quizes(
+    where: QuizWhereInput
+    orderBy: QuizOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Quiz!]
+
+  #
+  problems(
+    where: ProblemWhereInput
+    orderBy: ProblemOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Problem!]
+
+  #
+  constructions(
+    where: ConstructionWhereInput
+    orderBy: ConstructionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Construction!]
+
+  #
+  texteditors(
+    where: TextEditorWhereInput
+    orderBy: TextEditorOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TextEditor!]
+
+  #
+  lessonResults(
+    where: LessonResultWhereInput
+    orderBy: LessonResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [LessonResult!]
+
+  #
+  challengeResults(
+    where: ChallengeResultWhereInput
+    orderBy: ChallengeResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ChallengeResult!]
+
+  #
+  testResults(
+    where: TestResultWhereInput
+    orderBy: TestResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TestResult!]
+
+  #
+  quizResults(
+    where: QuizResultWhereInput
+    orderBy: QuizResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [QuizResult!]
+
+  #
+  textEditorResults(
+    where: TextEditorResultWhereInput
+    orderBy: TextEditorResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TextEditorResult!]
+
+  #
+  problemResults(
+    where: ProblemResultWhereInput
+    orderBy: ProblemResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ProblemResult!]
+
+  #
+  constructionResults(
+    where: ConstructionResultWhereInput
+    orderBy: ConstructionResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ConstructionResult!]
+
+  #
+  lessonFeedback(
+    where: FeedbackWhereInput
+    orderBy: FeedbackOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Feedback!]
+
+  #
+  forum: Forum
+
+  #
+  open: Boolean
+
+  #
+  coursePageID: ID!
+
+  #
+  published: Boolean
+
+  #
+  description: String
+
+  #
+  exams(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Exam!]
+
+  #
+  examResults(
+    where: ExamResultWhereInput
+    orderBy: ExamResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExamResult!]
+
+  #
+  documents(
+    where: DocumentWhereInput
+    orderBy: DocumentOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Document!]
+
+  #
+  documentResults(
+    where: DocumentResultWhereInput
+    orderBy: DocumentResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [DocumentResult!]
+
+  #
+  change: String
+
+  #
+  challenge_num: Int
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+scalar Json
+
+#
+enum NoteOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  next_ASC
+
+  #
+  next_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Note {
+  #
+  id: ID!
+
+  #
+  text: String!
+
+  #
+  user: User
+
+  #
+  next: Json
+
+  #
+  lessonID: ID
+
+  #
+  lesson: Lesson
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ShotOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Shot {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  title: String!
+
+  #
+  parts: [String!]!
+
+  #
+  comments: [String!]!
+
+  #
+  shotResults(
+    where: ShotResultWhereInput
+    orderBy: ShotResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ShotResult!]
+
+  #
+  lessonID: ID
+
+  #
+  lesson: Lesson
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ShotResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  shotID_ASC
+
+  #
+  shotID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type ShotResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String!
+
+  #
+  lessonID: ID
+
+  #
+  lesson: Lesson
+
+  #
+  shot: Shot
+
+  #
+  shotID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum TestOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  question_ASC
+
+  #
+  question_DESC
+
+  #
+  answer1_ASC
+
+  #
+  answer1_DESC
+
+  #
+  answer1Correct_ASC
+
+  #
+  answer1Correct_DESC
+
+  #
+  answer2_ASC
+
+  #
+  answer2_DESC
+
+  #
+  answer2Correct_ASC
+
+  #
+  answer2Correct_DESC
+
+  #
+  answer3_ASC
+
+  #
+  answer3_DESC
+
+  #
+  answer3Correct_ASC
+
+  #
+  answer3Correct_DESC
+
+  #
+  answer4_ASC
+
+  #
+  answer4_DESC
+
+  #
+  answer4Correct_ASC
+
+  #
+  answer4Correct_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Test {
+  #
+  id: ID!
+
+  #
+  question: String!
+
+  #
+  answer1: String!
+
+  #
+  answer1Correct: String!
+
+  #
+  answer2: String!
+
+  #
+  answer2Correct: String!
+
+  #
+  answer3: String
+
+  #
+  answer3Correct: String
+
+  #
+  answer4: String
+
+  #
+  answer4Correct: String
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum NewTestOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  type_ASC
+
+  #
+  type_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  next_ASC
+
+  #
+  next_DESC
+
+  #
+  ifRight_ASC
+
+  #
+  ifRight_DESC
+
+  #
+  ifWrong_ASC
+
+  #
+  ifWrong_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type NewTest {
+  #
+  id: ID!
+
+  #
+  question: [String!]!
+
+  #
+  answers: [String!]!
+
+  #
+  correct: [Boolean!]!
+
+  #
+  type: TaskType
+
+  #
+  testResults(
+    where: TestResultWhereInput
+    orderBy: TestResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TestResult!]
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  next: Json
+
+  #
+  ifRight: String
+
+  #
+  ifWrong: String
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum TestResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  attempts_ASC
+
+  #
+  attempts_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  testID_ASC
+
+  #
+  testID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type TestResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String
+
+  #
+  attempts: Int
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  test: NewTest
+
+  #
+  testID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum QuizOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  question_ASC
+
+  #
+  question_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  type_ASC
+
+  #
+  type_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  next_ASC
+
+  #
+  next_DESC
+
+  #
+  ifRight_ASC
+
+  #
+  ifRight_DESC
+
+  #
+  ifWrong_ASC
+
+  #
+  ifWrong_DESC
+
+  #
+  check_ASC
+
+  #
+  check_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Quiz {
+  #
+  id: ID!
+
+  #
+  question: String!
+
+  #
+  answer: String!
+
+  #
+  user: User!
+
+  #
+  type: TaskType
+
+  #
+  lessonID: ID
+
+  #
+  lesson: Lesson
+
+  #
+  quizResults(
+    where: QuizResultWhereInput
+    orderBy: QuizResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [QuizResult!]
+
+  #
+  next: Json
+
+  #
+  ifRight: String
+
+  #
+  ifWrong: String
+
+  #
+  check: CheckType
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum QuizResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  attempts_ASC
+
+  #
+  attempts_DESC
+
+  #
+  correct_ASC
+
+  #
+  correct_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type QuizResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String
+
+  #
+  attempts: Int
+
+  #
+  correct: Boolean
+
+  #
+  quiz: Quiz
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ProblemOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  hints_ASC
+
+  #
+  hints_DESC
+
+  #
+  solution_ASC
+
+  #
+  solution_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  nodeType_ASC
+
+  #
+  nodeType_DESC
+
+  #
+  nodeID_ASC
+
+  #
+  nodeID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Problem {
+  #
+  id: ID!
+
+  #
+  text: String!
+
+  #
+  hints: String
+
+  #
+  solution: String
+
+  #
+  answer: String
+
+  #
+  hintsList: [String!]!
+
+  #
+  solutionList: [String!]!
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson!
+
+  #
+  problemResults(
+    where: ProblemResultWhereInput
+    orderBy: ProblemResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ProblemResult!]
+
+  #
+  lessonID: ID!
+
+  #
+  nodeType: String
+
+  #
+  nodeID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ProblemResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  problemID_ASC
+
+  #
+  problemID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type ProblemResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String
+
+  #
+  revealed: [String!]!
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  problem: Problem
+
+  #
+  problemID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ConstructionOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  hint_ASC
+
+  #
+  hint_DESC
+
+  #
+  type_ASC
+
+  #
+  type_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Construction {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  variants: [String!]!
+
+  #
+  answer: [String!]!
+
+  #
+  hint: String
+
+  #
+  type: String!
+
+  #
+  constructionResults(
+    where: ConstructionResultWhereInput
+    orderBy: ConstructionResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ConstructionResult!]
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson!
+
+  #
+  lessonID: ID!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ConstructionResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  attempts_ASC
+
+  #
+  attempts_DESC
+
+  #
+  constructionID_ASC
+
+  #
+  constructionID_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type ConstructionResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String
+
+  #
+  attempts: Int
+
+  #
+  inputs: [String!]!
+
+  #
+  construction: Construction
+
+  #
+  constructionID: ID
+
+  #
+  lesson: Lesson
+
+  #
+  lessonID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum TextEditorOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  totalMistakes_ASC
+
+  #
+  totalMistakes_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type TextEditor {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  text: String!
+
+  #
+  totalMistakes: Int
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson!
+
+  #
+  lessonID: ID!
+
+  #
+  textEditorResults(
+    where: TextEditorResultWhereInput
+    orderBy: TextEditorResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TextEditorResult!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum TextEditorResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  attempts_ASC
+
+  #
+  attempts_DESC
+
+  #
+  wrong_ASC
+
+  #
+  wrong_DESC
+
+  #
+  correct_ASC
+
+  #
+  correct_DESC
+
+  #
+  guess_ASC
+
+  #
+  guess_DESC
+
+  #
+  result_ASC
+
+  #
+  result_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type TextEditorResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  attempts: Int
+
+  #
+  wrong: String!
+
+  #
+  correct: String!
+
+  #
+  guess: String!
+
+  #
+  result: Boolean
+
+  #
+  lesson: Lesson
+
+  #
+  textEditor: TextEditor
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum LessonResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  visitsNumber_ASC
+
+  #
+  visitsNumber_DESC
+
+  #
+  progress_ASC
+
+  #
+  progress_DESC
+
+  #
+  lessonID_ASC
+
+  #
+  lessonID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type LessonResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  visitsNumber: Int
+
+  #
+  lesson: Lesson!
+
+  #
+  progress: Int
+
+  #
+  lessonID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ChallengeResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  correct_ASC
+
+  #
+  correct_DESC
+
+  #
+  wrong_ASC
+
+  #
+  wrong_DESC
+
+  #
+  time_ASC
+
+  #
+  time_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type ChallengeResult {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  correct: Int
+
+  #
+  wrong: Int
+
+  #
+  time: Int
+
+  #
+  lesson: Lesson!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum FeedbackOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Feedback {
+  #
+  id: ID!
+
+  #
+  text: String!
+
+  #
+  lesson: Lesson
+
+  #
+  teacher: User!
+
+  #
+  student: User!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type Forum {
+  #
+  id: ID!
+
+  #
+  text: String
+
+  #
+  lesson: Lesson
+
+  #
+  user: User
+
+  #
+  rating(
+    where: RatingWhereInput
+    orderBy: RatingOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Rating!]
+
+  #
+  statements(
+    where: StatementWhereInput
+    orderBy: StatementOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Statement!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum RatingOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  rating_ASC
+
+  #
+  rating_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Rating {
+  #
+  id: ID!
+
+  #
+  rating: Int
+
+  #
+  forum: Forum
+
+  #
+  user: User
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum StatementOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Statement {
+  #
+  id: ID!
+
+  #
+  text: String
+
+  #
+  forum: Forum
+
+  #
+  user: User
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ExamOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  nodeType_ASC
+
+  #
+  nodeType_DESC
+
+  #
+  nodeID_ASC
+
+  #
+  nodeID_DESC
+
+  #
+  question_ASC
+
+  #
+  question_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Exam {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  name: String
+
+  #
+  lesson: Lesson!
+
+  #
+  examResults(
+    where: ExamResultWhereInput
+    orderBy: ExamResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExamResult!]
+
+  #
+  nodeType: String
+
+  #
+  nodeID: ID
+
+  #
+  question: String
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ExamResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type ExamResult {
+  #
+  id: ID!
+
+  #
+  user: User
+
+  #
+  answers: [String!]!
+
+  #
+  lesson: Lesson
+
+  #
+  exam: Exam
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum DocumentOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Document {
+  #
+  id: ID!
+
+  #
+  title: String!
+
+  #
+  user: User!
+
+  #
+  lesson: Lesson!
+
+  #
+  documentResults(
+    where: DocumentResultWhereInput
+    orderBy: DocumentResultOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [DocumentResult!]
+
+  #
+  clauses(
+    where: ClauseWhereInput
+    orderBy: ClauseOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Clause!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum DocumentResultOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type DocumentResult {
+  #
+  id: ID!
+
+  #
+  user: User
+
+  #
+  answers: [String!]!
+
+  #
+  drafts: [String!]!
+
+  #
+  lesson: Lesson
+
+  #
+  document: Document
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ClauseOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  number_ASC
+
+  #
+  number_DESC
+
+  #
+  commentary_ASC
+
+  #
+  commentary_DESC
+
+  #
+  sample_ASC
+
+  #
+  sample_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Clause {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  number: Int!
+
+  #
+  commentary: String!
+
+  #
+  keywords: [String!]!
+
+  #
+  sample: String
+
+  #
+  document: Document!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type Order {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  paymentID: String
+
+  #
+  coursePage: CoursePage!
+
+  #
+  price: Int
+
+  #
+  promocode: String
+
+  #
+  isPaid: Boolean
+
+  #
+  level: Level
+
+  #
+  comment: String
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type CareerTrack {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  img: String
+
+  #
+  members: User
+
+  #
+  coursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  careerTrackUnits(
+    where: CareerTrackUnitWhereInput
+    orderBy: CareerTrackUnitOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CareerTrackUnit!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum CareerTrackUnitOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  number_ASC
+
+  #
+  number_DESC
+
+  #
+  img_ASC
+
+  #
+  img_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type CareerTrackUnit {
+  #
+  id: ID!
+
+  #
+  title: String!
+
+  #
+  number: Int
+
+  #
+  img: String
+
+  #
+  topics: [String!]!
+
+  #
+  articles: [String!]!
+
+  #
+  coursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  careerTrack: CareerTrack!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type CourseVisit {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  visitsNumber: Int
+
+  #
+  coursePage: CoursePage!
+
+  #
+  reminders: [DateTime!]!
+
+  #
+  finish: DateTime
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type Uni {
+  #
+  id: ID!
+
+  #
+  title: String!
+
+  #
+  teachers(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User!]
+
+  #
+  capacity: Int
+
+  #
+  paidMonths: Int
+
+  #
+  uniCoursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum UserOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  surname_ASC
+
+  #
+  surname_DESC
+
+  #
+  email_ASC
+
+  #
+  email_DESC
+
+  #
+  password_ASC
+
+  #
+  password_DESC
+
+  #
+  resetToken_ASC
+
+  #
+  resetToken_DESC
+
+  #
+  resetTokenExpiry_ASC
+
+  #
+  resetTokenExpiry_DESC
+
+  #
+  image_ASC
+
+  #
+  image_DESC
+
+  #
+  status_ASC
+
+  #
+  status_DESC
+
+  #
+  uniID_ASC
+
+  #
+  uniID_DESC
+
+  #
+  description_ASC
+
+  #
+  description_DESC
+
+  #
+  resume_ASC
+
+  #
+  resume_DESC
+
+  #
+  coverLetter_ASC
+
+  #
+  coverLetter_DESC
+
+  #
+  careerTrackID_ASC
+
+  #
+  careerTrackID_DESC
+
+  #
+  isFamiliar_ASC
+
+  #
+  isFamiliar_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Company {
+  #
+  id: ID!
+
+  #
+  name: String!
+
+  #
+  hrs(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User!]
+
+  #
+  paidMonths: Int
+
+  #
+  coursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type UserLevel {
+  #
+  id: ID!
+
+  #
+  level: Float
+
+  #
+  user: User
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type ExamAnswer {
+  #
+  id: ID!
+
+  #
+  student: User!
+
+  #
+  answer: String!
+
+  #
+  examQuestion: ExamQuestion!
+
+  #
+  examQuestionID: ID!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type ExamQuestion {
+  #
+  id: ID!
+
+  #
+  coursePage: CoursePage!
+
+  #
+  coursePageID: ID!
+
+  #
+  question: String!
+
+  #
+  answers(
+    where: ExamAnswerWhereInput
+    orderBy: ExamAnswerOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExamAnswer!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ExamAnswerOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  answer_ASC
+
+  #
+  answer_DESC
+
+  #
+  examQuestionID_ASC
+
+  #
+  examQuestionID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+enum LessonOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  number_ASC
+
+  #
+  number_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  type_ASC
+
+  #
+  type_DESC
+
+  #
+  structure_ASC
+
+  #
+  structure_DESC
+
+  #
+  open_ASC
+
+  #
+  open_DESC
+
+  #
+  coursePageID_ASC
+
+  #
+  coursePageID_DESC
+
+  #
+  published_ASC
+
+  #
+  published_DESC
+
+  #
+  description_ASC
+
+  #
+  description_DESC
+
+  #
+  change_ASC
+
+  #
+  change_DESC
+
+  #
+  challenge_num_ASC
+
+  #
+  challenge_num_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+enum PointAOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  description_ASC
+
+  #
+  description_DESC
+
+  #
+  coursePageID_ASC
+
+  #
+  coursePageID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type PointA {
+  #
+  id: ID!
+
+  #
+  description: String
+
+  #
+  coursePage: CoursePage!
+
+  #
+  coursePageID: ID
+
+  #
+  user: User!
+
+  #
+  pointATests(
+    where: PointATestWhereInput
+    orderBy: PointATestOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [PointATest!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum PointATestOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  question_ASC
+
+  #
+  question_DESC
+
+  #
+  answer1_ASC
+
+  #
+  answer1_DESC
+
+  #
+  answer1Correct_ASC
+
+  #
+  answer1Correct_DESC
+
+  #
+  answer2_ASC
+
+  #
+  answer2_DESC
+
+  #
+  answer2Correct_ASC
+
+  #
+  answer2Correct_DESC
+
+  #
+  answer3_ASC
+
+  #
+  answer3_DESC
+
+  #
+  answer3Correct_ASC
+
+  #
+  answer3Correct_DESC
+
+  #
+  answer4_ASC
+
+  #
+  answer4_DESC
+
+  #
+  answer4Correct_ASC
+
+  #
+  answer4Correct_DESC
+
+  #
+  coursePageID_ASC
+
+  #
+  coursePageID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type PointATest {
+  #
+  id: ID!
+
+  #
+  question: String!
+
+  #
+  answer1: String!
+
+  #
+  answer1Correct: String!
+
+  #
+  answer2: String!
+
+  #
+  answer2Correct: String!
+
+  #
+  answer3: String
+
+  #
+  answer3Correct: String
+
+  #
+  answer4: String
+
+  #
+  answer4Correct: String
+
+  #
+  user: User!
+
+  #
+  coursePage: CoursePage
+
+  #
+  coursePageID: ID
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum ApplicationOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  applicantId_ASC
+
+  #
+  applicantId_DESC
+
+  #
+  applicantName_ASC
+
+  #
+  applicantName_DESC
+
+  #
+  message_ASC
+
+  #
+  message_DESC
+
+  #
+  coursePageID_ASC
+
+  #
+  coursePageID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Application {
+  #
+  id: ID!
+
+  #
+  applicantId: ID!
+
+  #
+  applicantName: String!
+
+  #
+  message: String
+
+  #
+  coursePage: CoursePage!
+
+  #
+  coursePageID: ID!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum CareerTrackOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  name_ASC
+
+  #
+  name_DESC
+
+  #
+  img_ASC
+
+  #
+  img_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+enum PostOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  likes_ASC
+
+  #
+  likes_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Post {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  tags: [String!]!
+
+  #
+  title: String
+
+  #
+  text: String
+
+  #
+  likes: Int
+
+  #
+  coursePages(
+    where: CoursePageWhereInput
+    orderBy: CoursePageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [CoursePage!]
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum OrderOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  paymentID_ASC
+
+  #
+  paymentID_DESC
+
+  #
+  price_ASC
+
+  #
+  price_DESC
+
+  #
+  promocode_ASC
+
+  #
+  promocode_DESC
+
+  #
+  isPaid_ASC
+
+  #
+  isPaid_DESC
+
+  #
+  level_ASC
+
+  #
+  level_DESC
+
+  #
+  comment_ASC
+
+  #
+  comment_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+enum CourseVisitOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  visitsNumber_ASC
+
+  #
+  visitsNumber_DESC
+
+  #
+  finish_ASC
+
+  #
+  finish_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+input CoursePageWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input PointAWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input PointATestWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+enum SandboxPageOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  title_ASC
+
+  #
+  title_DESC
+
+  #
+  description_ASC
+
+  #
+  description_DESC
+
+  #
+  image_ASC
+
+  #
+  image_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type SandboxPage {
+  #
+  id: ID!
+
+  #
+  title: String!
+
+  #
+  description: String!
+
+  #
+  image: String!
+
+  #
+  user: User!
+
+  #
+  sandboxes(
+    where: SandboxWhereInput
+    orderBy: SandboxOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Sandbox!]
+
+  #
+  sandboxPageGoals(
+    where: SandboxPageGoalWhereInput
+    orderBy: SandboxPageGoalOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [SandboxPageGoal!]
+
+  #
+  students: [ID!]!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum SandboxOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  text_ASC
+
+  #
+  text_DESC
+
+  #
+  video_ASC
+
+  #
+  video_DESC
+
+  #
+  sandboxPageID_ASC
+
+  #
+  sandboxPageID_DESC
+
+  #
+  link_ASC
+
+  #
+  link_DESC
+
+  #
+  likes_ASC
+
+  #
+  likes_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type Sandbox {
+  #
+  id: ID!
+
+  #
+  text: String!
+
+  #
+  video: String
+
+  #
+  sandboxPage: SandboxPage!
+
+  #
+  sandboxPageID: ID!
+
+  #
+  link: String
+
+  #
+  likes: Int
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+enum SandboxPageGoalOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  goal_ASC
+
+  #
+  goal_DESC
+
+  #
+  completed_ASC
+
+  #
+  completed_DESC
+
+  #
+  sandboxPageID_ASC
+
+  #
+  sandboxPageID_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+type SandboxPageGoal {
+  #
+  id: ID!
+
+  #
+  goal: String!
+
+  #
+  user: User!
+
+  #
+  completed: Boolean!
+
+  #
+  sandboxPage: SandboxPage
+
+  #
+  sandboxPageID: ID!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
+
+#
+type SandboxPageConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [SandboxPageEdge]!
+
+  #
+  aggregate: AggregateSandboxPage!
+}
+
+#
+type PageInfo {
+  #
+  hasNextPage: Boolean!
+
+  #
+  hasPreviousPage: Boolean!
+
+  #
+  startCursor: String
+
+  #
+  endCursor: String
+}
+
+#
+type SandboxPageEdge {
+  #
+  node: SandboxPage!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateSandboxPage {
+  #
+  count: Int!
+}
+
+#
+input SandboxPageWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input SandboxWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+type SandboxConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [SandboxEdge]!
+
+  #
+  aggregate: AggregateSandbox!
+}
+
+#
+type SandboxEdge {
+  #
+  node: Sandbox!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateSandbox {
+  #
+  count: Int!
+}
+
+#
+input LessonWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input TextEditorWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+type CoursePageConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [CoursePageEdge]!
+
+  #
+  aggregate: AggregateCoursePage!
+}
+
+#
+type CoursePageEdge {
+  #
+  node: CoursePage!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateCoursePage {
+  #
+  count: Int!
+}
+
+#
+type LessonConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [LessonEdge]!
+
+  #
+  aggregate: AggregateLesson!
+}
+
+#
+type LessonEdge {
+  #
+  node: Lesson!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateLesson {
+  #
+  count: Int!
+}
+
+#
+type TestConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [TestEdge]!
+
+  #
+  aggregate: AggregateTest!
+}
+
+#
+type TestEdge {
+  #
+  node: Test!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateTest {
+  #
+  count: Int!
+}
+
+#
+type UserConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [UserEdge]!
+
+  #
+  aggregate: AggregateUser!
+}
+
+#
+type UserEdge {
+  #
+  node: User!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateUser {
+  #
+  count: Int!
+}
+
+#
+input TestWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input ConstructionWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input ProblemWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+type ProblemConnection {
+  #
+  pageInfo: PageInfo!
+
+  #
+  edges: [ProblemEdge]!
+
+  #
+  aggregate: AggregateProblem!
+}
+
+#
+type ProblemEdge {
+  #
+  node: Problem!
+
+  #
+  cursor: String!
+}
+
+#
+type AggregateProblem {
+  #
+  count: Int!
+}
+
+#
+input UserWhereUniqueInput {
+  #
+  id: ID
+
+  #
+  email: String
+}
+
+#
+input OrderWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input CareerTrackWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input NewTestWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input QuizWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+enum ExamQuestionOrderByInput {
+  #
+  id_ASC
+
+  #
+  id_DESC
+
+  #
+  coursePageID_ASC
+
+  #
+  coursePageID_DESC
+
+  #
+  question_ASC
+
+  #
+  question_DESC
+
+  #
+  createdAt_ASC
+
+  #
+  createdAt_DESC
+
+  #
+  updatedAt_ASC
+
+  #
+  updatedAt_DESC
+}
+
+#
+input PostWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+input NoteWhereUniqueInput {
+  #
+  id: ID
+}
+
+#
+type Mutation {
+  #
+  createCoursePage(
+    title: String!
+    description: String!
+    image: String
+    news: String
+    courseType: CourseType
+    price: Int
+    audience: String
+    result: String
+    tariffs: String
+    methods: String
+    video: String
+    discountPrice: Int
+    uniID: ID
+    published: Boolean
+  ): CoursePage!
+
+  #
+  updateCoursePage(
+    id: ID!
+    title: String
+    description: String
+    news: String
+    audience: String
+    result: String
+    tariffs: String
+    methods: String
+    video: String
+    image: String
+    banner: String
+    batch: String
+    courseType: CourseType
+    published: Boolean
+  ): CoursePage
+
+  #
+  createLesson(
+    name: String!
+    number: Int
+    text: String!
+    description: String
+    coursePageID: ID!
+  ): Lesson!
+
+  #
+  createChallengeResult(
+    correct: Int
+    wrong: Int
+    time: Int
+    lesson: ID
+  ): ChallengeResult
+
+  #
+  updateLesson(
+    id: ID!
+    name: String
+    number: Int
+    text: String
+    description: String
+    type: Type
+    open: Boolean
+    challenge_num: Int
+    change: String
+    map: [Json]
+    structure: Json
+  ): Lesson
+
+  #
+  updatePublished(id: ID!, published: Boolean): Lesson
+
+  #
+  updateUni(id: ID!, capacity: Int, paidMonths: Int): Uni
+
+  #
+  deleteLesson(id: ID!): Lesson
+
+  #
+  createPointA(description: String, coursePageID: ID!): PointA!
+
+  #
+  updatePointA(id: ID!, description: String): PointA
+
+  #
+  createTest(
+    question: String!
+    answer1: String!
+    answer1Correct: String!
+    answer2: String!
+    answer2Correct: String!
+    answer3: String
+    answer3Correct: String
+    answer4: String
+    answer4Correct: String
+    lessonID: ID
+  ): Test!
+
+  #
+  createNewTest(
+    question: [String!]
+    answers: [String!]
+    correct: [Boolean!]
+    ifRight: String
+    ifWrong: String
+    lessonID: ID
+  ): NewTest!
+
+  #
+  updateNewTest(
+    id: ID!
+    question: [String!]
+    answers: [String!]
+    correct: [Boolean!]
+    ifRight: String
+    ifWrong: String
+    next: Json
+  ): NewTest
+
+  #
+  updateTestForProblem(id: ID, next: Json): NewTest
+
+  #
+  createLessonResult(visitsNumber: Int, lessonID: ID): LessonResult!
+
+  #
+  updateLessonResult(id: ID!, visitsNumber: Int, progress: Int): LessonResult!
+
+  #
+  createTestResult(
+    answer: String
+    attempts: Int
+    lessonID: ID
+    testID: ID
+  ): TestResult!
+
+  #
+  createQuizResult(
+    answer: String
+    attempts: Int
+    lessonID: ID
+    correct: Boolean
+    quiz: ID
+  ): QuizResult!
+
+  #
+  createProblemResult(
+    answer: String
+    revealed: [String!]
+    lessonID: ID
+    problemID: ID
+  ): ProblemResult!
+
+  #
+  createTextEditorResult(
+    attempts: Int
+    wrong: String!
+    correct: String!
+    guess: String!
+    lesson: ID
+    result: Boolean
+    textEditor: ID
+  ): TextEditorResult!
+
+  #
+  updateTextEditor(
+    id: ID!
+    name: String
+    text: String
+    totalMistakes: Int
+  ): TextEditor!
+
+  #
+  createConstructionResult(
+    answer: String
+    attempts: Int
+    lessonID: ID
+    inputs: [String]
+    constructionID: ID
+  ): ConstructionResult!
+
+  #
+  deleteNewTest(id: ID!): NewTest
+
+  #
+  createQuiz(
+    question: String!
+    answer: String
+    lessonID: ID
+    ifRight: String
+    ifWrong: String
+  ): Quiz!
+
+  #
+  updateQuiz(
+    id: ID!
+    question: String
+    answer: String
+    next: Json
+    check: CheckType
+    ifRight: String
+    ifWrong: String
+  ): Quiz!
+
+  #
+  deleteQuiz(id: ID!): Quiz
+
+  #
+  createPointATest(
+    question: String!
+    answer1: String!
+    answer1Correct: String!
+    answer2: String!
+    answer2Correct: String!
+    answer3: String
+    answer3Correct: String
+    answer4: String
+    answer4Correct: String
+    coursePageID: ID
+  ): PointATest!
+
+  #
+  deletePointATest(id: ID!): PointATest
+
+  #
+  createProblem(
+    text: String!
+    lessonID: ID!
+    nodeID: ID
+    nodeType: String
+  ): Problem!
+
+  #
+  updateProblem(id: ID!, text: String, nodeID: ID, nodeType: String): Problem
+
+  #
+  deleteProblem(id: ID!): Problem
+
+  #
+  createConstruction(
+    name: String!
+    variants: [String!]
+    answer: [String!]
+    hint: String
+    type: String!
+    lessonID: ID!
+  ): Construction!
+
+  #
+  updateConstruction(
+    id: ID!
+    name: String
+    variants: [String!]
+    answer: [String!]
+    hint: String
+    type: String
+  ): Construction!
+
+  #
+  deleteConstruction(id: ID!): Construction
+
+  #
+  createSandbox(
+    text: String!
+    video: String
+    link: String
+    sandboxPageID: ID!
+  ): Sandbox!
+
+  #
+  deleteSandbox(id: ID!): Sandbox
+
+  #
+  createSandboxPageGoal(goal: String!, sandboxPageID: ID!): SandboxPageGoal!
+
+  #
+  createTextEditor(
+    name: String!
+    text: String!
+    totalMistakes: Int
+    lessonID: ID!
+  ): TextEditor!
+
+  #
+  deleteTextEditor(id: ID!): TextEditor
+
+  #
+  createApplication(
+    applicantId: ID!
+    applicantName: String!
+    message: String
+    coursePageID: ID!
+  ): Application!
+
+  #
+  deleteApplication(id: ID!): Application
+
+  #
+  signup(
+    email: String!
+    password: String!
+    name: String!
+    surname: String
+    status: Status
+    uniID: ID
+    company: ID
+    careerTrackID: ID
+    isFamiliar: Boolean!
+  ): User!
+
+  #
+  signin(email: String!, password: String!): User!
+
+  #
+  signout: SuccessMessage
+
+  #
+  updatePermissions(permissions: [Permission], userId: ID!): User
+
+  #
+  familiarize(id: ID!): User
+
+  #
+  likePost(id: ID!, likes: Int): Sandbox
+
+  #
+  addToFavourites(id: ID!, favourites: [ID]): User
+
+  #
+  enrollOnCourse(id: ID!, coursePage: ID): User
+
+  #
+  updateUser(
+    id: ID!
+    name: String
+    email: String
+    careerTrackID: ID
+    uniID: ID
+    resume: String
+    company: ID
+    coverLetter: String
+    status: Status
+    visitedLessons: [String]
+    isFamiliar: Boolean
+  ): User
+
+  #
+  updateUserInterests(id: ID!, interests: [String]): User
+
+  #
+  requestReset(email: String!): SuccessMessage
+
+  #
+  resetPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
+
+  #
+  createOrder(
+    coursePage: ID!
+    user: ID
+    price: Int
+    promocode: String
+    comment: String
+  ): Order!
+
+  #
+  createPrivateOrder(coursePage: ID!, user: ID, promocode: String): Order!
+
+  #
+  updateOrder(id: ID!, isPaid: Boolean!): Order!
+
+  #
+  deleteOrder(id: ID!): Order
+
+  #
+  createExamAnswer(examQuestionID: ID!, answer: String!): ExamAnswer!
+
+  #
+  createExamQuestion(coursePageID: ID!, question: String!): ExamQuestion!
+
+  #
+  updateExamQuestion(id: ID!, question: String): ExamQuestion
+
+  #
+  createLegalPortfolio(
+    cv: String
+    portfolioIDs: [ID]
+    resume: String
+  ): LegalPortfolio!
+
+  #
+  createPost(title: String, text: String): Post!
+
+  #
+  updatePost(id: ID!, title: String, text: String, likes: Int): Post
+
+  #
+  createShot(
+    title: String!
+    parts: [String!]
+    comments: [String!]
+    lessonID: ID
+  ): Shot!
+
+  #
+  createShotResult(answer: String!, shotID: ID, lessonID: ID): Shot!
+
+  #
+  deleteShot(id: ID!): Shot
+
+  #
+  updateShots(
+    id: ID!
+    title: String!
+    parts: [String!]
+    comments: [String!]
+  ): CoursePage
+
+  #
+  createNote(text: String, lessonID: ID): Note!
+
+  #
+  updateNote(id: ID!, text: String, next: Json): Note
+
+  #
+  deleteNote(id: ID!): Note
+
+  #
+  createFeedback(text: String!, lesson: ID, student: ID): Feedback!
+
+  #
+  createCourseVisit(
+    visitsNumber: Int
+    coursePage: ID
+    student: ID
+  ): CourseVisit!
+
+  #
+  updateCourseVisit(
+    id: ID!
+    visitsNumber: Int
+    reminders: [DateTime]
+  ): CourseVisit
+
+  #
+  updateReminder(id: ID!, reminders: [DateTime]): CourseVisit
+
+  #
+  newWeek(id: ID!, reminders: [DateTime]): CourseVisit
+
+  #
+  updateFinish(id: ID!, finish: DateTime): CourseVisit
+
+  #
+  createExam(
+    lesson: ID
+    name: String
+    question: String
+    nodeID: ID
+    nodeType: String
+  ): Exam!
+
+  #
+  updateExam(id: ID!, nodeID: ID, nodeType: String): Exam
+
+  #
+  deleteExam(id: ID!): Exam
+
+  #
+  createExamResult(lesson: ID, exam: ID, answers: [String]): ExamResult!
+
+  #
+  createDocument(title: String!, lesson: ID): Document!
+
+  #
+  deleteDocument(id: ID!): Document!
+
+  #
+  createClause(
+    commentary: String
+    sample: String
+    number: Int
+    keywords: [String]
+    document: ID
+  ): Clause!
+
+  #
+  updateClause(
+    id: ID!
+    commentary: String
+    sample: String
+    keywords: [String]
+  ): Clause!
+
+  #
+  deleteClause(id: ID!): Clause!
+
+  #
+  createDocumentResult(
+    answers: [String]
+    drafts: [String]
+    lesson: ID
+    document: ID
+  ): DocumentResult!
+
+  #
+  createForum(text: String, lesson: ID): Forum!
+
+  #
+  updateForum(id: ID!, text: String): Forum
+
+  #
+  createRating(rating: Int, forum: ID): Rating!
+
+  #
+  updateRating(rating: Int, id: ID): Rating
+
+  #
+  createStatement(text: String, forum: ID): Statement!
+
+  #
+  deleteStatement(id: ID!): Statement!
+
+  #
+  createUserLevel(level: Int, user: ID): UserLevel!
+
+  #
+  updateUserLevel(id: ID, level: Int): UserLevel
+}
+
+#
+type SuccessMessage {
+  #
+  message: String
+}
+
+#
+type LegalPortfolio {
+  #
+  id: ID!
+
+  #
+  user: User!
+
+  #
+  cv: String
+
+  #
+  portfolio(
+    where: ExamAnswerWhereInput
+    orderBy: ExamAnswerOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [ExamAnswer!]
+
+  #
+  portfolioIDs: [ID!]!
+
+  #
+  resume: String
+
+  #
+  open: Boolean!
+
+  #
+  createdAt: DateTime!
+
+  #
+  updatedAt: DateTime!
+}
