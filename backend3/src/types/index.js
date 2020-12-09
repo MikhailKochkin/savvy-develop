@@ -7,4 +7,5 @@ module.exports = {
   ...require("./CoursePage"),
   ...require("./Lesson"),
   ...require("./Application"),
+  ...require("./Exercises"),
 };

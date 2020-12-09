@@ -41,6 +41,22 @@ const CoursePage = objectType({
   },
 });
 
+const CourseVisit = objectType({
+  name: "CourseVisit",
+  definition(t) {
+    t.model.id();
+    t.model.visitsNumber();
+    t.model.createdAt();
+    t.model.updatedAt();
+    t.model.reminders();
+    t.model.studentId();
+    t.model.coursePageId();
+    t.model.coursePage();
+    t.model.student();
+  },
+});
+
 module.exports = {
   CoursePage,
+  CourseVisit,
 };

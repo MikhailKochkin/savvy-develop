@@ -10,10 +10,8 @@ import EducatorImage from "./EducatorImage";
 import PleaseSignIn from "../auth/PleaseSignIn";
 
 const MY_COURSES_QUERY = gql`
-  query MY_COURSES_QUERY {
-    # ($id: String!)
-    # coursePages(where: { user: { id: $id } }) {
-    coursePages {
+  query MY_COURSES_QUERY($id: String!) {
+    myCoursePages(user: $id) {
       id
       title
       user {
@@ -148,20 +146,20 @@ const Teach = (props) => {
           <>
             <Query
               query={MY_COURSES_QUERY}
-              // variables={{
-              //   id: me.id,
-              // }}
+              variables={{
+                id: me.id,
+              }}
             >
               {({ data, error, loading, fetchMore }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error: {error.message}</p>;
-                let publishedCourses = data.coursePages.filter(
+                console.log(data);
+                let publishedCourses = data.myCoursePages.filter(
                   (coursePage) => coursePage.published === true
                 );
-                let developedCourses = data.coursePages.filter(
+                let developedCourses = data.myCoursePages.filter(
                   (coursePage) => coursePage.published === false
                 );
-                console.log(me);
                 const uni = me.uni;
                 let isPaid;
                 if (uni.capacity > 0 && uni.capacity <= 2) {

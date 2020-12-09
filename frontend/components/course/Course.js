@@ -6,9 +6,12 @@ import gql from "graphql-tag";
 import { Mutation, Query } from "@apollo/client/react/components";
 
 const SINGLE_COURSE_VISIT_QUERY = gql`
-  query SINGLE_COURSE_VISIT_QUERY($coursePage: ID!, $student: ID!) {
+  query SINGLE_COURSE_VISIT_QUERY($coursePageId: String!, $student: String!) {
     courseVisits(
-      where: { coursePage: { id: $coursePage }, student: { id: $student } }
+      where: {
+        coursePageId: { equals: $coursePageId }
+        student: { id: { equals: $student } }
+      }
     ) {
       id
       visitsNumber
@@ -20,15 +23,21 @@ const SINGLE_COURSE_VISIT_QUERY = gql`
 `;
 
 const CREATE_COURSE_VISIT_MUTATION = gql`
-  mutation CREATE_COURSE_VISIT_MUTATION($visitsNumber: Int, $coursePage: ID) {
-    createCourseVisit(visitsNumber: $visitsNumber, coursePage: $coursePage) {
+  mutation CREATE_COURSE_VISIT_MUTATION(
+    $visitsNumber: Int
+    $coursePageId: String
+  ) {
+    createCourseVisit(
+      visitsNumber: $visitsNumber
+      coursePageId: $coursePageId
+    ) {
       id
     }
   }
 `;
 
 const UPDATE_COURSE_VISIT_MUTATION = gql`
-  mutation UPDATE_COURSE_VISIT_MUTATION($id: ID!, $visitsNumber: Int) {
+  mutation UPDATE_COURSE_VISIT_MUTATION($id: String!, $visitsNumber: Int) {
     updateCourseVisit(id: $id, visitsNumber: $visitsNumber) {
       id
     }
@@ -154,7 +163,6 @@ export default class Course extends Component {
             </div>
             <div>
               {!me && (
-                // <SignUpButton onClick={this.toggleModal}>Войти</SignUpButton>
                 <Link
                   href={{
                     pathname: "/coursePage",
@@ -178,28 +186,27 @@ export default class Course extends Component {
                 <Query
                   query={SINGLE_COURSE_VISIT_QUERY}
                   variables={{
-                    coursePage: id,
+                    coursePageId: id,
                     student: me.id,
                   }}
                 >
                   {({ data, error, loading }) => {
                     if (loading) return <p></p>;
                     if (error) return <p>Error: {error.message}</p>;
-
                     return (
                       <>
                         {data.courseVisits.length === 0 && (
                           <Mutation
                             mutation={CREATE_COURSE_VISIT_MUTATION}
                             variables={{
-                              coursePage: id,
+                              coursePageId: id,
                               visitsNumber: 1,
                             }}
                             refetchQueries={() => [
                               {
                                 query: SINGLE_COURSE_VISIT_QUERY,
                                 variables: {
-                                  coursePage: id,
+                                  coursePageId: id,
                                   student: me.id,
                                 },
                               },
@@ -247,7 +254,7 @@ export default class Course extends Component {
                               {
                                 query: SINGLE_COURSE_VISIT_QUERY,
                                 variables: {
-                                  coursePage: id,
+                                  coursePageId: id,
                                   student: me.id,
                                 },
                               },

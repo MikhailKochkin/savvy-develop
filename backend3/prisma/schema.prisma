@@ -170,7 +170,7 @@ model CourseVisit {
   reminders    DateTime[]
   studentId    String
   coursePageId String
-  coursePages   CoursePage @relation(fields: [coursePageId], references: [id])
+  coursePage   CoursePage @relation(fields: [coursePageId], references: [id])
   student      User       @relation(fields: [studentId], references: [id])
 }
 
@@ -255,7 +255,7 @@ model Lesson {
   userId              String
   coursePageId        String
   forumId             String?              @unique
-  coursePages          CoursePage           @relation(fields: [coursePageId], references: [id])
+  coursePage          CoursePage           @relation(fields: [coursePageId], references: [id])
   forum               Forum?               @relation(fields: [forumId], references: [id])
   user                User                 @relation(fields: [userId], references: [id])
   challengeResults    ChallengeResult[]

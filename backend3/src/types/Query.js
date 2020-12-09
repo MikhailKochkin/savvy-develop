@@ -4,23 +4,18 @@ const Query = queryType({
   name: "Query",
   definition(t) {
     t.crud.users();
-    t.crud.coursePages();
-    // t.crud.coursePages("coursePages", {
-    //   type: "CoursePage",
-    //   // args: {
-    //   //   id: idArg(),
-    //   // },
-    //   resolve: async (_, args, ctx) => {
-    //     return ctx.prisma.coursePage.findMany({
-    //       orderBy: {
-    //         createdAt: "desc",
-    //       },
-    //       // where: {
-    //       //   user: id,
-    //       // },
-    //     });
-    //   },
-    // });
+    t.crud.coursePages({ ordering: true, filtering: true });
+    t.crud.coursePage({ ordering: true, filtering: true });
+    t.crud.courseVisits({ ordering: true, filtering: true });
+    t.crud.lesson({ ordering: true, filtering: true });
+    t.field("lessonsConnection", {
+      type: "Lesson",
+      resolve: async (_, _args, ctx) => {
+        const lessonsConnection = await prisma.lessons.aggregate();
+        console.log(lessonsConnection);
+        return lessonsConnection;
+      },
+    });
     t.field("me", {
       type: "User",
       resolve: async (_, _args, ctx) => {

@@ -7,7 +7,7 @@ import renderHTML from "react-render-html";
 import Link from "next/link";
 import Note from "./notes/Note";
 import Document from "./documents/Document";
-import Exams from "./exams/Exams";
+// import Exams from "./exams/Exams";
 import Forum from "./forum/Forum";
 import TestGroup from "./tests/TestGroup";
 import ShotsGroup from "./shots/ShotsGroup";
@@ -25,9 +25,10 @@ import CreateProblem from "../create/CreateProblem";
 import CreateNote from "../create/CreateNote";
 import CreateExam from "../create/CreateExam";
 import ChangeForum from "./forum/ChangeForum";
+import SingleLesson_MobileMenu from "./SingleLesson_MobileMenu";
+import SingleLesson_Menu from "./SingleLesson_Menu";
 import CreateDocument from "./documents/CreateDocument";
 import AreYouEnrolled from "../auth/AreYouEnrolled";
-import DeleteSingleLesson from "../delete/DeleteSingleLesson";
 import UpdateLesson from "./UpdateLesson";
 import HowTo from "./HowTo";
 import { useUser } from "../User";
@@ -35,7 +36,7 @@ import { Icon } from "react-icons-kit";
 import { arrowLeft } from "react-icons-kit/fa/arrowLeft";
 
 const SINGLE_LESSON_QUERY = gql`
-  query SINGLE_LESSON_QUERY($id: ID!) {
+  query SINGLE_LESSON_QUERY($id: String!) {
     lesson(where: { id: $id }) {
       id
       text
@@ -52,65 +53,65 @@ const SINGLE_LESSON_QUERY = gql`
       user {
         id
       }
-      testResults {
-        id
-        student {
-          id
-        }
-        answer
-        test {
-          id
-        }
-      }
-      shotResults {
-        id
-        student {
-          id
-        }
-        shot {
-          id
-        }
-        answer
-      }
-      quizResults {
-        id
-        student {
-          id
-        }
-        quiz {
-          id
-        }
-        answer
-      }
-      problemResults {
-        id
-        student {
-          id
-        }
-        answer
-        problem {
-          id
-        }
-      }
-      textEditorResults {
-        id
-        student {
-          id
-        }
-        textEditor {
-          id
-        }
-      }
-      constructionResults {
-        id
-        answer
-        student {
-          id
-        }
-        construction {
-          id
-        }
-      }
+      # testResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   answer
+      #   test {
+      #     id
+      #   }
+      # }
+      # shotResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   shot {
+      #     id
+      #   }
+      #   answer
+      # }
+      # quizResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   quiz {
+      #     id
+      #   }
+      #   answer
+      # }
+      # problemResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   answer
+      #   problem {
+      #     id
+      #   }
+      # }
+      # textEditorResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   textEditor {
+      #     id
+      #   }
+      # }
+      # constructionResults {
+      #   id
+      #   answer
+      #   student {
+      #     id
+      #   }
+      #   construction {
+      #     id
+      #   }
+      # }
       coursePage {
         id
       }
@@ -143,62 +144,62 @@ const SINGLE_LESSON_QUERY = gql`
           id
         }
       }
-      documents {
-        id
-        title
-        user {
-          id
-        }
-        clauses {
-          id
-          user {
-            id
-          }
-          number
-          commentary
-          keywords
-          sample
-        }
-      }
-      forum {
-        id
-        text
-        rating {
-          id
-          rating
-          user {
-            id
-          }
-        }
-        statements {
-          id
-          text
-          createdAt
-          user {
-            id
-            name
-            surname
-          }
-          forum {
-            id
-            rating {
-              id
-              rating
-            }
-          }
-        }
-        lesson {
-          id
-          user {
-            id
-          }
-        }
-        user {
-          id
-          name
-          surname
-        }
-      }
+      # documents {
+      #   id
+      #   title
+      #   user {
+      #     id
+      #   }
+      #   clauses {
+      #     id
+      #     user {
+      #       id
+      #     }
+      #     number
+      #     commentary
+      #     keywords
+      #     sample
+      #   }
+      # }
+      # forum {
+      #   id
+      #   text
+      #   rating {
+      #     id
+      #     rating
+      #     user {
+      #       id
+      #     }
+      #   }
+      #   statements {
+      #     id
+      #     text
+      #     createdAt
+      #     user {
+      #       id
+      #       name
+      #       surname
+      #     }
+      #     forum {
+      #       id
+      #       rating {
+      #         id
+      #         rating
+      #       }
+      #     }
+      #   }
+      #   lesson {
+      #     id
+      #     user {
+      #       id
+      #     }
+      #   }
+      #   user {
+      #     id
+      #     name
+      #     surname
+      #   }
+      # }
       newTests {
         id
         answers
@@ -212,46 +213,46 @@ const SINGLE_LESSON_QUERY = gql`
           id
         }
       }
-      problems {
-        id
-        text
-        nodeID
-        nodeType
-        user {
-          id
-        }
-        createdAt
-      }
-      constructions {
-        id
-        name
-        answer
-        variants
-        hint
-        type
-        user {
-          id
-        }
-      }
-      texteditors {
-        id
-        name
-        text
-        totalMistakes
-        user {
-          id
-        }
-      }
-      exams {
-        id
-        name
-        question
-        nodeID
-        nodeType
-        user {
-          id
-        }
-      }
+      # problems {
+      #   id
+      #   text
+      #   nodeID
+      #   nodeType
+      #   user {
+      #     id
+      #   }
+      #   createdAt
+      # }
+      # constructions {
+      #   id
+      #   name
+      #   answer
+      #   variants
+      #   hint
+      #   type
+      #   user {
+      #     id
+      #   }
+      # }
+      # texteditors {
+      #   id
+      #   name
+      #   text
+      #   totalMistakes
+      #   user {
+      #     id
+      #   }
+      # }
+      # exams {
+      #   id
+      #   name
+      #   question
+      #   nodeID
+      #   nodeType
+      #   user {
+      #     id
+      #   }
+      # }
     }
   }
 `;
@@ -473,105 +474,6 @@ const LessonPart = styled.div`
   }
 `;
 
-const MenuPart = styled.div`
-  display: flex;
-  flex-basis: 25%;
-  flex-direction: column;
-  margin-left: 1rem;
-  border-radius: 2px;
-  @media (max-width: 800px) {
-    display: ${(props) => (props.shown ? "block" : "none")};
-    order: 1;
-    margin: 1%;
-    position: absolute;
-    top: 200px;
-    z-index: 10;
-    margin-right: -100%;
-    width: 100%;
-    animation-name: fadein;
-    animation-duration: 1.5s;
-    @keyframes fadein {
-      from {
-        right: 650px;
-      }
-      to {
-        right: 350px;
-      }
-    }
-  }
-`;
-
-const Sticky = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
-`;
-
-const NavPart = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 20px 0;
-  @media (max-width: 800px) {
-    width: 50%;
-    order: 0;
-    background: #112a62;
-    align-items: left;
-    justify-content: left;
-    align-content: left;
-  }
-`;
-
-const TeacherPart = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 1rem;
-  background: white;
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
-
-const ButtonZone = styled.div`
-  width: 100%;
-  align-content: left;
-  background: white;
-  @media (max-width: 800px) {
-    text-align: center;
-    background: none;
-    align-content: center;
-    padding-top: 3%;
-    border-bottom: solid 1px #112a62;
-  }
-`;
-
-const ChooseButton = styled.button`
-  font-size: 1.5rem;
-  padding: 1%;
-  width: 100%;
-  border: none;
-  border-left: 1px solid white;
-  padding-left: 8%;
-  outline: none;
-  font-family: Montserrat;
-  background: none;
-  text-align: left;
-  padding-top: 1.4rem;
-  padding-bottom: 1.4rem;
-  cursor: pointer;
-  &:hover {
-    border-left: 1px solid #112a62;
-  }
-  @media (max-width: 800px) {
-    border-left: 1px solid #112a62;
-    color: white;
-    &:hover {
-      border-bottom: 1px solid white;
-    }
-  }
-`;
-
 const Text = styled.div`
   line-height: 1.8;
   img {
@@ -599,30 +501,14 @@ const SingleLesson = (props) => {
     setWidth(width);
   };
 
-  const onSwitch = (e) => {
-    e.preventDefault();
-    const name = e.target.getAttribute("name");
-    console.log(e.target.getAttribute("name"));
-    setPage(name);
-    setShown(!shown);
-  };
-
-  const onSwitchMob = (e) => {
-    e.preventDefault();
-    const name = e.target.getAttribute("name");
-
-    setPage(name);
-    setShown(!shown);
-    closeNav();
+  const getData = (data) => setPage(data);
+  const getDataMob = (data) => {
+    setPage(data);
+    document.getElementById("mySidenav2").style.width = "0";
   };
 
   const openNav = () => {
     document.getElementById("mySidenav2").style.width = "180px";
-  };
-
-  /* Set the width of the side navigation to 0 */
-  const closeNav = () => {
-    document.getElementById("mySidenav2").style.width = "0";
   };
 
   const getLink = (dataFromChild) => setPage(dataFromChild);
@@ -654,117 +540,11 @@ const SingleLesson = (props) => {
                     handleHeight
                     onResize={onResize}
                   />
-                  {console.log(width)}
                   {width < 800 && (
-                    <>
-                      <div id="mySidenav2" className="sidenav">
-                        <a
-                          href="javascript:void(0)"
-                          className="closebtn"
-                          onClick={(e) => closeNav()}
-                        >
-                          &times;
-                        </a>
-                        <ButtonZone>
-                          <ChooseButton
-                            name="lesson"
-                            onClick={(e) => onSwitchMob(e)}
-                          >
-                            {" "}
-                            Урок{" "}
-                          </ChooseButton>
-                        </ButtonZone>
-                        {lesson.notes.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="note"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Лонгриды{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.documents.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="document"
-                              onClick={(e) => onSwitch(e)}
-                            >
-                              {" "}
-                              Документы{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.newTests.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="test"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Тесты{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.quizes.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="quiz"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Вопросы{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.problems.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="problem"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Задачи{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.constructions.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="constructor"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Конструкторы{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.texteditors.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="textEditor"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Редакторы{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                        {lesson.exams.length > 0 && (
-                          <ButtonZone>
-                            <ChooseButton
-                              name="exam"
-                              onClick={(e) => onSwitchMob(e)}
-                            >
-                              {" "}
-                              Экзамены{" "}
-                            </ChooseButton>
-                          </ButtonZone>
-                        )}
-                      </div>
-                      {/* Use any element to open the sidenav */}
-                    </>
+                    <SingleLesson_MobileMenu
+                      lesson={lesson}
+                      getDataMob={getDataMob}
+                    />
                   )}
 
                   <Head>
@@ -858,7 +638,7 @@ const SingleLesson = (props) => {
                             lessonID={lesson.id}
                           />
                         ))}
-                      {page === "document" &&
+                      {/* {page === "document" &&
                         lesson.documents.map((doc) => (
                           <Document
                             clauses={doc.clauses}
@@ -868,7 +648,7 @@ const SingleLesson = (props) => {
                             user={lesson.user.id}
                             lessonID={lesson.id}
                           />
-                        ))}
+                        ))} */}
                       {page === "shots" && (
                         <ShotsGroup
                           shots={lesson.shots}
@@ -878,7 +658,7 @@ const SingleLesson = (props) => {
                         />
                       )}
 
-                      {page === "forum" && me && (
+                      {/* {page === "forum" && me && (
                         <>
                           {lesson.forum && (
                             <Forum
@@ -896,7 +676,7 @@ const SingleLesson = (props) => {
                             />
                           )}
                         </>
-                      )}
+                      )} */}
 
                       {page === "test" && (
                         <>
@@ -937,7 +717,7 @@ const SingleLesson = (props) => {
                           )}
                         </>
                       )}
-                      {page === "problem" && (
+                      {/* {page === "problem" && (
                         <>
                           {lesson.problems.length > 0 ? (
                             <ProblemGroup
@@ -953,8 +733,8 @@ const SingleLesson = (props) => {
                             </Center>
                           )}
                         </>
-                      )}
-                      {page === "constructor" && (
+                      )} */}
+                      {/* {page === "constructor" && (
                         <>
                           {" "}
                           {lesson.constructions.length > 0 ? (
@@ -972,8 +752,8 @@ const SingleLesson = (props) => {
                             </Center>
                           )}{" "}
                         </>
-                      )}
-                      {page === "textEditor" &&
+                      )} */}
+                      {/* {page === "textEditor" &&
                         (lesson.texteditors.length > 0 ? (
                           <TextEditorGroup
                             lesson={lesson.id}
@@ -985,8 +765,8 @@ const SingleLesson = (props) => {
                           <Center>
                             <h2>Редакторов документов пока нет</h2>
                           </Center>
-                        ))}
-                      {page === "exam" && <Exams lesson={lesson} me={me} />}
+                        ))} */}
+                      {/* {page === "exam" && <Exams lesson={lesson} me={me} />} */}
                       {page === "createTest" && (
                         <CreateNewTest lessonID={lesson.id} />
                       )}
@@ -1033,239 +813,11 @@ const SingleLesson = (props) => {
                       )}
                     </LessonPart>
                     {width > 800 && (
-                      <MenuPart shown={shown}>
-                        <Sticky>
-                          <NavPart>
-                            <ButtonZone>
-                              <ChooseButton
-                                name="lesson"
-                                onClick={(e) => onSwitch(e)}
-                              >
-                                {" "}
-                                Модель урока{" "}
-                              </ChooseButton>
-                            </ButtonZone>
-                            {lesson.shots.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="shots"
-                                  onClick={(e) => onSwitch(e)}
-                                >
-                                  {" "}
-                                  Алгоритм{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.forum && (
-                              <ButtonZone>
-                                <ChooseButton name="forum" onClick={onSwitch}>
-                                  {" "}
-                                  Форум{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.notes.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="note"
-                                  onClick={(e) => onSwitch(e)}
-                                >
-                                  {" "}
-                                  Заметки{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.documents.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="document"
-                                  onClick={(e) => onSwitch(e)}
-                                >
-                                  {" "}
-                                  Документы{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-
-                            {lesson.newTests.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="test"
-                                  onClick={(e) => onSwitch(e)}
-                                >
-                                  {" "}
-                                  Тесты{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.quizes.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="quiz"
-                                  onClick={(e) => onSwitch(e)}
-                                >
-                                  {" "}
-                                  Вопросы{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.problems.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton name="problem" onClick={onSwitch}>
-                                  {" "}
-                                  Задачи{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.constructions.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="constructor"
-                                  onClick={onSwitch}
-                                >
-                                  {" "}
-                                  Конструкторы{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.texteditors.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton
-                                  name="textEditor"
-                                  onClick={onSwitch}
-                                >
-                                  {" "}
-                                  Редакторы{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                            {lesson.exams.length > 0 && (
-                              <ButtonZone>
-                                <ChooseButton name="exam" onClick={onSwitch}>
-                                  {" "}
-                                  Экзамены{" "}
-                                </ChooseButton>
-                              </ButtonZone>
-                            )}
-                          </NavPart>
-                          {me &&
-                            (lesson.user.id === me.id ||
-                              me.permissions.includes("ADMIN")) && (
-                              <TeacherPart>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="updateLesson"
-                                    onClick={onSwitch}
-                                  >
-                                    Изменить урок
-                                  </ChooseButton>
-                                </ButtonZone>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createTest"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый тест
-                                  </ChooseButton>
-                                </ButtonZone>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createForum"
-                                    onClick={onSwitch}
-                                  >
-                                    Включить форум
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createNote"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый лонгрид
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createDocument"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый документ
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createShot"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый алгоритм
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createQuiz"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый вопрос
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createProblem"
-                                    onClick={onSwitch}
-                                  >
-                                    {console.log(lesson.id)}
-                                    <Link
-                                      href={{
-                                        pathname: "/createProblem",
-                                        query: {
-                                          id: lesson.id,
-                                        },
-                                      }}
-                                    >
-                                      <a>Новая задача</a>
-                                    </Link>
-                                  </ChooseButton>
-                                </ButtonZone>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createConstructor"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый конструктор
-                                  </ChooseButton>
-                                </ButtonZone>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createTextEditor"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый редактор
-                                  </ChooseButton>
-                                </ButtonZone>
-                                <ButtonZone>
-                                  <ChooseButton
-                                    name="createExam"
-                                    onClick={onSwitch}
-                                  >
-                                    Новый экзамен
-                                  </ChooseButton>
-                                </ButtonZone>
-
-                                <ButtonZone>
-                                  <DeleteSingleLesson
-                                    id={lesson.id}
-                                    coursePageID={lesson.coursePage.id}
-                                  />
-                                </ButtonZone>
-                              </TeacherPart>
-                            )}
-                        </Sticky>
-                      </MenuPart>
+                      <SingleLesson_Menu
+                        lesson={lesson}
+                        getData={getData}
+                        me={me}
+                      />
                     )}
                   </LessonStyles>
                 </Container>

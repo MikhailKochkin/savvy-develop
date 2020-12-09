@@ -200,7 +200,7 @@ const calculateTimeLeft = () => {
 };
 
 const RegisterCard = (props) => {
-  const [price, setPrice] = useState(props.price);
+  const [price, setPrice] = useState(props.price ? props.price : "Бесплатно");
   const [promocode, setPromocode] = useState("");
   const [discountPrice, setDiscountPrice] = useState(props.discountPrice);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());

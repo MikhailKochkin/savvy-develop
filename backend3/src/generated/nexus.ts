@@ -26,15 +26,1116 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ApplicationListRelationFilter: { // input type
+    every?: NexusGenInputs['ApplicationWhereInput'] | null; // ApplicationWhereInput
+    none?: NexusGenInputs['ApplicationWhereInput'] | null; // ApplicationWhereInput
+    some?: NexusGenInputs['ApplicationWhereInput'] | null; // ApplicationWhereInput
+  }
+  ApplicationWhereInput: { // input type
+    AND?: NexusGenInputs['ApplicationWhereInput'][] | null; // [ApplicationWhereInput!]
+    applicantId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    applicantName?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    coursePage?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    coursePageId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    coursePageID?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    message?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ApplicationWhereInput'][] | null; // [ApplicationWhereInput!]
+    OR?: NexusGenInputs['ApplicationWhereInput'][] | null; // [ApplicationWhereInput!]
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
   ApplicationWhereUniqueInput: { // input type
     id?: string | null; // String
+  }
+  BoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
+  BoolNullableFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolNullableFilter'] | null; // NestedBoolNullableFilter
+  }
+  BoolNullableListFilter: { // input type
+    equals?: boolean[] | null; // [Boolean!]
+  }
+  CareerTrackListRelationFilter: { // input type
+    every?: NexusGenInputs['CareerTrackWhereInput'] | null; // CareerTrackWhereInput
+    none?: NexusGenInputs['CareerTrackWhereInput'] | null; // CareerTrackWhereInput
+    some?: NexusGenInputs['CareerTrackWhereInput'] | null; // CareerTrackWhereInput
+  }
+  CareerTrackUnitListRelationFilter: { // input type
+    every?: NexusGenInputs['CareerTrackUnitWhereInput'] | null; // CareerTrackUnitWhereInput
+    none?: NexusGenInputs['CareerTrackUnitWhereInput'] | null; // CareerTrackUnitWhereInput
+    some?: NexusGenInputs['CareerTrackUnitWhereInput'] | null; // CareerTrackUnitWhereInput
+  }
+  CareerTrackUnitWhereInput: { // input type
+    AND?: NexusGenInputs['CareerTrackUnitWhereInput'][] | null; // [CareerTrackUnitWhereInput!]
+    articles?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    careerTrack?: NexusGenInputs['CareerTrackWhereInput'] | null; // CareerTrackWhereInput
+    careerTrackId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    img?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['CareerTrackUnitWhereInput'][] | null; // [CareerTrackUnitWhereInput!]
+    number?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    OR?: NexusGenInputs['CareerTrackUnitWhereInput'][] | null; // [CareerTrackUnitWhereInput!]
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    topics?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  CareerTrackWhereInput: { // input type
+    AND?: NexusGenInputs['CareerTrackWhereInput'][] | null; // [CareerTrackWhereInput!]
+    careerTrackUnits?: NexusGenInputs['CareerTrackUnitListRelationFilter'] | null; // CareerTrackUnitListRelationFilter
+    coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    img?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    members?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['CareerTrackWhereInput'][] | null; // [CareerTrackWhereInput!]
+    OR?: NexusGenInputs['CareerTrackWhereInput'][] | null; // [CareerTrackWhereInput!]
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ChallengeResultListRelationFilter: { // input type
+    every?: NexusGenInputs['ChallengeResultWhereInput'] | null; // ChallengeResultWhereInput
+    none?: NexusGenInputs['ChallengeResultWhereInput'] | null; // ChallengeResultWhereInput
+    some?: NexusGenInputs['ChallengeResultWhereInput'] | null; // ChallengeResultWhereInput
+  }
+  ChallengeResultWhereInput: { // input type
+    AND?: NexusGenInputs['ChallengeResultWhereInput'][] | null; // [ChallengeResultWhereInput!]
+    correct?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['ChallengeResultWhereInput'][] | null; // [ChallengeResultWhereInput!]
+    OR?: NexusGenInputs['ChallengeResultWhereInput'][] | null; // [ChallengeResultWhereInput!]
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    time?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    wrong?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  ClauseListRelationFilter: { // input type
+    every?: NexusGenInputs['ClauseWhereInput'] | null; // ClauseWhereInput
+    none?: NexusGenInputs['ClauseWhereInput'] | null; // ClauseWhereInput
+    some?: NexusGenInputs['ClauseWhereInput'] | null; // ClauseWhereInput
+  }
+  ClauseWhereInput: { // input type
+    AND?: NexusGenInputs['ClauseWhereInput'][] | null; // [ClauseWhereInput!]
+    commentary?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    document?: NexusGenInputs['DocumentWhereInput'] | null; // DocumentWhereInput
+    documentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    keywords?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    NOT?: NexusGenInputs['ClauseWhereInput'][] | null; // [ClauseWhereInput!]
+    number?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    OR?: NexusGenInputs['ClauseWhereInput'][] | null; // [ClauseWhereInput!]
+    sample?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  CompanyWhereInput: { // input type
+    AND?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
+    coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    hrs?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
+    OR?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
+    paidMonths?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ConstructionListRelationFilter: { // input type
+    every?: NexusGenInputs['ConstructionWhereInput'] | null; // ConstructionWhereInput
+    none?: NexusGenInputs['ConstructionWhereInput'] | null; // ConstructionWhereInput
+    some?: NexusGenInputs['ConstructionWhereInput'] | null; // ConstructionWhereInput
+  }
+  ConstructionResultListRelationFilter: { // input type
+    every?: NexusGenInputs['ConstructionResultWhereInput'] | null; // ConstructionResultWhereInput
+    none?: NexusGenInputs['ConstructionResultWhereInput'] | null; // ConstructionResultWhereInput
+    some?: NexusGenInputs['ConstructionResultWhereInput'] | null; // ConstructionResultWhereInput
+  }
+  ConstructionResultWhereInput: { // input type
+    AND?: NexusGenInputs['ConstructionResultWhereInput'][] | null; // [ConstructionResultWhereInput!]
+    answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    attempts?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    construction?: NexusGenInputs['ConstructionWhereInput'] | null; // ConstructionWhereInput
+    constructionId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    constructionID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    inputs?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ConstructionResultWhereInput'][] | null; // [ConstructionResultWhereInput!]
+    OR?: NexusGenInputs['ConstructionResultWhereInput'][] | null; // [ConstructionResultWhereInput!]
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ConstructionWhereInput: { // input type
+    AND?: NexusGenInputs['ConstructionWhereInput'][] | null; // [ConstructionWhereInput!]
+    answer?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    constructionResults?: NexusGenInputs['ConstructionResultListRelationFilter'] | null; // ConstructionResultListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    hint?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonID?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['ConstructionWhereInput'][] | null; // [ConstructionWhereInput!]
+    OR?: NexusGenInputs['ConstructionWhereInput'][] | null; // [ConstructionWhereInput!]
+    type?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    variants?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+  }
+  CoursePageListRelationFilter: { // input type
+    every?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    none?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    some?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+  }
+  CoursePageOrderByInput: { // input type
+    audience?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    banner?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    batch?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    companyId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    courseType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    discountPrice?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    methods?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    news?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    numInCareerTrack?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    openLesson?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    price?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    promocode?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    published?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    result?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    reviews?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    students?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    subscription?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    subscriptionPrice?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    tags?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    tariffs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    title?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    uniId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    uniID?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    video?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    weeks?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CoursePageWhereInput: { // input type
+    AND?: NexusGenInputs['CoursePageWhereInput'][] | null; // [CoursePageWhereInput!]
+    applications?: NexusGenInputs['ApplicationListRelationFilter'] | null; // ApplicationListRelationFilter
+    audience?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    authors?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
+    banner?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    batch?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    careerTrack?: NexusGenInputs['CareerTrackListRelationFilter'] | null; // CareerTrackListRelationFilter
+    careerTrackUnit?: NexusGenInputs['CareerTrackUnitListRelationFilter'] | null; // CareerTrackUnitListRelationFilter
+    company?: NexusGenInputs['CompanyWhereInput'] | null; // CompanyWhereInput
+    companyId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    courseType?: NexusGenInputs['EnumCourseTypeNullableFilter'] | null; // EnumCourseTypeNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    description?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    discountPrice?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    image?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessons?: NexusGenInputs['LessonListRelationFilter'] | null; // LessonListRelationFilter
+    methods?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    new_students?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
+    news?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['CoursePageWhereInput'][] | null; // [CoursePageWhereInput!]
+    numInCareerTrack?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    openLesson?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    OR?: NexusGenInputs['CoursePageWhereInput'][] | null; // [CoursePageWhereInput!]
+    orders?: NexusGenInputs['OrderListRelationFilter'] | null; // OrderListRelationFilter
+    posts?: NexusGenInputs['PostListRelationFilter'] | null; // PostListRelationFilter
+    price?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    promocode?: NexusGenInputs['JsonNullableListFilter'] | null; // JsonNullableListFilter
+    published?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    result?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    reviews?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
+    students?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    subscription?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    subscriptionPrice?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    tags?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    tariffs?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    uni?: NexusGenInputs['UniWhereInput'] | null; // UniWhereInput
+    uniId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    uniID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    video?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    visits?: NexusGenInputs['CourseVisitListRelationFilter'] | null; // CourseVisitListRelationFilter
+    weeks?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
   }
   CoursePageWhereUniqueInput: { // input type
     id?: string | null; // String
   }
+  CourseVisitListRelationFilter: { // input type
+    every?: NexusGenInputs['CourseVisitWhereInput'] | null; // CourseVisitWhereInput
+    none?: NexusGenInputs['CourseVisitWhereInput'] | null; // CourseVisitWhereInput
+    some?: NexusGenInputs['CourseVisitWhereInput'] | null; // CourseVisitWhereInput
+  }
+  CourseVisitOrderByInput: { // input type
+    coursePageId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    finish?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    reminders?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    studentId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    visitsNumber?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CourseVisitWhereInput: { // input type
+    AND?: NexusGenInputs['CourseVisitWhereInput'][] | null; // [CourseVisitWhereInput!]
+    coursePage?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    coursePageId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    finish?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['CourseVisitWhereInput'][] | null; // [CourseVisitWhereInput!]
+    OR?: NexusGenInputs['CourseVisitWhereInput'][] | null; // [CourseVisitWhereInput!]
+    reminders?: NexusGenInputs['DateTimeNullableListFilter'] | null; // DateTimeNullableListFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    visitsNumber?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  CourseVisitWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  DateTimeFilter: { // input type
+    equals?: NexusGenScalars['DateTime'] | null; // DateTime
+    gt?: NexusGenScalars['DateTime'] | null; // DateTime
+    gte?: NexusGenScalars['DateTime'] | null; // DateTime
+    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null; // DateTime
+    lte?: NexusGenScalars['DateTime'] | null; // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null; // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  DateTimeNullableFilter: { // input type
+    equals?: NexusGenScalars['DateTime'] | null; // DateTime
+    gt?: NexusGenScalars['DateTime'] | null; // DateTime
+    gte?: NexusGenScalars['DateTime'] | null; // DateTime
+    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null; // DateTime
+    lte?: NexusGenScalars['DateTime'] | null; // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  DateTimeNullableListFilter: { // input type
+    equals?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  DocumentListRelationFilter: { // input type
+    every?: NexusGenInputs['DocumentWhereInput'] | null; // DocumentWhereInput
+    none?: NexusGenInputs['DocumentWhereInput'] | null; // DocumentWhereInput
+    some?: NexusGenInputs['DocumentWhereInput'] | null; // DocumentWhereInput
+  }
+  DocumentResultListRelationFilter: { // input type
+    every?: NexusGenInputs['DocumentResultWhereInput'] | null; // DocumentResultWhereInput
+    none?: NexusGenInputs['DocumentResultWhereInput'] | null; // DocumentResultWhereInput
+    some?: NexusGenInputs['DocumentResultWhereInput'] | null; // DocumentResultWhereInput
+  }
+  DocumentResultWhereInput: { // input type
+    AND?: NexusGenInputs['DocumentResultWhereInput'][] | null; // [DocumentResultWhereInput!]
+    answers?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    document?: NexusGenInputs['DocumentWhereInput'] | null; // DocumentWhereInput
+    documentId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    drafts?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['DocumentResultWhereInput'][] | null; // [DocumentResultWhereInput!]
+    OR?: NexusGenInputs['DocumentResultWhereInput'][] | null; // [DocumentResultWhereInput!]
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  DocumentWhereInput: { // input type
+    AND?: NexusGenInputs['DocumentWhereInput'][] | null; // [DocumentWhereInput!]
+    clauses?: NexusGenInputs['ClauseListRelationFilter'] | null; // ClauseListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    documentResults?: NexusGenInputs['DocumentResultListRelationFilter'] | null; // DocumentResultListRelationFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['DocumentWhereInput'][] | null; // [DocumentWhereInput!]
+    OR?: NexusGenInputs['DocumentWhereInput'][] | null; // [DocumentWhereInput!]
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  EnumCourseTypeNullableFilter: { // input type
+    equals?: NexusGenEnums['CourseType'] | null; // CourseType
+    in?: NexusGenEnums['CourseType'][] | null; // [CourseType!]
+    not?: NexusGenInputs['NestedEnumCourseTypeNullableFilter'] | null; // NestedEnumCourseTypeNullableFilter
+    notIn?: NexusGenEnums['CourseType'][] | null; // [CourseType!]
+  }
+  EnumLevelNullableFilter: { // input type
+    equals?: NexusGenEnums['Level'] | null; // Level
+    in?: NexusGenEnums['Level'][] | null; // [Level!]
+    not?: NexusGenInputs['NestedEnumLevelNullableFilter'] | null; // NestedEnumLevelNullableFilter
+    notIn?: NexusGenEnums['Level'][] | null; // [Level!]
+  }
+  EnumPermissionNullableListFilter: { // input type
+    equals?: NexusGenEnums['Permission'][] | null; // [Permission!]
+  }
+  FeedbackListRelationFilter: { // input type
+    every?: NexusGenInputs['FeedbackWhereInput'] | null; // FeedbackWhereInput
+    none?: NexusGenInputs['FeedbackWhereInput'] | null; // FeedbackWhereInput
+    some?: NexusGenInputs['FeedbackWhereInput'] | null; // FeedbackWhereInput
+  }
+  FeedbackWhereInput: { // input type
+    AND?: NexusGenInputs['FeedbackWhereInput'][] | null; // [FeedbackWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['FeedbackWhereInput'][] | null; // [FeedbackWhereInput!]
+    OR?: NexusGenInputs['FeedbackWhereInput'][] | null; // [FeedbackWhereInput!]
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    teacher?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    teacherId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  FloatNullableFilter: { // input type
+    equals?: number | null; // Float
+    gt?: number | null; // Float
+    gte?: number | null; // Float
+    in?: number[] | null; // [Float!]
+    lt?: number | null; // Float
+    lte?: number | null; // Float
+    not?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    notIn?: number[] | null; // [Float!]
+  }
+  ForumListRelationFilter: { // input type
+    every?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+    none?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+    some?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+  }
+  ForumWhereInput: { // input type
+    AND?: NexusGenInputs['ForumWhereInput'][] | null; // [ForumWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    NOT?: NexusGenInputs['ForumWhereInput'][] | null; // [ForumWhereInput!]
+    OR?: NexusGenInputs['ForumWhereInput'][] | null; // [ForumWhereInput!]
+    rating?: NexusGenInputs['RatingListRelationFilter'] | null; // RatingListRelationFilter
+    statements?: NexusGenInputs['StatementListRelationFilter'] | null; // StatementListRelationFilter
+    text?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  IntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  IntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  JsonNullableFilter: { // input type
+    equals?: NexusGenScalars['Json'] | null; // Json
+    not?: NexusGenScalars['Json'] | null; // Json
+  }
+  JsonNullableListFilter: { // input type
+    equals?: NexusGenScalars['Json'][] | null; // [Json!]
+  }
+  LegalPortfolioWhereInput: { // input type
+    AND?: NexusGenInputs['LegalPortfolioWhereInput'][] | null; // [LegalPortfolioWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    cv?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['LegalPortfolioWhereInput'][] | null; // [LegalPortfolioWhereInput!]
+    open?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    OR?: NexusGenInputs['LegalPortfolioWhereInput'][] | null; // [LegalPortfolioWhereInput!]
+    resume?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  LessonListRelationFilter: { // input type
+    every?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    none?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    some?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+  }
+  LessonResultListRelationFilter: { // input type
+    every?: NexusGenInputs['LessonResultWhereInput'] | null; // LessonResultWhereInput
+    none?: NexusGenInputs['LessonResultWhereInput'] | null; // LessonResultWhereInput
+    some?: NexusGenInputs['LessonResultWhereInput'] | null; // LessonResultWhereInput
+  }
+  LessonResultWhereInput: { // input type
+    AND?: NexusGenInputs['LessonResultWhereInput'][] | null; // [LessonResultWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['LessonResultWhereInput'][] | null; // [LessonResultWhereInput!]
+    OR?: NexusGenInputs['LessonResultWhereInput'][] | null; // [LessonResultWhereInput!]
+    progress?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    visitsNumber?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  LessonResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  LessonWhereInput: { // input type
+    AND?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    challenge_num?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    challengeResults?: NexusGenInputs['ChallengeResultListRelationFilter'] | null; // ChallengeResultListRelationFilter
+    change?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    constructionResults?: NexusGenInputs['ConstructionResultListRelationFilter'] | null; // ConstructionResultListRelationFilter
+    constructions?: NexusGenInputs['ConstructionListRelationFilter'] | null; // ConstructionListRelationFilter
+    coursePage?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    coursePageId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    coursePageID?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    documentResults?: NexusGenInputs['DocumentResultListRelationFilter'] | null; // DocumentResultListRelationFilter
+    documents?: NexusGenInputs['DocumentListRelationFilter'] | null; // DocumentListRelationFilter
+    forum?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+    forumId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonFeedback?: NexusGenInputs['FeedbackListRelationFilter'] | null; // FeedbackListRelationFilter
+    lessonResults?: NexusGenInputs['LessonResultListRelationFilter'] | null; // LessonResultListRelationFilter
+    map?: NexusGenInputs['JsonNullableListFilter'] | null; // JsonNullableListFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    newTests?: NexusGenInputs['NewTestListRelationFilter'] | null; // NewTestListRelationFilter
+    NOT?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    notes?: NexusGenInputs['NoteListRelationFilter'] | null; // NoteListRelationFilter
+    number?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    open?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    OR?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    problemResults?: NexusGenInputs['ProblemResultListRelationFilter'] | null; // ProblemResultListRelationFilter
+    problems?: NexusGenInputs['ProblemListRelationFilter'] | null; // ProblemListRelationFilter
+    published?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    quizes?: NexusGenInputs['QuizListRelationFilter'] | null; // QuizListRelationFilter
+    quizResults?: NexusGenInputs['QuizResultListRelationFilter'] | null; // QuizResultListRelationFilter
+    shotResults?: NexusGenInputs['ShotResultListRelationFilter'] | null; // ShotResultListRelationFilter
+    shots?: NexusGenInputs['ShotListRelationFilter'] | null; // ShotListRelationFilter
+    structure?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
+    testResults?: NexusGenInputs['TestResultListRelationFilter'] | null; // TestResultListRelationFilter
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    textEditorResults?: NexusGenInputs['TextEditorResultListRelationFilter'] | null; // TextEditorResultListRelationFilter
+    texteditors?: NexusGenInputs['TextEditorListRelationFilter'] | null; // TextEditorListRelationFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
   LessonWhereUniqueInput: { // input type
     forumId?: string | null; // String
     id?: string | null; // String
+  }
+  NestedBoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
+  NestedBoolNullableFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolNullableFilter'] | null; // NestedBoolNullableFilter
+  }
+  NestedDateTimeFilter: { // input type
+    equals?: NexusGenScalars['DateTime'] | null; // DateTime
+    gt?: NexusGenScalars['DateTime'] | null; // DateTime
+    gte?: NexusGenScalars['DateTime'] | null; // DateTime
+    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null; // DateTime
+    lte?: NexusGenScalars['DateTime'] | null; // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null; // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  NestedDateTimeNullableFilter: { // input type
+    equals?: NexusGenScalars['DateTime'] | null; // DateTime
+    gt?: NexusGenScalars['DateTime'] | null; // DateTime
+    gte?: NexusGenScalars['DateTime'] | null; // DateTime
+    in?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null; // DateTime
+    lte?: NexusGenScalars['DateTime'] | null; // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null; // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null; // [DateTime!]
+  }
+  NestedEnumCourseTypeNullableFilter: { // input type
+    equals?: NexusGenEnums['CourseType'] | null; // CourseType
+    in?: NexusGenEnums['CourseType'][] | null; // [CourseType!]
+    not?: NexusGenInputs['NestedEnumCourseTypeNullableFilter'] | null; // NestedEnumCourseTypeNullableFilter
+    notIn?: NexusGenEnums['CourseType'][] | null; // [CourseType!]
+  }
+  NestedEnumLevelNullableFilter: { // input type
+    equals?: NexusGenEnums['Level'] | null; // Level
+    in?: NexusGenEnums['Level'][] | null; // [Level!]
+    not?: NexusGenInputs['NestedEnumLevelNullableFilter'] | null; // NestedEnumLevelNullableFilter
+    notIn?: NexusGenEnums['Level'][] | null; // [Level!]
+  }
+  NestedFloatNullableFilter: { // input type
+    equals?: number | null; // Float
+    gt?: number | null; // Float
+    gte?: number | null; // Float
+    in?: number[] | null; // [Float!]
+    lt?: number | null; // Float
+    lte?: number | null; // Float
+    not?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    notIn?: number[] | null; // [Float!]
+  }
+  NestedIntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedIntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedStringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  NestedStringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  NewTestListRelationFilter: { // input type
+    every?: NexusGenInputs['NewTestWhereInput'] | null; // NewTestWhereInput
+    none?: NexusGenInputs['NewTestWhereInput'] | null; // NewTestWhereInput
+    some?: NexusGenInputs['NewTestWhereInput'] | null; // NewTestWhereInput
+  }
+  NewTestWhereInput: { // input type
+    AND?: NexusGenInputs['NewTestWhereInput'][] | null; // [NewTestWhereInput!]
+    answers?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    correct?: NexusGenInputs['BoolNullableListFilter'] | null; // BoolNullableListFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    ifRight?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    ifWrong?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    next?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
+    NOT?: NexusGenInputs['NewTestWhereInput'][] | null; // [NewTestWhereInput!]
+    OR?: NexusGenInputs['NewTestWhereInput'][] | null; // [NewTestWhereInput!]
+    question?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    testResults?: NexusGenInputs['TestResultListRelationFilter'] | null; // TestResultListRelationFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  NewTestWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  NoteListRelationFilter: { // input type
+    every?: NexusGenInputs['NoteWhereInput'] | null; // NoteWhereInput
+    none?: NexusGenInputs['NoteWhereInput'] | null; // NoteWhereInput
+    some?: NexusGenInputs['NoteWhereInput'] | null; // NoteWhereInput
+  }
+  NoteWhereInput: { // input type
+    AND?: NexusGenInputs['NoteWhereInput'][] | null; // [NoteWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    next?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
+    NOT?: NexusGenInputs['NoteWhereInput'][] | null; // [NoteWhereInput!]
+    OR?: NexusGenInputs['NoteWhereInput'][] | null; // [NoteWhereInput!]
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  NoteWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  OrderListRelationFilter: { // input type
+    every?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
+    none?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
+    some?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
+  }
+  OrderWhereInput: { // input type
+    AND?: NexusGenInputs['OrderWhereInput'][] | null; // [OrderWhereInput!]
+    comment?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    coursePage?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    coursePageId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    isPaid?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    level?: NexusGenInputs['EnumLevelNullableFilter'] | null; // EnumLevelNullableFilter
+    NOT?: NexusGenInputs['OrderWhereInput'][] | null; // [OrderWhereInput!]
+    OR?: NexusGenInputs['OrderWhereInput'][] | null; // [OrderWhereInput!]
+    paymentID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    price?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    promocode?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  PostListRelationFilter: { // input type
+    every?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
+    none?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
+    some?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
+  }
+  PostWhereInput: { // input type
+    AND?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
+    coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    likes?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    NOT?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
+    OR?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
+    tags?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    text?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    title?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  ProblemListRelationFilter: { // input type
+    every?: NexusGenInputs['ProblemWhereInput'] | null; // ProblemWhereInput
+    none?: NexusGenInputs['ProblemWhereInput'] | null; // ProblemWhereInput
+    some?: NexusGenInputs['ProblemWhereInput'] | null; // ProblemWhereInput
+  }
+  ProblemResultListRelationFilter: { // input type
+    every?: NexusGenInputs['ProblemResultWhereInput'] | null; // ProblemResultWhereInput
+    none?: NexusGenInputs['ProblemResultWhereInput'] | null; // ProblemResultWhereInput
+    some?: NexusGenInputs['ProblemResultWhereInput'] | null; // ProblemResultWhereInput
+  }
+  ProblemResultWhereInput: { // input type
+    AND?: NexusGenInputs['ProblemResultWhereInput'][] | null; // [ProblemResultWhereInput!]
+    answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ProblemResultWhereInput'][] | null; // [ProblemResultWhereInput!]
+    OR?: NexusGenInputs['ProblemResultWhereInput'][] | null; // [ProblemResultWhereInput!]
+    problem?: NexusGenInputs['ProblemWhereInput'] | null; // ProblemWhereInput
+    problemId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    problemID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    revealed?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ProblemWhereInput: { // input type
+    AND?: NexusGenInputs['ProblemWhereInput'][] | null; // [ProblemWhereInput!]
+    answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    hints?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    hintsList?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonID?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    nodeID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    nodeType?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ProblemWhereInput'][] | null; // [ProblemWhereInput!]
+    OR?: NexusGenInputs['ProblemWhereInput'][] | null; // [ProblemWhereInput!]
+    problemResults?: NexusGenInputs['ProblemResultListRelationFilter'] | null; // ProblemResultListRelationFilter
+    solution?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    solutionList?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  QuizListRelationFilter: { // input type
+    every?: NexusGenInputs['QuizWhereInput'] | null; // QuizWhereInput
+    none?: NexusGenInputs['QuizWhereInput'] | null; // QuizWhereInput
+    some?: NexusGenInputs['QuizWhereInput'] | null; // QuizWhereInput
+  }
+  QuizResultListRelationFilter: { // input type
+    every?: NexusGenInputs['QuizResultWhereInput'] | null; // QuizResultWhereInput
+    none?: NexusGenInputs['QuizResultWhereInput'] | null; // QuizResultWhereInput
+    some?: NexusGenInputs['QuizResultWhereInput'] | null; // QuizResultWhereInput
+  }
+  QuizResultWhereInput: { // input type
+    AND?: NexusGenInputs['QuizResultWhereInput'][] | null; // [QuizResultWhereInput!]
+    answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    attempts?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    correct?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['QuizResultWhereInput'][] | null; // [QuizResultWhereInput!]
+    OR?: NexusGenInputs['QuizResultWhereInput'][] | null; // [QuizResultWhereInput!]
+    quiz?: NexusGenInputs['QuizWhereInput'] | null; // QuizWhereInput
+    quizId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  QuizWhereInput: { // input type
+    AND?: NexusGenInputs['QuizWhereInput'][] | null; // [QuizWhereInput!]
+    answer?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    check?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    ifRight?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    ifWrong?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    next?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
+    NOT?: NexusGenInputs['QuizWhereInput'][] | null; // [QuizWhereInput!]
+    OR?: NexusGenInputs['QuizWhereInput'][] | null; // [QuizWhereInput!]
+    question?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    quizResults?: NexusGenInputs['QuizResultListRelationFilter'] | null; // QuizResultListRelationFilter
+    type?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  QuizWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  RatingListRelationFilter: { // input type
+    every?: NexusGenInputs['RatingWhereInput'] | null; // RatingWhereInput
+    none?: NexusGenInputs['RatingWhereInput'] | null; // RatingWhereInput
+    some?: NexusGenInputs['RatingWhereInput'] | null; // RatingWhereInput
+  }
+  RatingWhereInput: { // input type
+    AND?: NexusGenInputs['RatingWhereInput'][] | null; // [RatingWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    forum?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+    forumId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['RatingWhereInput'][] | null; // [RatingWhereInput!]
+    OR?: NexusGenInputs['RatingWhereInput'][] | null; // [RatingWhereInput!]
+    rating?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  ShotListRelationFilter: { // input type
+    every?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
+    none?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
+    some?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
+  }
+  ShotResultListRelationFilter: { // input type
+    every?: NexusGenInputs['ShotResultWhereInput'] | null; // ShotResultWhereInput
+    none?: NexusGenInputs['ShotResultWhereInput'] | null; // ShotResultWhereInput
+    some?: NexusGenInputs['ShotResultWhereInput'] | null; // ShotResultWhereInput
+  }
+  ShotResultWhereInput: { // input type
+    AND?: NexusGenInputs['ShotResultWhereInput'][] | null; // [ShotResultWhereInput!]
+    answer?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ShotResultWhereInput'][] | null; // [ShotResultWhereInput!]
+    OR?: NexusGenInputs['ShotResultWhereInput'][] | null; // [ShotResultWhereInput!]
+    shot?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
+    shotId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    shotID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ShotWhereInput: { // input type
+    AND?: NexusGenInputs['ShotWhereInput'][] | null; // [ShotWhereInput!]
+    comments?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['ShotWhereInput'][] | null; // [ShotWhereInput!]
+    OR?: NexusGenInputs['ShotWhereInput'][] | null; // [ShotWhereInput!]
+    parts?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    shotResults?: NexusGenInputs['ShotResultListRelationFilter'] | null; // ShotResultListRelationFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  ShotWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  StatementListRelationFilter: { // input type
+    every?: NexusGenInputs['StatementWhereInput'] | null; // StatementWhereInput
+    none?: NexusGenInputs['StatementWhereInput'] | null; // StatementWhereInput
+    some?: NexusGenInputs['StatementWhereInput'] | null; // StatementWhereInput
+  }
+  StatementWhereInput: { // input type
+    AND?: NexusGenInputs['StatementWhereInput'][] | null; // [StatementWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    forum?: NexusGenInputs['ForumWhereInput'] | null; // ForumWhereInput
+    forumId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['StatementWhereInput'][] | null; // [StatementWhereInput!]
+    OR?: NexusGenInputs['StatementWhereInput'][] | null; // [StatementWhereInput!]
+    text?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  StringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    mode?: NexusGenEnums['QueryMode'] | null; // QueryMode
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  StringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    mode?: NexusGenEnums['QueryMode'] | null; // QueryMode
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  StringNullableListFilter: { // input type
+    equals?: string[] | null; // [String!]
+  }
+  TestResultListRelationFilter: { // input type
+    every?: NexusGenInputs['TestResultWhereInput'] | null; // TestResultWhereInput
+    none?: NexusGenInputs['TestResultWhereInput'] | null; // TestResultWhereInput
+    some?: NexusGenInputs['TestResultWhereInput'] | null; // TestResultWhereInput
+  }
+  TestResultWhereInput: { // input type
+    AND?: NexusGenInputs['TestResultWhereInput'][] | null; // [TestResultWhereInput!]
+    answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    attempts?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['TestResultWhereInput'][] | null; // [TestResultWhereInput!]
+    OR?: NexusGenInputs['TestResultWhereInput'][] | null; // [TestResultWhereInput!]
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    test?: NexusGenInputs['NewTestWhereInput'] | null; // NewTestWhereInput
+    testId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    testID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  TextEditorListRelationFilter: { // input type
+    every?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
+    none?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
+    some?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
+  }
+  TextEditorResultListRelationFilter: { // input type
+    every?: NexusGenInputs['TextEditorResultWhereInput'] | null; // TextEditorResultWhereInput
+    none?: NexusGenInputs['TextEditorResultWhereInput'] | null; // TextEditorResultWhereInput
+    some?: NexusGenInputs['TextEditorResultWhereInput'] | null; // TextEditorResultWhereInput
+  }
+  TextEditorResultWhereInput: { // input type
+    AND?: NexusGenInputs['TextEditorResultWhereInput'][] | null; // [TextEditorResultWhereInput!]
+    attempts?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    correct?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    guess?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    NOT?: NexusGenInputs['TextEditorResultWhereInput'][] | null; // [TextEditorResultWhereInput!]
+    OR?: NexusGenInputs['TextEditorResultWhereInput'][] | null; // [TextEditorResultWhereInput!]
+    result?: NexusGenInputs['BoolNullableFilter'] | null; // BoolNullableFilter
+    student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    textEditor?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
+    textEditorId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    wrong?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  TextEditorWhereInput: { // input type
+    AND?: NexusGenInputs['TextEditorWhereInput'][] | null; // [TextEditorWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonID?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['TextEditorWhereInput'][] | null; // [TextEditorWhereInput!]
+    OR?: NexusGenInputs['TextEditorWhereInput'][] | null; // [TextEditorWhereInput!]
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    textEditorResults?: NexusGenInputs['TextEditorResultListRelationFilter'] | null; // TextEditorResultListRelationFilter
+    totalMistakes?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  UniWhereInput: { // input type
+    AND?: NexusGenInputs['UniWhereInput'][] | null; // [UniWhereInput!]
+    capacity?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['UniWhereInput'][] | null; // [UniWhereInput!]
+    OR?: NexusGenInputs['UniWhereInput'][] | null; // [UniWhereInput!]
+    paidMonths?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    teachers?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    uniCoursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  UserCoursePagesOrderByInput: { // input type
+    title?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  UserLevelWhereInput: { // input type
+    AND?: NexusGenInputs['UserLevelWhereInput'][] | null; // [UserLevelWhereInput!]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    level?: NexusGenInputs['FloatNullableFilter'] | null; // FloatNullableFilter
+    NOT?: NexusGenInputs['UserLevelWhereInput'][] | null; // [UserLevelWhereInput!]
+    OR?: NexusGenInputs['UserLevelWhereInput'][] | null; // [UserLevelWhereInput!]
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  UserListRelationFilter: { // input type
+    every?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  UserWhereInput: { // input type
+    AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    careerTrack?: NexusGenInputs['CareerTrackWhereInput'] | null; // CareerTrackWhereInput
+    careerTrackId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    careerTrackID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    challengeResults?: NexusGenInputs['ChallengeResultListRelationFilter'] | null; // ChallengeResultListRelationFilter
+    clauses?: NexusGenInputs['ClauseListRelationFilter'] | null; // ClauseListRelationFilter
+    co_coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    company?: NexusGenInputs['CompanyWhereInput'] | null; // CompanyWhereInput
+    companyId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    construction?: NexusGenInputs['ConstructionListRelationFilter'] | null; // ConstructionListRelationFilter
+    constructionResults?: NexusGenInputs['ConstructionResultListRelationFilter'] | null; // ConstructionResultListRelationFilter
+    coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    courseVisits?: NexusGenInputs['CourseVisitListRelationFilter'] | null; // CourseVisitListRelationFilter
+    coverLetter?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    description?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    documentResults?: NexusGenInputs['DocumentResultListRelationFilter'] | null; // DocumentResultListRelationFilter
+    documents?: NexusGenInputs['DocumentListRelationFilter'] | null; // DocumentListRelationFilter
+    email?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    favourites?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    forums?: NexusGenInputs['ForumListRelationFilter'] | null; // ForumListRelationFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    image?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    interests?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    isFamiliar?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    legalPortfolio?: NexusGenInputs['LegalPortfolioWhereInput'] | null; // LegalPortfolioWhereInput
+    legalPortfolioId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    lessonResults?: NexusGenInputs['LessonResultListRelationFilter'] | null; // LessonResultListRelationFilter
+    lessons?: NexusGenInputs['LessonListRelationFilter'] | null; // LessonListRelationFilter
+    level?: NexusGenInputs['UserLevelWhereInput'] | null; // UserLevelWhereInput
+    levelId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    new_subjects?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
+    newTests?: NexusGenInputs['NewTestListRelationFilter'] | null; // NewTestListRelationFilter
+    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    notes?: NexusGenInputs['NoteListRelationFilter'] | null; // NoteListRelationFilter
+    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    orders?: NexusGenInputs['OrderListRelationFilter'] | null; // OrderListRelationFilter
+    password?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    permissions?: NexusGenInputs['EnumPermissionNullableListFilter'] | null; // EnumPermissionNullableListFilter
+    posts?: NexusGenInputs['PostListRelationFilter'] | null; // PostListRelationFilter
+    problemResults?: NexusGenInputs['ProblemResultListRelationFilter'] | null; // ProblemResultListRelationFilter
+    problems?: NexusGenInputs['ProblemListRelationFilter'] | null; // ProblemListRelationFilter
+    quizes?: NexusGenInputs['QuizListRelationFilter'] | null; // QuizListRelationFilter
+    quizResults?: NexusGenInputs['QuizResultListRelationFilter'] | null; // QuizResultListRelationFilter
+    ratings?: NexusGenInputs['RatingListRelationFilter'] | null; // RatingListRelationFilter
+    resetToken?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    resetTokenExpiry?: NexusGenInputs['FloatNullableFilter'] | null; // FloatNullableFilter
+    resume?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    shotResults?: NexusGenInputs['ShotResultListRelationFilter'] | null; // ShotResultListRelationFilter
+    shots?: NexusGenInputs['ShotListRelationFilter'] | null; // ShotListRelationFilter
+    statements?: NexusGenInputs['StatementListRelationFilter'] | null; // StatementListRelationFilter
+    status?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    studentFeedback?: NexusGenInputs['FeedbackListRelationFilter'] | null; // FeedbackListRelationFilter
+    subjects?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    surname?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    teacherFeedback?: NexusGenInputs['FeedbackListRelationFilter'] | null; // FeedbackListRelationFilter
+    testResults?: NexusGenInputs['TestResultListRelationFilter'] | null; // TestResultListRelationFilter
+    textEditor?: NexusGenInputs['TextEditorListRelationFilter'] | null; // TextEditorListRelationFilter
+    textEditorResults?: NexusGenInputs['TextEditorResultListRelationFilter'] | null; // TextEditorResultListRelationFilter
+    uni?: NexusGenInputs['UniWhereInput'] | null; // UniWhereInput
+    uniId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    uniID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   UserWhereUniqueInput: { // input type
     careerTrackId?: string | null; // String
@@ -47,6 +1148,10 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   CourseType: "CHALLENGE" | "FORMONEY" | "PRIVATE" | "PUBLIC" | "UNI"
+  Level: "ADVANCED" | "STANDARD"
+  Permission: "ADMIN" | "USER"
+  QueryMode: "default" | "insensitive"
+  SortOrder: "asc" | "desc"
   Status: "AUTHOR" | "HR" | "LAWYER" | "SAVVY_AUTHOR" | "STUDENT"
 }
 
@@ -62,6 +1167,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenRootTypes {
   Application: { // root type
+    applicantId: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -101,13 +1207,94 @@ export interface NexusGenRootTypes {
     video?: string | null; // String
     weeks?: number | null; // Int
   }
-  Lesson: { // root type
+  CourseVisit: { // root type
+    coursePageId: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    reminders: NexusGenScalars['DateTime'][]; // [DateTime!]!
+    studentId: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    visitsNumber?: number | null; // Int
+  }
+  Lesson: { // root type
+    challenge_num?: number | null; // Int
+    change?: string | null; // String
+    coursePageId: string; // String!
+    coursePageID: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    description?: string | null; // String
+    forumId?: string | null; // String
+    id: string; // String!
+    map: NexusGenScalars['Json'][]; // [Json!]!
+    name: string; // String!
+    number?: number | null; // Int
+    open?: boolean | null; // Boolean
+    published?: boolean | null; // Boolean
+    structure?: NexusGenScalars['Json'] | null; // Json
+    text: string; // String!
+    type?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  LessonResult: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonID?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    visitsNumber?: number | null; // Int
   }
   Mutation: {};
+  NewTest: { // root type
+    answers: string[]; // [String!]!
+    correct: boolean[]; // [Boolean!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    ifRight?: string | null; // String
+    ifWrong?: string | null; // String
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    next?: NexusGenScalars['Json'] | null; // Json
+    question: string[]; // [String!]!
+    type?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  Note: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    next?: NexusGenScalars['Json'] | null; // Json
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: string | null; // String
+  }
   Query: {};
+  Quiz: { // root type
+    answer: string; // String!
+    check?: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    ifRight?: string | null; // String
+    ifWrong?: string | null; // String
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    next?: NexusGenScalars['Json'] | null; // Json
+    question: string; // String!
+    type?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  Shot: { // root type
+    comments: string[]; // [String!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    parts: string[]; // [String!]!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
   SignOut: { // root type
     message?: string | null; // String
   }
@@ -123,6 +1310,7 @@ export interface NexusGenRootTypes {
     id: string; // String!
     name: string; // String!
     password: string; // String!
+    permissions: NexusGenEnums['Permission'][]; // [Permission!]!
     resume?: string | null; // String
     status?: string | null; // String
     surname?: string | null; // String
@@ -130,11 +1318,118 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  ApplicationListRelationFilter: NexusGenInputs['ApplicationListRelationFilter'];
+  ApplicationWhereInput: NexusGenInputs['ApplicationWhereInput'];
   ApplicationWhereUniqueInput: NexusGenInputs['ApplicationWhereUniqueInput'];
+  BoolFilter: NexusGenInputs['BoolFilter'];
+  BoolNullableFilter: NexusGenInputs['BoolNullableFilter'];
+  BoolNullableListFilter: NexusGenInputs['BoolNullableListFilter'];
+  CareerTrackListRelationFilter: NexusGenInputs['CareerTrackListRelationFilter'];
+  CareerTrackUnitListRelationFilter: NexusGenInputs['CareerTrackUnitListRelationFilter'];
+  CareerTrackUnitWhereInput: NexusGenInputs['CareerTrackUnitWhereInput'];
+  CareerTrackWhereInput: NexusGenInputs['CareerTrackWhereInput'];
+  ChallengeResultListRelationFilter: NexusGenInputs['ChallengeResultListRelationFilter'];
+  ChallengeResultWhereInput: NexusGenInputs['ChallengeResultWhereInput'];
+  ClauseListRelationFilter: NexusGenInputs['ClauseListRelationFilter'];
+  ClauseWhereInput: NexusGenInputs['ClauseWhereInput'];
+  CompanyWhereInput: NexusGenInputs['CompanyWhereInput'];
+  ConstructionListRelationFilter: NexusGenInputs['ConstructionListRelationFilter'];
+  ConstructionResultListRelationFilter: NexusGenInputs['ConstructionResultListRelationFilter'];
+  ConstructionResultWhereInput: NexusGenInputs['ConstructionResultWhereInput'];
+  ConstructionWhereInput: NexusGenInputs['ConstructionWhereInput'];
+  CoursePageListRelationFilter: NexusGenInputs['CoursePageListRelationFilter'];
+  CoursePageOrderByInput: NexusGenInputs['CoursePageOrderByInput'];
+  CoursePageWhereInput: NexusGenInputs['CoursePageWhereInput'];
   CoursePageWhereUniqueInput: NexusGenInputs['CoursePageWhereUniqueInput'];
+  CourseVisitListRelationFilter: NexusGenInputs['CourseVisitListRelationFilter'];
+  CourseVisitOrderByInput: NexusGenInputs['CourseVisitOrderByInput'];
+  CourseVisitWhereInput: NexusGenInputs['CourseVisitWhereInput'];
+  CourseVisitWhereUniqueInput: NexusGenInputs['CourseVisitWhereUniqueInput'];
+  DateTimeFilter: NexusGenInputs['DateTimeFilter'];
+  DateTimeNullableFilter: NexusGenInputs['DateTimeNullableFilter'];
+  DateTimeNullableListFilter: NexusGenInputs['DateTimeNullableListFilter'];
+  DocumentListRelationFilter: NexusGenInputs['DocumentListRelationFilter'];
+  DocumentResultListRelationFilter: NexusGenInputs['DocumentResultListRelationFilter'];
+  DocumentResultWhereInput: NexusGenInputs['DocumentResultWhereInput'];
+  DocumentWhereInput: NexusGenInputs['DocumentWhereInput'];
+  EnumCourseTypeNullableFilter: NexusGenInputs['EnumCourseTypeNullableFilter'];
+  EnumLevelNullableFilter: NexusGenInputs['EnumLevelNullableFilter'];
+  EnumPermissionNullableListFilter: NexusGenInputs['EnumPermissionNullableListFilter'];
+  FeedbackListRelationFilter: NexusGenInputs['FeedbackListRelationFilter'];
+  FeedbackWhereInput: NexusGenInputs['FeedbackWhereInput'];
+  FloatNullableFilter: NexusGenInputs['FloatNullableFilter'];
+  ForumListRelationFilter: NexusGenInputs['ForumListRelationFilter'];
+  ForumWhereInput: NexusGenInputs['ForumWhereInput'];
+  IntFilter: NexusGenInputs['IntFilter'];
+  IntNullableFilter: NexusGenInputs['IntNullableFilter'];
+  JsonNullableFilter: NexusGenInputs['JsonNullableFilter'];
+  JsonNullableListFilter: NexusGenInputs['JsonNullableListFilter'];
+  LegalPortfolioWhereInput: NexusGenInputs['LegalPortfolioWhereInput'];
+  LessonListRelationFilter: NexusGenInputs['LessonListRelationFilter'];
+  LessonResultListRelationFilter: NexusGenInputs['LessonResultListRelationFilter'];
+  LessonResultWhereInput: NexusGenInputs['LessonResultWhereInput'];
+  LessonResultWhereUniqueInput: NexusGenInputs['LessonResultWhereUniqueInput'];
+  LessonWhereInput: NexusGenInputs['LessonWhereInput'];
   LessonWhereUniqueInput: NexusGenInputs['LessonWhereUniqueInput'];
+  NestedBoolFilter: NexusGenInputs['NestedBoolFilter'];
+  NestedBoolNullableFilter: NexusGenInputs['NestedBoolNullableFilter'];
+  NestedDateTimeFilter: NexusGenInputs['NestedDateTimeFilter'];
+  NestedDateTimeNullableFilter: NexusGenInputs['NestedDateTimeNullableFilter'];
+  NestedEnumCourseTypeNullableFilter: NexusGenInputs['NestedEnumCourseTypeNullableFilter'];
+  NestedEnumLevelNullableFilter: NexusGenInputs['NestedEnumLevelNullableFilter'];
+  NestedFloatNullableFilter: NexusGenInputs['NestedFloatNullableFilter'];
+  NestedIntFilter: NexusGenInputs['NestedIntFilter'];
+  NestedIntNullableFilter: NexusGenInputs['NestedIntNullableFilter'];
+  NestedStringFilter: NexusGenInputs['NestedStringFilter'];
+  NestedStringNullableFilter: NexusGenInputs['NestedStringNullableFilter'];
+  NewTestListRelationFilter: NexusGenInputs['NewTestListRelationFilter'];
+  NewTestWhereInput: NexusGenInputs['NewTestWhereInput'];
+  NewTestWhereUniqueInput: NexusGenInputs['NewTestWhereUniqueInput'];
+  NoteListRelationFilter: NexusGenInputs['NoteListRelationFilter'];
+  NoteWhereInput: NexusGenInputs['NoteWhereInput'];
+  NoteWhereUniqueInput: NexusGenInputs['NoteWhereUniqueInput'];
+  OrderListRelationFilter: NexusGenInputs['OrderListRelationFilter'];
+  OrderWhereInput: NexusGenInputs['OrderWhereInput'];
+  PostListRelationFilter: NexusGenInputs['PostListRelationFilter'];
+  PostWhereInput: NexusGenInputs['PostWhereInput'];
+  ProblemListRelationFilter: NexusGenInputs['ProblemListRelationFilter'];
+  ProblemResultListRelationFilter: NexusGenInputs['ProblemResultListRelationFilter'];
+  ProblemResultWhereInput: NexusGenInputs['ProblemResultWhereInput'];
+  ProblemWhereInput: NexusGenInputs['ProblemWhereInput'];
+  QuizListRelationFilter: NexusGenInputs['QuizListRelationFilter'];
+  QuizResultListRelationFilter: NexusGenInputs['QuizResultListRelationFilter'];
+  QuizResultWhereInput: NexusGenInputs['QuizResultWhereInput'];
+  QuizWhereInput: NexusGenInputs['QuizWhereInput'];
+  QuizWhereUniqueInput: NexusGenInputs['QuizWhereUniqueInput'];
+  RatingListRelationFilter: NexusGenInputs['RatingListRelationFilter'];
+  RatingWhereInput: NexusGenInputs['RatingWhereInput'];
+  ShotListRelationFilter: NexusGenInputs['ShotListRelationFilter'];
+  ShotResultListRelationFilter: NexusGenInputs['ShotResultListRelationFilter'];
+  ShotResultWhereInput: NexusGenInputs['ShotResultWhereInput'];
+  ShotWhereInput: NexusGenInputs['ShotWhereInput'];
+  ShotWhereUniqueInput: NexusGenInputs['ShotWhereUniqueInput'];
+  StatementListRelationFilter: NexusGenInputs['StatementListRelationFilter'];
+  StatementWhereInput: NexusGenInputs['StatementWhereInput'];
+  StringFilter: NexusGenInputs['StringFilter'];
+  StringNullableFilter: NexusGenInputs['StringNullableFilter'];
+  StringNullableListFilter: NexusGenInputs['StringNullableListFilter'];
+  TestResultListRelationFilter: NexusGenInputs['TestResultListRelationFilter'];
+  TestResultWhereInput: NexusGenInputs['TestResultWhereInput'];
+  TextEditorListRelationFilter: NexusGenInputs['TextEditorListRelationFilter'];
+  TextEditorResultListRelationFilter: NexusGenInputs['TextEditorResultListRelationFilter'];
+  TextEditorResultWhereInput: NexusGenInputs['TextEditorResultWhereInput'];
+  TextEditorWhereInput: NexusGenInputs['TextEditorWhereInput'];
+  UniWhereInput: NexusGenInputs['UniWhereInput'];
+  UserCoursePagesOrderByInput: NexusGenInputs['UserCoursePagesOrderByInput'];
+  UserLevelWhereInput: NexusGenInputs['UserLevelWhereInput'];
+  UserListRelationFilter: NexusGenInputs['UserListRelationFilter'];
+  UserWhereInput: NexusGenInputs['UserWhereInput'];
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   CourseType: NexusGenEnums['CourseType'];
+  Level: NexusGenEnums['Level'];
+  Permission: NexusGenEnums['Permission'];
+  QueryMode: NexusGenEnums['QueryMode'];
+  SortOrder: NexusGenEnums['SortOrder'];
   Status: NexusGenEnums['Status'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
@@ -147,6 +1442,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Application: { // field return type
+    applicantId: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -193,21 +1489,130 @@ export interface NexusGenFieldTypes {
     video: string | null; // String
     weeks: number | null; // Int
   }
-  Lesson: { // field return type
+  CourseVisit: { // field return type
+    coursePage: NexusGenRootTypes['CoursePage']; // CoursePage!
+    coursePageId: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    reminders: NexusGenScalars['DateTime'][]; // [DateTime!]!
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    visitsNumber: number | null; // Int
+  }
+  Lesson: { // field return type
+    challenge_num: number | null; // Int
+    change: string | null; // String
+    coursePage: NexusGenRootTypes['CoursePage']; // CoursePage!
+    coursePageId: string; // String!
+    coursePageID: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    description: string | null; // String
+    forumId: string | null; // String
+    id: string; // String!
+    lessonResults: NexusGenRootTypes['LessonResult'][]; // [LessonResult!]!
+    map: NexusGenScalars['Json'][]; // [Json!]!
+    name: string; // String!
+    newTests: NexusGenRootTypes['NewTest'][]; // [NewTest!]!
+    notes: NexusGenRootTypes['Note'][]; // [Note!]!
+    number: number | null; // Int
+    open: boolean | null; // Boolean
+    published: boolean | null; // Boolean
+    quizes: NexusGenRootTypes['Quiz'][]; // [Quiz!]!
+    shots: NexusGenRootTypes['Shot'][]; // [Shot!]!
+    structure: NexusGenScalars['Json'] | null; // Json
+    text: string; // String!
+    type: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  LessonResult: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonID: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    visitsNumber: number | null; // Int
   }
   Mutation: { // field return type
     createCoursePage: NexusGenRootTypes['CoursePage'] | null; // CoursePage
+    createCourseVisit: NexusGenRootTypes['CourseVisit'] | null; // CourseVisit
+    createLesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    createLessonResult: NexusGenRootTypes['LessonResult'] | null; // LessonResult
     signin: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['SignOut'] | null; // SignOut
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    updateCourseVisit: NexusGenRootTypes['CourseVisit'] | null; // CourseVisit
+    updateLessonResult: NexusGenRootTypes['LessonResult'] | null; // LessonResult
+    updatePublished: NexusGenRootTypes['Lesson'] | null; // Lesson
+  }
+  NewTest: { // field return type
+    answers: string[]; // [String!]!
+    correct: boolean[]; // [Boolean!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    ifRight: string | null; // String
+    ifWrong: string | null; // String
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    next: NexusGenScalars['Json'] | null; // Json
+    question: string[]; // [String!]!
+    type: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  Note: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    next: NexusGenScalars['Json'] | null; // Json
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: string | null; // String
   }
   Query: { // field return type
+    coursePage: NexusGenRootTypes['CoursePage'] | null; // CoursePage
     coursePages: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
+    courseVisits: NexusGenRootTypes['CourseVisit'][]; // [CourseVisit!]!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonsConnection: NexusGenRootTypes['Lesson'] | null; // Lesson
     me: NexusGenRootTypes['User'] | null; // User
     users: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  Quiz: { // field return type
+    answer: string; // String!
+    check: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    ifRight: string | null; // String
+    ifWrong: string | null; // String
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    next: NexusGenScalars['Json'] | null; // Json
+    question: string; // String!
+    type: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  Shot: { // field return type
+    comments: string[]; // [String!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    parts: string[]; // [String!]!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
   }
   SignOut: { // field return type
     message: string | null; // String
@@ -222,11 +1627,15 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     company: NexusGenRootTypes['Company'] | null; // Company
     coursePages: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
+    courseVisits: NexusGenRootTypes['CourseVisit'][]; // [CourseVisit!]!
     description: string | null; // String
     email: string; // String!
     id: string; // String!
+    lessons: NexusGenRootTypes['Lesson'][]; // [Lesson!]!
     name: string; // String!
+    new_subjects: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
     password: string; // String!
+    permissions: NexusGenEnums['Permission'][]; // [Permission!]!
     resume: string | null; // String
     status: string | null; // String
     surname: string | null; // String
@@ -236,6 +1645,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Application: { // field return type name
+    applicantId: 'String'
     createdAt: 'DateTime'
     id: 'String'
     updatedAt: 'DateTime'
@@ -282,21 +1692,130 @@ export interface NexusGenFieldTypeNames {
     video: 'String'
     weeks: 'Int'
   }
-  Lesson: { // field return type name
+  CourseVisit: { // field return type name
+    coursePage: 'CoursePage'
+    coursePageId: 'String'
     createdAt: 'DateTime'
     id: 'String'
+    reminders: 'DateTime'
+    student: 'User'
+    studentId: 'String'
     updatedAt: 'DateTime'
+    visitsNumber: 'Int'
+  }
+  Lesson: { // field return type name
+    challenge_num: 'Int'
+    change: 'String'
+    coursePage: 'CoursePage'
+    coursePageId: 'String'
+    coursePageID: 'String'
+    createdAt: 'DateTime'
+    description: 'String'
+    forumId: 'String'
+    id: 'String'
+    lessonResults: 'LessonResult'
+    map: 'Json'
+    name: 'String'
+    newTests: 'NewTest'
+    notes: 'Note'
+    number: 'Int'
+    open: 'Boolean'
+    published: 'Boolean'
+    quizes: 'Quiz'
+    shots: 'Shot'
+    structure: 'Json'
+    text: 'String'
+    type: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  LessonResult: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lessonID: 'String'
+    student: 'User'
+    updatedAt: 'DateTime'
+    visitsNumber: 'Int'
   }
   Mutation: { // field return type name
     createCoursePage: 'CoursePage'
+    createCourseVisit: 'CourseVisit'
+    createLesson: 'Lesson'
+    createLessonResult: 'LessonResult'
     signin: 'AuthPayload'
     signout: 'SignOut'
     signup: 'AuthPayload'
+    updateCourseVisit: 'CourseVisit'
+    updateLessonResult: 'LessonResult'
+    updatePublished: 'Lesson'
+  }
+  NewTest: { // field return type name
+    answers: 'String'
+    correct: 'Boolean'
+    createdAt: 'DateTime'
+    id: 'String'
+    ifRight: 'String'
+    ifWrong: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    next: 'Json'
+    question: 'String'
+    type: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  Note: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    next: 'Json'
+    text: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
   }
   Query: { // field return type name
+    coursePage: 'CoursePage'
     coursePages: 'CoursePage'
+    courseVisits: 'CourseVisit'
+    lesson: 'Lesson'
+    lessonsConnection: 'Lesson'
     me: 'User'
     users: 'User'
+  }
+  Quiz: { // field return type name
+    answer: 'String'
+    check: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    ifRight: 'String'
+    ifWrong: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    next: 'Json'
+    question: 'String'
+    type: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  Shot: { // field return type name
+    comments: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    parts: 'String'
+    title: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
   }
   SignOut: { // field return type name
     message: 'String'
@@ -311,11 +1830,15 @@ export interface NexusGenFieldTypeNames {
   User: { // field return type name
     company: 'Company'
     coursePages: 'CoursePage'
+    courseVisits: 'CourseVisit'
     description: 'String'
     email: 'String'
     id: 'String'
+    lessons: 'Lesson'
     name: 'String'
+    new_subjects: 'CoursePage'
     password: 'String'
+    permissions: 'Permission'
     resume: 'String'
     status: 'String'
     surname: 'String'
@@ -350,6 +1873,38 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
     }
   }
+  Lesson: {
+    lessonResults: { // args
+      after?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
+      before?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    newTests: { // args
+      after?: NexusGenInputs['NewTestWhereUniqueInput'] | null; // NewTestWhereUniqueInput
+      before?: NexusGenInputs['NewTestWhereUniqueInput'] | null; // NewTestWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    notes: { // args
+      after?: NexusGenInputs['NoteWhereUniqueInput'] | null; // NoteWhereUniqueInput
+      before?: NexusGenInputs['NoteWhereUniqueInput'] | null; // NoteWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    quizes: { // args
+      after?: NexusGenInputs['QuizWhereUniqueInput'] | null; // QuizWhereUniqueInput
+      before?: NexusGenInputs['QuizWhereUniqueInput'] | null; // QuizWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    shots: { // args
+      after?: NexusGenInputs['ShotWhereUniqueInput'] | null; // ShotWhereUniqueInput
+      before?: NexusGenInputs['ShotWhereUniqueInput'] | null; // ShotWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Mutation: {
     createCoursePage: { // args
       courseType?: string | null; // String
@@ -357,6 +1912,21 @@ export interface NexusGenArgTypes {
       image?: string | null; // String
       published?: boolean | null; // Boolean
       title?: string | null; // String
+    }
+    createCourseVisit: { // args
+      coursePageId?: string | null; // String
+      visitsNumber?: number | null; // Int
+    }
+    createLesson: { // args
+      coursePageID?: string | null; // String
+      description?: string | null; // String
+      name?: string | null; // String
+      number?: number | null; // Int
+      text?: string | null; // String
+    }
+    createLessonResult: { // args
+      lessonID?: string | null; // String
+      visitsNumber?: number | null; // Int
     }
     signin: { // args
       email?: string | null; // String
@@ -371,13 +1941,41 @@ export interface NexusGenArgTypes {
       surname?: string | null; // String
       uniID?: string | null; // String
     }
+    updateCourseVisit: { // args
+      id?: string | null; // String
+      visitsNumber?: number | null; // Int
+    }
+    updateLessonResult: { // args
+      id?: string | null; // String
+      visitsNumber?: number | null; // Int
+    }
+    updatePublished: { // args
+      id?: string | null; // String
+      published?: boolean | null; // Boolean
+    }
   }
   Query: {
+    coursePage: { // args
+      where: NexusGenInputs['CoursePageWhereUniqueInput']; // CoursePageWhereUniqueInput!
+    }
     coursePages: { // args
       after?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
       before?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['CoursePageOrderByInput'][] | null; // [CoursePageOrderByInput!]
+      where?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
+    }
+    courseVisits: { // args
+      after?: NexusGenInputs['CourseVisitWhereUniqueInput'] | null; // CourseVisitWhereUniqueInput
+      before?: NexusGenInputs['CourseVisitWhereUniqueInput'] | null; // CourseVisitWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['CourseVisitOrderByInput'][] | null; // [CourseVisitOrderByInput!]
+      where?: NexusGenInputs['CourseVisitWhereInput'] | null; // CourseVisitWhereInput
+    }
+    lesson: { // args
+      where: NexusGenInputs['LessonWhereUniqueInput']; // LessonWhereUniqueInput!
     }
     users: { // args
       after?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -400,6 +1998,25 @@ export interface NexusGenArgTypes {
       before?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['UserCoursePagesOrderByInput'][] | null; // [UserCoursePagesOrderByInput!]
+    }
+    courseVisits: { // args
+      after?: NexusGenInputs['CourseVisitWhereUniqueInput'] | null; // CourseVisitWhereUniqueInput
+      before?: NexusGenInputs['CourseVisitWhereUniqueInput'] | null; // CourseVisitWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    lessons: { // args
+      after?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+      before?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    new_subjects: { // args
+      after?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
+      before?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
 }
@@ -409,11 +2026,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Application" | "AuthPayload" | "Company" | "CoursePage" | "Lesson" | "Mutation" | "Query" | "SignOut" | "Uni" | "User";
+export type NexusGenObjectNames = "Application" | "AuthPayload" | "Company" | "CoursePage" | "CourseVisit" | "Lesson" | "LessonResult" | "Mutation" | "NewTest" | "Note" | "Query" | "Quiz" | "Shot" | "SignOut" | "Uni" | "User";
 
-export type NexusGenInputNames = "ApplicationWhereUniqueInput" | "CoursePageWhereUniqueInput" | "LessonWhereUniqueInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "ApplicationListRelationFilter" | "ApplicationWhereInput" | "ApplicationWhereUniqueInput" | "BoolFilter" | "BoolNullableFilter" | "BoolNullableListFilter" | "CareerTrackListRelationFilter" | "CareerTrackUnitListRelationFilter" | "CareerTrackUnitWhereInput" | "CareerTrackWhereInput" | "ChallengeResultListRelationFilter" | "ChallengeResultWhereInput" | "ClauseListRelationFilter" | "ClauseWhereInput" | "CompanyWhereInput" | "ConstructionListRelationFilter" | "ConstructionResultListRelationFilter" | "ConstructionResultWhereInput" | "ConstructionWhereInput" | "CoursePageListRelationFilter" | "CoursePageOrderByInput" | "CoursePageWhereInput" | "CoursePageWhereUniqueInput" | "CourseVisitListRelationFilter" | "CourseVisitOrderByInput" | "CourseVisitWhereInput" | "CourseVisitWhereUniqueInput" | "DateTimeFilter" | "DateTimeNullableFilter" | "DateTimeNullableListFilter" | "DocumentListRelationFilter" | "DocumentResultListRelationFilter" | "DocumentResultWhereInput" | "DocumentWhereInput" | "EnumCourseTypeNullableFilter" | "EnumLevelNullableFilter" | "EnumPermissionNullableListFilter" | "FeedbackListRelationFilter" | "FeedbackWhereInput" | "FloatNullableFilter" | "ForumListRelationFilter" | "ForumWhereInput" | "IntFilter" | "IntNullableFilter" | "JsonNullableFilter" | "JsonNullableListFilter" | "LegalPortfolioWhereInput" | "LessonListRelationFilter" | "LessonResultListRelationFilter" | "LessonResultWhereInput" | "LessonResultWhereUniqueInput" | "LessonWhereInput" | "LessonWhereUniqueInput" | "NestedBoolFilter" | "NestedBoolNullableFilter" | "NestedDateTimeFilter" | "NestedDateTimeNullableFilter" | "NestedEnumCourseTypeNullableFilter" | "NestedEnumLevelNullableFilter" | "NestedFloatNullableFilter" | "NestedIntFilter" | "NestedIntNullableFilter" | "NestedStringFilter" | "NestedStringNullableFilter" | "NewTestListRelationFilter" | "NewTestWhereInput" | "NewTestWhereUniqueInput" | "NoteListRelationFilter" | "NoteWhereInput" | "NoteWhereUniqueInput" | "OrderListRelationFilter" | "OrderWhereInput" | "PostListRelationFilter" | "PostWhereInput" | "ProblemListRelationFilter" | "ProblemResultListRelationFilter" | "ProblemResultWhereInput" | "ProblemWhereInput" | "QuizListRelationFilter" | "QuizResultListRelationFilter" | "QuizResultWhereInput" | "QuizWhereInput" | "QuizWhereUniqueInput" | "RatingListRelationFilter" | "RatingWhereInput" | "ShotListRelationFilter" | "ShotResultListRelationFilter" | "ShotResultWhereInput" | "ShotWhereInput" | "ShotWhereUniqueInput" | "StatementListRelationFilter" | "StatementWhereInput" | "StringFilter" | "StringNullableFilter" | "StringNullableListFilter" | "TestResultListRelationFilter" | "TestResultWhereInput" | "TextEditorListRelationFilter" | "TextEditorResultListRelationFilter" | "TextEditorResultWhereInput" | "TextEditorWhereInput" | "UniWhereInput" | "UserCoursePagesOrderByInput" | "UserLevelWhereInput" | "UserListRelationFilter" | "UserWhereInput" | "UserWhereUniqueInput";
 
-export type NexusGenEnumNames = "CourseType" | "Status";
+export type NexusGenEnumNames = "CourseType" | "Level" | "Permission" | "QueryMode" | "SortOrder" | "Status";
 
 export type NexusGenInterfaceNames = never;
 

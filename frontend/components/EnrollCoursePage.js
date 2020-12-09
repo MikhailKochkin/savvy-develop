@@ -30,7 +30,7 @@ const ENROLL_COURSE_MUTATION = gql`
 `;
 
 const Button = styled.button`
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   border-radius: 5px;
   width: 200px;
   height: 38px;
@@ -43,7 +43,7 @@ const Button = styled.button`
   border: none;
   margin-top: 10px;
   &:active {
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${(props) => props.theme.darkGreen};
   }
 `;
 
@@ -51,11 +51,11 @@ const Comment = styled.div`
   padding-top: 15px;
 `;
 
-const EnrollCoursePage = props => {
+const EnrollCoursePage = (props) => {
   const [show, setShow] = useState(false);
 
   let subj = [];
-  props.meData.new_subjects.map(s => subj.push(s.id));
+  props.meData.new_subjects.map((s) => subj.push(s.id));
   const onClick = async (e, enrollOnCourse) => {
     e.preventDefault();
     if (
@@ -66,8 +66,8 @@ const EnrollCoursePage = props => {
         enrollOnCourse({
           variables: {
             id: props.meData.id,
-            coursePage: props.coursePage.id
-          }
+            coursePage: props.coursePage.id,
+          },
         });
         alert("Вы успешно зарегистрировлаись. Наслаждайтесь курсом!");
       } else {
@@ -87,13 +87,13 @@ const EnrollCoursePage = props => {
           refetchQueries={() => [
             {
               query: SINGLE_COURSEPAGE_QUERY,
-              variables: { id: coursePage.id }
-            }
+              variables: { id: coursePage.id },
+            },
           ]}
         >
-          {enrollOnCourse =>
+          {(enrollOnCourse) =>
             !subj.includes(coursePage.id) ? (
-              <Button onClick={e => onClick(e, enrollOnCourse)}>
+              <Button onClick={(e) => onClick(e, enrollOnCourse)}>
                 Регистрация
               </Button>
             ) : (
@@ -108,13 +108,13 @@ const EnrollCoursePage = props => {
           variables={{
             coursePage: coursePage.id,
             user: meData.id,
-            promocode: ""
+            promocode: "",
           }}
         >
           {(createPrivateOrder, { loading, error }) =>
             !subj.includes(coursePage.id) ? (
               <Button
-                onClick={async e => {
+                onClick={async (e) => {
                   e.preventDefault;
                   setShow(true);
                   const res = await createPrivateOrder();

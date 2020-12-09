@@ -12,7 +12,11 @@ const User = objectType({
     t.model.resume();
     t.model.status();
     t.model.uni();
-    t.model.coursePages();
+    t.model.new_subjects();
+    t.model.permissions();
+    t.model.courseVisits();
+    t.model.lessons();
+    t.model.coursePages({ ordering: { title: true } });
     t.model.company();
   },
 });

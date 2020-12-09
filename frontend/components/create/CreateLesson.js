@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 import AreYouATeacher from "../auth/AreYouATeacher";
 import PleaseSignIn from "../auth/PleaseSignIn";
@@ -35,35 +34,19 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-const Span = styled.span`
-  cursor: pointer;
-  text-decoration: ${(props) => (props.selected ? "underline" : "none")};
-`;
+const CreateLesson = (props) => {
+  return (
+    <PleaseSignIn>
+      <AreYouATeacher subject={props.id}>
+        <Width>
+          <Container>
+            <Title>Новый урок</Title>
+            <CreateLes id={props.id} />
+          </Container>
+        </Width>
+      </AreYouATeacher>
+    </PleaseSignIn>
+  );
+};
 
-export default class CreateLesson extends Component {
-  state = {
-    page: "lesson",
-  };
-  render() {
-    const { id } = this.props;
-    return (
-      <PleaseSignIn>
-        <AreYouATeacher subject={this.props.id}>
-          <Width>
-            <Container>
-              <Title>
-                <Span
-                // selected={this.state.page === "lesson"}
-                // onClick={(e) => this.setState({ page: "lesson" })}
-                >
-                  Новый урок
-                </Span>{" "}
-              </Title>
-              <CreateLes id={id} />
-            </Container>
-          </Width>
-        </AreYouATeacher>
-      </PleaseSignIn>
-    );
-  }
-}
+export default CreateLesson;

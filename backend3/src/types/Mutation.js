@@ -56,7 +56,10 @@ const Mutation = mutationType({
       },
       resolve: async (_, { email, password }, ctx) => {
         // 1. check if there is a user with that email
-        const user = await ctx.prisma.user.findOne({ where: { email } });
+        const low_email = email.toLowerCase();
+        const user = await ctx.prisma.user.findOne({
+          where: { email: low_email },
+        });
         if (!user) {
           throw new Error(`No such user found for email ${email}`);
         }
@@ -106,6 +109,122 @@ const Mutation = mutationType({
           },
         });
         return coursePage;
+      },
+    });
+    t.field("createCourseVisit", {
+      type: "CourseVisit",
+      args: {
+        visitsNumber: intArg(),
+        coursePageId: stringArg(),
+      },
+      resolve: async (_, { visitsNumber, coursePageId }, ctx) => {
+        const courseVisit = await ctx.prisma.courseVisit.create({
+          data: {
+            coursePage: {
+              connect: {
+                id: coursePageId,
+              },
+            },
+            student: {
+              connect: {
+                id: ctx.request.userId,
+              },
+            },
+            visitsNumber,
+          },
+        });
+        return courseVisit;
+      },
+    });
+    t.field("updateCourseVisit", {
+      type: "CourseVisit",
+      args: {
+        visitsNumber: intArg(),
+        id: stringArg(),
+      },
+      resolve: async (_, { visitsNumber, id }, ctx) => {
+        const courseVisit = await ctx.prisma.courseVisit.update({
+          where: { id },
+          data: { visitsNumber },
+        });
+        return courseVisit;
+      },
+    });
+    t.field("createLesson", {
+      type: "Lesson",
+      args: {
+        number: intArg(),
+        name: stringArg(),
+        text: stringArg(),
+        description: stringArg(),
+        coursePageID: stringArg(),
+      },
+      resolve: async (_, args, ctx) => {
+        const Lesson = await ctx.prisma.lesson.create({
+          data: {
+            user: {
+              connect: { id: ctx.request.userId },
+            },
+            coursePage: {
+              connect: { id: args.coursePageID },
+            },
+            ...args,
+          },
+        });
+        return Lesson;
+      },
+    });
+    t.field("updatePublished", {
+      type: "Lesson",
+      args: {
+        id: stringArg(),
+        published: booleanArg(),
+      },
+      resolve: async (_, args, ctx) => {
+        const published = await ctx.prisma.lesson.update({
+          data: { published: args.published },
+          where: {
+            id: args.id,
+          },
+        });
+        return published;
+      },
+    });
+    t.field("createLessonResult", {
+      type: "LessonResult",
+      args: {
+        visitsNumber: intArg(),
+        lessonID: stringArg(),
+      },
+      resolve: async (_, args, ctx) => {
+        const LessonResult = await ctx.prisma.lessonResult.create({
+          data: {
+            student: {
+              connect: { id: ctx.request.userId },
+            },
+            lesson: {
+              connect: { id: args.lessonID },
+            },
+            ...args,
+          },
+        });
+        return LessonResult;
+      },
+    });
+    t.field("updateLessonResult", {
+      type: "LessonResult",
+      args: {
+        id: stringArg(),
+        visitsNumber: intArg(),
+      },
+      resolve: async (_, args, ctx) => {
+        const updatedLessonResult = await ctx.prisma.lessonResult.update({
+          data: { visitsNumber: args.visitsNumber },
+          where: {
+            id: args.id,
+          },
+        });
+        return updatedLessonResult;
       },
     });
   },

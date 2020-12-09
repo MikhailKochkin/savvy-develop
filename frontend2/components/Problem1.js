@@ -5,8 +5,18 @@ import { Bar } from "react-chartjs-2";
 
 const Styles = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+  padding: 3% 0;
+  background: #f4f4f4;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
   button {
     width: 150px;
     margin: 20px 0;
@@ -14,15 +24,42 @@ const Styles = styled.div`
 `;
 
 const Data = styled.div`
-  width: 40%;
+  flex-basis: 40%;
+  margin-right: 3%;
+  border-radius: 5px;
+  padding: 3%;
+  background: #fff;
+  .explain {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 `;
 
 const Graphics = styled.div`
-  width: 60%;
+  flex-basis: 60%;
+  border-radius: 5px;
+  padding: 3%;
+  background: #fff;
+  .explain {
+    font-weight: bold;
+  }
+  .bar {
+    /* width: 100%; */
+  }
+`;
+
+const Result = styled.div`
+  background: #27b353;
+  color: white;
+  width: 40%;
+  text-align: center;
+  padding: 2%;
+  display: inline-block;
+  border-radius: 15px;
 `;
 
 const Simulator = (props) => {
-  const [goal, setGoal] = useState(20);
+  const [goal, setGoal] = useState(200);
   const [result, setResult] = useState(0);
   const [chosenMeans, setChosenMeans] = useState([]);
   const [chosenMeans2, setChosenMeans2] = useState([]);
@@ -188,52 +225,63 @@ const Simulator = (props) => {
   };
   return (
     <Styles>
-      <Data>
-        <p>
-           Общая ценность инструментов: {result}
-          {result >= goal ? " Well done!" : null}
-        </p>
-        {means.map((el) => (
-          <Tool
-            key={el.id}
-            num={el.id}
-            type={el.type}
-            name={el.name}
-            value={el.value}
-            means={means}
-            formula={el.formula ? el.formula : null}
-            onChoose={onChoose}
-          />
-        ))}
-        <button onClick={(e) => sum()}>Считать</button>
-      </Data>
-      <Graphics>
-        {/* <h2>Bar Example (custom size)</h2> */}
-        <Bar
-          data={data}
-          width={100}
-          height={50}
-          options={{
-            maintainAspectRatio: false,
-            legend: {
-              display: true,
-            },
-            scales: {
-              xAxes: [{ display: true }],
-              yAxes: [
-                {
-                  display: true,
-                  ticks: {
-                    beginAtZero: true,
+      <Container>
+        <Data>
+          <div className="explain">Данные:</div>
+          <div>
+            В этом сезоне это уже вторая очная встреча команд. Первый матч
+            проходил на стадии 1/8 финала Кубка английской лиги. Встреча
+            проходила 29 сентября на стадионе «Тоттенхэм Хотспур» и завершилась
+            победой «шпор» (1:1, 5:4 по пенальти).
+          </div>
+          <div className="explain">Инструменты:</div>
+          {means.map((el) => (
+            <Tool
+              key={el.id}
+              num={el.id}
+              type={el.type}
+              name={el.name}
+              value={el.value}
+              means={means}
+              formula={el.formula ? el.formula : null}
+              onChoose={onChoose}
+            />
+          ))}
+          <button onClick={(e) => sum()}>Считать</button>
+          <br />
+
+          {result >= goal ? <Result>Верно</Result> : null}
+        </Data>
+        <Graphics>
+          <div className="explain">Результаты:</div>
+          <p> Общая ценность инструментов: {result}</p>
+          <Bar
+            data={data}
+            width={100}
+            height={50}
+            options={{
+              maintainAspectRatio: false,
+              legend: {
+                display: true,
+              },
+              scales: {
+                xAxes: [{ display: true }],
+                yAxes: [
+                  {
+                    display: true,
+                    ticks: {
+                      beginAtZero: true,
+                    },
                   },
-                },
-              ],
-            },
-          }}
-        />
-        {availableFeedback.length > 0 &&
-          availableFeedback.map((a) => <li>{a}</li>)}
-      </Graphics>
+                ],
+              },
+            }}
+          />
+          <div className="explain">Инсайты:</div>
+          {availableFeedback.length > 0 &&
+            availableFeedback.map((a) => <li>{a}</li>)}
+        </Graphics>
+      </Container>
     </Styles>
   );
 };

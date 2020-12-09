@@ -1,70 +1,66 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Problem1 from "../components/Problem1";
-import dynamic from "next/dynamic";
-
-const DynamicProblem = dynamic(import(".././components/Problem2"), {
-  loading: () => <p>...</p>,
-  ssr: false,
-});
+import Problem2 from "../components/Problem2";
 
 const Styles = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap&subset=cyrillic");
   display: flex;
   flex-direction: column;
+  padding: 4% 0;
   width: 100%;
   line-height: 1.8;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat", sans-serif;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  align-items: center;
-  justify-content: center;
-  padding: 3%;
+  font-family: "Montserrat";
 `;
 
 const Intro = styled.div`
-  div {
-    margin: 30px 0;
+  padding: 3%;
+  width: 50%;
+  .header {
+    margin-bottom: 10px;
   }
+`;
+
+const Steps = styled.div`
+  padding: 3%;
+  width: 100%;
 `;
 
 const Data = () => {
   const [completed, setCompleted] = useState([false, false]);
   const intro = {
-    header: "Симулятор принятия решений",
-    text:
-      "Авиакомпания S7 Airlines, которая в апреле—октябре 2020 года лидировала в России по количеству перевезенных пассажиров, с 1 марта 2021 года изменит оплату труда членов летных экипажей сроком на два года. Об этом говорится в письме гендиректора авиакомпании Вадима Клебанова, которое он отправил 18 ноября председателям профсоюзных организаций. У РБК есть копия письма, его подлинность подтвердил представитель авиакомпании.",
-    question: "какие каналы продаж стоит использовать в нашем случае?",
+    header: "Симулятор принятия решений: поиск новых рекламных каналов",
+    text: `Авиакомпания S11, которая в 2016-2020 годах лидировала в России по количеству 
+  перевезенных пассажиров, с марта 2020 года начала терять пассажиров. 
+  Безусловно, первичным фактором, оказавшим влияние на это падение, 
+  стада пандемия. Тем не менее, еще одной причиной стал низкий уровень 
+  использования онлайн инструментов рекламы и продаж. Теперь компания поняла, 
+  что необходимо приоретизировать электронные инструменты торговли`,
+    question:
+      "какие каналы продаж стоит использовать S11 для повышения выручки компании?",
   };
   const getData = (data, index) => {
-    console.log(data, index);
     let new_completed = completed;
     new_completed[index] = true;
-    console.log(new_completed);
     setCompleted([...new_completed]);
   };
   return (
     <Styles>
-      <Container>
-        <Intro>
-          <h3>{intro.header}</h3>
-          <div>{intro.text}</div>
-          <div>
-            <b>Примите решение: </b>
-            {intro.question}
-          </div>
-        </Intro>
+      <Intro>
+        <div className="header">{intro.header}</div>
+        <p>{intro.text}</p>
+        <p>
+          <b>Примите решение: </b>
+          {intro.question}
+        </p>
+      </Intro>
+      <Steps>
         <Problem1 getData={getData} index={0} />
-        {/* <Problem2 getData={getData} index={1} /> */}
-        <DynamicProblem getData={getData} index={1} />
+        <Problem2 getData={getData} index={1} />
         {!completed.includes(false) && <div>Задание выполнено!</div>}
-      </Container>
+      </Steps>
     </Styles>
   );
 };

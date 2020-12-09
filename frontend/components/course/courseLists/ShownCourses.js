@@ -7,7 +7,10 @@ import LoadingDummy from "../LoadingDummy";
 
 const COURSE_PAGES_QUERY = gql`
   query COURSE_PAGES_QUERY {
-    coursePages {
+    coursePages(
+      where: { published: { equals: true } }
+      orderBy: { createdAt: desc }
+    ) {
       id
       title
       description

@@ -10,12 +10,11 @@ const CURRENT_USER_QUERY = gql`
       email
       name
       surname
-      # permissions
-      # subjects
-      # courseVisits {
-      #   id
-      #   reminders
-      # }
+      permissions
+      courseVisits {
+        id
+        reminders
+      }
       # teacherFeedback {
       #   id
       #   text
@@ -36,13 +35,13 @@ const CURRENT_USER_QUERY = gql`
       #     name
       #   }
       # }
-      # new_subjects {
-      #   id
-      # }
-      # company {
-      #   id
-      #   name
-      # }
+      new_subjects {
+        id
+      }
+      company {
+        id
+        name
+      }
       status
       # lessonResults {
       #   id
@@ -76,12 +75,12 @@ const CURRENT_USER_QUERY = gql`
       # coverLetter
       # resume
       # visitedLessons
-      # coursePages {
-      #   id
-      # }
-      # lessons {
-      #   id
-      # }
+      coursePages {
+        id
+      }
+      lessons {
+        id
+      }
       # careerTrack {
       #   id
       # }
@@ -104,7 +103,6 @@ const CURRENT_USER_QUERY = gql`
 
 function useUser() {
   const { data, loading, error } = useQuery(CURRENT_USER_QUERY);
-  console.log(data);
   if (data) {
     return data.me;
   }
