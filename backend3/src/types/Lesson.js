@@ -50,6 +50,8 @@ const LessonResults = objectType({
   definition(t) {
     t.model.id();
     t.model.student();
+    t.model.lesson();
+    t.model.progress();
     t.model.visitsNumber();
     t.model.lessonID();
     t.model.createdAt();

@@ -8,4 +8,9 @@ module.exports = {
   ...require("./Lesson"),
   ...require("./Application"),
   ...require("./Exercises"),
+  ...require("./Results"),
+  ...require("./NextType"),
+  ...require("./Order"),
+  ...require("./Enums"),
+  ...require("./Post"),
 };

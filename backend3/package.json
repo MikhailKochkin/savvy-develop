@@ -9,19 +9,24 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@prisma/cli": "^2.11.0"
+    "@prisma/cli": "^2.13.1",
+    "@prisma/client": "^2.13.1"
   },
   "dependencies": {
-    "@nexus/schema": "^0.18.0",
-    "@prisma/client": "^2.11.0",
+    "@nexus/schema": "^0.19.2",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
+    "graphql": "^15.4.0",
+    "graphql-scalars": "^1.6.1",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
-    "nexus-plugin-prisma": "^0.24.0",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0",
     "nodemon": "^2.0.6",
-    "throng": "^5.0.0"
+    "postmark": "^2.6.1",
+    "throng": "^5.0.0",
+    "yandex-checkout": "^1.0.13"
   },
   "description": ""
 }

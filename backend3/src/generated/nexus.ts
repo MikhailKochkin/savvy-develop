@@ -8,10 +8,15 @@ import { core, connectionPluginCore } from "@nexus/schema"
 
 declare global {
   interface NexusGenCustomOutputMethods<TypeName extends string> {
+    /**
+     * Adds a Relay-style connection to the type, with numerous options for configuration
+     *
+     * @see https://nexusjs.org/docs/plugins/connection
+     */
     connectionField<FieldName extends string>(
-            fieldName: FieldName, 
-            config: connectionPluginCore.ConnectionFieldConfig<TypeName, FieldName> 
-          ): void
+      fieldName: FieldName,
+      config: connectionPluginCore.ConnectionFieldConfig<TypeName, FieldName>
+    ): void
   }
 }
 declare global {
@@ -139,6 +144,9 @@ export interface NexusGenInputs {
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
+  ClauseWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   CompanyWhereInput: { // input type
     AND?: NexusGenInputs['CompanyWhereInput'][] | null; // [CompanyWhereInput!]
     coursePages?: NexusGenInputs['CoursePageListRelationFilter'] | null; // CoursePageListRelationFilter
@@ -180,6 +188,9 @@ export interface NexusGenInputs {
     studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
+  ConstructionResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ConstructionWhereInput: { // input type
     AND?: NexusGenInputs['ConstructionWhereInput'][] | null; // [ConstructionWhereInput!]
     answer?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
@@ -198,6 +209,9 @@ export interface NexusGenInputs {
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     variants?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+  }
+  ConstructionWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   CoursePageListRelationFilter: { // input type
     every?: NexusGenInputs['CoursePageWhereInput'] | null; // CoursePageWhereInput
@@ -370,6 +384,9 @@ export interface NexusGenInputs {
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
   }
+  DocumentResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   DocumentWhereInput: { // input type
     AND?: NexusGenInputs['DocumentWhereInput'][] | null; // [DocumentWhereInput!]
     clauses?: NexusGenInputs['ClauseListRelationFilter'] | null; // ClauseListRelationFilter
@@ -384,6 +401,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  DocumentWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   EnumCourseTypeNullableFilter: { // input type
     equals?: NexusGenEnums['CourseType'] | null; // CourseType
@@ -420,6 +440,9 @@ export interface NexusGenInputs {
     text?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
+  FeedbackWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   FloatNullableFilter: { // input type
     equals?: number | null; // Float
     gt?: number | null; // Float
@@ -440,6 +463,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    lessonId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     NOT?: NexusGenInputs['ForumWhereInput'][] | null; // [ForumWhereInput!]
     OR?: NexusGenInputs['ForumWhereInput'][] | null; // [ForumWhereInput!]
     rating?: NexusGenInputs['RatingListRelationFilter'] | null; // RatingListRelationFilter
@@ -488,6 +512,10 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
+  LessonItem: { // input type
+    id?: string | null; // String
+    type?: string | null; // String
+  }
   LessonListRelationFilter: { // input type
     every?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
     none?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
@@ -515,6 +543,9 @@ export interface NexusGenInputs {
   }
   LessonResultWhereUniqueInput: { // input type
     id?: string | null; // String
+  }
+  LessonStructure: { // input type
+    lessonItems?: Array<NexusGenInputs['LessonItem'] | null> | null; // [LessonItem]
   }
   LessonWhereInput: { // input type
     AND?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
@@ -689,6 +720,18 @@ export interface NexusGenInputs {
   NewTestWhereUniqueInput: { // input type
     id?: string | null; // String
   }
+  NextFalseType: { // input type
+    type?: string | null; // String
+    value?: string | null; // String
+  }
+  NextTrueType: { // input type
+    type?: string | null; // String
+    value?: string | null; // String
+  }
+  NextType: { // input type
+    false?: NexusGenInputs['NextFalseType'] | null; // NextFalseType
+    true?: NexusGenInputs['NextTrueType'] | null; // NextTrueType
+  }
   NoteListRelationFilter: { // input type
     every?: NexusGenInputs['NoteWhereInput'] | null; // NoteWhereInput
     none?: NexusGenInputs['NoteWhereInput'] | null; // NoteWhereInput
@@ -717,6 +760,19 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
     some?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
   }
+  OrderOrderByInput: { // input type
+    comment?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    coursePageId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isPaid?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    level?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    paymentID?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    price?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    promocode?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
   OrderWhereInput: { // input type
     AND?: NexusGenInputs['OrderWhereInput'][] | null; // [OrderWhereInput!]
     comment?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
@@ -735,10 +791,23 @@ export interface NexusGenInputs {
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
+  OrderWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   PostListRelationFilter: { // input type
     every?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
     none?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
     some?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
+  }
+  PostOrderByInput: { // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    likes?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    tags?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    title?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   PostWhereInput: { // input type
     AND?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
@@ -754,6 +823,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  PostWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   ProblemListRelationFilter: { // input type
     every?: NexusGenInputs['ProblemWhereInput'] | null; // ProblemWhereInput
@@ -783,6 +855,9 @@ export interface NexusGenInputs {
     studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
+  ProblemResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ProblemWhereInput: { // input type
     AND?: NexusGenInputs['ProblemWhereInput'][] | null; // [ProblemWhereInput!]
     answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
@@ -804,6 +879,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  ProblemWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   QuizListRelationFilter: { // input type
     every?: NexusGenInputs['QuizWhereInput'] | null; // QuizWhereInput
@@ -832,6 +910,9 @@ export interface NexusGenInputs {
     student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  QuizResultWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   QuizWhereInput: { // input type
     AND?: NexusGenInputs['QuizWhereInput'][] | null; // [QuizWhereInput!]
@@ -875,6 +956,9 @@ export interface NexusGenInputs {
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
   }
+  RatingWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ShotListRelationFilter: { // input type
     every?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
     none?: NexusGenInputs['ShotWhereInput'] | null; // ShotWhereInput
@@ -901,6 +985,9 @@ export interface NexusGenInputs {
     student?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     studentId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  ShotResultWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   ShotWhereInput: { // input type
     AND?: NexusGenInputs['ShotWhereInput'][] | null; // [ShotWhereInput!]
@@ -939,6 +1026,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  StatementWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   StringFilter: { // input type
     contains?: string | null; // String
@@ -994,6 +1084,9 @@ export interface NexusGenInputs {
     testID?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
+  TestResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   TextEditorListRelationFilter: { // input type
     every?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
     none?: NexusGenInputs['TextEditorWhereInput'] | null; // TextEditorWhereInput
@@ -1023,6 +1116,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     wrong?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
+  TextEditorResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   TextEditorWhereInput: { // input type
     AND?: NexusGenInputs['TextEditorWhereInput'][] | null; // [TextEditorWhereInput!]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
@@ -1039,6 +1135,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     userId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  TextEditorWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   UniWhereInput: { // input type
     AND?: NexusGenInputs['UniWhereInput'][] | null; // [UniWhereInput!]
@@ -1165,7 +1264,7 @@ export interface NexusGenScalars {
   Json: any
 }
 
-export interface NexusGenRootTypes {
+export interface NexusGenObjects {
   Application: { // root type
     applicantId: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1176,9 +1275,45 @@ export interface NexusGenRootTypes {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  Clause: { // root type
+    commentary: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    documentId: string; // String!
+    id: string; // String!
+    keywords: string[]; // [String!]!
+    number: number; // Int!
+    sample?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
   Company: { // root type
     id: string; // String!
     name: string; // String!
+  }
+  Construction: { // root type
+    answer: string[]; // [String!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    hint?: string | null; // String
+    id: string; // String!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    name: string; // String!
+    type: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+    variants: string[]; // [String!]!
+  }
+  ConstructionResult: { // root type
+    answer?: string | null; // String
+    constructionId?: string | null; // String
+    constructionID?: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    inputs: string[]; // [String!]!
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   CoursePage: { // root type
     audience?: string | null; // String
@@ -1216,6 +1351,40 @@ export interface NexusGenRootTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     visitsNumber?: number | null; // Int
   }
+  Document: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId: string; // String!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  DocumentResult: { // root type
+    answers: string[]; // [String!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    documentId?: string | null; // String
+    drafts: string[]; // [String!]!
+    id: string; // String!
+    lessonId?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Feedback: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    studentId: string; // String!
+    teacherId: string; // String!
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Forum: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    text?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: string | null; // String
+  }
   Lesson: { // root type
     challenge_num?: number | null; // Int
     change?: string | null; // String
@@ -1240,6 +1409,7 @@ export interface NexusGenRootTypes {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     lessonID?: string | null; // String
+    progress?: number | null; // Int
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     visitsNumber?: number | null; // Int
   }
@@ -1269,6 +1439,54 @@ export interface NexusGenRootTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     userId?: string | null; // String
   }
+  Order: { // root type
+    comment?: string | null; // String
+    coursePageId: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    isPaid?: boolean | null; // Boolean
+    level?: NexusGenEnums['Level'] | null; // Level
+    paymentID?: string | null; // String
+    price?: number | null; // Int
+    promocode?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  PaymentInfo: { // root type
+    order?: NexusGenRootTypes['Order'] | null; // Order
+    url?: string | null; // String
+  }
+  Post: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    likes?: number | null; // Int
+    tags: string[]; // [String!]!
+    text?: string | null; // String
+    title?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  Problem: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    nodeID?: string | null; // String
+    nodeType?: string | null; // String
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  ProblemResult: { // root type
+    answer?: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    revealed: string[]; // [String!]!
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   Query: {};
   Quiz: { // root type
     answer: string; // String!
@@ -1285,18 +1503,89 @@ export interface NexusGenRootTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     userId: string; // String!
   }
+  QuizResult: { // root type
+    answer?: string | null; // String
+    correct?: boolean | null; // Boolean
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    quizId?: string | null; // String
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Rating: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    forumId?: string | null; // String
+    id: string; // String!
+    rating?: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: string | null; // String
+  }
   Shot: { // root type
     comments: string[]; // [String!]!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     lessonId?: string | null; // String
+    lessonID?: string | null; // String
     parts: string[]; // [String!]!
     title: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     userId: string; // String!
   }
+  ShotResult: { // root type
+    answer: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    shotId?: string | null; // String
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   SignOut: { // root type
     message?: string | null; // String
+  }
+  Statement: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    forumId?: string | null; // String
+    id: string; // String!
+    text?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: string | null; // String
+  }
+  TestResult: { // root type
+    answer?: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId?: string | null; // String
+    lessonID?: string | null; // String
+    studentId: string; // String!
+    testId?: string | null; // String
+    testID?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  TextEditor: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    name: string; // String!
+    text: string; // String!
+    totalMistakes?: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: string; // String!
+  }
+  TextEditorResult: { // root type
+    correct: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    guess: string; // String!
+    id: string; // String!
+    lessonId?: string | null; // String
+    result?: boolean | null; // Boolean
+    studentId: string; // String!
+    textEditorId?: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    wrong: string; // String!
   }
   Uni: { // root type
     capacity?: number | null; // Int
@@ -1308,6 +1597,7 @@ export interface NexusGenRootTypes {
     description?: string | null; // String
     email: string; // String!
     id: string; // String!
+    interests: string[]; // [String!]!
     name: string; // String!
     password: string; // String!
     permissions: NexusGenEnums['Permission'][]; // [Permission!]!
@@ -1317,128 +1607,15 @@ export interface NexusGenRootTypes {
   }
 }
 
-export interface NexusGenAllTypes extends NexusGenRootTypes {
-  ApplicationListRelationFilter: NexusGenInputs['ApplicationListRelationFilter'];
-  ApplicationWhereInput: NexusGenInputs['ApplicationWhereInput'];
-  ApplicationWhereUniqueInput: NexusGenInputs['ApplicationWhereUniqueInput'];
-  BoolFilter: NexusGenInputs['BoolFilter'];
-  BoolNullableFilter: NexusGenInputs['BoolNullableFilter'];
-  BoolNullableListFilter: NexusGenInputs['BoolNullableListFilter'];
-  CareerTrackListRelationFilter: NexusGenInputs['CareerTrackListRelationFilter'];
-  CareerTrackUnitListRelationFilter: NexusGenInputs['CareerTrackUnitListRelationFilter'];
-  CareerTrackUnitWhereInput: NexusGenInputs['CareerTrackUnitWhereInput'];
-  CareerTrackWhereInput: NexusGenInputs['CareerTrackWhereInput'];
-  ChallengeResultListRelationFilter: NexusGenInputs['ChallengeResultListRelationFilter'];
-  ChallengeResultWhereInput: NexusGenInputs['ChallengeResultWhereInput'];
-  ClauseListRelationFilter: NexusGenInputs['ClauseListRelationFilter'];
-  ClauseWhereInput: NexusGenInputs['ClauseWhereInput'];
-  CompanyWhereInput: NexusGenInputs['CompanyWhereInput'];
-  ConstructionListRelationFilter: NexusGenInputs['ConstructionListRelationFilter'];
-  ConstructionResultListRelationFilter: NexusGenInputs['ConstructionResultListRelationFilter'];
-  ConstructionResultWhereInput: NexusGenInputs['ConstructionResultWhereInput'];
-  ConstructionWhereInput: NexusGenInputs['ConstructionWhereInput'];
-  CoursePageListRelationFilter: NexusGenInputs['CoursePageListRelationFilter'];
-  CoursePageOrderByInput: NexusGenInputs['CoursePageOrderByInput'];
-  CoursePageWhereInput: NexusGenInputs['CoursePageWhereInput'];
-  CoursePageWhereUniqueInput: NexusGenInputs['CoursePageWhereUniqueInput'];
-  CourseVisitListRelationFilter: NexusGenInputs['CourseVisitListRelationFilter'];
-  CourseVisitOrderByInput: NexusGenInputs['CourseVisitOrderByInput'];
-  CourseVisitWhereInput: NexusGenInputs['CourseVisitWhereInput'];
-  CourseVisitWhereUniqueInput: NexusGenInputs['CourseVisitWhereUniqueInput'];
-  DateTimeFilter: NexusGenInputs['DateTimeFilter'];
-  DateTimeNullableFilter: NexusGenInputs['DateTimeNullableFilter'];
-  DateTimeNullableListFilter: NexusGenInputs['DateTimeNullableListFilter'];
-  DocumentListRelationFilter: NexusGenInputs['DocumentListRelationFilter'];
-  DocumentResultListRelationFilter: NexusGenInputs['DocumentResultListRelationFilter'];
-  DocumentResultWhereInput: NexusGenInputs['DocumentResultWhereInput'];
-  DocumentWhereInput: NexusGenInputs['DocumentWhereInput'];
-  EnumCourseTypeNullableFilter: NexusGenInputs['EnumCourseTypeNullableFilter'];
-  EnumLevelNullableFilter: NexusGenInputs['EnumLevelNullableFilter'];
-  EnumPermissionNullableListFilter: NexusGenInputs['EnumPermissionNullableListFilter'];
-  FeedbackListRelationFilter: NexusGenInputs['FeedbackListRelationFilter'];
-  FeedbackWhereInput: NexusGenInputs['FeedbackWhereInput'];
-  FloatNullableFilter: NexusGenInputs['FloatNullableFilter'];
-  ForumListRelationFilter: NexusGenInputs['ForumListRelationFilter'];
-  ForumWhereInput: NexusGenInputs['ForumWhereInput'];
-  IntFilter: NexusGenInputs['IntFilter'];
-  IntNullableFilter: NexusGenInputs['IntNullableFilter'];
-  JsonNullableFilter: NexusGenInputs['JsonNullableFilter'];
-  JsonNullableListFilter: NexusGenInputs['JsonNullableListFilter'];
-  LegalPortfolioWhereInput: NexusGenInputs['LegalPortfolioWhereInput'];
-  LessonListRelationFilter: NexusGenInputs['LessonListRelationFilter'];
-  LessonResultListRelationFilter: NexusGenInputs['LessonResultListRelationFilter'];
-  LessonResultWhereInput: NexusGenInputs['LessonResultWhereInput'];
-  LessonResultWhereUniqueInput: NexusGenInputs['LessonResultWhereUniqueInput'];
-  LessonWhereInput: NexusGenInputs['LessonWhereInput'];
-  LessonWhereUniqueInput: NexusGenInputs['LessonWhereUniqueInput'];
-  NestedBoolFilter: NexusGenInputs['NestedBoolFilter'];
-  NestedBoolNullableFilter: NexusGenInputs['NestedBoolNullableFilter'];
-  NestedDateTimeFilter: NexusGenInputs['NestedDateTimeFilter'];
-  NestedDateTimeNullableFilter: NexusGenInputs['NestedDateTimeNullableFilter'];
-  NestedEnumCourseTypeNullableFilter: NexusGenInputs['NestedEnumCourseTypeNullableFilter'];
-  NestedEnumLevelNullableFilter: NexusGenInputs['NestedEnumLevelNullableFilter'];
-  NestedFloatNullableFilter: NexusGenInputs['NestedFloatNullableFilter'];
-  NestedIntFilter: NexusGenInputs['NestedIntFilter'];
-  NestedIntNullableFilter: NexusGenInputs['NestedIntNullableFilter'];
-  NestedStringFilter: NexusGenInputs['NestedStringFilter'];
-  NestedStringNullableFilter: NexusGenInputs['NestedStringNullableFilter'];
-  NewTestListRelationFilter: NexusGenInputs['NewTestListRelationFilter'];
-  NewTestWhereInput: NexusGenInputs['NewTestWhereInput'];
-  NewTestWhereUniqueInput: NexusGenInputs['NewTestWhereUniqueInput'];
-  NoteListRelationFilter: NexusGenInputs['NoteListRelationFilter'];
-  NoteWhereInput: NexusGenInputs['NoteWhereInput'];
-  NoteWhereUniqueInput: NexusGenInputs['NoteWhereUniqueInput'];
-  OrderListRelationFilter: NexusGenInputs['OrderListRelationFilter'];
-  OrderWhereInput: NexusGenInputs['OrderWhereInput'];
-  PostListRelationFilter: NexusGenInputs['PostListRelationFilter'];
-  PostWhereInput: NexusGenInputs['PostWhereInput'];
-  ProblemListRelationFilter: NexusGenInputs['ProblemListRelationFilter'];
-  ProblemResultListRelationFilter: NexusGenInputs['ProblemResultListRelationFilter'];
-  ProblemResultWhereInput: NexusGenInputs['ProblemResultWhereInput'];
-  ProblemWhereInput: NexusGenInputs['ProblemWhereInput'];
-  QuizListRelationFilter: NexusGenInputs['QuizListRelationFilter'];
-  QuizResultListRelationFilter: NexusGenInputs['QuizResultListRelationFilter'];
-  QuizResultWhereInput: NexusGenInputs['QuizResultWhereInput'];
-  QuizWhereInput: NexusGenInputs['QuizWhereInput'];
-  QuizWhereUniqueInput: NexusGenInputs['QuizWhereUniqueInput'];
-  RatingListRelationFilter: NexusGenInputs['RatingListRelationFilter'];
-  RatingWhereInput: NexusGenInputs['RatingWhereInput'];
-  ShotListRelationFilter: NexusGenInputs['ShotListRelationFilter'];
-  ShotResultListRelationFilter: NexusGenInputs['ShotResultListRelationFilter'];
-  ShotResultWhereInput: NexusGenInputs['ShotResultWhereInput'];
-  ShotWhereInput: NexusGenInputs['ShotWhereInput'];
-  ShotWhereUniqueInput: NexusGenInputs['ShotWhereUniqueInput'];
-  StatementListRelationFilter: NexusGenInputs['StatementListRelationFilter'];
-  StatementWhereInput: NexusGenInputs['StatementWhereInput'];
-  StringFilter: NexusGenInputs['StringFilter'];
-  StringNullableFilter: NexusGenInputs['StringNullableFilter'];
-  StringNullableListFilter: NexusGenInputs['StringNullableListFilter'];
-  TestResultListRelationFilter: NexusGenInputs['TestResultListRelationFilter'];
-  TestResultWhereInput: NexusGenInputs['TestResultWhereInput'];
-  TextEditorListRelationFilter: NexusGenInputs['TextEditorListRelationFilter'];
-  TextEditorResultListRelationFilter: NexusGenInputs['TextEditorResultListRelationFilter'];
-  TextEditorResultWhereInput: NexusGenInputs['TextEditorResultWhereInput'];
-  TextEditorWhereInput: NexusGenInputs['TextEditorWhereInput'];
-  UniWhereInput: NexusGenInputs['UniWhereInput'];
-  UserCoursePagesOrderByInput: NexusGenInputs['UserCoursePagesOrderByInput'];
-  UserLevelWhereInput: NexusGenInputs['UserLevelWhereInput'];
-  UserListRelationFilter: NexusGenInputs['UserListRelationFilter'];
-  UserWhereInput: NexusGenInputs['UserWhereInput'];
-  UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
-  CourseType: NexusGenEnums['CourseType'];
-  Level: NexusGenEnums['Level'];
-  Permission: NexusGenEnums['Permission'];
-  QueryMode: NexusGenEnums['QueryMode'];
-  SortOrder: NexusGenEnums['SortOrder'];
-  Status: NexusGenEnums['Status'];
-  String: NexusGenScalars['String'];
-  Int: NexusGenScalars['Int'];
-  Float: NexusGenScalars['Float'];
-  Boolean: NexusGenScalars['Boolean'];
-  ID: NexusGenScalars['ID'];
-  DateTime: NexusGenScalars['DateTime'];
-  Json: NexusGenScalars['Json'];
+export interface NexusGenInterfaces {
 }
+
+export interface NexusGenUnions {
+}
+
+export type NexusGenRootTypes = NexusGenObjects
+
+export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
   Application: { // field return type
@@ -1451,9 +1628,53 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  Clause: { // field return type
+    commentary: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    document: NexusGenRootTypes['Document']; // Document!
+    documentId: string; // String!
+    id: string; // String!
+    keywords: string[]; // [String!]!
+    number: number; // Int!
+    sample: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
   Company: { // field return type
     id: string; // String!
     name: string; // String!
+  }
+  Construction: { // field return type
+    answer: string[]; // [String!]!
+    constructionResults: NexusGenRootTypes['ConstructionResult'][]; // [ConstructionResult!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    hint: string | null; // String
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    name: string; // String!
+    type: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+    variants: string[]; // [String!]!
+  }
+  ConstructionResult: { // field return type
+    answer: string | null; // String
+    construction: NexusGenRootTypes['Construction'] | null; // Construction
+    constructionId: string | null; // String
+    constructionID: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    inputs: string[]; // [String!]!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   CoursePage: { // field return type
     applications: NexusGenRootTypes['Application'][]; // [Application!]!
@@ -1500,14 +1721,65 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     visitsNumber: number | null; // Int
   }
+  Document: { // field return type
+    clauses: NexusGenRootTypes['Clause'][]; // [Clause!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    documentResults: NexusGenRootTypes['DocumentResult'][]; // [DocumentResult!]!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
+    lessonId: string; // String!
+    title: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  DocumentResult: { // field return type
+    answers: string[]; // [String!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    document: NexusGenRootTypes['Document'] | null; // Document
+    documentId: string | null; // String
+    drafts: string[]; // [String!]!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Feedback: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    teacher: NexusGenRootTypes['User']; // User!
+    teacherId: string; // String!
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Forum: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    rating: NexusGenRootTypes['Rating'][]; // [Rating!]!
+    statements: NexusGenRootTypes['Statement'][]; // [Statement!]!
+    text: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: string | null; // String
+  }
   Lesson: { // field return type
     challenge_num: number | null; // Int
     change: string | null; // String
+    constructionResults: NexusGenRootTypes['ConstructionResult'][]; // [ConstructionResult!]!
+    constructions: NexusGenRootTypes['Construction'][]; // [Construction!]!
     coursePage: NexusGenRootTypes['CoursePage']; // CoursePage!
     coursePageId: string; // String!
     coursePageID: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     description: string | null; // String
+    documents: NexusGenRootTypes['Document'][]; // [Document!]!
+    forum: NexusGenRootTypes['Forum'] | null; // Forum
     forumId: string | null; // String
     id: string; // String!
     lessonResults: NexusGenRootTypes['LessonResult'][]; // [LessonResult!]!
@@ -1517,11 +1789,18 @@ export interface NexusGenFieldTypes {
     notes: NexusGenRootTypes['Note'][]; // [Note!]!
     number: number | null; // Int
     open: boolean | null; // Boolean
+    problemResults: NexusGenRootTypes['ProblemResult'][]; // [ProblemResult!]!
+    problems: NexusGenRootTypes['Problem'][]; // [Problem!]!
     published: boolean | null; // Boolean
     quizes: NexusGenRootTypes['Quiz'][]; // [Quiz!]!
+    quizResults: NexusGenRootTypes['QuizResult'][]; // [QuizResult!]!
+    shotResults: NexusGenRootTypes['ShotResult'][]; // [ShotResult!]!
     shots: NexusGenRootTypes['Shot'][]; // [Shot!]!
     structure: NexusGenScalars['Json'] | null; // Json
+    testResults: NexusGenRootTypes['TestResult'][]; // [TestResult!]!
     text: string; // String!
+    textEditorResults: NexusGenRootTypes['TextEditorResult'][]; // [TextEditorResult!]!
+    texteditors: NexusGenRootTypes['TextEditor'][]; // [TextEditor!]!
     type: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User']; // User!
@@ -1530,22 +1809,72 @@ export interface NexusGenFieldTypes {
   LessonResult: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
     lessonID: string | null; // String
+    progress: number | null; // Int
     student: NexusGenRootTypes['User']; // User!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     visitsNumber: number | null; // Int
   }
   Mutation: { // field return type
+    createClause: NexusGenRootTypes['Clause'] | null; // Clause
+    createConstruction: NexusGenRootTypes['Construction'] | null; // Construction
+    createConstructionResult: NexusGenRootTypes['ConstructionResult'] | null; // ConstructionResult
     createCoursePage: NexusGenRootTypes['CoursePage'] | null; // CoursePage
     createCourseVisit: NexusGenRootTypes['CourseVisit'] | null; // CourseVisit
+    createDocument: NexusGenRootTypes['Document'] | null; // Document
+    createDocumentResult: NexusGenRootTypes['DocumentResult'] | null; // DocumentResult
+    createForum: NexusGenRootTypes['Forum'] | null; // Forum
     createLesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     createLessonResult: NexusGenRootTypes['LessonResult'] | null; // LessonResult
+    createNewTest: NexusGenRootTypes['NewTest'] | null; // NewTest
+    createNote: NexusGenRootTypes['Note'] | null; // Note
+    createOrder: NexusGenRootTypes['PaymentInfo'] | null; // PaymentInfo
+    createPost: NexusGenRootTypes['Post'] | null; // Post
+    createProblem: NexusGenRootTypes['Problem'] | null; // Problem
+    createProblemResult: NexusGenRootTypes['ProblemResult'] | null; // ProblemResult
+    createQuiz: NexusGenRootTypes['Quiz'] | null; // Quiz
+    createQuizResult: NexusGenRootTypes['QuizResult'] | null; // QuizResult
+    createRating: NexusGenRootTypes['Rating'] | null; // Rating
+    createShot: NexusGenRootTypes['Shot'] | null; // Shot
+    createShotResult: NexusGenRootTypes['ShotResult'] | null; // ShotResult
+    createStatement: NexusGenRootTypes['Statement'] | null; // Statement
+    createTestResult: NexusGenRootTypes['TestResult'] | null; // TestResult
+    createTextEditor: NexusGenRootTypes['TextEditor'] | null; // TextEditor
+    createTextEditorResult: NexusGenRootTypes['TextEditorResult'] | null; // TextEditorResult
+    deleteClause: NexusGenRootTypes['Clause'] | null; // Clause
+    deleteConstruction: NexusGenRootTypes['Construction'] | null; // Construction
+    deleteDocument: NexusGenRootTypes['Document'] | null; // Document
+    deleteNewTest: NexusGenRootTypes['NewTest'] | null; // NewTest
+    deleteNote: NexusGenRootTypes['Note'] | null; // Note
+    deleteOrder: NexusGenRootTypes['Order'] | null; // Order
+    deleteProblem: NexusGenRootTypes['Problem'] | null; // Problem
+    deleteQuiz: NexusGenRootTypes['Quiz'] | null; // Quiz
+    deleteShot: NexusGenRootTypes['Shot'] | null; // Shot
+    deleteStatement: NexusGenRootTypes['Statement'] | null; // Statement
+    deleteTextEditor: NexusGenRootTypes['TextEditor'] | null; // TextEditor
+    enrollOnCourse: NexusGenRootTypes['User'] | null; // User
     signin: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signout: NexusGenRootTypes['SignOut'] | null; // SignOut
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    updateClause: NexusGenRootTypes['Clause'] | null; // Clause
+    updateConstruction: NexusGenRootTypes['Construction'] | null; // Construction
+    updateCoursePage: NexusGenRootTypes['CoursePage'] | null; // CoursePage
     updateCourseVisit: NexusGenRootTypes['CourseVisit'] | null; // CourseVisit
+    updateForum: NexusGenRootTypes['Forum'] | null; // Forum
+    updateLesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     updateLessonResult: NexusGenRootTypes['LessonResult'] | null; // LessonResult
+    updateNewTest: NexusGenRootTypes['NewTest'] | null; // NewTest
+    updateNote: NexusGenRootTypes['Note'] | null; // Note
+    updateOrder: NexusGenRootTypes['Order'] | null; // Order
+    updatePost: NexusGenRootTypes['Post'] | null; // Post
+    updateProblem: NexusGenRootTypes['Problem'] | null; // Problem
     updatePublished: NexusGenRootTypes['Lesson'] | null; // Lesson
+    updateQuiz: NexusGenRootTypes['Quiz'] | null; // Quiz
+    updateRating: NexusGenRootTypes['Rating'] | null; // Rating
+    updateStatement: NexusGenRootTypes['Statement'] | null; // Statement
+    updateTextEditor: NexusGenRootTypes['TextEditor'] | null; // TextEditor
+    updateUser: NexusGenRootTypes['User'] | null; // User
   }
   NewTest: { // field return type
     answers: string[]; // [String!]!
@@ -1559,6 +1888,7 @@ export interface NexusGenFieldTypes {
     lessonID: string | null; // String
     next: NexusGenScalars['Json'] | null; // Json
     question: string[]; // [String!]!
+    testResults: NexusGenRootTypes['TestResult'][]; // [TestResult!]!
     type: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User']; // User!
@@ -1576,6 +1906,64 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
     userId: string | null; // String
   }
+  Order: { // field return type
+    comment: string | null; // String
+    coursePage: NexusGenRootTypes['CoursePage']; // CoursePage!
+    coursePageId: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    isPaid: boolean | null; // Boolean
+    level: NexusGenEnums['Level'] | null; // Level
+    paymentID: string | null; // String
+    price: number | null; // Int
+    promocode: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  PaymentInfo: { // field return type
+    order: NexusGenRootTypes['Order'] | null; // Order
+    url: string | null; // String
+  }
+  Post: { // field return type
+    coursePages: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    likes: number | null; // Int
+    tags: string[]; // [String!]!
+    text: string | null; // String
+    title: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  Problem: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    nodeID: string | null; // String
+    nodeType: string | null; // String
+    problemResults: NexusGenRootTypes['ProblemResult'][]; // [ProblemResult!]!
+    text: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  ProblemResult: { // field return type
+    answer: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    problem: NexusGenRootTypes['Problem'] | null; // Problem
+    revealed: string[]; // [String!]!
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   Query: { // field return type
     coursePage: NexusGenRootTypes['CoursePage'] | null; // CoursePage
     coursePages: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
@@ -1583,6 +1971,9 @@ export interface NexusGenFieldTypes {
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     lessonsConnection: NexusGenRootTypes['Lesson'] | null; // Lesson
     me: NexusGenRootTypes['User'] | null; // User
+    newTest: NexusGenRootTypes['NewTest'] | null; // NewTest
+    orders: NexusGenRootTypes['Order'][]; // [Order!]!
+    posts: NexusGenRootTypes['Post'][]; // [Post!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   Quiz: { // field return type
@@ -1597,10 +1988,35 @@ export interface NexusGenFieldTypes {
     lessonID: string | null; // String
     next: NexusGenScalars['Json'] | null; // Json
     question: string; // String!
+    quizResults: NexusGenRootTypes['QuizResult'][]; // [QuizResult!]!
     type: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User']; // User!
     userId: string; // String!
+  }
+  QuizResult: { // field return type
+    answer: string | null; // String
+    correct: boolean | null; // Boolean
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    quiz: NexusGenRootTypes['Quiz'] | null; // Quiz
+    quizId: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  Rating: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    forum: NexusGenRootTypes['Forum'] | null; // Forum
+    forumId: string | null; // String
+    id: string; // String!
+    rating: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: string | null; // String
   }
   Shot: { // field return type
     comments: string[]; // [String!]!
@@ -1608,14 +2024,81 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     lessonId: string | null; // String
+    lessonID: string | null; // String
     parts: string[]; // [String!]!
+    shotResults: NexusGenRootTypes['ShotResult'][]; // [ShotResult!]!
     title: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     user: NexusGenRootTypes['User']; // User!
     userId: string; // String!
   }
+  ShotResult: { // field return type
+    answer: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    shot: NexusGenRootTypes['Shot'] | null; // Shot
+    shotId: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   SignOut: { // field return type
     message: string | null; // String
+  }
+  Statement: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    forum: NexusGenRootTypes['Forum'] | null; // Forum
+    forumId: string | null; // String
+    id: string; // String!
+    text: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: string | null; // String
+  }
+  TestResult: { // field return type
+    answer: string | null; // String
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    lessonID: string | null; // String
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    test: NexusGenRootTypes['NewTest'] | null; // NewTest
+    testId: string | null; // String
+    testID: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  TextEditor: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
+    lessonId: string; // String!
+    lessonID: string; // String!
+    name: string; // String!
+    text: string; // String!
+    textEditorResults: NexusGenRootTypes['TextEditorResult'][]; // [TextEditorResult!]!
+    totalMistakes: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User']; // User!
+    userId: string; // String!
+  }
+  TextEditorResult: { // field return type
+    correct: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    guess: string; // String!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
+    lessonId: string | null; // String
+    result: boolean | null; // Boolean
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    textEditor: NexusGenRootTypes['TextEditor'] | null; // TextEditor
+    textEditorId: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    wrong: string; // String!
   }
   Uni: { // field return type
     capacity: number | null; // Int
@@ -1631,6 +2114,8 @@ export interface NexusGenFieldTypes {
     description: string | null; // String
     email: string; // String!
     id: string; // String!
+    interests: string[]; // [String!]!
+    lessonResults: NexusGenRootTypes['LessonResult'][]; // [LessonResult!]!
     lessons: NexusGenRootTypes['Lesson'][]; // [Lesson!]!
     name: string; // String!
     new_subjects: NexusGenRootTypes['CoursePage'][]; // [CoursePage!]!
@@ -1638,7 +2123,9 @@ export interface NexusGenFieldTypes {
     permissions: NexusGenEnums['Permission'][]; // [Permission!]!
     resume: string | null; // String
     status: string | null; // String
+    studentFeedback: NexusGenRootTypes['Feedback'][]; // [Feedback!]!
     surname: string | null; // String
+    teacherFeedback: NexusGenRootTypes['Feedback'][]; // [Feedback!]!
     uni: NexusGenRootTypes['Uni'] | null; // Uni
   }
 }
@@ -1654,9 +2141,53 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  Clause: { // field return type name
+    commentary: 'String'
+    createdAt: 'DateTime'
+    document: 'Document'
+    documentId: 'String'
+    id: 'String'
+    keywords: 'String'
+    number: 'Int'
+    sample: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
   Company: { // field return type name
     id: 'String'
     name: 'String'
+  }
+  Construction: { // field return type name
+    answer: 'String'
+    constructionResults: 'ConstructionResult'
+    createdAt: 'DateTime'
+    hint: 'String'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    name: 'String'
+    type: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+    variants: 'String'
+  }
+  ConstructionResult: { // field return type name
+    answer: 'String'
+    construction: 'Construction'
+    constructionId: 'String'
+    constructionID: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    inputs: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    student: 'User'
+    studentId: 'String'
+    updatedAt: 'DateTime'
   }
   CoursePage: { // field return type name
     applications: 'Application'
@@ -1703,14 +2234,65 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     visitsNumber: 'Int'
   }
+  Document: { // field return type name
+    clauses: 'Clause'
+    createdAt: 'DateTime'
+    documentResults: 'DocumentResult'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    title: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  DocumentResult: { // field return type name
+    answers: 'String'
+    createdAt: 'DateTime'
+    document: 'Document'
+    documentId: 'String'
+    drafts: 'String'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    updatedAt: 'DateTime'
+  }
+  Feedback: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    student: 'User'
+    studentId: 'String'
+    teacher: 'User'
+    teacherId: 'String'
+    text: 'String'
+    updatedAt: 'DateTime'
+  }
+  Forum: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    rating: 'Rating'
+    statements: 'Statement'
+    text: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
   Lesson: { // field return type name
     challenge_num: 'Int'
     change: 'String'
+    constructionResults: 'ConstructionResult'
+    constructions: 'Construction'
     coursePage: 'CoursePage'
     coursePageId: 'String'
     coursePageID: 'String'
     createdAt: 'DateTime'
     description: 'String'
+    documents: 'Document'
+    forum: 'Forum'
     forumId: 'String'
     id: 'String'
     lessonResults: 'LessonResult'
@@ -1720,11 +2302,18 @@ export interface NexusGenFieldTypeNames {
     notes: 'Note'
     number: 'Int'
     open: 'Boolean'
+    problemResults: 'ProblemResult'
+    problems: 'Problem'
     published: 'Boolean'
     quizes: 'Quiz'
+    quizResults: 'QuizResult'
+    shotResults: 'ShotResult'
     shots: 'Shot'
     structure: 'Json'
+    testResults: 'TestResult'
     text: 'String'
+    textEditorResults: 'TextEditorResult'
+    texteditors: 'TextEditor'
     type: 'String'
     updatedAt: 'DateTime'
     user: 'User'
@@ -1733,22 +2322,72 @@ export interface NexusGenFieldTypeNames {
   LessonResult: { // field return type name
     createdAt: 'DateTime'
     id: 'String'
+    lesson: 'Lesson'
     lessonID: 'String'
+    progress: 'Int'
     student: 'User'
     updatedAt: 'DateTime'
     visitsNumber: 'Int'
   }
   Mutation: { // field return type name
+    createClause: 'Clause'
+    createConstruction: 'Construction'
+    createConstructionResult: 'ConstructionResult'
     createCoursePage: 'CoursePage'
     createCourseVisit: 'CourseVisit'
+    createDocument: 'Document'
+    createDocumentResult: 'DocumentResult'
+    createForum: 'Forum'
     createLesson: 'Lesson'
     createLessonResult: 'LessonResult'
+    createNewTest: 'NewTest'
+    createNote: 'Note'
+    createOrder: 'PaymentInfo'
+    createPost: 'Post'
+    createProblem: 'Problem'
+    createProblemResult: 'ProblemResult'
+    createQuiz: 'Quiz'
+    createQuizResult: 'QuizResult'
+    createRating: 'Rating'
+    createShot: 'Shot'
+    createShotResult: 'ShotResult'
+    createStatement: 'Statement'
+    createTestResult: 'TestResult'
+    createTextEditor: 'TextEditor'
+    createTextEditorResult: 'TextEditorResult'
+    deleteClause: 'Clause'
+    deleteConstruction: 'Construction'
+    deleteDocument: 'Document'
+    deleteNewTest: 'NewTest'
+    deleteNote: 'Note'
+    deleteOrder: 'Order'
+    deleteProblem: 'Problem'
+    deleteQuiz: 'Quiz'
+    deleteShot: 'Shot'
+    deleteStatement: 'Statement'
+    deleteTextEditor: 'TextEditor'
+    enrollOnCourse: 'User'
     signin: 'AuthPayload'
     signout: 'SignOut'
     signup: 'AuthPayload'
+    updateClause: 'Clause'
+    updateConstruction: 'Construction'
+    updateCoursePage: 'CoursePage'
     updateCourseVisit: 'CourseVisit'
+    updateForum: 'Forum'
+    updateLesson: 'Lesson'
     updateLessonResult: 'LessonResult'
+    updateNewTest: 'NewTest'
+    updateNote: 'Note'
+    updateOrder: 'Order'
+    updatePost: 'Post'
+    updateProblem: 'Problem'
     updatePublished: 'Lesson'
+    updateQuiz: 'Quiz'
+    updateRating: 'Rating'
+    updateStatement: 'Statement'
+    updateTextEditor: 'TextEditor'
+    updateUser: 'User'
   }
   NewTest: { // field return type name
     answers: 'String'
@@ -1762,6 +2401,7 @@ export interface NexusGenFieldTypeNames {
     lessonID: 'String'
     next: 'Json'
     question: 'String'
+    testResults: 'TestResult'
     type: 'String'
     updatedAt: 'DateTime'
     user: 'User'
@@ -1779,6 +2419,64 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
     userId: 'String'
   }
+  Order: { // field return type name
+    comment: 'String'
+    coursePage: 'CoursePage'
+    coursePageId: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    isPaid: 'Boolean'
+    level: 'Level'
+    paymentID: 'String'
+    price: 'Int'
+    promocode: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  PaymentInfo: { // field return type name
+    order: 'Order'
+    url: 'String'
+  }
+  Post: { // field return type name
+    coursePages: 'CoursePage'
+    createdAt: 'DateTime'
+    id: 'String'
+    likes: 'Int'
+    tags: 'String'
+    text: 'String'
+    title: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  Problem: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    nodeID: 'String'
+    nodeType: 'String'
+    problemResults: 'ProblemResult'
+    text: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  ProblemResult: { // field return type name
+    answer: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    problem: 'Problem'
+    revealed: 'String'
+    student: 'User'
+    studentId: 'String'
+    updatedAt: 'DateTime'
+  }
   Query: { // field return type name
     coursePage: 'CoursePage'
     coursePages: 'CoursePage'
@@ -1786,6 +2484,9 @@ export interface NexusGenFieldTypeNames {
     lesson: 'Lesson'
     lessonsConnection: 'Lesson'
     me: 'User'
+    newTest: 'NewTest'
+    orders: 'Order'
+    posts: 'Post'
     users: 'User'
   }
   Quiz: { // field return type name
@@ -1800,7 +2501,32 @@ export interface NexusGenFieldTypeNames {
     lessonID: 'String'
     next: 'Json'
     question: 'String'
+    quizResults: 'QuizResult'
     type: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  QuizResult: { // field return type name
+    answer: 'String'
+    correct: 'Boolean'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    quiz: 'Quiz'
+    quizId: 'String'
+    student: 'User'
+    studentId: 'String'
+    updatedAt: 'DateTime'
+  }
+  Rating: { // field return type name
+    createdAt: 'DateTime'
+    forum: 'Forum'
+    forumId: 'String'
+    id: 'String'
+    rating: 'Int'
     updatedAt: 'DateTime'
     user: 'User'
     userId: 'String'
@@ -1811,14 +2537,81 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     lesson: 'Lesson'
     lessonId: 'String'
+    lessonID: 'String'
     parts: 'String'
+    shotResults: 'ShotResult'
     title: 'String'
     updatedAt: 'DateTime'
     user: 'User'
     userId: 'String'
   }
+  ShotResult: { // field return type name
+    answer: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    shot: 'Shot'
+    shotId: 'String'
+    student: 'User'
+    studentId: 'String'
+    updatedAt: 'DateTime'
+  }
   SignOut: { // field return type name
     message: 'String'
+  }
+  Statement: { // field return type name
+    createdAt: 'DateTime'
+    forum: 'Forum'
+    forumId: 'String'
+    id: 'String'
+    text: 'String'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  TestResult: { // field return type name
+    answer: 'String'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    student: 'User'
+    studentId: 'String'
+    test: 'NewTest'
+    testId: 'String'
+    testID: 'String'
+    updatedAt: 'DateTime'
+  }
+  TextEditor: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    lessonID: 'String'
+    name: 'String'
+    text: 'String'
+    textEditorResults: 'TextEditorResult'
+    totalMistakes: 'Int'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
+  }
+  TextEditorResult: { // field return type name
+    correct: 'String'
+    createdAt: 'DateTime'
+    guess: 'String'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    result: 'Boolean'
+    student: 'User'
+    studentId: 'String'
+    textEditor: 'TextEditor'
+    textEditorId: 'String'
+    updatedAt: 'DateTime'
+    wrong: 'String'
   }
   Uni: { // field return type name
     capacity: 'Int'
@@ -1834,6 +2627,8 @@ export interface NexusGenFieldTypeNames {
     description: 'String'
     email: 'String'
     id: 'String'
+    interests: 'String'
+    lessonResults: 'LessonResult'
     lessons: 'Lesson'
     name: 'String'
     new_subjects: 'CoursePage'
@@ -1841,12 +2636,22 @@ export interface NexusGenFieldTypeNames {
     permissions: 'Permission'
     resume: 'String'
     status: 'String'
+    studentFeedback: 'Feedback'
     surname: 'String'
+    teacherFeedback: 'Feedback'
     uni: 'Uni'
   }
 }
 
 export interface NexusGenArgTypes {
+  Construction: {
+    constructionResults: { // args
+      after?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput
+      before?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   CoursePage: {
     applications: { // args
       after?: NexusGenInputs['ApplicationWhereUniqueInput'] | null; // ApplicationWhereUniqueInput
@@ -1873,7 +2678,53 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
     }
   }
+  Document: {
+    clauses: { // args
+      after?: NexusGenInputs['ClauseWhereUniqueInput'] | null; // ClauseWhereUniqueInput
+      before?: NexusGenInputs['ClauseWhereUniqueInput'] | null; // ClauseWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    documentResults: { // args
+      after?: NexusGenInputs['DocumentResultWhereUniqueInput'] | null; // DocumentResultWhereUniqueInput
+      before?: NexusGenInputs['DocumentResultWhereUniqueInput'] | null; // DocumentResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Forum: {
+    rating: { // args
+      after?: NexusGenInputs['RatingWhereUniqueInput'] | null; // RatingWhereUniqueInput
+      before?: NexusGenInputs['RatingWhereUniqueInput'] | null; // RatingWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    statements: { // args
+      after?: NexusGenInputs['StatementWhereUniqueInput'] | null; // StatementWhereUniqueInput
+      before?: NexusGenInputs['StatementWhereUniqueInput'] | null; // StatementWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Lesson: {
+    constructionResults: { // args
+      after?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput
+      before?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    constructions: { // args
+      after?: NexusGenInputs['ConstructionWhereUniqueInput'] | null; // ConstructionWhereUniqueInput
+      before?: NexusGenInputs['ConstructionWhereUniqueInput'] | null; // ConstructionWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    documents: { // args
+      after?: NexusGenInputs['DocumentWhereUniqueInput'] | null; // DocumentWhereUniqueInput
+      before?: NexusGenInputs['DocumentWhereUniqueInput'] | null; // DocumentWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
     lessonResults: { // args
       after?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
       before?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
@@ -1892,9 +2743,33 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
     }
+    problemResults: { // args
+      after?: NexusGenInputs['ProblemResultWhereUniqueInput'] | null; // ProblemResultWhereUniqueInput
+      before?: NexusGenInputs['ProblemResultWhereUniqueInput'] | null; // ProblemResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    problems: { // args
+      after?: NexusGenInputs['ProblemWhereUniqueInput'] | null; // ProblemWhereUniqueInput
+      before?: NexusGenInputs['ProblemWhereUniqueInput'] | null; // ProblemWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
     quizes: { // args
       after?: NexusGenInputs['QuizWhereUniqueInput'] | null; // QuizWhereUniqueInput
       before?: NexusGenInputs['QuizWhereUniqueInput'] | null; // QuizWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    quizResults: { // args
+      after?: NexusGenInputs['QuizResultWhereUniqueInput'] | null; // QuizResultWhereUniqueInput
+      before?: NexusGenInputs['QuizResultWhereUniqueInput'] | null; // QuizResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    shotResults: { // args
+      after?: NexusGenInputs['ShotResultWhereUniqueInput'] | null; // ShotResultWhereUniqueInput
+      before?: NexusGenInputs['ShotResultWhereUniqueInput'] | null; // ShotResultWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }
@@ -1904,8 +2779,49 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
     }
+    testResults: { // args
+      after?: NexusGenInputs['TestResultWhereUniqueInput'] | null; // TestResultWhereUniqueInput
+      before?: NexusGenInputs['TestResultWhereUniqueInput'] | null; // TestResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    textEditorResults: { // args
+      after?: NexusGenInputs['TextEditorResultWhereUniqueInput'] | null; // TextEditorResultWhereUniqueInput
+      before?: NexusGenInputs['TextEditorResultWhereUniqueInput'] | null; // TextEditorResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    texteditors: { // args
+      after?: NexusGenInputs['TextEditorWhereUniqueInput'] | null; // TextEditorWhereUniqueInput
+      before?: NexusGenInputs['TextEditorWhereUniqueInput'] | null; // TextEditorWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
   }
   Mutation: {
+    createClause: { // args
+      commentary?: string | null; // String
+      documentId?: string | null; // String
+      keywords?: Array<string | null> | null; // [String]
+      number?: number | null; // Int
+      sample?: string | null; // String
+      title?: string | null; // String
+    }
+    createConstruction: { // args
+      answer?: Array<string | null> | null; // [String]
+      hint?: string | null; // String
+      lessonId?: string | null; // String
+      name?: string | null; // String
+      type?: string | null; // String
+      variants?: Array<string | null> | null; // [String]
+    }
+    createConstructionResult: { // args
+      answer?: string | null; // String
+      attempts?: number | null; // Int
+      constructionId?: string | null; // String
+      inputs?: Array<string | null> | null; // [String]
+      lessonId?: string | null; // String
+    }
     createCoursePage: { // args
       courseType?: string | null; // String
       description?: string | null; // String
@@ -1917,6 +2833,19 @@ export interface NexusGenArgTypes {
       coursePageId?: string | null; // String
       visitsNumber?: number | null; // Int
     }
+    createDocument: { // args
+      lessonId?: string | null; // String
+      title?: string | null; // String
+    }
+    createDocumentResult: { // args
+      answers?: Array<string | null> | null; // [String]
+      documentId?: string | null; // String
+      drafts?: Array<string | null> | null; // [String]
+    }
+    createForum: { // args
+      lessonId?: string | null; // String
+      text?: string | null; // String
+    }
     createLesson: { // args
       coursePageID?: string | null; // String
       description?: string | null; // String
@@ -1927,6 +2856,130 @@ export interface NexusGenArgTypes {
     createLessonResult: { // args
       lessonID?: string | null; // String
       visitsNumber?: number | null; // Int
+    }
+    createNewTest: { // args
+      answers?: Array<string | null> | null; // [String]
+      correct?: Array<boolean | null> | null; // [Boolean]
+      ifRight?: string | null; // String
+      ifWrong?: string | null; // String
+      lessonId?: string | null; // String
+      question?: Array<string | null> | null; // [String]
+    }
+    createNote: { // args
+      lessonId?: string | null; // String
+      text?: string | null; // String
+    }
+    createOrder: { // args
+      comment?: string | null; // String
+      coursePageId?: string | null; // String
+      price?: number | null; // Int
+      promocode?: string | null; // String
+      userId?: string | null; // String
+    }
+    createPost: { // args
+      text?: string | null; // String
+      title?: string | null; // String
+    }
+    createProblem: { // args
+      lessonId?: string | null; // String
+      nodeID?: string | null; // String
+      nodeType?: string | null; // String
+      text?: string | null; // String
+    }
+    createProblemResult: { // args
+      answer?: string | null; // String
+      lessonId?: string | null; // String
+      problemID?: string | null; // String
+      revealed?: Array<string | null> | null; // [String]
+    }
+    createQuiz: { // args
+      answer?: string | null; // String
+      ifRight?: string | null; // String
+      ifWrong?: string | null; // String
+      lessonId?: string | null; // String
+      question?: string | null; // String
+    }
+    createQuizResult: { // args
+      answer?: string | null; // String
+      correct?: boolean | null; // Boolean
+      lessonId?: string | null; // String
+      quiz?: string | null; // String
+    }
+    createRating: { // args
+      forumId?: string | null; // String
+      rating?: number | null; // Int
+    }
+    createShot: { // args
+      comments?: Array<string | null> | null; // [String]
+      lessonId?: string | null; // String
+      parts?: Array<string | null> | null; // [String]
+      title?: string | null; // String
+    }
+    createShotResult: { // args
+      answer?: string | null; // String
+      lessonId?: string | null; // String
+      shotId?: string | null; // String
+    }
+    createStatement: { // args
+      forumId?: string | null; // String
+      text?: string | null; // String
+    }
+    createTestResult: { // args
+      answer?: string | null; // String
+      lessonID?: string | null; // String
+      testID?: string | null; // String
+    }
+    createTextEditor: { // args
+      lessonId?: string | null; // String
+      name?: string | null; // String
+      text?: string | null; // String
+      totalMistakes?: number | null; // Int
+    }
+    createTextEditorResult: { // args
+      attempts?: number | null; // Int
+      correct?: string | null; // String
+      guess?: string | null; // String
+      lesson?: string | null; // String
+      result?: boolean | null; // Boolean
+      textEditor?: string | null; // String
+      wrong?: string | null; // String
+    }
+    deleteClause: { // args
+      id?: string | null; // String
+    }
+    deleteConstruction: { // args
+      id?: string | null; // String
+    }
+    deleteDocument: { // args
+      id?: string | null; // String
+    }
+    deleteNewTest: { // args
+      id?: string | null; // String
+    }
+    deleteNote: { // args
+      id?: string | null; // String
+    }
+    deleteOrder: { // args
+      id?: string | null; // String
+    }
+    deleteProblem: { // args
+      id?: string | null; // String
+    }
+    deleteQuiz: { // args
+      id?: string | null; // String
+    }
+    deleteShot: { // args
+      id?: string | null; // String
+    }
+    deleteStatement: { // args
+      id?: string | null; // String
+    }
+    deleteTextEditor: { // args
+      id?: string | null; // String
+    }
+    enrollOnCourse: { // args
+      coursePageId?: string | null; // String
+      id?: string | null; // String
     }
     signin: { // args
       email?: string | null; // String
@@ -1941,17 +2994,147 @@ export interface NexusGenArgTypes {
       surname?: string | null; // String
       uniID?: string | null; // String
     }
+    updateClause: { // args
+      commentary?: string | null; // String
+      id?: string | null; // String
+      keywords?: Array<string | null> | null; // [String]
+      sample?: string | null; // String
+      text?: string | null; // String
+    }
+    updateConstruction: { // args
+      answer?: Array<string | null> | null; // [String]
+      hint?: string | null; // String
+      id?: string | null; // String
+      name?: string | null; // String
+      type?: string | null; // String
+      variants?: Array<string | null> | null; // [String]
+    }
+    updateCoursePage: { // args
+      audience?: string | null; // String
+      description?: string | null; // String
+      id?: string | null; // String
+      image?: string | null; // String
+      methods?: string | null; // String
+      news?: string | null; // String
+      result?: string | null; // String
+      tariffs?: string | null; // String
+      title?: string | null; // String
+      video?: string | null; // String
+    }
     updateCourseVisit: { // args
       id?: string | null; // String
       visitsNumber?: number | null; // Int
     }
+    updateForum: { // args
+      id?: string | null; // String
+      text?: string | null; // String
+    }
+    updateLesson: { // args
+      audience?: string | null; // String
+      challenge_num?: number | null; // Int
+      change?: string | null; // String
+      description?: string | null; // String
+      id?: string | null; // String
+      name?: string | null; // String
+      number?: number | null; // Int
+      open?: boolean | null; // Boolean
+      structure?: NexusGenInputs['LessonStructure'] | null; // LessonStructure
+      tariffs?: string | null; // String
+      text?: string | null; // String
+      type?: string | null; // String
+    }
     updateLessonResult: { // args
       id?: string | null; // String
+      progress?: number | null; // Int
       visitsNumber?: number | null; // Int
+    }
+    updateNewTest: { // args
+      answers?: Array<string | null> | null; // [String]
+      correct?: Array<boolean | null> | null; // [Boolean]
+      id?: string | null; // String
+      ifRight?: string | null; // String
+      ifWrong?: string | null; // String
+      next?: NexusGenInputs['NextType'] | null; // NextType
+      question?: Array<string | null> | null; // [String]
+    }
+    updateNote: { // args
+      id?: string | null; // String
+      next?: NexusGenInputs['NextType'] | null; // NextType
+      text?: string | null; // String
+    }
+    updateOrder: { // args
+      id?: string | null; // String
+      isPaid?: boolean | null; // Boolean
+    }
+    updatePost: { // args
+      id?: string | null; // String
+      text?: string | null; // String
+    }
+    updateProblem: { // args
+      id?: string | null; // String
+      nodeID?: string | null; // String
+      nodeType?: string | null; // String
+      text?: string | null; // String
     }
     updatePublished: { // args
       id?: string | null; // String
       published?: boolean | null; // Boolean
+    }
+    updateQuiz: { // args
+      answer?: string | null; // String
+      check?: string | null; // String
+      id?: string | null; // String
+      ifRight?: string | null; // String
+      ifWrong?: string | null; // String
+      lessonId?: string | null; // String
+      next?: NexusGenInputs['NextType'] | null; // NextType
+      question?: string | null; // String
+    }
+    updateRating: { // args
+      id?: string | null; // String
+      rating?: number | null; // Int
+    }
+    updateStatement: { // args
+      id?: string | null; // String
+      text?: string | null; // String
+    }
+    updateTextEditor: { // args
+      id?: string | null; // String
+      name?: string | null; // String
+      text?: string | null; // String
+      totalMistakes?: number | null; // Int
+    }
+    updateUser: { // args
+      email?: string | null; // String
+      id?: string | null; // String
+      isFamiliar?: boolean | null; // Boolean
+      name?: string | null; // String
+      status?: NexusGenEnums['Status'] | null; // Status
+      surname?: string | null; // String
+    }
+  }
+  NewTest: {
+    testResults: { // args
+      after?: NexusGenInputs['TestResultWhereUniqueInput'] | null; // TestResultWhereUniqueInput
+      before?: NexusGenInputs['TestResultWhereUniqueInput'] | null; // TestResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Post: {
+    coursePages: { // args
+      after?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
+      before?: NexusGenInputs['CoursePageWhereUniqueInput'] | null; // CoursePageWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Problem: {
+    problemResults: { // args
+      after?: NexusGenInputs['ProblemResultWhereUniqueInput'] | null; // ProblemResultWhereUniqueInput
+      before?: NexusGenInputs['ProblemResultWhereUniqueInput'] | null; // ProblemResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
   Query: {
@@ -1977,9 +3160,52 @@ export interface NexusGenArgTypes {
     lesson: { // args
       where: NexusGenInputs['LessonWhereUniqueInput']; // LessonWhereUniqueInput!
     }
+    newTest: { // args
+      where: NexusGenInputs['NewTestWhereUniqueInput']; // NewTestWhereUniqueInput!
+    }
+    orders: { // args
+      after?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
+      before?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['OrderOrderByInput'][] | null; // [OrderOrderByInput!]
+      where?: NexusGenInputs['OrderWhereInput'] | null; // OrderWhereInput
+    }
+    posts: { // args
+      after?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+      before?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['PostOrderByInput'][] | null; // [PostOrderByInput!]
+      where?: NexusGenInputs['PostWhereInput'] | null; // PostWhereInput
+    }
     users: { // args
       after?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
       before?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Quiz: {
+    quizResults: { // args
+      after?: NexusGenInputs['QuizResultWhereUniqueInput'] | null; // QuizResultWhereUniqueInput
+      before?: NexusGenInputs['QuizResultWhereUniqueInput'] | null; // QuizResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Shot: {
+    shotResults: { // args
+      after?: NexusGenInputs['ShotResultWhereUniqueInput'] | null; // ShotResultWhereUniqueInput
+      before?: NexusGenInputs['ShotResultWhereUniqueInput'] | null; // ShotResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  TextEditor: {
+    textEditorResults: { // args
+      after?: NexusGenInputs['TextEditorResultWhereUniqueInput'] | null; // TextEditorResultWhereUniqueInput
+      before?: NexusGenInputs['TextEditorResultWhereUniqueInput'] | null; // TextEditorResultWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
     }
@@ -2006,6 +3232,12 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
     }
+    lessonResults: { // args
+      after?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
+      before?: NexusGenInputs['LessonResultWhereUniqueInput'] | null; // LessonResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
     lessons: { // args
       after?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
       before?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
@@ -2018,25 +3250,50 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
     }
+    studentFeedback: { // args
+      after?: NexusGenInputs['FeedbackWhereUniqueInput'] | null; // FeedbackWhereUniqueInput
+      before?: NexusGenInputs['FeedbackWhereUniqueInput'] | null; // FeedbackWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+    teacherFeedback: { // args
+      after?: NexusGenInputs['FeedbackWhereUniqueInput'] | null; // FeedbackWhereUniqueInput
+      before?: NexusGenInputs['FeedbackWhereUniqueInput'] | null; // FeedbackWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
   }
 }
 
-export interface NexusGenAbstractResolveReturnTypes {
+export interface NexusGenAbstractTypeMembers {
 }
 
-export interface NexusGenInheritedFields {}
+export interface NexusGenTypeInterfaces {
+}
 
-export type NexusGenObjectNames = "Application" | "AuthPayload" | "Company" | "CoursePage" | "CourseVisit" | "Lesson" | "LessonResult" | "Mutation" | "NewTest" | "Note" | "Query" | "Quiz" | "Shot" | "SignOut" | "Uni" | "User";
+export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = "ApplicationListRelationFilter" | "ApplicationWhereInput" | "ApplicationWhereUniqueInput" | "BoolFilter" | "BoolNullableFilter" | "BoolNullableListFilter" | "CareerTrackListRelationFilter" | "CareerTrackUnitListRelationFilter" | "CareerTrackUnitWhereInput" | "CareerTrackWhereInput" | "ChallengeResultListRelationFilter" | "ChallengeResultWhereInput" | "ClauseListRelationFilter" | "ClauseWhereInput" | "CompanyWhereInput" | "ConstructionListRelationFilter" | "ConstructionResultListRelationFilter" | "ConstructionResultWhereInput" | "ConstructionWhereInput" | "CoursePageListRelationFilter" | "CoursePageOrderByInput" | "CoursePageWhereInput" | "CoursePageWhereUniqueInput" | "CourseVisitListRelationFilter" | "CourseVisitOrderByInput" | "CourseVisitWhereInput" | "CourseVisitWhereUniqueInput" | "DateTimeFilter" | "DateTimeNullableFilter" | "DateTimeNullableListFilter" | "DocumentListRelationFilter" | "DocumentResultListRelationFilter" | "DocumentResultWhereInput" | "DocumentWhereInput" | "EnumCourseTypeNullableFilter" | "EnumLevelNullableFilter" | "EnumPermissionNullableListFilter" | "FeedbackListRelationFilter" | "FeedbackWhereInput" | "FloatNullableFilter" | "ForumListRelationFilter" | "ForumWhereInput" | "IntFilter" | "IntNullableFilter" | "JsonNullableFilter" | "JsonNullableListFilter" | "LegalPortfolioWhereInput" | "LessonListRelationFilter" | "LessonResultListRelationFilter" | "LessonResultWhereInput" | "LessonResultWhereUniqueInput" | "LessonWhereInput" | "LessonWhereUniqueInput" | "NestedBoolFilter" | "NestedBoolNullableFilter" | "NestedDateTimeFilter" | "NestedDateTimeNullableFilter" | "NestedEnumCourseTypeNullableFilter" | "NestedEnumLevelNullableFilter" | "NestedFloatNullableFilter" | "NestedIntFilter" | "NestedIntNullableFilter" | "NestedStringFilter" | "NestedStringNullableFilter" | "NewTestListRelationFilter" | "NewTestWhereInput" | "NewTestWhereUniqueInput" | "NoteListRelationFilter" | "NoteWhereInput" | "NoteWhereUniqueInput" | "OrderListRelationFilter" | "OrderWhereInput" | "PostListRelationFilter" | "PostWhereInput" | "ProblemListRelationFilter" | "ProblemResultListRelationFilter" | "ProblemResultWhereInput" | "ProblemWhereInput" | "QuizListRelationFilter" | "QuizResultListRelationFilter" | "QuizResultWhereInput" | "QuizWhereInput" | "QuizWhereUniqueInput" | "RatingListRelationFilter" | "RatingWhereInput" | "ShotListRelationFilter" | "ShotResultListRelationFilter" | "ShotResultWhereInput" | "ShotWhereInput" | "ShotWhereUniqueInput" | "StatementListRelationFilter" | "StatementWhereInput" | "StringFilter" | "StringNullableFilter" | "StringNullableListFilter" | "TestResultListRelationFilter" | "TestResultWhereInput" | "TextEditorListRelationFilter" | "TextEditorResultListRelationFilter" | "TextEditorResultWhereInput" | "TextEditorWhereInput" | "UniWhereInput" | "UserCoursePagesOrderByInput" | "UserLevelWhereInput" | "UserListRelationFilter" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = keyof NexusGenInputs;
 
-export type NexusGenEnumNames = "CourseType" | "Level" | "Permission" | "QueryMode" | "SortOrder" | "Status";
+export type NexusGenEnumNames = keyof NexusGenEnums;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "Json" | "String";
+export type NexusGenScalarNames = keyof NexusGenScalars;
 
 export type NexusGenUnionNames = never;
+
+export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never;
+
+export type NexusGenAbstractsUsingStrategyResolveType = never;
+
+export type NexusGenFeaturesConfig = {
+  abstractTypeStrategies: {
+    isTypeOf: false
+    resolveType: true
+    __typename: false
+  }
+}
 
 export interface NexusGenTypes {
   context: any;
@@ -2046,7 +3303,7 @@ export interface NexusGenTypes {
   fieldTypes: NexusGenFieldTypes;
   fieldTypeNames: NexusGenFieldTypeNames;
   allTypes: NexusGenAllTypes;
-  inheritedFields: NexusGenInheritedFields;
+  typeInterfaces: NexusGenTypeInterfaces;
   objectNames: NexusGenObjectNames;
   inputNames: NexusGenInputNames;
   enumNames: NexusGenEnumNames;
@@ -2057,7 +3314,10 @@ export interface NexusGenTypes {
   allOutputTypes: NexusGenTypes['objectNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['unionNames'] | NexusGenTypes['interfaceNames'] | NexusGenTypes['scalarNames'];
   allNamedTypes: NexusGenTypes['allInputTypes'] | NexusGenTypes['allOutputTypes']
   abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames'];
-  abstractResolveReturn: NexusGenAbstractResolveReturnTypes;
+  abstractTypeMembers: NexusGenAbstractTypeMembers;
+  objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf;
+  abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType;
+  features: NexusGenFeaturesConfig;
 }
 
 
@@ -2066,7 +3326,71 @@ declare global {
   }
   interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
     
+    /**
+     * Whether the type can be null
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    nullable?: boolean
+    /**
+     * Whether the type is list of values, or just a single value.
+     * If list is true, we assume the type is a list. If list is an array,
+     * we'll assume that it's a list with the depth. The boolean indicates whether
+     * the type is required (non-null), where true = nonNull, false = nullable.
+     * @see declarativeWrappingPlugin
+     */
+    list?: true | boolean[]
+    /**
+     * Whether the type should be non null, `required: true` = `nullable: false`
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    required?: boolean
+  }
+  interface NexusGenPluginInputFieldConfig<TypeName extends string, FieldName extends string> {
+    /**
+     * Whether the type can be null
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    nullable?: boolean
+    /**
+     * Whether the type is list of values, or just a single value.
+     * If list is true, we assume the type is a list. If list is an array,
+     * we'll assume that it's a list with the depth. The boolean indicates whether
+     * the type is required (non-null), where true = nonNull, false = nullable.
+     * @see declarativeWrappingPlugin
+     */
+    list?: true | boolean[]
+    /**
+     * Whether the type should be non null, `required: true` = `nullable: false`
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    required?: boolean
   }
   interface NexusGenPluginSchemaConfig {
+  }
+  interface NexusGenPluginArgConfig {
+    /**
+     * Whether the type can be null
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    nullable?: boolean
+    /**
+     * Whether the type is list of values, or just a single value.
+     * If list is true, we assume the type is a list. If list is an array,
+     * we'll assume that it's a list with the depth. The boolean indicates whether
+     * the type is required (non-null), where true = nonNull, false = nullable.
+     * @see declarativeWrappingPlugin
+     */
+    list?: true | boolean[]
+    /**
+     * Whether the type should be non null, `required: true` = `nullable: false`
+     * @default (depends on whether nullability is configured in type or schema)
+     * @see declarativeWrappingPlugin
+     */
+    required?: boolean
   }
 }

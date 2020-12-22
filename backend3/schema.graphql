@@ -118,6 +118,20 @@ input ChallengeResultWhereInput {
   wrong: IntNullableFilter
 }
 
+type Clause {
+  commentary: String!
+  createdAt: DateTime!
+  document: Document!
+  documentId: String!
+  id: String!
+  keywords: [String!]!
+  number: Int!
+  sample: String
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 input ClauseListRelationFilter {
   every: ClauseWhereInput
   none: ClauseWhereInput
@@ -141,6 +155,10 @@ input ClauseWhereInput {
   userId: StringFilter
 }
 
+input ClauseWhereUniqueInput {
+  id: String
+}
+
 type Company {
   id: String!
   name: String!
@@ -159,10 +177,43 @@ input CompanyWhereInput {
   updatedAt: DateTimeFilter
 }
 
+type Construction {
+  answer: [String!]!
+  constructionResults(after: ConstructionResultWhereUniqueInput, before: ConstructionResultWhereUniqueInput, first: Int, last: Int): [ConstructionResult!]!
+  createdAt: DateTime!
+  hint: String
+  id: String!
+  lesson: Lesson!
+  lessonId: String!
+  lessonID: String!
+  name: String!
+  type: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+  variants: [String!]!
+}
+
 input ConstructionListRelationFilter {
   every: ConstructionWhereInput
   none: ConstructionWhereInput
   some: ConstructionWhereInput
+}
+
+type ConstructionResult {
+  answer: String
+  construction: Construction
+  constructionId: String
+  constructionID: String
+  createdAt: DateTime!
+  id: String!
+  inputs: [String!]!
+  lesson: Lesson
+  lessonId: String
+  lessonID: String
+  student: User!
+  studentId: String!
+  updatedAt: DateTime!
 }
 
 input ConstructionResultListRelationFilter {
@@ -191,6 +242,10 @@ input ConstructionResultWhereInput {
   updatedAt: DateTimeFilter
 }
 
+input ConstructionResultWhereUniqueInput {
+  id: String
+}
+
 input ConstructionWhereInput {
   AND: [ConstructionWhereInput!]
   answer: StringNullableListFilter
@@ -209,6 +264,10 @@ input ConstructionWhereInput {
   user: UserWhereInput
   userId: StringFilter
   variants: StringNullableListFilter
+}
+
+input ConstructionWhereUniqueInput {
+  id: String
 }
 
 type CoursePage {
@@ -339,6 +398,7 @@ input CoursePageWhereUniqueInput {
   id: String
 }
 
+"""The first Star Wars episodes released"""
 enum CourseType {
   CHALLENGE
   FORMONEY
@@ -396,6 +456,9 @@ input CourseVisitWhereUniqueInput {
   id: String
 }
 
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
 scalar DateTime
 
 input DateTimeFilter {
@@ -424,10 +487,35 @@ input DateTimeNullableListFilter {
   equals: [DateTime!]
 }
 
+type Document {
+  clauses(after: ClauseWhereUniqueInput, before: ClauseWhereUniqueInput, first: Int, last: Int): [Clause!]!
+  createdAt: DateTime!
+  documentResults(after: DocumentResultWhereUniqueInput, before: DocumentResultWhereUniqueInput, first: Int, last: Int): [DocumentResult!]!
+  id: String!
+  lesson: Lesson!
+  lessonId: String!
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 input DocumentListRelationFilter {
   every: DocumentWhereInput
   none: DocumentWhereInput
   some: DocumentWhereInput
+}
+
+type DocumentResult {
+  answers: [String!]!
+  createdAt: DateTime!
+  document: Document
+  documentId: String
+  drafts: [String!]!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  updatedAt: DateTime!
 }
 
 input DocumentResultListRelationFilter {
@@ -453,6 +541,10 @@ input DocumentResultWhereInput {
   userId: StringNullableFilter
 }
 
+input DocumentResultWhereUniqueInput {
+  id: String
+}
+
 input DocumentWhereInput {
   AND: [DocumentWhereInput!]
   clauses: ClauseListRelationFilter
@@ -467,6 +559,10 @@ input DocumentWhereInput {
   updatedAt: DateTimeFilter
   user: UserWhereInput
   userId: StringFilter
+}
+
+input DocumentWhereUniqueInput {
+  id: String
 }
 
 input EnumCourseTypeNullableFilter {
@@ -485,6 +581,19 @@ input EnumLevelNullableFilter {
 
 input EnumPermissionNullableListFilter {
   equals: [Permission!]
+}
+
+type Feedback {
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  student: User!
+  studentId: String!
+  teacher: User!
+  teacherId: String!
+  text: String!
+  updatedAt: DateTime!
 }
 
 input FeedbackListRelationFilter {
@@ -509,6 +618,10 @@ input FeedbackWhereInput {
   updatedAt: DateTimeFilter
 }
 
+input FeedbackWhereUniqueInput {
+  id: String
+}
+
 input FloatNullableFilter {
   equals: Float
   gt: Float
@@ -518,6 +631,19 @@ input FloatNullableFilter {
   lte: Float
   not: NestedFloatNullableFilter
   notIn: [Float!]
+}
+
+type Forum {
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  rating(after: RatingWhereUniqueInput, before: RatingWhereUniqueInput, first: Int, last: Int): [Rating!]!
+  statements(after: StatementWhereUniqueInput, before: StatementWhereUniqueInput, first: Int, last: Int): [Statement!]!
+  text: String
+  updatedAt: DateTime!
+  user: User
+  userId: String
 }
 
 input ForumListRelationFilter {
@@ -531,6 +657,7 @@ input ForumWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   lesson: LessonWhereInput
+  lessonId: StringNullableFilter
   NOT: [ForumWhereInput!]
   OR: [ForumWhereInput!]
   rating: RatingListRelationFilter
@@ -563,6 +690,9 @@ input IntNullableFilter {
   notIn: [Int!]
 }
 
+"""
+The `JSON` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
 scalar Json
 
 input JsonNullableFilter {
@@ -590,11 +720,15 @@ input LegalPortfolioWhereInput {
 type Lesson {
   challenge_num: Int
   change: String
+  constructionResults(after: ConstructionResultWhereUniqueInput, before: ConstructionResultWhereUniqueInput, first: Int, last: Int): [ConstructionResult!]!
+  constructions(after: ConstructionWhereUniqueInput, before: ConstructionWhereUniqueInput, first: Int, last: Int): [Construction!]!
   coursePage: CoursePage!
   coursePageId: String!
   coursePageID: String!
   createdAt: DateTime!
   description: String
+  documents(after: DocumentWhereUniqueInput, before: DocumentWhereUniqueInput, first: Int, last: Int): [Document!]!
+  forum: Forum
   forumId: String
   id: String!
   lessonResults(after: LessonResultWhereUniqueInput, before: LessonResultWhereUniqueInput, first: Int, last: Int): [LessonResult!]!
@@ -604,15 +738,27 @@ type Lesson {
   notes(after: NoteWhereUniqueInput, before: NoteWhereUniqueInput, first: Int, last: Int): [Note!]!
   number: Int
   open: Boolean
+  problemResults(after: ProblemResultWhereUniqueInput, before: ProblemResultWhereUniqueInput, first: Int, last: Int): [ProblemResult!]!
+  problems(after: ProblemWhereUniqueInput, before: ProblemWhereUniqueInput, first: Int, last: Int): [Problem!]!
   published: Boolean
   quizes(after: QuizWhereUniqueInput, before: QuizWhereUniqueInput, first: Int, last: Int): [Quiz!]!
+  quizResults(after: QuizResultWhereUniqueInput, before: QuizResultWhereUniqueInput, first: Int, last: Int): [QuizResult!]!
+  shotResults(after: ShotResultWhereUniqueInput, before: ShotResultWhereUniqueInput, first: Int, last: Int): [ShotResult!]!
   shots(after: ShotWhereUniqueInput, before: ShotWhereUniqueInput, first: Int, last: Int): [Shot!]!
   structure: Json
+  testResults(after: TestResultWhereUniqueInput, before: TestResultWhereUniqueInput, first: Int, last: Int): [TestResult!]!
   text: String!
+  textEditorResults(after: TextEditorResultWhereUniqueInput, before: TextEditorResultWhereUniqueInput, first: Int, last: Int): [TextEditorResult!]!
+  texteditors(after: TextEditorWhereUniqueInput, before: TextEditorWhereUniqueInput, first: Int, last: Int): [TextEditor!]!
   type: String
   updatedAt: DateTime!
   user: User!
   userId: String!
+}
+
+input LessonItem {
+  id: String
+  type: String
 }
 
 input LessonListRelationFilter {
@@ -624,7 +770,9 @@ input LessonListRelationFilter {
 type LessonResult {
   createdAt: DateTime!
   id: String!
+  lesson: Lesson!
   lessonID: String
+  progress: Int
   student: User!
   updatedAt: DateTime!
   visitsNumber: Int
@@ -654,6 +802,10 @@ input LessonResultWhereInput {
 
 input LessonResultWhereUniqueInput {
   id: String
+}
+
+input LessonStructure {
+  lessonItems: [LessonItem]
 }
 
 input LessonWhereInput {
@@ -712,16 +864,64 @@ enum Level {
 }
 
 type Mutation {
+  createClause(commentary: String, documentId: String, keywords: [String], number: Int, sample: String, title: String): Clause
+  createConstruction(answer: [String], hint: String, lessonId: String, name: String, type: String, variants: [String]): Construction
+  createConstructionResult(answer: String, attempts: Int, constructionId: String, inputs: [String], lessonId: String): ConstructionResult
   createCoursePage(courseType: String, description: String, image: String, published: Boolean, title: String): CoursePage
   createCourseVisit(coursePageId: String, visitsNumber: Int): CourseVisit
+  createDocument(lessonId: String, title: String): Document
+  createDocumentResult(answers: [String], documentId: String, drafts: [String]): DocumentResult
+  createForum(lessonId: String, text: String): Forum
   createLesson(coursePageID: String, description: String, name: String, number: Int, text: String): Lesson
   createLessonResult(lessonID: String, visitsNumber: Int): LessonResult
+  createNewTest(answers: [String], correct: [Boolean], ifRight: String, ifWrong: String, lessonId: String, question: [String]): NewTest
+  createNote(lessonId: String, text: String): Note
+  createOrder(comment: String, coursePageId: String, price: Int, promocode: String, userId: String): PaymentInfo
+  createPost(text: String, title: String): Post
+  createProblem(lessonId: String, nodeID: String, nodeType: String, text: String): Problem
+  createProblemResult(answer: String, lessonId: String, problemID: String, revealed: [String]): ProblemResult
+  createQuiz(answer: String, ifRight: String, ifWrong: String, lessonId: String, question: String): Quiz
+  createQuizResult(answer: String, correct: Boolean, lessonId: String, quiz: String): QuizResult
+  createRating(forumId: String, rating: Int): Rating
+  createShot(comments: [String], lessonId: String, parts: [String], title: String): Shot
+  createShotResult(answer: String, lessonId: String, shotId: String): ShotResult
+  createStatement(forumId: String, text: String): Statement
+  createTestResult(answer: String, lessonID: String, testID: String): TestResult
+  createTextEditor(lessonId: String, name: String, text: String, totalMistakes: Int): TextEditor
+  createTextEditorResult(attempts: Int, correct: String, guess: String, lesson: String, result: Boolean, textEditor: String, wrong: String): TextEditorResult
+  deleteClause(id: String): Clause
+  deleteConstruction(id: String): Construction
+  deleteDocument(id: String): Document
+  deleteNewTest(id: String): NewTest
+  deleteNote(id: String): Note
+  deleteOrder(id: String): Order
+  deleteProblem(id: String): Problem
+  deleteQuiz(id: String): Quiz
+  deleteShot(id: String): Shot
+  deleteStatement(id: String): Statement
+  deleteTextEditor(id: String): TextEditor
+  enrollOnCourse(coursePageId: String, id: String): User
   signin(email: String, password: String): AuthPayload
   signout: SignOut
   signup(careerTrackID: String, company: String, email: String, name: String, password: String, surname: String, uniID: String): AuthPayload
+  updateClause(commentary: String, id: String, keywords: [String], sample: String, text: String): Clause
+  updateConstruction(answer: [String], hint: String, id: String, name: String, type: String, variants: [String]): Construction
+  updateCoursePage(audience: String, description: String, id: String, image: String, methods: String, news: String, result: String, tariffs: String, title: String, video: String): CoursePage
   updateCourseVisit(id: String, visitsNumber: Int): CourseVisit
-  updateLessonResult(id: String, visitsNumber: Int): LessonResult
+  updateForum(id: String, text: String): Forum
+  updateLesson(audience: String, challenge_num: Int, change: String, description: String, id: String, name: String, number: Int, open: Boolean, structure: LessonStructure, tariffs: String, text: String, type: String): Lesson
+  updateLessonResult(id: String, progress: Int, visitsNumber: Int): LessonResult
+  updateNewTest(answers: [String], correct: [Boolean], id: String, ifRight: String, ifWrong: String, next: NextType, question: [String]): NewTest
+  updateNote(id: String, next: NextType, text: String): Note
+  updateOrder(id: String, isPaid: Boolean): Order
+  updatePost(id: String, text: String): Post
+  updateProblem(id: String, nodeID: String, nodeType: String, text: String): Problem
   updatePublished(id: String, published: Boolean): Lesson
+  updateQuiz(answer: String, check: String, id: String, ifRight: String, ifWrong: String, lessonId: String, next: NextType, question: String): Quiz
+  updateRating(id: String, rating: Int): Rating
+  updateStatement(id: String, text: String): Statement
+  updateTextEditor(id: String, name: String, text: String, totalMistakes: Int): TextEditor
+  updateUser(email: String, id: String, isFamiliar: Boolean, name: String, status: Status, surname: String): User
 }
 
 input NestedBoolFilter {
@@ -843,6 +1043,7 @@ type NewTest {
   lessonID: String
   next: Json
   question: [String!]!
+  testResults(after: TestResultWhereUniqueInput, before: TestResultWhereUniqueInput, first: Int, last: Int): [TestResult!]!
   type: String
   updatedAt: DateTime!
   user: User!
@@ -879,6 +1080,21 @@ input NewTestWhereInput {
 
 input NewTestWhereUniqueInput {
   id: String
+}
+
+input NextFalseType {
+  type: String
+  value: String
+}
+
+input NextTrueType {
+  type: String
+  value: String
+}
+
+input NextType {
+  false: NextFalseType
+  true: NextTrueType
 }
 
 type Note {
@@ -920,10 +1136,40 @@ input NoteWhereUniqueInput {
   id: String
 }
 
+type Order {
+  comment: String
+  coursePage: CoursePage!
+  coursePageId: String!
+  createdAt: DateTime!
+  id: String!
+  isPaid: Boolean
+  level: Level
+  paymentID: String
+  price: Int
+  promocode: String
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 input OrderListRelationFilter {
   every: OrderWhereInput
   none: OrderWhereInput
   some: OrderWhereInput
+}
+
+input OrderOrderByInput {
+  comment: SortOrder
+  coursePageId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  isPaid: SortOrder
+  level: SortOrder
+  paymentID: SortOrder
+  price: SortOrder
+  promocode: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
 }
 
 input OrderWhereInput {
@@ -945,15 +1191,49 @@ input OrderWhereInput {
   userId: StringFilter
 }
 
+input OrderWhereUniqueInput {
+  id: String
+}
+
+type PaymentInfo {
+  order: Order
+  url: String
+}
+
+"""The first Star Wars episodes released"""
 enum Permission {
   ADMIN
   USER
+}
+
+type Post {
+  coursePages(after: CoursePageWhereUniqueInput, before: CoursePageWhereUniqueInput, first: Int, last: Int): [CoursePage!]!
+  createdAt: DateTime!
+  id: String!
+  likes: Int
+  tags: [String!]!
+  text: String
+  title: String
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
 }
 
 input PostListRelationFilter {
   every: PostWhereInput
   none: PostWhereInput
   some: PostWhereInput
+}
+
+input PostOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  likes: SortOrder
+  tags: SortOrder
+  text: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
 }
 
 input PostWhereInput {
@@ -972,10 +1252,43 @@ input PostWhereInput {
   userId: StringFilter
 }
 
+input PostWhereUniqueInput {
+  id: String
+}
+
+type Problem {
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson!
+  lessonId: String!
+  lessonID: String!
+  nodeID: String
+  nodeType: String
+  problemResults(after: ProblemResultWhereUniqueInput, before: ProblemResultWhereUniqueInput, first: Int, last: Int): [ProblemResult!]!
+  text: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 input ProblemListRelationFilter {
   every: ProblemWhereInput
   none: ProblemWhereInput
   some: ProblemWhereInput
+}
+
+type ProblemResult {
+  answer: String
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  lessonID: String
+  problem: Problem
+  revealed: [String!]!
+  student: User!
+  studentId: String!
+  updatedAt: DateTime!
 }
 
 input ProblemResultListRelationFilter {
@@ -1003,6 +1316,10 @@ input ProblemResultWhereInput {
   updatedAt: DateTimeFilter
 }
 
+input ProblemResultWhereUniqueInput {
+  id: String
+}
+
 input ProblemWhereInput {
   AND: [ProblemWhereInput!]
   answer: StringNullableFilter
@@ -1026,6 +1343,10 @@ input ProblemWhereInput {
   userId: StringFilter
 }
 
+input ProblemWhereUniqueInput {
+  id: String
+}
+
 type Query {
   coursePage(where: CoursePageWhereUniqueInput!): CoursePage
   coursePages(after: CoursePageWhereUniqueInput, before: CoursePageWhereUniqueInput, first: Int, last: Int, orderBy: [CoursePageOrderByInput!], where: CoursePageWhereInput): [CoursePage!]!
@@ -1033,6 +1354,9 @@ type Query {
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessonsConnection: Lesson
   me: User
+  newTest(where: NewTestWhereUniqueInput!): NewTest
+  orders(after: OrderWhereUniqueInput, before: OrderWhereUniqueInput, first: Int, last: Int, orderBy: [OrderOrderByInput!], where: OrderWhereInput): [Order!]!
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, orderBy: [PostOrderByInput!], where: PostWhereInput): [Post!]!
   users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
 }
 
@@ -1053,6 +1377,7 @@ type Quiz {
   lessonID: String
   next: Json
   question: String!
+  quizResults(after: QuizResultWhereUniqueInput, before: QuizResultWhereUniqueInput, first: Int, last: Int): [QuizResult!]!
   type: String
   updatedAt: DateTime!
   user: User!
@@ -1063,6 +1388,21 @@ input QuizListRelationFilter {
   every: QuizWhereInput
   none: QuizWhereInput
   some: QuizWhereInput
+}
+
+type QuizResult {
+  answer: String
+  correct: Boolean
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  lessonID: String
+  quiz: Quiz
+  quizId: String
+  student: User!
+  studentId: String!
+  updatedAt: DateTime!
 }
 
 input QuizResultListRelationFilter {
@@ -1088,6 +1428,10 @@ input QuizResultWhereInput {
   student: UserWhereInput
   studentId: StringFilter
   updatedAt: DateTimeFilter
+}
+
+input QuizResultWhereUniqueInput {
+  id: String
 }
 
 input QuizWhereInput {
@@ -1116,6 +1460,17 @@ input QuizWhereUniqueInput {
   id: String
 }
 
+type Rating {
+  createdAt: DateTime!
+  forum: Forum
+  forumId: String
+  id: String!
+  rating: Int
+  updatedAt: DateTime!
+  user: User
+  userId: String
+}
+
 input RatingListRelationFilter {
   every: RatingWhereInput
   none: RatingWhereInput
@@ -1136,13 +1491,19 @@ input RatingWhereInput {
   userId: StringNullableFilter
 }
 
+input RatingWhereUniqueInput {
+  id: String
+}
+
 type Shot {
   comments: [String!]!
   createdAt: DateTime!
   id: String!
   lesson: Lesson
   lessonId: String
+  lessonID: String
   parts: [String!]!
+  shotResults(after: ShotResultWhereUniqueInput, before: ShotResultWhereUniqueInput, first: Int, last: Int): [ShotResult!]!
   title: String!
   updatedAt: DateTime!
   user: User!
@@ -1153,6 +1514,19 @@ input ShotListRelationFilter {
   every: ShotWhereInput
   none: ShotWhereInput
   some: ShotWhereInput
+}
+
+type ShotResult {
+  answer: String!
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  shot: Shot
+  shotId: String
+  student: User!
+  studentId: String!
+  updatedAt: DateTime!
 }
 
 input ShotResultListRelationFilter {
@@ -1177,6 +1551,10 @@ input ShotResultWhereInput {
   student: UserWhereInput
   studentId: StringFilter
   updatedAt: DateTimeFilter
+}
+
+input ShotResultWhereUniqueInput {
+  id: String
 }
 
 input ShotWhereInput {
@@ -1210,6 +1588,17 @@ enum SortOrder {
   desc
 }
 
+type Statement {
+  createdAt: DateTime!
+  forum: Forum
+  forumId: String
+  id: String!
+  text: String
+  updatedAt: DateTime!
+  user: User
+  userId: String
+}
+
 input StatementListRelationFilter {
   every: StatementWhereInput
   none: StatementWhereInput
@@ -1228,6 +1617,10 @@ input StatementWhereInput {
   updatedAt: DateTimeFilter
   user: UserWhereInput
   userId: StringNullableFilter
+}
+
+input StatementWhereUniqueInput {
+  id: String
 }
 
 """The first Star Wars episodes released"""
@@ -1273,6 +1666,21 @@ input StringNullableListFilter {
   equals: [String!]
 }
 
+type TestResult {
+  answer: String
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  lessonID: String
+  student: User!
+  studentId: String!
+  test: NewTest
+  testId: String
+  testID: String
+  updatedAt: DateTime!
+}
+
 input TestResultListRelationFilter {
   every: TestResultWhereInput
   none: TestResultWhereInput
@@ -1298,10 +1706,45 @@ input TestResultWhereInput {
   updatedAt: DateTimeFilter
 }
 
+input TestResultWhereUniqueInput {
+  id: String
+}
+
+type TextEditor {
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson!
+  lessonId: String!
+  lessonID: String!
+  name: String!
+  text: String!
+  textEditorResults(after: TextEditorResultWhereUniqueInput, before: TextEditorResultWhereUniqueInput, first: Int, last: Int): [TextEditorResult!]!
+  totalMistakes: Int
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 input TextEditorListRelationFilter {
   every: TextEditorWhereInput
   none: TextEditorWhereInput
   some: TextEditorWhereInput
+}
+
+type TextEditorResult {
+  correct: String!
+  createdAt: DateTime!
+  guess: String!
+  id: String!
+  lesson: Lesson
+  lessonId: String
+  result: Boolean
+  student: User!
+  studentId: String!
+  textEditor: TextEditor
+  textEditorId: String
+  updatedAt: DateTime!
+  wrong: String!
 }
 
 input TextEditorResultListRelationFilter {
@@ -1330,6 +1773,10 @@ input TextEditorResultWhereInput {
   wrong: StringFilter
 }
 
+input TextEditorResultWhereUniqueInput {
+  id: String
+}
+
 input TextEditorWhereInput {
   AND: [TextEditorWhereInput!]
   createdAt: DateTimeFilter
@@ -1346,6 +1793,10 @@ input TextEditorWhereInput {
   updatedAt: DateTimeFilter
   user: UserWhereInput
   userId: StringFilter
+}
+
+input TextEditorWhereUniqueInput {
+  id: String
 }
 
 type Uni {
@@ -1377,6 +1828,8 @@ type User {
   description: String
   email: String!
   id: String!
+  interests: [String!]!
+  lessonResults(after: LessonResultWhereUniqueInput, before: LessonResultWhereUniqueInput, first: Int, last: Int): [LessonResult!]!
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int): [Lesson!]!
   name: String!
   new_subjects(after: CoursePageWhereUniqueInput, before: CoursePageWhereUniqueInput, first: Int, last: Int): [CoursePage!]!
@@ -1384,7 +1837,9 @@ type User {
   permissions: [Permission!]!
   resume: String
   status: String
+  studentFeedback(after: FeedbackWhereUniqueInput, before: FeedbackWhereUniqueInput, first: Int, last: Int): [Feedback!]!
   surname: String
+  teacherFeedback(after: FeedbackWhereUniqueInput, before: FeedbackWhereUniqueInput, first: Int, last: Int): [Feedback!]!
   uni: Uni
 }
 

@@ -8,6 +8,14 @@ const AuthPayload = objectType({
   },
 });
 
+const PaymentInfo = objectType({
+  name: "PaymentInfo",
+  definition(t) {
+    t.string("url");
+    t.field("order", { type: "Order" });
+  },
+});
+
 const SignOut = objectType({
   name: "SignOut",
   definition(t) {
@@ -15,4 +23,4 @@ const SignOut = objectType({
   },
 });
 
-module.exports = { AuthPayload, SignOut };
+module.exports = { AuthPayload, SignOut, PaymentInfo };
