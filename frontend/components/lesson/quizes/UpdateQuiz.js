@@ -2,17 +2,29 @@ import React, { useState } from "react";
 import { Mutation, Query } from "@apollo/client/react/components";
 import gql from "graphql-tag";
 import styled from "styled-components";
-import Option from "../Option";
+import dynamic from "next/dynamic";
 import { SINGLE_LESSON_QUERY } from "../SingleLesson";
+import { withTranslation } from "../../../i18n";
 
 const UPDATE_QUIZ_MUTATION = gql`
   mutation UPDATE_QUIZ_MUTATION(
-    $id: ID!
+    $id: String!
     $question: String
     $answer: String
-    $next: Json
+    # $next: Json
+    $check: String
+    $ifRight: String
+    $ifWrong: String
   ) {
-    updateQuiz(id: $id, question: $question, answer: $answer, next: $next) {
+    updateQuiz(
+      id: $id
+      question: $question
+      answer: $answer
+      # next: $next
+      check: $check
+      ifRight: $ifRight
+      ifWrong: $ifWrong
+    ) {
       id
     }
   }
@@ -39,9 +51,10 @@ const Container = styled.div`
     width: 100%;
     height: 100px;
     outline: 0;
+    font-family: Montserrat;
     border: 1px solid #ccc;
     border-radius: 3.5px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   select {
     width: 100%;
@@ -70,7 +83,7 @@ const Container = styled.div`
 
 const Button = styled.button`
   padding: 1% 2%;
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   width: 20%;
   border-radius: 5px;
   color: white;
@@ -80,13 +93,38 @@ const Button = styled.button`
   cursor: pointer;
   outline: 0;
   &:active {
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${(props) => props.theme.darkGreen};
   }
 `;
 
-const UpdateQuiz = props => {
+const Comment = styled.div`
+  margin: 3% 0;
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  width: 100%;
+  min-height: 100px;
+  padding: 1.5%;
+  font-size: 1.4rem;
+  outline: 0;
+  &#ifRight {
+    border: 1px solid #84bc9c;
+  }
+  &#ifWrong {
+    border: 1px solid #de6b48;
+  }
+`;
+
+const DynamicLoadedEditor = dynamic(import("../../editor/HoverEditor"), {
+  loading: () => <p>...</p>,
+  ssr: false,
+});
+
+const UpdateQuiz = (props) => {
   const [answer, setAnswer] = useState(props.answer);
   const [question, setQuestion] = useState(props.question);
+  const [ifRight, setIfRight] = useState(props.ifRight);
+  const [ifWrong, setIfWrong] = useState(props.ifWrong);
+  const [check, setCheck] = useState(props.check);
   const [trueVal, setTrueVal] = useState(
     props.next && props.next.true ? props.next.true : ""
   );
@@ -94,70 +132,79 @@ const UpdateQuiz = props => {
     props.next && props.next.false ? props.next.false : ""
   );
 
-  const myCallback = async (type, data) => {
-    return type === true ? setTrueVal(data) : setFalseVal(data);
-  };
-
-  const { lessonID, quizID, quizes, notes, tests } = props;
+  const { lessonID, quizID } = props;
   return (
     <Container>
-      <textarea
-        id="question"
-        name="question"
-        required
-        placeholder="Вопрос"
-        defaultValue={question}
-        onChange={e => setQuestion(e.target.value)}
-      />
+      <select defaultValue={check} onChange={(e) => setCheck(e.target.value)}>
+        <option value={undefined}>{props.t("not_chosen")}</option>
+        <option value={"WORD"}>{props.t("word")}</option>
+        <option value={"IDEA"}>{props.t("idea")}</option>
+      </select>
+      <Comment>
+        <DynamicLoadedEditor
+          id="question"
+          name="question"
+          placeholder={props.t("quiz")}
+          value={question}
+          getEditorText={setQuestion}
+        />
+      </Comment>
       <textarea
         id="answer"
         name="answer"
-        required
-        placeholder="Ответ"
+        placeholder={props.t("answer")}
         defaultValue={answer}
-        onChange={e => setAnswer(e.target.value)}
+        onChange={(e) => setAnswer(e.target.value)}
       />
-      <h2>Выберите задания для формата "Экзамен":</h2>
-      <h3>Заметки:</h3>
-      {notes.map(note => (
-        <Option key={note.id} note={note} getData={myCallback} />
-      ))}
-      <h3>Вопросы:</h3>
-      {quizes.map(quiz => (
-        <Option key={quiz.id} quiz={quiz} getData={myCallback} />
-      ))}
-      <h3>Тесты:</h3>
-      {tests.map(test => (
-        <Option key={test.id} test={test} getData={myCallback} />
-      ))}
+      <Comment>
+        <DynamicLoadedEditor
+          id="answer"
+          name="answer"
+          value={ifRight}
+          placeholder={props.t("correct_feedback")}
+          getEditorText={setIfRight}
+        />
+      </Comment>
+      <Comment>
+        <DynamicLoadedEditor
+          id="answer"
+          name="answer"
+          placeholder={props.t("wrong_feedback")}
+          value={ifWrong}
+          getEditorText={setIfWrong}
+        />
+      </Comment>
       <Mutation
         mutation={UPDATE_QUIZ_MUTATION}
         variables={{
           id: quizID,
           question: question,
           answer: answer,
+          ifRight: ifRight,
+          ifWrong: ifWrong,
+          check: check,
           next: {
             true: trueVal,
-            false: falseVal
-          }
+            false: falseVal,
+          },
         }}
         refetchQueries={() => [
           {
             query: SINGLE_LESSON_QUERY,
-            variables: { id: lessonID }
-          }
+            variables: { id: lessonID },
+          },
         ]}
       >
         {(updateQuiz, { loading, error }) => (
           <Button
-            onClick={async e => {
+            onClick={async (e) => {
               // Stop the form from submitting
               e.preventDefault();
               // call the mutation
               const res = await updateQuiz();
             }}
           >
-            {loading ? "Сохраняем..." : "Сохранить"}
+            {loading ? props.t("saving") : props.t("save")}
           </Button>
         )}
       </Mutation>
@@ -165,4 +212,4 @@ const UpdateQuiz = props => {
   );
 };
 
-export default UpdateQuiz;
+export default withTranslation("tasks")(UpdateQuiz);

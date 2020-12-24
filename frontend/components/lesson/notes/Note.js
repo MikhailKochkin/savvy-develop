@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import renderHTML from "react-render-html";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import UpdateNote from "./UpdateNote";
 import DeleteNote from "../../delete/DeleteNote";
+import { withTranslation } from "../../../i18n";
 
 const StyledButton = withStyles({
   root: {
@@ -17,18 +18,15 @@ const StyledButton = withStyles({
 })(Button);
 
 const Container = styled.div`
-  width: ${(props) => (props.story ? "100%" : "95%")};
+  width: ${(props) => (props.story ? "100%" : "80%")};
   font-size: 1.6rem;
-  /* margin: 20px 0; */
+  margin: 20px 0;
 `;
 
 const NoteStyles = styled.div`
   width: ${(props) => (props.story ? "100%" : "95%")};
   margin: 2% 0 0 0;
-  /* padding: 0% 2%; */
   font-size: 1.6rem;
-  border: ${(props) => (props.story ? null : "1px solid #e4e4e4")};
-  border-radius: 8px;
   @media (max-width: 800px) {
     font-size: 1.4rem;
   }
@@ -37,8 +35,8 @@ const NoteStyles = styled.div`
   }
   img {
     display: block;
-    max-width: 100%;
-    max-height: 20em;
+    width: 100%;
+    max-height: 50em;
     box-shadow: "0 0 0 2px blue;";
   }
   iframe {
@@ -55,6 +53,15 @@ const NoteStyles = styled.div`
       text-decoration: underline;
     }
   }
+  .mark {
+    color: #008489;
+    font-size: 2rem;
+    width: 100%;
+    margin: 3% 0;
+    padding: 3% 8%;
+    background-color: #f2fafb;
+    border-radius: 5px;
+  }
   pre {
     background: #282c34;
     color: white;
@@ -62,6 +69,7 @@ const NoteStyles = styled.div`
     line-height: 1;
     font-size: 1.4rem;
     border-radius: 10px;
+    overflow-x: scroll;
   }
   table {
     width: 100%;
@@ -93,27 +101,6 @@ const Buttons = styled.div`
   margin-top: 3%;
 `;
 
-const Dots = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 90px;
-  margin-bottom: 5%;
-  .group {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    justify-content: space-between;
-    margin-top: 5%;
-  }
-  .dot {
-    width: 12px;
-    height: 12px;
-    background: #c4c4c4;
-    border-radius: 50%;
-  }
-`;
-
 const MiniButton = styled.div`
   border: none;
   background: none;
@@ -128,9 +115,9 @@ const Note = (props) => {
   const [update, setUpdate] = useState(false);
 
   const push = () => {
-    props.exam
-      ? props.getData(props.next ? props.next.true : { finish: 0 }, "true")
-      : null;
+    props.getData(
+      props.next ? [true, props.next.true] : [true, { type: "finish" }]
+    );
   };
 
   const {
@@ -149,21 +136,19 @@ const Note = (props) => {
   } = props;
   return (
     <>
-      <Buttons>
-        {!exam && !story && me.id === note.user.id && (
-          <StyledButton onClick={(e) => setUpdate(!update)}>
-            {!update ? "Настройки" : "Заметка"}
-          </StyledButton>
-        )}
-        {me && me.id === user && !props.story && !props.exam && (
-          <DeleteNote me={me.id} noteID={id} lessonID={lessonID} />
-        )}
-      </Buttons>
       <Container story={story}>
+        <Buttons>
+          {!exam && !story && me.id === note.user.id && (
+            <StyledButton onClick={(e) => setUpdate(!update)}>
+              {!update ? props.t("update") : props.t("back")}
+            </StyledButton>
+          )}
+          {me && me.id === user && !props.story && !props.exam && (
+            <DeleteNote me={me.id} noteID={id} lessonID={lessonID} />
+          )}
+        </Buttons>
         {!update && <NoteStyles story={story}>{renderHTML(text)}</NoteStyles>}
-        {getData && (
-          <MiniButton onClick={push}>Разобрались? Поехали дальше!</MiniButton>
-        )}
+        {getData && <MiniButton onClick={push}>{props.t("next")}</MiniButton>}
         {update && !story && !exam && (
           <UpdateNote
             notes={notes}
@@ -176,17 +161,8 @@ const Note = (props) => {
           />
         )}
       </Container>
-      {exam && (
-        <Dots>
-          <div className="group">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
-        </Dots>
-      )}
     </>
   );
 };
 
-export default Note;
+export default withTranslation("tasks")(Note);

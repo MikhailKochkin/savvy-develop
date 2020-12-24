@@ -9,15 +9,15 @@ import { SINGLE_LESSON_QUERY } from "../SingleLesson";
 import CreateStatement from "./CreateStatement";
 
 const CREATE_RATING_MUTATION = gql`
-  mutation CREATE_RATING_MUTATION($rating: Int, $forum: ID!) {
-    createRating(rating: $rating, forum: $forum) {
+  mutation CREATE_RATING_MUTATION($rating: Int, $forumId: String!) {
+    createRating(rating: $rating, forumId: $forumId) {
       id
     }
   }
 `;
 
 const UPDATE_RATING_MUTATION = gql`
-  mutation UPDATE_RATING_MUTATION($rating: Int, $id: ID!) {
+  mutation UPDATE_RATING_MUTATION($rating: Int, $id: String!) {
     updateRating(rating: $rating, id: $id) {
       id
     }
@@ -70,6 +70,7 @@ const Forum = (props) => {
   moment.locale("ru");
 
   const { text, forum, id, statements, lesson, me, result } = props;
+  console.log(lesson);
   return (
     <Styles>
       <p>{renderHTML(text)}</p>
@@ -77,7 +78,7 @@ const Forum = (props) => {
         Пожалуйста, оцените, насколько полезен был этот урок. Преподаватель
         увидит оценки в анонимном формате.
       </div>
-
+      {console.log(result)}
       {result ? (
         <Mutation
           mutation={UPDATE_RATING_MUTATION}
@@ -114,7 +115,7 @@ const Forum = (props) => {
         <Mutation
           mutation={CREATE_RATING_MUTATION}
           variables={{
-            forum: id,
+            forumId: id,
             rating: rating,
           }}
           refetchQueries={() => [

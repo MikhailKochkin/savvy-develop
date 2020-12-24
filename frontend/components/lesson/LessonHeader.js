@@ -23,8 +23,16 @@ const CREATE_LESSONRESULT_MUTATION = gql`
 `;
 
 const UPDATE_LESSONRESULT_MUTATION = gql`
-  mutation UPDATE_LESSONRESULT_MUTATION($id: String!, $visitsNumber: Int) {
-    updateLessonResult(id: $id, visitsNumber: $visitsNumber) {
+  mutation UPDATE_LESSONRESULT_MUTATION(
+    $id: String!
+    $visitsNumber: Int
+    $progress: Int
+  ) {
+    updateLessonResult(
+      id: $id
+      visitsNumber: $visitsNumber
+      progress: $progress
+    ) {
       id
     }
   }
@@ -324,8 +332,7 @@ const LessonHeader = (props) => {
                   {me &&
                     lesson &&
                     me.id !== lesson.user.id &&
-                    (students.includes(me.id) ||
-                      new_students.includes(me.id)) &&
+                    new_students.includes(me.id) &&
                     !me.permissions.includes("ADMIN") &&
                     !lesson.open &&
                     published && (
@@ -399,8 +406,7 @@ const LessonHeader = (props) => {
                     lesson &&
                     me.id !== lesson.user.id &&
                     !me.permissions.includes("ADMIN") &&
-                    (students.includes(me.id) ||
-                      new_students.includes(me.id)) &&
+                    new_students.includes(me.id) &&
                     published && (
                       <Link
                         // The user HAS visited the lesson page and we update it now
@@ -436,7 +442,6 @@ const LessonHeader = (props) => {
                     lesson.open &&
                     me.id !== lesson.user.id &&
                     !me.permissions.includes("ADMIN") &&
-                    !students.includes(me.id) &&
                     !new_students.includes(me.id) &&
                     published && (
                       <Link
@@ -450,10 +455,7 @@ const LessonHeader = (props) => {
                         }}
                       >
                         <A>
-                          {console.log(
-                            students.includes(me.id),
-                            new_students.includes(me.id)
-                          )}
+                          {console.log(new_students.includes(me.id))}
                           <Button
                             onClick={() => {
                               updateLessonResult({
@@ -479,7 +481,7 @@ const LessonHeader = (props) => {
           {me &&
           lesson &&
           me.id !== lesson.user.id &&
-          (students.includes(me.id) || new_students.includes(me.id)) &&
+          new_students.includes(me.id) &&
           !me.permissions.includes("ADMIN") &&
           !published ? (
             <InProgress>В разработке</InProgress>

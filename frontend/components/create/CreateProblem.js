@@ -1,60 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
-import { Mutation, Query } from "@apollo/client/react/components";
 import dynamic from "next/dynamic";
+import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { eyeSlash } from "react-icons-kit/fa/eyeSlash";
 import Icon from "react-icons-kit";
 import ProblemBuilder from "./ProblemBuilder";
-
-const SINGLE_LESSON_QUERY = gql`
-  query SINGLE_LESSON_QUERY($id: ID!) {
-    lesson(where: { id: $id }) {
-      id
-      user {
-        id
-      }
-      coursePage {
-        id
-      }
-      notes {
-        id
-        text
-        next
-        user {
-          id
-        }
-      }
-      quizes {
-        id
-        question
-        type
-        answer
-        ifRight
-        ifWrong
-        next
-        user {
-          id
-        }
-      }
-      newTests {
-        id
-        answers
-        correct
-        type
-        ifRight
-        ifWrong
-        next
-        question
-        user {
-          id
-        }
-      }
-    }
-  }
-`;
 
 const useStyles = makeStyles({
   button: {
@@ -84,13 +38,13 @@ const useStyles = makeStyles({
 const CREATE_PROBLEM_MUTATION = gql`
   mutation CREATE_PROBLEM_MUTATION(
     $text: String!
-    $lessonID: ID!
-    $nodeID: ID!
+    $lessonId: String!
+    $nodeID: String!
     $nodeType: String
   ) {
     createProblem(
       text: $text
-      lessonID: $lessonID
+      lessonId: $lessonId
       nodeID: $nodeID
       nodeType: $nodeType
     ) {
@@ -101,13 +55,7 @@ const CREATE_PROBLEM_MUTATION = gql`
 
 const Styles = styled.div`
   margin-top: 2%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  .container {
-    width: 80vw;
-  }
+  max-width: 600px;
 `;
 
 const Title = styled.div`
@@ -124,14 +72,10 @@ const Advice = styled.p`
   border-radius: 10px;
   padding: 2%;
   margin: 30px 0;
-  width: 60%;
+  width: 80%;
   div {
     margin-bottom: 1.5%;
   }
-`;
-
-const Editor = styled.div`
-  width: 70%;
 `;
 
 const DynamicLoadedEditor = dynamic(import("../editor/ProblemEditor"), {
@@ -148,111 +92,86 @@ const CreateProblem = (props) => {
     setText(dataFromChild);
   };
 
+  const { lessonID, lesson } = props;
+
   const getNode = (type, id) => {
     setNodeID(id);
     setNodeType(type);
   };
 
   return (
-    <Query
-      query={SINGLE_LESSON_QUERY}
-      variables={{
-        id: props.id,
-      }}
-      fetchPolicy="cache-first"
-    >
-      {({ data, error, loading }) => {
-        if (error) return <Error error={error} />;
-        if (loading) return <p>Loading...</p>;
-        if (data === null) return <p>Нет урока</p>;
-        const lesson = data.lesson;
-        console.log(lesson);
-        return (
-          <Styles>
-            <div className="container">
-              <Advice>
-                <div>
-                  Задача состоит из двух частей. К первой части относятся{" "}
-                  <b>текст задачи, подсказки и ответ</b>. Ко второй –{" "}
-                  <b>поэтапное решение задачи</b>.
-                </div>{" "}
-                <div>
-                  Чтобы задать подсказки и ответ, необходимо выделить текст,
-                  нажать на кнопку <Icon icon={eyeSlash} /> и задать название
-                  этого куска текста. Название может быть любым: "Подсказка",
-                  "Комментарий", "Источник" и так далее. Ограничения есть только
-                  для ответа. Он может иметь только три названия: "Ответ",
-                  "Ответ." или "Ответ:". Это важно, потому что текст с таким
-                  названием будет открываться только после того, как ученик
-                  сдаст свой ответ.
-                </div>
-                <div>
-                  Чтобы задать этапы решения задач, нужно выбрать тест или
-                  вопрос, с которого начнется решение задачи. Его нужно заранее
-                  создать в соответствующем разделе. Дальнейшие указания на
-                  этапы нужно внести в самих вопросах, тестах и лонгридах.
-                </div>
-              </Advice>
-              <Editor>
-                <Title>Новая задача</Title>
-                <DynamicLoadedEditor getEditorText={myCallback} />
-              </Editor>
-              <h3>
-                Выберите первый вопрос, с которого начнется объяснение решения
-                задачи.
-              </h3>
-              <ProblemBuilder
-                lesson={lesson}
-                elements={[
-                  ...lesson.quizes,
-                  ...lesson.newTests,
-                  ...lesson.notes,
-                ]}
-                getNode={getNode}
-              />
-              {/* {nodeID && ( */}
-              <Mutation
-                mutation={CREATE_PROBLEM_MUTATION}
-                variables={{
-                  lessonID: props.id,
-                  text: text,
-                  nodeID: nodeID,
-                  nodeType: nodeType,
-                }}
-                refetchQueries={() => [
-                  {
-                    query: SINGLE_LESSON_QUERY,
-                    variables: { id: props.id },
-                  },
-                ]}
-                awaitRefetchQueries={true}
-              >
-                {(createProblem, { loading, error }) => (
-                  <>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      className={classes.button}
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        const res = await createProblem();
-                        alert("Создали!");
-                      }}
-                    >
-                      {loading ? "Сохраняем..." : "Сохранить"}
-                    </Button>
-                  </>
-                )}
-              </Mutation>
-              {/* )} */}
-            </div>
-          </Styles>
-        );
-      }}
-    </Query>
+    <Styles>
+      <Advice>
+        <div>
+          Задача состоит из двух частей. К первой части относятся{" "}
+          <b>текст задачи, подсказки и ответ</b>. Ко второй –{" "}
+          <b>поэтапное решение задачи</b>.
+        </div>{" "}
+        <div>
+          Чтобы задать подсказки и ответ, необходимо выделить текст, нажать на
+          кнопку <Icon icon={eyeSlash} /> и задать название этого куска текста.
+          Название может быть любым: "Подсказка", "Комментарий", "Источник" и
+          так далее. Ограничения есть только для ответа. Он может иметь только
+          три названия: "Ответ", "Ответ." или "Ответ:". Это важно, потому что
+          текст с таким названием будет открываться только после того, как
+          ученик сдаст свой ответ.
+        </div>
+        <div>
+          Чтобы задать этапы решения задач, нужно выбрать тест или вопрос, с
+          которого начнется решение задачи. Его нужно заранее создать в
+          соответствующем разделе. Дальнейшие указания на этапы нужно внести в
+          самих вопросах, тестах и лонгридах.
+        </div>
+      </Advice>
+      <Title>Новая задача</Title>
+      <DynamicLoadedEditor getEditorText={myCallback} />
+      <h3>
+        Выберите первый вопрос, с которого начнется объяснение решения задачи.
+      </h3>
+      <ProblemBuilder
+        lessonID={lesson.id}
+        getNode={getNode}
+        quizes={lesson.quizes}
+        newTests={lesson.newTests}
+        notes={lesson.notes}
+      />
+      <Mutation
+        mutation={CREATE_PROBLEM_MUTATION}
+        variables={{
+          lessonId: lessonID,
+          text: text,
+          nodeID: nodeID,
+          nodeType: nodeType,
+        }}
+        refetchQueries={() => [
+          {
+            query: SINGLE_LESSON_QUERY,
+            variables: { id: lessonID },
+          },
+        ]}
+        awaitRefetchQueries={true}
+      >
+        {(createProblem, { loading, error }) => (
+          <>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={async (e) => {
+                e.preventDefault();
+                console.log(1);
+                const res = await createProblem();
+                alert("Создали!");
+              }}
+            >
+              {loading ? "Сохраняем..." : "Сохранить"}
+            </Button>
+          </>
+        )}
+      </Mutation>
+    </Styles>
   );
 };
 
 export default CreateProblem;
-export { SINGLE_LESSON_QUERY };

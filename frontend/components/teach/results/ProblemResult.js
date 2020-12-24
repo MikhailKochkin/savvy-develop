@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 import ProblemModal from "./ProblemModal";
 
@@ -17,20 +16,23 @@ const Container = styled.div`
   }
 `;
 
-class ProblemResults extends Component {
-  render() {
-    const { problems, student } = this.props;
-    return (
-      <>
-        <Container>
-          {problems.length > 0 &&
-            problems.map(problem => (
-              <ProblemModal problem={problem} student={student} />
-            ))}
-        </Container>
-      </>
-    );
-  }
-}
+const ProblemResults = (props) => {
+  const { problems, student, results } = props;
+  console.log(problems);
+  return (
+    <>
+      <Container>
+        {problems.length > 0 &&
+          problems.map((problem) => (
+            <ProblemModal
+              problem={problem}
+              student={student}
+              results={results}
+            />
+          ))}
+      </Container>
+    </>
+  );
+};
 
 export default ProblemResults;

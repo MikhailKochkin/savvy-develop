@@ -602,6 +602,16 @@ input FeedbackListRelationFilter {
   some: FeedbackWhereInput
 }
 
+input FeedbackOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  lessonId: SortOrder
+  studentId: SortOrder
+  teacherId: SortOrder
+  text: SortOrder
+  updatedAt: SortOrder
+}
+
 input FeedbackWhereInput {
   AND: [FeedbackWhereInput!]
   createdAt: DateTimeFilter
@@ -871,6 +881,7 @@ type Mutation {
   createCourseVisit(coursePageId: String, visitsNumber: Int): CourseVisit
   createDocument(lessonId: String, title: String): Document
   createDocumentResult(answers: [String], documentId: String, drafts: [String]): DocumentResult
+  createFeedback(lessonId: String, studentId: String, text: String): Feedback
   createForum(lessonId: String, text: String): Forum
   createLesson(coursePageID: String, description: String, name: String, number: Int, text: String): Lesson
   createLessonResult(lessonID: String, visitsNumber: Int): LessonResult
@@ -901,6 +912,8 @@ type Mutation {
   deleteStatement(id: String): Statement
   deleteTextEditor(id: String): TextEditor
   enrollOnCourse(coursePageId: String, id: String): User
+  newWeek(id: String, reminders: [DateTime]): CourseVisit
+  remind(id: String, reminders: [DateTime]): CourseVisit
   signin(email: String, password: String): AuthPayload
   signout: SignOut
   signup(careerTrackID: String, company: String, email: String, name: String, password: String, surname: String, uniID: String): AuthPayload
@@ -1297,6 +1310,19 @@ input ProblemResultListRelationFilter {
   some: ProblemResultWhereInput
 }
 
+input ProblemResultOrderByInput {
+  answer: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  lessonId: SortOrder
+  lessonID: SortOrder
+  problemId: SortOrder
+  problemID: SortOrder
+  revealed: SortOrder
+  studentId: SortOrder
+  updatedAt: SortOrder
+}
+
 input ProblemResultWhereInput {
   AND: [ProblemResultWhereInput!]
   answer: StringNullableFilter
@@ -1350,14 +1376,20 @@ input ProblemWhereUniqueInput {
 type Query {
   coursePage(where: CoursePageWhereUniqueInput!): CoursePage
   coursePages(after: CoursePageWhereUniqueInput, before: CoursePageWhereUniqueInput, first: Int, last: Int, orderBy: [CoursePageOrderByInput!], where: CoursePageWhereInput): [CoursePage!]!
+  courseVisit(where: CourseVisitWhereUniqueInput!): CourseVisit
   courseVisits(after: CourseVisitWhereUniqueInput, before: CourseVisitWhereUniqueInput, first: Int, last: Int, orderBy: [CourseVisitOrderByInput!], where: CourseVisitWhereInput): [CourseVisit!]!
+  feedbacks(after: FeedbackWhereUniqueInput, before: FeedbackWhereUniqueInput, first: Int, last: Int, orderBy: [FeedbackOrderByInput!], where: FeedbackWhereInput): [Feedback!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessonsConnection: Lesson
   me: User
   newTest(where: NewTestWhereUniqueInput!): NewTest
   orders(after: OrderWhereUniqueInput, before: OrderWhereUniqueInput, first: Int, last: Int, orderBy: [OrderOrderByInput!], where: OrderWhereInput): [Order!]!
   posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, orderBy: [PostOrderByInput!], where: PostWhereInput): [Post!]!
-  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
+  problemResults(after: ProblemResultWhereUniqueInput, before: ProblemResultWhereUniqueInput, first: Int, last: Int, orderBy: [ProblemResultOrderByInput!], where: ProblemResultWhereInput): [ProblemResult!]!
+  quizResults(after: QuizResultWhereUniqueInput, before: QuizResultWhereUniqueInput, first: Int, last: Int, orderBy: [QuizResultOrderByInput!], where: QuizResultWhereInput): [QuizResult!]!
+  testResults(after: TestResultWhereUniqueInput, before: TestResultWhereUniqueInput, first: Int, last: Int, orderBy: [TestResultOrderByInput!], where: TestResultWhereInput): [TestResult!]!
+  textEditorResults(after: TextEditorResultWhereUniqueInput, before: TextEditorResultWhereUniqueInput, first: Int, last: Int, orderBy: [TextEditorResultOrderByInput!], where: TextEditorResultWhereInput): [TextEditorResult!]!
+  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int, orderBy: [UserOrderByInput!], where: UserWhereInput): [User!]!
 }
 
 enum QueryMode {
@@ -1409,6 +1441,19 @@ input QuizResultListRelationFilter {
   every: QuizResultWhereInput
   none: QuizResultWhereInput
   some: QuizResultWhereInput
+}
+
+input QuizResultOrderByInput {
+  answer: SortOrder
+  attempts: SortOrder
+  correct: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  lessonId: SortOrder
+  lessonID: SortOrder
+  quizId: SortOrder
+  studentId: SortOrder
+  updatedAt: SortOrder
 }
 
 input QuizResultWhereInput {
@@ -1687,6 +1732,19 @@ input TestResultListRelationFilter {
   some: TestResultWhereInput
 }
 
+input TestResultOrderByInput {
+  answer: SortOrder
+  attempts: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  lessonId: SortOrder
+  lessonID: SortOrder
+  studentId: SortOrder
+  testId: SortOrder
+  testID: SortOrder
+  updatedAt: SortOrder
+}
+
 input TestResultWhereInput {
   AND: [TestResultWhereInput!]
   answer: StringNullableFilter
@@ -1732,6 +1790,7 @@ input TextEditorListRelationFilter {
 }
 
 type TextEditorResult {
+  attempts: Int
   correct: String!
   createdAt: DateTime!
   guess: String!
@@ -1751,6 +1810,20 @@ input TextEditorResultListRelationFilter {
   every: TextEditorResultWhereInput
   none: TextEditorResultWhereInput
   some: TextEditorResultWhereInput
+}
+
+input TextEditorResultOrderByInput {
+  attempts: SortOrder
+  correct: SortOrder
+  createdAt: SortOrder
+  guess: SortOrder
+  id: SortOrder
+  lessonId: SortOrder
+  result: SortOrder
+  studentId: SortOrder
+  textEditorId: SortOrder
+  updatedAt: SortOrder
+  wrong: SortOrder
 }
 
 input TextEditorResultWhereInput {
@@ -1831,6 +1904,7 @@ type User {
   interests: [String!]!
   lessonResults(after: LessonResultWhereUniqueInput, before: LessonResultWhereUniqueInput, first: Int, last: Int): [LessonResult!]!
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int): [Lesson!]!
+  level: UserLevel
   name: String!
   new_subjects(after: CoursePageWhereUniqueInput, before: CoursePageWhereUniqueInput, first: Int, last: Int): [CoursePage!]!
   password: String!
@@ -1847,6 +1921,15 @@ input UserCoursePagesOrderByInput {
   title: SortOrder
 }
 
+type UserLevel {
+  createdAt: DateTime!
+  id: String!
+  level: Float
+  updatedAt: DateTime!
+  user: User
+  userId: String
+}
+
 input UserLevelWhereInput {
   AND: [UserLevelWhereInput!]
   createdAt: DateTimeFilter
@@ -1856,12 +1939,42 @@ input UserLevelWhereInput {
   OR: [UserLevelWhereInput!]
   updatedAt: DateTimeFilter
   user: UserWhereInput
+  userId: StringNullableFilter
 }
 
 input UserListRelationFilter {
   every: UserWhereInput
   none: UserWhereInput
   some: UserWhereInput
+}
+
+input UserOrderByInput {
+  careerTrackId: SortOrder
+  careerTrackID: SortOrder
+  companyId: SortOrder
+  coverLetter: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  email: SortOrder
+  favourites: SortOrder
+  id: SortOrder
+  image: SortOrder
+  interests: SortOrder
+  isFamiliar: SortOrder
+  legalPortfolioId: SortOrder
+  levelId: SortOrder
+  name: SortOrder
+  password: SortOrder
+  permissions: SortOrder
+  resetToken: SortOrder
+  resetTokenExpiry: SortOrder
+  resume: SortOrder
+  status: SortOrder
+  subjects: SortOrder
+  surname: SortOrder
+  uniId: SortOrder
+  uniID: SortOrder
+  updatedAt: SortOrder
 }
 
 input UserWhereInput {

@@ -11,18 +11,16 @@ const CREATE_CLAUSE_MUTATION = gql`
   mutation CREATE_CLAUSE_MUTATION(
     $commentary: String!
     $sample: String!
-    $tags_arguments: [String!]
-    $tags_intro: [String!]
+    $keywords: [String!]
     $number: Int!
-    $document: ID!
+    $documentId: String!
   ) {
     createClause(
       commentary: $commentary
       sample: $sample
-      tags_arguments: $tags_arguments
-      tags_intro: $tags_intro
+      keywords: $keywords
       number: $number
-      document: $document
+      documentId: $documentId
     ) {
       id
     }
@@ -32,9 +30,6 @@ const CREATE_CLAUSE_MUTATION = gql`
 const Styles = styled.div`
   margin-top: 2%;
   width: 90%;
-  #big {
-    margin-top: 3%;
-  }
 `;
 
 const Condition = styled.div`
@@ -75,21 +70,20 @@ const useStyles = makeStyles({
     // width: "40%",
     margin: "4% 0",
     fontSize: "1.6rem",
-    textTransform: "none"
-  }
+    textTransform: "none",
+  },
 });
 
 const DynamicLoadedEditor = dynamic(import("../../editor/HoverEditor"), {
   loading: () => <p>...</p>,
-  ssr: false
+  ssr: false,
 });
 
-const CreateClause = props => {
+const CreateClause = (props) => {
   const [number, setNumber] = useState(props.index);
   const [commentary, setCommentary] = useState("Комментарий по условию");
   const [sample, setSample] = useState("Пример условия");
-  const [tags_intro, setIntro] = useState([]);
-  const [tags_arguments, setArguments] = useState([]);
+  const [keywords, setKeywords] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const myCallback = (dataFromChild, name) => {
     if (name === "sample") {
@@ -105,12 +99,11 @@ const CreateClause = props => {
       <Mutation
         mutation={CREATE_CLAUSE_MUTATION}
         variables={{
-          document,
+          documentId: document,
           commentary,
           sample,
-          tags_intro,
-          tags_arguments,
-          number
+          keywords,
+          number,
         }}
       >
         {(createClause, { loading, error }) => (
@@ -120,7 +113,7 @@ const CreateClause = props => {
               <input
                 type="number"
                 value={number}
-                onChange={e => setNumber(event.target.value)}
+                onChange={(e) => setNumber(event.target.value)}
               />
             </Condition>
             <Frame>
@@ -143,21 +136,15 @@ const CreateClause = props => {
             </Frame>
             <div>
               <Input
-                placeholder="Ключевые слова: введение"
-                onChange={e => setIntro(event.target.value.split(", "))}
-              />
-            </div>
-            <div id="big">
-              <Input
-                placeholder="Ключевые слова: аргументы"
-                onChange={e => setArguments(event.target.value.split(", "))}
+                defaultValue="Ключевые слова"
+                onChange={(e) => setKeywords(event.target.value.split(", "))}
               />
             </div>
             <Button
               className={classes.button}
               variant="contained"
               color="primary"
-              onClick={async e => {
+              onClick={async (e) => {
                 e.preventDefault();
                 const res = await createClause();
                 setDisabled(true);
@@ -174,7 +161,7 @@ const CreateClause = props => {
 };
 
 CreateClause.propTypes = {
-  document: PropTypes.string.isRequired
+  document: PropTypes.string.isRequired,
 };
 
 export default CreateClause;

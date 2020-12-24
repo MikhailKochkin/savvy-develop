@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
 const DELETE_NOTE_MUTATION = gql`
-  mutation DELETE_NOTE_MUTATION($id: ID!) {
+  mutation DELETE_NOTE_MUTATION($id: String!) {
     deleteNote(id: $id) {
       id
     }
@@ -17,11 +17,11 @@ const useStyles = makeStyles({
   button: {
     margin: "4% 0",
     fontSize: "1.6rem",
-    textTransform: "none"
-  }
+    textTransform: "none",
+  },
 });
 
-const DeleteNote = props => {
+const DeleteNote = (props) => {
   const { lessonID, noteID } = props;
   const classes = useStyles();
   return (
@@ -31,8 +31,8 @@ const DeleteNote = props => {
       refetchQueries={() => [
         {
           query: SINGLE_LESSON_QUERY,
-          variables: { id: lessonID }
-        }
+          variables: { id: lessonID },
+        },
       ]}
     >
       {(deleteNote, { loading, error }) => (
@@ -41,7 +41,7 @@ const DeleteNote = props => {
           color="secondary"
           onClick={() => {
             if (confirm("Вы точно хотите удалить эту заметку?")) {
-              deleteNote().catch(error => {
+              deleteNote().catch((error) => {
                 alert(error.message);
               });
             }

@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 import renderHTML from "react-render-html";
 import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 import DeleteSingleTextEditor from "../../delete/DeleteSingleTextEditor";
 import UpdateTextEditor from "./UpdateTextEditor";
-
-import { SINGLE_LESSON_QUERY } from "../SingleLesson";
 import { CURRENT_USER_QUERY } from "../../User";
+import { SINGLE_LESSON_QUERY } from "../SingleLesson";
+import { withTranslation } from "../../../i18n";
 
 const CREATE_TEXTEDITORRESULT_MUTATION = gql`
   mutation CREATE_TEXTEDITORRESULT_MUTATION(
@@ -16,8 +18,8 @@ const CREATE_TEXTEDITORRESULT_MUTATION = gql`
     $wrong: String!
     $correct: String!
     $guess: String!
-    $lesson: ID
-    $textEditor: ID
+    $lesson: String
+    $textEditor: String
     $result: Boolean
   ) {
     createTextEditorResult(
@@ -35,19 +37,50 @@ const CREATE_TEXTEDITORRESULT_MUTATION = gql`
 `;
 
 const TextBar = styled.div`
-  width: 100%;
+  width: 98%;
   font-size: 1.6rem;
   border-radius: 5px;
   @media (max-width: 800px) {
     width: 100%;
-  }
-  pre {
-    background: #282c34;
-    color: white;
-    padding: 2% 4%;
-    line-height: 1;
     font-size: 1.4rem;
-    border-radius: 10px;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 20em;
+    box-shadow: "0 0 0 2px blue;";
+  }
+  iframe {
+    width: 100%;
+    height: 400px;
+    @media (max-width: 800px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+  table {
+    width: 100%;
+    border: 1px solid #edefed;
+    border-collapse: collapse;
+    tr {
+      border: 1px solid #edefed;
+    }
+    thead {
+      background: #f5f5f5;
+      font-weight: bold;
+    }
+    th {
+      border: 1px solid #edefed;
+    }
+    td {
+      border: 1px solid #edefed;
+      border-top: none;
+      border-bottom: none;
+      border-right: none;
+      padding: 0% 2.5%;
+      position: relative;
+      width: 5%;
+    }
   }
   .edit {
     background: red;
@@ -75,7 +108,7 @@ const TextBar = styled.div`
     padding: 4px 7px;
     margin: 0 5px;
     transition: all 0.3s ease;
-    &:focus {
+    &:hover {
       color: white;
       background: #6d7578;
     }
@@ -84,32 +117,15 @@ const TextBar = styled.div`
 
 const EditText = styled.div`
   color: rgb(17, 17, 17);
-  max-width: 740px;
+  width: ${(props) => (props.story ? "940px" : "740px")};
   background: rgb(255, 255, 255);
   -webkit-box-shadow: 0px 0px 3px 0px rgba(199, 199, 199, 1);
   -moz-box-shadow: 0px 0px 3px 0px rgba(199, 199, 199, 1);
   box-shadow: 0px 0px 3px 0px rgba(199, 199, 199, 1);
   padding: 5% 8%;
   margin: 55px auto 45px;
-`;
-
-const Button = styled.button`
-  padding: 1%;
-  background: ${(props) => props.theme.green};
-  max-width: 30%;
-  border-radius: 5px;
-  border: ${(props) => props.theme.green};
-  color: white;
-  font-size: 1.6rem;
-  font-family: Montserrat;
-  margin: 2% 0;
-  cursor: pointer;
-  outline: 0;
-  &:active {
-    background-color: ${(props) => props.theme.darkGreen};
-  }
   @media (max-width: 800px) {
-    width: 50%;
+    width: 100%;
   }
 `;
 
@@ -119,6 +135,24 @@ const Buttons = styled.div`
   justify-content: flex-start;
   width: 100%;
 `;
+
+const Input = styled.input`
+  margin-left: 10px;
+  border: none;
+  border-bottom: 1px solid #edefed;
+  outline: 0;
+  font-size: 1.6rem;
+  font-family: Montserrat;
+`;
+
+const StyledButton = withStyles({
+  root: {
+    marginRight: "2%",
+    fontSize: "1.6rem",
+    textTransform: "none",
+    maxHeight: "40px",
+  },
+})(Button);
 
 class SingleTextEditor extends Component {
   state = {
@@ -135,6 +169,65 @@ class SingleTextEditor extends Component {
     result: false,
     inputColor: "#c0d6df",
     open: true,
+    recieved: [],
+  };
+
+  check = async (e) => {
+    this.setState({ shown: true });
+    let data = {
+      answer1: this.state.correct_option.toLowerCase(),
+      answer2: this.state.answer.toLowerCase(),
+    };
+    let el = document.querySelectorAll(
+      `[data-initial='${this.state.correct_option}']`
+    )[0];
+    e.target.innerHTML = this.props.t("checking");
+    e.target.pointerEvents = "none";
+    const r = await fetch("https://arcane-refuge-67529.herokuapp.com/checker", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        if (
+          !e.target.nextSibling ||
+          (e.target.nextSibling &&
+            e.target.nextSibling.innerHTML !== this.props.t("show1"))
+        ) {
+          let button2 = document.createElement("button");
+          button2.innerHTML = this.props.t("show1");
+          button2.className = "mini_button";
+          button2.addEventListener("click", this.show);
+          e.target.after(button2);
+        }
+        if (parseFloat(res.res) > 69) {
+          this.setState({
+            result: true,
+          });
+          el.style.background = "#D9EAD3";
+          e.target.innerHTML = this.props.t("check");
+          e.target.pointerEvents = "auto";
+        } else {
+          this.setState({
+            result: false,
+          });
+          el.style.background = "#FCE5CD";
+          e.target.innerHTML = this.props.t("check");
+          e.target.pointerEvents = "auto";
+
+          if (res.comment) {
+            alert(res.comment);
+          }
+          setTimeout(() => (el.style.background = "#bef1ed"), 3000);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    this.setState({ shown: false });
   };
 
   onTest = (e) => {
@@ -153,8 +246,9 @@ class SingleTextEditor extends Component {
     let n = e.target.parentNode.replaceChild(z, e.target);
 
     let button = document.createElement("button");
-    button.innerHTML = "Проверить";
+    button.innerHTML = this.props.t("check");
     button.className = "mini_button";
+    button.tabIndex = 0;
     button.addEventListener("click", this.check);
     z.after(button);
 
@@ -170,13 +264,16 @@ class SingleTextEditor extends Component {
   };
 
   onReveal = (e) => {
-    console.log(e.target);
-    e.target.className = "edit";
     let span = document.createElement("span");
-    span.innerHTML = `(${e.target.getAttribute("data")})`;
-    span.className = "edit";
-    if (span.innerHTML !== e.target.nextSibling.innerHTML) {
+    span.innerHTML = ` (${e.target.getAttribute("data")})`;
+    if (
+      e.target.nextSibling == null ||
+      (e.target.nextSibling &&
+        span.innerHTML !== e.target.nextSibling.innerHTML)
+    ) {
+      e.target.className = "edit";
       e.target.after(span);
+      span.className = "edit";
     }
   };
 
@@ -191,58 +288,10 @@ class SingleTextEditor extends Component {
     e.target.previousSibling.previousSibling.style.pointerEvents = "none";
   };
 
-  check = async (e) => {
-    this.setState({ shown: true });
-    let data = {
-      answer1: this.state.correct_option.toLowerCase(),
-      answer2: this.state.answer.toLowerCase(),
-    };
-    let el = document.querySelectorAll(
-      `[data-initial='${this.state.correct_option}']`
-    )[0];
-    const r = await fetch("https://arcane-refuge-67529.herokuapp.com/checker", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        if (
-          !e.target.nextSibling ||
-          (e.target.nextSibling &&
-            e.target.nextSibling.innerHTML !== "Показать")
-        ) {
-          let button2 = document.createElement("button");
-          button2.innerHTML = "Показать";
-          button2.className = "mini_button";
-          button2.addEventListener("click", this.show);
-          e.target.after(button2);
-        }
-        if (parseFloat(res.res) > 69) {
-          this.setState({
-            result: true,
-          });
-          el.style.background = "#D9EAD3";
-        } else {
-          this.setState({
-            result: false,
-          });
-          el.style.background = "#FCE5CD";
-          if (res.comment) {
-            alert(res.comment);
-          }
-          setTimeout(() => (el.style.background = "#bef1ed"), 3000);
-        }
-      })
-      .catch((err) => console.log(err));
-    this.setState({ shown: false });
-  };
-
   onShow = () => {
-    const elements = document.querySelectorAll("#id");
+    const elements = document
+      .getElementById(this.props.textEditor.id + 1)
+      .querySelectorAll("#id");
     if (this.state.mistakesShown) {
       elements.forEach((element) => {
         element.classList.remove("edit");
@@ -254,21 +303,26 @@ class SingleTextEditor extends Component {
     }
     this.setState((prev) => ({ mistakesShown: !prev.mistakesShown }));
   };
+
   render() {
-    const { textEditor, me, userData, lesson } = this.props;
-    // const data = userData
-    //   .filter((result) => result.textEditor.id === textEditor.id)
-    //   .filter((result) => result.student.id === me.id);
+    const { textEditor, me, userData, lessonID, story } = this.props;
+    let data;
+    me
+      ? (data = userData
+          .filter((result) => result.textEditor.id === textEditor.id)
+          .filter((result) => result.student.id === me.id))
+      : (data = [""]);
+
     return (
-      <>
+      <div id={textEditor.id + 1}>
         {!this.state.update && (
           <>
-            <TextBar>
-              <EditText>
+            <TextBar id={textEditor.id}>
+              <EditText story={story}>
                 <Mutation
                   mutation={CREATE_TEXTEDITORRESULT_MUTATION}
                   variables={{
-                    lesson: this.props.lesson,
+                    lesson: this.props.lessonID,
                     textEditor: this.props.textEditor.id,
                     attempts: this.state.attempts,
                     correct: this.state.correct_option,
@@ -279,7 +333,7 @@ class SingleTextEditor extends Component {
                   refetchQueries={() => [
                     {
                       query: SINGLE_LESSON_QUERY,
-                      variables: { id: this.props.lesson },
+                      variables: { id: this.props.lessonID },
                     },
                     {
                       query: CURRENT_USER_QUERY,
@@ -290,10 +344,20 @@ class SingleTextEditor extends Component {
                     <div
                       onClick={async (e) => {
                         const res1 = this.onTest();
+                        if (e.target.getAttribute("data-initial")) {
+                          this.setState({
+                            correct_option: e.target.getAttribute(
+                              "data-initial"
+                            ),
+                          });
+                        }
                         if (e.target.id === "id") {
                           if (this.state.total > 0) {
                             const res2 = await this.onMouseClick(e);
-                          } else if (this.state.total == 0) {
+                          } else if (
+                            this.state.total == 0 ||
+                            this.state.total == null
+                          ) {
                             const res3 = await this.onReveal(e);
                           }
                         }
@@ -312,46 +376,51 @@ class SingleTextEditor extends Component {
               </EditText>
             </TextBar>
             <Buttons>
-              <Button onClick={this.onShow}>
-                {this.state.mistakesShown ? "Скрыть ошибки" : "Показать ошибки"}
-              </Button>
-              {me && me.id === textEditor.user.id && !this.props.story ? (
+              <StyledButton
+                onClick={this.onShow}
+                variant="contained"
+                color="primary"
+              >
+                {this.state.mistakesShown
+                  ? this.props.t("close2")
+                  : this.props.t("open2")}
+              </StyledButton>
+              {me && me.id === textEditor.user.id && !story ? (
                 <DeleteSingleTextEditor
                   id={this.props.textEditor.id}
                   lessonID={this.props.lessonID}
                 />
               ) : null}
-              {me && me.id === textEditor.user.id && !this.props.story && (
-                <button
+              {me && me.id === textEditor.user.id && !story && (
+                <StyledButton
                   onClick={(e) =>
                     this.setState((prev) => ({ update: !prev.update }))
                   }
                 >
-                  Изменить
-                </button>
+                  {this.props.t("update")}
+                </StyledButton>
               )}
             </Buttons>
           </>
         )}
         {this.state.update && (
           <UpdateTextEditor
-            lessonID={this.props.lessonID}
+            lessonID={lessonID}
             id={this.props.textEditor.id}
             text={this.state.text}
             totalMistakes={this.state.total}
           />
         )}
-      </>
+      </div>
     );
   }
 }
 
 SingleTextEditor.propTypes = {
-  lesson: PropTypes.string.isRequired,
+  lessonID: PropTypes.string.isRequired,
   textEditor: PropTypes.object.isRequired,
-  key: PropTypes.string.isRequired,
   me: PropTypes.object.isRequired,
   userData: PropTypes.object.isRequired,
 };
 
-export default SingleTextEditor;
+export default withTranslation("tasks")(SingleTextEditor);

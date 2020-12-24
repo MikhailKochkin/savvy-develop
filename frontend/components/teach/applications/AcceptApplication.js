@@ -6,7 +6,7 @@ import { ENROLL_COURSE_MUTATION } from "../../EnrollCoursePage";
 import { CURRENT_USER_QUERY } from "../../User";
 
 const UPDATE_ORDER = gql`
-  mutation UPDATE_ORDER($id: ID!, $isPaid: Boolean!) {
+  mutation UPDATE_ORDER($id: String!, $isPaid: Boolean!) {
     updateOrder(id: $id, isPaid: $isPaid) {
       id
     }
@@ -14,7 +14,7 @@ const UPDATE_ORDER = gql`
 `;
 
 const Button = styled.button`
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   border-radius: 5px;
   width: 110px;
   height: 38px;
@@ -27,37 +27,38 @@ const Button = styled.button`
   border: none;
   margin-top: 10px;
   &:active {
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${(props) => props.theme.darkGreen};
   }
 `;
 
-const AcceptApplication = props => {
+const AcceptApplication = (props) => {
   const onClick = async (e, enrollOnCourse, updateOrder) => {
     e.preventDefault();
     enrollOnCourse({
       variables: {
         id: props.user.id,
-        coursePage: props.coursePageID
-      }
+        coursePageId: props.coursePageID,
+      },
     });
     updateOrder({
       variables: {
         id: props.orderID,
-        isPaid: true
-      }
+        isPaid: true,
+      },
     });
     props.getData("accept");
   };
+  console.log(props.coursePageID);
   return (
     <div>
       <Mutation
         mutation={ENROLL_COURSE_MUTATION}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        // refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {enrollOnCourse => (
+        {(enrollOnCourse) => (
           <Mutation mutation={UPDATE_ORDER}>
             {(updateOrder, { loading, error }) => (
-              <Button onClick={e => onClick(e, enrollOnCourse, updateOrder)}>
+              <Button onClick={(e) => onClick(e, enrollOnCourse, updateOrder)}>
                 Принять
               </Button>
             )}

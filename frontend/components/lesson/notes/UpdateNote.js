@@ -3,12 +3,12 @@ import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
-import Option from "../Option";
 import { SINGLE_LESSON_QUERY } from "../SingleLesson";
+import { withTranslation } from "../../../i18n";
 
 const UPDATE_NOTE_MUTATION = gql`
-  mutation UPDATE_NOTE_MUTATION($id: ID!, $text: String, $next: Json) {
-    updateNote(id: $id, text: $text, next: $next) {
+  mutation UPDATE_NOTE_MUTATION($id: String!, $text: String) {
+    updateNote(id: $id, text: $text) {
       id
       text
       next
@@ -52,7 +52,7 @@ const Container = styled.div`
 
 const Button = styled.button`
   padding: 0.5% 1%;
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   width: 25%;
   border-radius: 5px;
   color: white;
@@ -62,16 +62,16 @@ const Button = styled.button`
   cursor: pointer;
   outline: 0;
   &:active {
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${(props) => props.theme.darkGreen};
   }
 `;
 
 const DynamicLoadedEditor = dynamic(import("../../editor/LessonEditor"), {
   loading: () => <p>Загрузка...</p>,
-  ssr: false
+  ssr: false,
 });
 
-const UpdateNote = props => {
+const UpdateNote = (props) => {
   const [text, setText] = useState(props.text);
   const [trueVal, setTrueVal] = useState(
     props.next && props.next.true ? props.next.true : ""
@@ -84,53 +84,40 @@ const UpdateNote = props => {
     return type === true ? setTrueVal(data) : setFalseVal(data);
   };
 
-  const getText = d => setText(d);
+  const getText = (d) => setText(d);
 
-  const { notes, quizes, id, tests, lessonID } = props;
+  const { id, lessonID } = props;
   return (
     <>
       <Container>
         <DynamicLoadedEditor getEditorText={getText} previousText={text} />
-        <h3>Выберите задания для формата "Экзамен" и "Задача":</h3>
-        <h3>Вопросы:</h3>
-        {quizes.map(quiz => (
-          <Option quiz={quiz} getData={myCallback} />
-        ))}
-        <h3>Заметки:</h3>
-        {notes.map(note => (
-          <Option note={note} getData={myCallback} />
-        ))}
-        <h3>Тесты:</h3>
-        {tests.map(test => (
-          <Option key={test.id} test={test} getData={myCallback} />
-        ))}
         <Mutation
           mutation={UPDATE_NOTE_MUTATION}
           variables={{
             id: id,
             text: text,
-            next: {
-              true: trueVal,
-              false: falseVal
-            }
+            // next: {
+            //   true: trueVal,
+            //   false: falseVal,
+            // },
           }}
           refetchQueries={() => [
             {
               query: SINGLE_LESSON_QUERY,
-              variables: { id: lessonID }
-            }
+              variables: { id: lessonID },
+            },
           ]}
         >
           {(updateNote, { loading, error }) => (
             <Button
-              onClick={async e => {
+              onClick={async (e) => {
                 // Stop the form from submitting
                 e.preventDefault();
                 // call the mutation
                 const res = await updateNote();
               }}
             >
-              {loading ? "Сохраняем..." : "Сохранить"}
+              {loading ? props.t("saving") : props.t("save")}
             </Button>
           )}
         </Mutation>
@@ -139,4 +126,4 @@ const UpdateNote = props => {
   );
 };
 
-export default UpdateNote;
+export default withTranslation("tasks")(UpdateNote);

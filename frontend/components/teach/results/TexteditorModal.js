@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import renderHTML from "react-render-html";
 import Modal from "styled-react-modal";
@@ -24,24 +24,9 @@ const Box = styled.div`
 const TextBox = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 1%;
   #id {
     color: #dc143c;
-  }
-`;
-
-const Button = styled.button`
-  text-align: center;
-  background: #ffffff;
-  border: 1px solid #112a62;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 90%;
-  outline: 0;
-  margin: 1% 0;
-  color: #112a62;
-  font-size: 1.4rem;
-  a {
-    color: #112a62;
   }
 `;
 
@@ -51,74 +36,58 @@ const Block = styled.div`
   border-bottom: 1px solid #edefed;
 `;
 
-const StyledModal = Modal.styled`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 10px;
-  padding: 1% 2%;
-  width: 50%;
-  max-height: calc(100vh - 5rem);
-  overflow-y: scroll;
-  @media (max-width: 800px) {
-    width: 90%;
-  }
-  p {
-      margin: 1%;
-  }
-  #id {
-    color: #dc143c;
-  }
+const Text = styled.div`
+  font-size: 1.4rem;
 `;
 
-const Text = styled.div``;
-
-class TexteditorModal extends Component {
-  state = {
-    isOpen: false
-  };
-  toggleModal = e => {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  };
-  render() {
-    const { texteditor, student } = this.props;
-    return (
-      <Box>
-        <TextBox>
-          <Text>
-            <b>Редактор: </b>
-            {renderHTML(texteditor.text.substring(0, 200) + "...")}
-            <Button onClick={this.toggleModal}>
-              <a>Развернуть</a>
-            </Button>
-          </Text>
-          <StyledModal
-            isOpen={this.state.isOpen}
-            onBackgroundClick={this.toggleModal}
-            onEscapeKeydown={this.toggleModal}
-          >
-            {renderHTML(texteditor.text)}
-          </StyledModal>
-        </TextBox>
-        <div className="column">
-          {texteditor.textEditorResults.filter(t => t.student.id === student.id)
-            .length > 0
-            ? texteditor.textEditorResults
-                .filter(t => t.student.id === student.id)
-                .map(t => (
-                  <Block>
-                    <div>⛔️: {t.wrong} </div>
-                    <div>✅: {t.correct} </div>
-                    <div>❓: {t.guess} </div>
-                    <div>Попытка {t.attempts} </div>
-                  </Block>
-                ))
-            : null}
-        </div>
-      </Box>
-    );
-  }
-}
+const TexteditorModal = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { texteditor, student, results } = props;
+  useEffect(() => {
+    let res;
+    if (results.filter((t) => t.textEditor.id === texteditor.id).length > 0) {
+      res = results.filter((t) => t.textEditor.id === texteditor.id);
+      const elements = document
+        .getElementById(texteditor.id)
+        .querySelectorAll("#id");
+      let p;
+      elements.forEach((element) => {
+        if (res.find((r) => r.correct == element.getAttribute("data"))) {
+          console.log(res);
+          var guesses_arr = res.map(function (obj) {
+            return obj.guess;
+          });
+          element.innerHTML = `⛔️: ${res[0].wrong} / ✅: ${
+            res[0].correct
+          } / ❓: ${guesses_arr.join(", ")}`;
+        }
+      });
+    }
+  }, [0]);
+  return (
+    <Box>
+      <TextBox id={texteditor.id}>
+        <Text>
+          <b>Редактор: </b>
+          {renderHTML(texteditor.text)}
+        </Text>
+      </TextBox>
+      <div className="column">
+        {results.filter((t) => t.textEditor.id === texteditor.id).length > 0
+          ? results
+              .filter((t) => t.textEditor.id === texteditor.id)
+              .map((t) => (
+                <Block>
+                  <div>⛔️: {t.wrong} </div>
+                  <div>✅: {t.correct} </div>
+                  <div>❓: {t.guess} </div>
+                  <div>Попытка {t.attempts} </div>
+                </Block>
+              ))
+          : null}
+      </div>
+    </Box>
+  );
+};
 
 export default TexteditorModal;

@@ -12,10 +12,10 @@ import { CURRENT_USER_QUERY } from "../../User";
 const CREATE_SHOTRESULT_MUTATION = gql`
   mutation CREATE_SHOTRESULT_MUTATION(
     $answer: String!
-    $lessonID: ID
-    $shotID: ID
+    $lessonId: String
+    $shotId: String
   ) {
-    createShotResult(answer: $answer, lessonID: $lessonID, shotID: $shotID) {
+    createShotResult(answer: $answer, lessonId: $lessonId, shotId: $shotId) {
       id
     }
   }
@@ -79,7 +79,8 @@ const Styles = styled.div`
 `;
 
 const Circle = styled.button`
-  border: ${props => (props.color ? "1px solid #C4C4C4" : "1px solid #112a62")};
+  border: ${(props) =>
+    props.color ? "1px solid #C4C4C4" : "1px solid #112a62"};
   width: 32px;
   height: 32px;
   background: white;
@@ -88,10 +89,10 @@ const Circle = styled.button`
   outline: 0;
   span {
     font-size: 1.8rem;
-    color: ${props => (props.color ? "#C4C4C4" : "#112a62")};
+    color: ${(props) => (props.color ? "#C4C4C4" : "#112a62")};
   }
   &:active {
-    border: ${props =>
+    border: ${(props) =>
       props.color ? "1px solid #C4C4C4" : "2px solid #112a62"};
     color: #112a62;
   }
@@ -100,19 +101,19 @@ const Circle = styled.button`
 class Shots extends Component {
   state = {
     num: 1,
-    page: "show"
+    page: "show",
   };
   plus = () => {
     if (this.state.num < this.props.parts.length) {
-      this.setState(prev => ({ num: prev.num + 1 }));
+      this.setState((prev) => ({ num: prev.num + 1 }));
     }
   };
   minus = () => {
     if (this.state.num > 1) {
-      this.setState(prev => ({ num: prev.num - 1 }));
+      this.setState((prev) => ({ num: prev.num - 1 }));
     }
   };
-  switch = e => {
+  switch = (e) => {
     e.preventDefault();
     const name = e.target.getAttribute("name");
     this.setState({ page: name });
@@ -126,15 +127,15 @@ class Shots extends Component {
       me,
       shotUser,
       title,
-      userData
+      userData,
     } = this.props;
     const visible = [];
     for (let i = 0; i < this.state.num; i++) {
       visible.push(parts[i]);
     }
     const data = userData
-      .filter(result => result.shot.id === shotID)
-      .filter(result => result.student.id === me.id);
+      .filter((result) => result.shot.id === shotID)
+      .filter((result) => result.student.id === me.id);
     return (
       <Styles>
         {this.state.page === "show" && (
@@ -166,18 +167,18 @@ class Shots extends Component {
               <Mutation
                 mutation={CREATE_SHOTRESULT_MUTATION}
                 variables={{
-                  lessonID,
-                  shotID,
-                  answer: "Looked through"
+                  lessonId: lessonID,
+                  shotId: shotID,
+                  answer: "Looked through",
                 }}
                 refetchQueries={() => [
                   {
                     query: SINGLE_LESSON_QUERY,
-                    variables: { id: this.props.lessonID }
+                    variables: { id: this.props.lessonID },
                   },
                   {
-                    query: CURRENT_USER_QUERY
-                  }
+                    query: CURRENT_USER_QUERY,
+                  },
                 ]}
               >
                 {(createShotResult, { loading, error }) => (
@@ -187,7 +188,7 @@ class Shots extends Component {
                     </Circle>
                     <Circle
                       color={this.state.num === parts.length}
-                      onClick={async e => {
+                      onClick={async (e) => {
                         // Stop the form from submitting
                         e.preventDefault();
                         // call the mutation

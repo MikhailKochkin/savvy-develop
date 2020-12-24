@@ -8,7 +8,7 @@ import { SINGLE_LESSON_QUERY } from "../SingleLesson";
 
 const UPDATE_TEXTEDITOR_MUTATION = gql`
   mutation UPDATE_TEXTEDITOR_MUTATION(
-    $id: ID!
+    $id: String!
     $name: String
     $text: String
     $totalMistakes: Int
@@ -103,7 +103,7 @@ const Label = styled.label`
   }
 `;
 
-const DynamicLoadedEditor = dynamic(import("../../editor/TextEditor"), {
+const DynamicLoadedEditor = dynamic(import("../../editor/UpdateTextEditor"), {
   loading: () => <p>Загрузка...</p>,
   ssr: false,
 });
@@ -139,7 +139,7 @@ const UpdateTextEditor = (props) => {
           refetchQueries={() => [
             {
               query: SINGLE_LESSON_QUERY,
-              variables: { id: id },
+              variables: { id: lessonID },
             },
           ]}
         >

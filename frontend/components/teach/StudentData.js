@@ -8,15 +8,23 @@ import moment from "moment";
 import LessonData from "./LessonData";
 
 const UPDATE_COURSE_VISIT_MUTATION = gql`
-  mutation UPDATE_COURSE_VISIT_MUTATION($id: ID!, $reminders: [DateTime]) {
-    updateReminder(id: $id, reminders: $reminders) {
+  mutation UPDATE_COURSE_VISIT_MUTATION($id: String!, $reminders: [DateTime]) {
+    remind(id: $id, reminders: $reminders) {
+      id
+    }
+  }
+`;
+
+const UPDATE_COURSE_VISIT_MUTATION2 = gql`
+  mutation UPDATE_COURSE_VISIT_MUTATION2($id: String!, $reminders: [DateTime]) {
+    newWeek(id: $id, reminders: $reminders) {
       id
     }
   }
 `;
 
 const UPDATE_FINISH_MUTATION = gql`
-  mutation UPDATE_FINISH_MUTATION($id: ID!, $finish: DateTime) {
+  mutation UPDATE_FINISH_MUTATION($id: String!, $finish: DateTime) {
     updateFinish(id: $id, finish: $finish) {
       id
     }
@@ -26,15 +34,41 @@ const UPDATE_FINISH_MUTATION = gql`
 const Name = styled.div`
   font-size: 1.6rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-right: 4%;
+  .email {
+    font-size: 1.3rem;
+    color: grey;
+  }
 `;
 
 const Square = styled.div`
-  width: 70px;
-  height: 30px;
-  background: ${(props) => props.inputColor || "palevioletred"};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  div {
+    text-align: center;
+    width: 70px;
+    height: 30px;
+    background: ${(props) => props.inputColor || "palevioletred"};
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  /* div {
+    text-align: center;
+    width: 70px;
+    height: 30px;
+    background: ${(props) => props.inputColor || "palevioletred"};
+  } */
 `;
 
 const Open = styled.div`
@@ -42,9 +76,10 @@ const Open = styled.div`
 `;
 
 const Header = styled.div`
-  width: 80%;
+  width: 100%;
+  height: 50px;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
   grid-template-rows: 40px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -56,6 +91,8 @@ const Header = styled.div`
   }
   .div3 {
     grid-area: 1 / 3 / 2 / 4;
+  }
+  .div4 {
   }
   @media (max-width: 800px) {
     width: 100%;
@@ -74,21 +111,35 @@ const Buttons = styled.div`
   margin-bottom: 3%;
 `;
 
+const RegDate = styled.div`
+  background: ${(props) => (props.date ? "#ade8f4" : null)};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+`;
+
 const SendButton = styled.div`
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   text-align: center;
   background: #ffffff;
   border: 1px solid;
-  border-color: ${(props) => (props.green ? "#84BC9C" : "#112a62")};
+  color: grey;
+  border-color: #edefed;
   box-sizing: border-box;
   border-radius: 5px;
   cursor: pointer;
   outline: 0;
   margin-right: 20px;
   width: 130px;
-  color: #112a62;
+  transition: all 0.4s;
   a {
+    color: #edefed;
+  }
+  &:hover {
     color: #112a62;
+    border-color: #112a62;
   }
   @media (max-width: 800px) {
     font-size: 1.4rem;
@@ -130,53 +181,66 @@ class Person extends Component {
     this.setState({ page: e.target.getAttribute("name") });
   };
   render() {
-    let { student, lessons, coursePage, courseVisit } = this.props;
-    let mail = `mailto:${student.email}`;
+    const { student, lessons, courseVisit, coursePageID } = this.props;
     moment.locale("ru");
+    let mail = `mailto:${student.email}`;
     let color;
-    // Step 1. We filter the lessons to see if the lessons have been
-    // visited by the student. For that we check if the lesson results of the student include the
-    // results of the lessons of this course
-    let lesson_list = [];
-    lessons.map((l) => lesson_list.push(l.id));
-    let lesson_results = student.lessonResults.filter((l) =>
-      lesson_list.includes(l.lesson.id)
-    );
+    let total = 0;
+    student.lessonResults.map((l) => {
+      let s = l.progress / l.lesson.structure.lessonItems.length;
+      if (s < 0.3) {
+        total += 0;
+      } else if (s >= 0.3 && s <= 0.8) {
+        total += 0.5;
+      } else if (s > 0.8) {
+        total += 1;
+      }
+    });
 
-    // Step 2. We create a "completed" array. We will push to this array the lessons which
-    // have been visited and whose problems have been completed.
-    // let completed = [];
-    // // Step 3. We map through the lessons and check a. if the number of problems of this lesson
-    // // is equal to the number of completed problems for this lesson of the student
-    // lessons.map(les =>
-    //   // Step 4. b. to see if the number of lessons is equal to the number of visited lessons by the student.
-    //   lessons.length === lesson_results.length
-    //     ? // Step 5. if the lesson meets the criteria it is pushed to the completed array.
-    //       completed.push(les)
-    //     : null
-    // );
-    // Step 6. Based on the number of completed lessons we determone the color of the student
-    // console.log(student.name, lesson_results.length / lessons.length);
-    if (lesson_results.length / lessons.length < 0.2) {
+    if (total / lessons.length <= 0.2) {
       color = "#e97573";
-    } else if (
-      lesson_results.length / lessons.length > 0.2 &&
-      lesson_results.length / lessons.length < 0.85
-    ) {
+    } else if (total / lessons.length > 0.2 && total / lessons.length < 0.85) {
       color = "#FDF3C8";
-    } else if (lesson_results.length / lessons.length > 0.85) {
+    } else if (total / lessons.length >= 0.85) {
       color = "#84BC9C";
     }
 
+    let two_months_ago = new Date();
+    two_months_ago.setMonth(two_months_ago.getMonth() - 2);
     return (
       <>
         <Styles>
           <Header>
-            <Name className="div1">{student.name}</Name>
-            <Square className="div2" inputColor={color} />
-            <StyledButton className="div3" onClick={this.onShow}>
-              {this.state.secret ? "Открыть" : "Закрыть"}
-            </StyledButton>
+            <Name className="div1">
+              <div>
+                {student.surname
+                  ? `${student.name} ${student.surname}`
+                  : student.name}
+              </div>
+              <div className="email">{student.email}</div>
+            </Name>
+            <Square className="div2" inputColor={color}>
+              <div>
+                {total}/{lessons.length}
+              </div>
+            </Square>
+            <ButtonBox>
+              <StyledButton className="div3" onClick={this.onShow}>
+                {this.state.secret ? "Открыть" : "Закрыть"}
+              </StyledButton>
+            </ButtonBox>
+            <RegDate
+              className="div4"
+              date={
+                courseVisit
+                  ? courseVisit.createdAt > moment(two_months_ago).format()
+                  : false
+              }
+            >
+              {courseVisit
+                ? moment(courseVisit.createdAt).format("Do MMMM YYYY")
+                : "Не определен"}
+            </RegDate>
           </Header>
           <Open secret={this.state.secret}>
             <Buttons>
@@ -208,47 +272,44 @@ class Person extends Component {
               )}
               {courseVisit && (
                 <Mutation
-                  mutation={UPDATE_FINISH_MUTATION}
+                  mutation={UPDATE_COURSE_VISIT_MUTATION2}
                   variables={{
                     id: courseVisit.id,
-                    reminders: new Date(),
+                    reminders: [...courseVisit.reminders, new Date()],
                   }}
                 >
-                  {(updateFinish, { loading, error }) => {
+                  {(newWeek, { loading, error }) => {
                     return (
                       <SendButton
                         onClick={(e) => {
-                          const data = updateFinish();
+                          const data = newWeek();
+                          alert("Отправлено!");
                         }}
+                        name="CV"
                       >
-                        Закончить
+                        Новая неделя
                       </SendButton>
                     );
                   }}
                 </Mutation>
               )}
-              <SendButton name="mail">
-                <a href={mail}>Написать</a>
-              </SendButton>
             </Buttons>
-            {courseVisit && courseVisit.reminders && (
-              <div>
-                Последнее напоминание:{" "}
-                {moment(
-                  courseVisit.reminders[courseVisit.reminders.length - 1]
-                ).format("LLL")}
-              </div>
-            )}
-            {this.state.page === "results" &&
-              lessons.map((lesson, index) => (
-                <LessonData
-                  lesson={lesson}
-                  index={index}
-                  coursePage={coursePage}
-                  student={student}
-                />
+            {courseVisit &&
+              courseVisit.reminders.map((r) => (
+                <li>{moment(r).format("LLL")}</li>
               ))}
-            {this.state.page === "CV" && (
+            {this.state.page === "results" &&
+              [...lessons]
+                .sort((a, b) => (a.number > b.number ? 1 : -1))
+                .map((lesson, index) => (
+                  <LessonData
+                    lesson={lesson}
+                    index={index}
+                    coursePageID={coursePageID}
+                    student={student}
+                  />
+                ))}
+            {/* {this.state.page === "CV" && (
               <StyledCV>
                 {student.coverLetter ? (
                   <div>
@@ -261,8 +322,8 @@ class Person extends Component {
                   <div>Сопроводительное письмо не загружено.</div>
                 )}
               </StyledCV>
-            )}
-            {this.state.page === "resume" && (
+            )} */}
+            {/* {this.state.page === "resume" && (
               <StyledCV>
                 {student.resume ? (
                   <div>
@@ -275,7 +336,7 @@ class Person extends Component {
                   <div>Резюме не загружено.</div>
                 )}
               </StyledCV>
-            )}
+            )} */}
           </Open>
         </Styles>
       </>

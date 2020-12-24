@@ -113,10 +113,10 @@ class ProblemBuilder extends Component {
             <TestBlock
               id={el.id ? el.id : "first"}
               type={el.__typename.toLowerCase()}
-              newTests={this.props.lesson.newTests}
-              quizes={this.props.lesson.quizes}
-              notes={this.props.lesson.notes}
-              lessonID={this.props.lesson.id}
+              newTests={this.props.newTests}
+              quizes={this.props.quizes}
+              notes={this.props.notes}
+              lessonID={this.props.lessonID}
               value={el ? el : null}
               correct={correct}
               source={source ? source : null}
@@ -129,7 +129,6 @@ class ProblemBuilder extends Component {
           nodes: [],
         });
       } else if (obj.nodes.find((el) => el.correct == correct) !== undefined) {
-        console.log(4);
         obj.nodes[
           obj.nodes.indexOf(obj.nodes.find((el) => el.correct == correct))
         ].key = colors[this.state.colorNum];
@@ -139,10 +138,10 @@ class ProblemBuilder extends Component {
           <TestBlock
             id={el.id ? el.id : "first"}
             type={el.__typename.toLowerCase()}
-            newTests={this.props.lesson.newTests}
-            quizes={this.props.lesson.quizes}
-            notes={this.props.lesson.notes}
-            lessonID={this.props.lesson.id}
+            newTests={this.props.newTests}
+            quizes={this.props.quizes}
+            notes={this.props.notes}
+            lessonID={this.props.lessonID}
             value={el ? el : null}
             correct={correct}
             source={source ? source : null}
@@ -174,40 +173,18 @@ class ProblemBuilder extends Component {
     this.setState({ tree_blocks: obj });
   };
 
-  // firstBlock = (type) => {
-  //   let new_tree_blocks;
-  //   if (type === "test") {
-  //     new_tree_blocks = {
-  //       key: colors[this.state.colorNum],
-  //       source_color: "#FFF",
-  //       el: (
-  //         <TestBlock
-  //           id="first"
-  //           newTests={this.props.lesson.newTests}
-  //           quizes={this.props.lesson.quizes}
-  //           notes={this.props.lesson.notes}
-  //           getNewBlock={this.handleNewBlock}
-  //           color={colors[this.state.colorNum]}
-  //           sourceColor="#FFF"
-  //           lessonID={this.props.lesson.id}
-  //           getNode={this.getNode}
-  //         />
-  //       ),
-  //       nodes: [],
-  //     };
-  //   }
-  //   // this.setState({ blocks: newBlocks });
-  //   this.setState({ tree_blocks: new_tree_blocks });
-  //   this.setState((prevState) => ({
-  //     colorNum: prevState.colorNum + 1,
-  //   }));
-  // };
-
   handleNewBlock = async (id, root, color, correct) => {
-    let el = this.props.elements.filter((l) => l.id === id)[0];
-    let source = this.props.elements.filter((l) => l.id === root)[0];
+    let el = [
+      ...this.props.newTests,
+      ...this.props.quizes,
+      ...this.props.notes,
+    ].filter((l) => l.id === id)[0];
+    let source = [
+      ...this.props.newTests,
+      ...this.props.quizes,
+      ...this.props.notes,
+    ].filter((l) => l.id === root)[0];
     if (el) {
-      console.log(1);
       const res = await this.object_search(
         this.state.tree_blocks,
         color,
@@ -218,45 +195,74 @@ class ProblemBuilder extends Component {
         colors,
         correct
       );
-      console.log(2);
       this.setState((prevState) => ({
         colorNum: prevState.colorNum + 1,
       }));
     }
-    console.log(3);
     // let used = [...this.state.usedElements, id];
     // this.setState({ usedElements: used });
   };
 
   open = (obj) => <Block obj={obj} />;
-
   componentDidMount = () => {
-    this.setState({
-      tree_blocks: {
-        key: colors[0],
-        source_color: "#FFF",
-        el: (
-          <TestBlock
-            id="first"
-            newTests={this.props.lesson.newTests}
-            quizes={this.props.lesson.quizes}
-            notes={this.props.lesson.notes}
-            getNewBlock={this.handleNewBlock}
-            color={colors[0]}
-            sourceColor="#FFF"
-            lessonID={this.props.lesson.id}
-            getNode={this.getNode}
-          />
-        ),
-        nodes: [],
-      },
-    });
+    let el = [
+      ...this.props.newTests,
+      ...this.props.quizes,
+      ...this.props.notes,
+    ].find((el) => el.id == this.props.nodeID);
+    console.log(el);
+    if (el) {
+      this.setState({
+        tree_blocks: {
+          key: colors[0],
+          source_color: "#FFF",
+          el: (
+            <TestBlock
+              id="first"
+              type={el.__typename.toLowerCase()}
+              newTests={this.props.newTests}
+              quizes={this.props.quizes}
+              notes={this.props.notes}
+              lessonID={this.props.lessonID}
+              value={el ? el : null}
+              source={null}
+              getNewBlock={this.handleNewBlock}
+              sourceColor="#FFF"
+              color={colors[0]}
+            />
+          ),
+          nodes: [],
+        },
+      });
+    } else {
+      this.setState({
+        tree_blocks: {
+          key: colors[0],
+          source_color: "#FFF",
+          el: (
+            <TestBlock
+              id="first"
+              newTests={this.props.newTests}
+              quizes={this.props.quizes}
+              notes={this.props.notes}
+              getNewBlock={this.handleNewBlock}
+              color={colors[0]}
+              sourceColor="#FFF"
+              lessonID={this.props.lessonID}
+              getNode={this.getNode}
+            />
+          ),
+          nodes: [],
+        },
+      });
+    }
   };
 
   render() {
+    console.log(this.props.lessonID);
+
     return (
       <Styles>
-        {/* {console.log(this.state.tree_blocks)} */}
         <div className="tree">
           {this.state.tree_blocks !== "" && this.open(this.state.tree_blocks)}
         </div>

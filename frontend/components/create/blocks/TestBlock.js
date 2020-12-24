@@ -4,10 +4,10 @@ import styled from "styled-components";
 import smoothscroll from "smoothscroll-polyfill";
 import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
-import { SINGLE_LESSON_QUERY } from "../CreateProblem";
+import { SINGLE_LESSON_QUERY } from "../../lesson/SingleLesson";
 
 const UPDATE_QUIZ_MUTATION = gql`
-  mutation UPDATE_QUIZ_MUTATION($id: ID!, $next: Json) {
+  mutation UPDATE_QUIZ_MUTATION($id: String!, $next: NextType) {
     updateQuiz(id: $id, next: $next) {
       id
     }
@@ -15,7 +15,7 @@ const UPDATE_QUIZ_MUTATION = gql`
 `;
 
 const UPDATE_NOTE_MUTATION = gql`
-  mutation UPDATE_NOTE_MUTATION($id: ID!, $next: Json) {
+  mutation UPDATE_NOTE_MUTATION($id: String!, $next: NextType) {
     updateNote(id: $id, next: $next) {
       id
       next
@@ -24,7 +24,7 @@ const UPDATE_NOTE_MUTATION = gql`
 `;
 
 const UPDATE_TEST_MUTATION = gql`
-  mutation UPDATE_TEST_MUTATION($id: ID!, $next: Json) {
+  mutation UPDATE_TEST_MUTATION($id: String!, $next: NextType) {
     updateTestForProblem(id: $id, next: $next) {
       id
     }
@@ -66,20 +66,6 @@ const Block = styled.div`
   }
 `;
 
-const Header = styled.div`
-  background: ${(props) => props.color};
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  text-align: center;
-`;
-
-const Bottom = styled.div`
-  background: ${(props) => props.color};
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  text-align: center;
-`;
-
 const Section = styled.div`
   border-radius: 10px;
   background: rgba(240, 248, 255);
@@ -119,27 +105,9 @@ const TestBlock = (props) => {
 
   const handleChoice = (el, correct) =>
     props.getNewBlock(el, c, props.color, correct);
-
-  useEffect(() => {
-    // kick off the polyfill!
-    smoothscroll.polyfill();
-  });
-
-  const move = () => {
-    var my_element = document.getElementById(
-      props.source ? props.source.id : "first"
-    );
-
-    my_element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-  };
   return (
     <Block id={c ? c : props.id} className={c ? c : props.id}>
       <div className="body">
-        {console.log(111, props.lessonID)}
         <Section className="section" fixed={props.fixed}>
           <div>
             {props.id !== "first"
@@ -149,46 +117,59 @@ const TestBlock = (props) => {
               : null}
           </div>
           <div>Основное задание</div>
-          <select defaultValue={type} onChange={(e) => setType(e.target.value)}>
+          <select
+            defaultValue={type ? type.toLowerCase() : "example"}
+            onChange={(e) => setType(e.target.value)}
+          >
             <option value="example">Выберите тип</option>
             <option value="newtest">Тест</option>
             <option value="quiz">Вопрос</option>
             <option value="note">Заметка</option>
           </select>
-          {type === "newtest" && (
+          {type.toLowerCase() === "newtest" && (
             <select
               className="question"
               defaultValue={c}
               onChange={(e) => setC(e.target.value)}
             >
               <option value={1}>Выберите</option>
-              {props.newTests.map((q) => (
-                <option value={q.id}>{q.question[0]}</option>
-              ))}
+              {props.newTests.map((q) => {
+                let el = renderHTML(q.question[0]);
+                return (
+                  <option value={q.id}>
+                    {el.props ? el.props.children[0] : el}
+                  </option>
+                );
+              })}
             </select>
           )}
-          {type === "quiz" && (
+          {type.toLowerCase() === "quiz" && (
             <select
               className="question"
               defaultValue={c}
               onChange={(e) => setC(e.target.value)}
             >
               <option value={1}>Выберите</option>
-              {props.quizes.map((q) => (
-                <option value={q.id}>{q.question}</option>
-              ))}
+              {props.quizes.map((q) => {
+                let el = renderHTML(q.question);
+                return (
+                  <option value={q.id}>
+                    {el.props ? el.props.children[0] : el}
+                  </option>
+                );
+              })}
             </select>
           )}
-          {type === "note" && (
+          {type.toLowerCase() === "note" && (
             <select
               className="question"
               defaultValue={c}
               onChange={(e) => setC(e.target.value)}
             >
               <option value={1}>Выберите</option>
-              {props.notes.map((q) => (
-                <option value={q.id}>{q.text}</option>
-              ))}
+              {props.notes.map((q) => {
+                return <option value={q.id}>{q.text}</option>;
+              })}
             </select>
           )}
         </Section>
@@ -197,7 +178,7 @@ const TestBlock = (props) => {
             <div className="section">
               <div>В случае правильного ответа</div>
               <select
-                defaultValue={t_type}
+                defaultValue={t_type ? t_type.toLowerCase() : "example"}
                 onChange={(e) => setT_type(e.target.value)}
               >
                 <option value="example">Выберите тип</option>
@@ -205,31 +186,40 @@ const TestBlock = (props) => {
                 <option value="quiz">Вопрос</option>
                 <option value="note">Заметка</option>
               </select>
-              {t_type === "newtest" && (
+              {t_type && t_type.toLowerCase() === "newtest" && (
                 <select defaultValue={t} onChange={(e) => setT(e.target.value)}>
                   <option value={1}>Выберите</option>
 
-                  {props.newTests.map((q) => (
-                    <option value={q.id}>{q.question[0]}</option>
-                  ))}
+                  {props.newTests.map((q) => {
+                    let el = renderHTML(q.question[0]);
+                    return (
+                      <option value={q.id}>
+                        {el.props ? el.props.children[0] : el}
+                      </option>
+                    );
+                  })}
                 </select>
               )}
-              {t_type === "quiz" && (
+              {t_type && t_type.toLowerCase() === "quiz" && (
                 <select defaultValue={t} onChange={(e) => setT(e.target.value)}>
                   <option value={1}>Выберите</option>
 
-                  {props.quizes.map((q) => (
-                    <option value={q.id}>{q.question}</option>
-                  ))}
+                  {props.quizes.map((q) => {
+                    let el = renderHTML(q.question);
+                    return (
+                      <option value={q.id}>
+                        {el.props ? el.props.children[0] : el}
+                      </option>
+                    );
+                  })}
                 </select>
               )}
-              {t_type === "note" && (
+              {t_type && t_type.toLowerCase() === "note" && (
                 <select defaultValue={t} onChange={(e) => setT(e.target.value)}>
                   <option value={1}>Выберите</option>
-
-                  {props.notes.map((q) => (
-                    <option value={q.id}>{q.text}</option>
-                  ))}
+                  {props.notes.map((q) => {
+                    return <option value={q.id}>{q.text}</option>;
+                  })}
                 </select>
               )}
               <button onClick={(e) => handleChoice(t, true)}>Новый блок</button>
@@ -237,7 +227,7 @@ const TestBlock = (props) => {
             <div className="section">
               <div>В случае неправильного ответа</div>{" "}
               <select
-                defaultValue={f_type}
+                defaultValue={f_type ? f_type.toLowerCase() : "example"}
                 onChange={(e) => setF_type(e.target.value)}
               >
                 <option value="example">Выберите тип</option>
@@ -245,31 +235,38 @@ const TestBlock = (props) => {
                 <option value="quiz">Вопрос</option>
                 <option value="note">Заметка</option>
               </select>
-              {f_type === "newtest" && (
+              {f_type && f_type.toLowerCase() === "newtest" && (
                 <select defaultValue={f} onChange={(e) => setF(e.target.value)}>
                   <option value={1}>Выберите</option>
-
-                  {props.newTests.map((q) => (
-                    <option value={q.id}>{q.question[0]}</option>
-                  ))}
+                  {props.newTests.map((q) => {
+                    let el = renderHTML(q.question[0]);
+                    return (
+                      <option value={q.id}>
+                        {el.props ? el.props.children[0] : el}
+                      </option>
+                    );
+                  })}
                 </select>
               )}
-              {f_type === "quiz" && (
+              {f_type && f_type.toLowerCase() === "quiz" && (
                 <select defaultValue={f} onChange={(e) => setF(e.target.value)}>
                   <option value={1}>Выберите</option>
-
-                  {props.quizes.map((q) => (
-                    <option value={q.id}>{q.question}</option>
-                  ))}
+                  {props.quizes.map((q) => {
+                    let el = renderHTML(q.question);
+                    return (
+                      <option value={q.id}>
+                        {el.props ? el.props.children[0] : el}
+                      </option>
+                    );
+                  })}
                 </select>
               )}
-              {f_type === "note" && (
+              {f_type && f_type.toLowerCase() === "note" && (
                 <select defaultValue={f} onChange={(e) => setF(e.target.value)}>
                   <option value={1}>Выберите</option>
-
-                  {props.notes.map((q) => (
-                    <option value={q.id}>{q.text}</option>
-                  ))}
+                  {props.notes.map((q) => {
+                    return <option value={q.id}>{q.text}</option>;
+                  })}
                 </select>
               )}
               <button onClick={(e) => handleChoice(f, false)}>
@@ -279,6 +276,7 @@ const TestBlock = (props) => {
           </>
         )}
       </div>
+      {console.log(props.lessonID)}
       <Mutation
         mutation={UPDATE_QUIZ_MUTATION}
         variables={{
@@ -302,7 +300,7 @@ const TestBlock = (props) => {
         ]}
         awaitRefetchQueries={true}
       >
-        {(updateQuiz, { loading, error }) => (
+        {(updateQuiz, { loading: loading1, error }) => (
           <Mutation
             mutation={UPDATE_TEST_MUTATION}
             refetchQueries={() => [
@@ -326,7 +324,7 @@ const TestBlock = (props) => {
               },
             }}
           >
-            {(updateTestForProblem, { loading, error }) => (
+            {(updateTestForProblem, { loading: loading2, error }) => (
               <Mutation
                 mutation={UPDATE_NOTE_MUTATION}
                 variables={{
@@ -350,7 +348,7 @@ const TestBlock = (props) => {
                 ]}
                 awaitRefetchQueries={true}
               >
-                {(updateNote, { loading, error }) => (
+                {(updateNote, { loading: loading3, error }) => (
                   <button
                     onClick={async (e) => {
                       // Stop the form from submitting
@@ -370,7 +368,9 @@ const TestBlock = (props) => {
                       console.log(1);
                     }}
                   >
-                    {loading ? "Сохраняем..." : "Сохранить"}
+                    {loading1 || loading2 || loading3
+                      ? "Сохраняем..."
+                      : "Сохранить"}
                   </button>
                 )}
               </Mutation>

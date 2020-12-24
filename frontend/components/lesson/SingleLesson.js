@@ -23,7 +23,6 @@ import CreateConstructor from "../create/CreateConstructor";
 import CreateTextEditor from "../create/CreateTextEditor";
 import CreateProblem from "../create/CreateProblem";
 import CreateNote from "../create/CreateNote";
-import CreateExam from "../create/CreateExam";
 import ChangeForum from "./forum/ChangeForum";
 import SingleLesson_MobileMenu from "./SingleLesson_MobileMenu";
 import SingleLesson_Menu from "./SingleLesson_Menu";
@@ -53,65 +52,65 @@ const SINGLE_LESSON_QUERY = gql`
       user {
         id
       }
-      # testResults {
-      #   id
-      #   student {
-      #     id
-      #   }
-      #   answer
-      #   test {
-      #     id
-      #   }
-      # }
-      # shotResults {
-      #   id
-      #   student {
-      #     id
-      #   }
-      #   shot {
-      #     id
-      #   }
-      #   answer
-      # }
-      # quizResults {
-      #   id
-      #   student {
-      #     id
-      #   }
-      #   quiz {
-      #     id
-      #   }
-      #   answer
-      # }
-      # problemResults {
-      #   id
-      #   student {
-      #     id
-      #   }
-      #   answer
-      #   problem {
-      #     id
-      #   }
-      # }
-      # textEditorResults {
-      #   id
-      #   student {
-      #     id
-      #   }
-      #   textEditor {
-      #     id
-      #   }
-      # }
-      # constructionResults {
-      #   id
-      #   answer
-      #   student {
-      #     id
-      #   }
-      #   construction {
-      #     id
-      #   }
-      # }
+      testResults {
+        id
+        student {
+          id
+        }
+        answer
+        test {
+          id
+        }
+      }
+      shotResults {
+        id
+        student {
+          id
+        }
+        shot {
+          id
+        }
+        answer
+      }
+      quizResults {
+        id
+        student {
+          id
+        }
+        quiz {
+          id
+        }
+        answer
+      }
+      problemResults {
+        id
+        student {
+          id
+        }
+        answer
+        problem {
+          id
+        }
+      }
+      textEditorResults {
+        id
+        student {
+          id
+        }
+        textEditor {
+          id
+        }
+      }
+      constructionResults {
+        id
+        answer
+        student {
+          id
+        }
+        construction {
+          id
+        }
+      }
       coursePage {
         id
       }
@@ -136,70 +135,73 @@ const SINGLE_LESSON_QUERY = gql`
         id
         question
         type
-        answer
+        check
         ifRight
         ifWrong
+        answer
         next
         user {
           id
+          name
+          surname
         }
       }
-      # documents {
-      #   id
-      #   title
-      #   user {
-      #     id
-      #   }
-      #   clauses {
-      #     id
-      #     user {
-      #       id
-      #     }
-      #     number
-      #     commentary
-      #     keywords
-      #     sample
-      #   }
-      # }
-      # forum {
-      #   id
-      #   text
-      #   rating {
-      #     id
-      #     rating
-      #     user {
-      #       id
-      #     }
-      #   }
-      #   statements {
-      #     id
-      #     text
-      #     createdAt
-      #     user {
-      #       id
-      #       name
-      #       surname
-      #     }
-      #     forum {
-      #       id
-      #       rating {
-      #         id
-      #         rating
-      #       }
-      #     }
-      #   }
-      #   lesson {
-      #     id
-      #     user {
-      #       id
-      #     }
-      #   }
-      #   user {
-      #     id
-      #     name
-      #     surname
-      #   }
-      # }
+      documents {
+        id
+        title
+        user {
+          id
+        }
+        clauses {
+          id
+          user {
+            id
+          }
+          number
+          commentary
+          keywords
+          sample
+        }
+      }
+      forum {
+        id
+        text
+        rating {
+          id
+          rating
+          user {
+            id
+          }
+        }
+        statements {
+          id
+          text
+          createdAt
+          user {
+            id
+            name
+            surname
+          }
+          forum {
+            id
+            rating {
+              id
+              rating
+            }
+          }
+        }
+        lesson {
+          id
+          user {
+            id
+          }
+        }
+        user {
+          id
+          name
+          surname
+        }
+      }
       newTests {
         id
         answers
@@ -213,36 +215,36 @@ const SINGLE_LESSON_QUERY = gql`
           id
         }
       }
-      # problems {
-      #   id
-      #   text
-      #   nodeID
-      #   nodeType
-      #   user {
-      #     id
-      #   }
-      #   createdAt
-      # }
-      # constructions {
-      #   id
-      #   name
-      #   answer
-      #   variants
-      #   hint
-      #   type
-      #   user {
-      #     id
-      #   }
-      # }
-      # texteditors {
-      #   id
-      #   name
-      #   text
-      #   totalMistakes
-      #   user {
-      #     id
-      #   }
-      # }
+      problems {
+        id
+        text
+        nodeID
+        nodeType
+        user {
+          id
+        }
+        createdAt
+      }
+      constructions {
+        id
+        name
+        answer
+        variants
+        hint
+        type
+        user {
+          id
+        }
+      }
+      texteditors {
+        id
+        name
+        text
+        totalMistakes
+        user {
+          id
+        }
+      }
       # exams {
       #   id
       #   name
@@ -574,7 +576,7 @@ const SingleLesson = (props) => {
                     (lesson.user.id === me.id ||
                       me.permissions.includes("ADMIN")) && (
                       <Head2>
-                        {lesson.structure ? (
+                        {lesson ? (
                           <Link
                             href={{
                               pathname: "/lesson",
@@ -638,7 +640,7 @@ const SingleLesson = (props) => {
                             lessonID={lesson.id}
                           />
                         ))}
-                      {/* {page === "document" &&
+                      {page === "document" &&
                         lesson.documents.map((doc) => (
                           <Document
                             clauses={doc.clauses}
@@ -648,7 +650,7 @@ const SingleLesson = (props) => {
                             user={lesson.user.id}
                             lessonID={lesson.id}
                           />
-                        ))} */}
+                        ))}
                       {page === "shots" && (
                         <ShotsGroup
                           shots={lesson.shots}
@@ -717,7 +719,7 @@ const SingleLesson = (props) => {
                           )}
                         </>
                       )}
-                      {/* {page === "problem" && (
+                      {page === "problem" && (
                         <>
                           {lesson.problems.length > 0 ? (
                             <ProblemGroup
@@ -733,8 +735,8 @@ const SingleLesson = (props) => {
                             </Center>
                           )}
                         </>
-                      )} */}
-                      {/* {page === "constructor" && (
+                      )}
+                      {page === "constructor" && (
                         <>
                           {" "}
                           {lesson.constructions.length > 0 ? (
@@ -752,11 +754,11 @@ const SingleLesson = (props) => {
                             </Center>
                           )}{" "}
                         </>
-                      )} */}
-                      {/* {page === "textEditor" &&
+                      )}
+                      {page === "textEditor" &&
                         (lesson.texteditors.length > 0 ? (
                           <TextEditorGroup
-                            lesson={lesson.id}
+                            lessonID={lesson.id}
                             textEditors={lesson.texteditors}
                             me={me}
                             textEditorResults={lesson.textEditorResults}
@@ -765,7 +767,7 @@ const SingleLesson = (props) => {
                           <Center>
                             <h2>Редакторов документов пока нет</h2>
                           </Center>
-                        ))} */}
+                        ))}
                       {/* {page === "exam" && <Exams lesson={lesson} me={me} />} */}
                       {page === "createTest" && (
                         <CreateNewTest lessonID={lesson.id} />
@@ -785,20 +787,14 @@ const SingleLesson = (props) => {
                       {page === "createQuiz" && (
                         <CreateQuiz lessonID={lesson.id} />
                       )}
-                      {/* {page === "   roblem" && (
-                              <CreateProblem
-                                lessonID={lesson.id}
-                                lesson={lesson}
-                              />
-                            )} */}
+                      {page === "createProblem" && (
+                        <CreateProblem lessonID={lesson.id} lesson={lesson} />
+                      )}
                       {page === "createConstructor" && (
                         <CreateConstructor lessonID={lesson.id} />
                       )}
                       {page === "createTextEditor" && (
                         <CreateTextEditor lessonID={lesson.id} />
-                      )}
-                      {page === "createExam" && (
-                        <CreateExam lessonID={lesson.id} lesson={lesson} />
                       )}
                       {page === "updateLesson" && (
                         <UpdateLesson

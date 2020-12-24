@@ -12,6 +12,7 @@ const User = objectType({
     t.model.resume();
     t.model.status();
     t.model.interests();
+    t.model.level();
     t.model.uni();
     t.model.new_subjects();
     t.model.permissions();
@@ -41,7 +42,20 @@ const Feedback = objectType({
   },
 });
 
+const UserLevel = objectType({
+  name: "UserLevel",
+  definition(t) {
+    t.model.id();
+    t.model.level();
+    t.model.userId();
+    t.model.user();
+    t.model.createdAt();
+    t.model.updatedAt();
+  },
+});
+
 module.exports = {
   User,
   Feedback,
+  UserLevel,
 };

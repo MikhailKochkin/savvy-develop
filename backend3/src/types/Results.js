@@ -43,7 +43,7 @@ const TextEditorResult = objectType({
   definition(t) {
     t.model.id();
     t.model.wrong();
-    t.model.atttempts();
+    t.model.attempts();
     t.model.correct();
     t.model.result();
     t.model.guess();

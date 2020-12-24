@@ -4,9 +4,12 @@ import { Query } from "@apollo/client/react/components";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import Applications from "./applications/Applications";
+import Exercises from "./Exercises";
+import Loading from "../Loading";
+import UserAnalytics from "./UserAnalytics";
 
 const SINGLE_COURSEPAGE_QUERY = gql`
-  query SINGLE_COURSEPAGE_QUERY($id: ID!) {
+  query SINGLE_COURSEPAGE_QUERY($id: String!) {
     coursePage(where: { id: $id }) {
       id
       title
@@ -14,9 +17,10 @@ const SINGLE_COURSEPAGE_QUERY = gql`
       new_students {
         id
         name
+        surname
         email
-        resume
-        coverLetter
+        # resume
+        # coverLetter
         courseVisits {
           id
           reminders
@@ -24,6 +28,7 @@ const SINGLE_COURSEPAGE_QUERY = gql`
           coursePage {
             id
           }
+          createdAt
         }
         studentFeedback {
           id
@@ -36,160 +41,85 @@ const SINGLE_COURSEPAGE_QUERY = gql`
         lessonResults {
           id
           visitsNumber
+          progress
           lesson {
             id
+            structure
+          }
+          student {
+            id
+            email
           }
           createdAt
           updatedAt
-        }
-        problemResults {
-          id
-          answer
-          lesson {
-            id
-          }
-        }
-      }
-      examQuestion {
-        id
-        question
-        answers {
-          id
-          answer
-          student {
-            id
-            name
-          }
         }
       }
       lessons {
         id
         text
         name
+        number
+        structure
+        coursePage {
+          id
+        }
+        # forum {
+        #   id
+        # }
         newTests {
           id
           question
           answers
           correct
-          testResults {
-            id
-            student {
-              id
-            }
-            answer
-            test {
-              question
-            }
-          }
+          next
         }
         quizes {
           id
           question
           answer
-          quizResults {
-            id
-            student {
-              id
-            }
-            answer
-          }
+          next
         }
+        # documents {
+        #   id
+        #   title
+        #   documentResults {
+        #     id
+        #     user {
+        #       id
+        #     }
+        #     document {
+        #       id
+        #     }
+        #     answers
+        #     drafts
+        #     createdAt
+        #   }
+        # }
+        # notes {
+        #   id
+        #   text
+        #   next
+        # }
         problems {
           id
           text
-          problemResults {
-            id
-            student {
-              id
-            }
-            answer
-            revealed
-            problem {
-              id
-              text
-              lesson {
-                id
-              }
-            }
-          }
+          nodeID
+          nodeType
         }
         texteditors {
           id
           text
           totalMistakes
-          textEditorResults {
-            id
-            student {
-              id
-            }
-            correct
-            guess
-            wrong
-            attempts
-            textEditor {
-              id
-              text
-              totalMistakes
-            }
-          }
         }
-        constructions {
-          id
-          name
-          variants
-          answer
-          constructionResults {
-            id
-            student {
-              id
-            }
-            inputs
-            attempts
-            answer
-            construction {
-              id
-              name
-            }
-          }
-        }
-        documents {
-          id
-          title
-          documentResults {
-            id
-            user {
-              id
-            }
-            document {
-              id
-            }
-            answers
-            drafts
-          }
-        }
-        user {
-          id
-        }
-        lessonResults {
-          id
-          student {
-            id
-            email
-          }
-          visitsNumber
-          createdAt
-          updatedAt
-        }
-        problemResults {
-          id
-          answer
-          lesson {
-            id
-          }
-          student {
-            id
-          }
-        }
+        # constructions {
+        #   id
+        #   name
+        #   variants
+        #   answer
+        # }
+        # user {
+        #   id
+        # }
       }
     }
   }
@@ -202,7 +132,7 @@ const Styles = styled.div`
 `;
 
 const Container = styled.div`
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   .menu {
@@ -249,13 +179,13 @@ const Container = styled.div`
 `;
 
 const DynamicUserAnalytics = dynamic(import("./UserAnalytics"), {
-  loading: () => <p>Загрузка...</p>,
+  loading: () => <Loading />,
   ssr: false,
 });
 
 class Analytics extends Component {
   state = {
-    page: this.props.name,
+    page: "student_results",
   };
 
   onSwitch = (e) => {
@@ -268,53 +198,70 @@ class Analytics extends Component {
     return (
       <>
         <div id="root" />
-        <Query
-          query={SINGLE_COURSEPAGE_QUERY}
-          variables={{
-            id: this.props.id,
-          }}
-        >
-          {({ data: data2, error: error2, loading: loading2 }) => {
-            if (loading2) return <p>Loading...</p>;
-            let coursePage = data2.coursePage;
-            return (
-              <Styles>
-                <Container>
-                  <div className="menu">
-                    <div
-                      className="button"
-                      name="stats"
-                      onClick={this.onSwitch}
-                    >
-                      Аналитика
-                    </div>
-                    {coursePage.courseType !== "FORMONEY" && (
-                      <div
-                        className="button"
-                        name="applications"
-                        onClick={this.onSwitch}
-                      >
-                        Заявки
-                      </div>
-                    )}
-                  </div>
-                  <div className="data">
-                    {this.state.page === "stats" && (
-                      <DynamicUserAnalytics
-                        coursePage={coursePage}
-                        students={coursePage.new_students}
-                      />
-                    )}
-                    {this.state.page === "applications" &&
-                      coursePage.courseType !== "FORMONEY" && (
-                        <Applications id={coursePage.id} />
+        <Styles>
+          <Container>
+            <div className="menu">
+              <div
+                className="button"
+                name="student_results"
+                onClick={this.onSwitch}
+              >
+                Студенты{" "}
+              </div>
+              <div
+                className="button"
+                name="exercises_results"
+                onClick={this.onSwitch}
+              >
+                Задания{" "}
+              </div>
+              <div
+                className="button"
+                name="applications"
+                onClick={this.onSwitch}
+              >
+                Заявки
+              </div>
+            </div>
+            <div className="data">
+              <Query
+                query={SINGLE_COURSEPAGE_QUERY}
+                variables={{
+                  id: this.props.id,
+                }}
+              >
+                {({ data: data2, error: error2, loading: loading2 }) => {
+                  if (loading2) return <Loading />;
+                  if (error2) return <p>Ошибка!</p>;
+                  let coursePage = data2.coursePage;
+                  console.log(coursePage);
+                  return (
+                    <>
+                      {this.state.page === "student_results" && (
+                        <UserAnalytics
+                          coursePageID={coursePage.id}
+                          lessons={coursePage.lessons}
+                          students={coursePage.new_students}
+                        />
                       )}
-                  </div>
-                </Container>
-              </Styles>
-            );
-          }}
-        </Query>
+                      {this.state.page === "exercises_results" && (
+                        <Exercises
+                          lessons={coursePage.lessons}
+                          students={coursePage.new_students}
+                        />
+                      )}
+                      {/* 
+                      {this.state.page === "applications" &&
+                        coursePage.courseType !== "FORMONEY" && (
+                          <Applications id={coursePage.id} />
+                        )} */}
+                    </>
+                  );
+                }}
+              </Query>
+            </div>
+          </Container>
+        </Styles>
       </>
     );
   }

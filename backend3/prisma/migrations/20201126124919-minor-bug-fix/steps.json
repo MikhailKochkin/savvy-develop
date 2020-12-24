@@ -1,0 +1,119 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "coursePages",
+      "type": "CoursePage",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Company",
+      "field": "CoursePage"
+    },
+    {
+      "tag": "CreateField",
+      "model": "CourseVisit",
+      "field": "coursePages",
+      "type": "CoursePage",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "CourseVisit",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "CourseVisit",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[coursePageId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "CourseVisit",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "CourseVisit",
+      "field": "coursePage"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Lesson",
+      "field": "coursePages",
+      "type": "CoursePage",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[coursePageId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "coursePages"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Lesson",
+      "field": "coursePage"
+    }
+  ]
+}

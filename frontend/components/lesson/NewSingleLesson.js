@@ -15,7 +15,7 @@ import { useUser } from "../User";
 import Panel from "./Panel";
 
 const NEW_SINGLE_LESSON_QUERY = gql`
-  query NEW_SINGLE_LESSON_QUERY($id: ID!) {
+  query NEW_SINGLE_LESSON_QUERY($id: String!) {
     lesson(where: { id: $id }) {
       id
       text
@@ -26,6 +26,13 @@ const NEW_SINGLE_LESSON_QUERY = gql`
       structure
       change
       open
+      lessonResults {
+        id
+        student {
+          id
+        }
+        progress
+      }
       createdAt
       user {
         id
@@ -93,32 +100,32 @@ const NEW_SINGLE_LESSON_QUERY = gql`
           id
         }
       }
-      documents {
-        id
-        title
-        user {
-          id
-        }
-        clauses {
-          id
-          number
-          user {
-            id
-          }
-          commentary
-          keywords
-          sample
-        }
-      }
-      shots {
-        id
-        title
-        parts
-        comments
-        user {
-          id
-        }
-      }
+      # documents {
+      #   id
+      #   title
+      #   user {
+      #     id
+      #   }
+      #   clauses {
+      #     id
+      #     number
+      #     user {
+      #       id
+      #     }
+      #     commentary
+      #     keywords
+      #     sample
+      #   }
+      # }
+      # shots {
+      #   id
+      #   title
+      #   parts
+      #   comments
+      #   user {
+      #     id
+      #   }
+      # }
       forum {
         id
         text
@@ -158,16 +165,16 @@ const NEW_SINGLE_LESSON_QUERY = gql`
           surname
         }
       }
-      shotResults {
-        id
-        student {
-          id
-        }
-        shot {
-          id
-        }
-        answer
-      }
+      # shotResults {
+      #   id
+      #   student {
+      #     id
+      #   }
+      #   shot {
+      #     id
+      #   }
+      #   answer
+      # }
       testResults {
         id
         student {
@@ -175,7 +182,7 @@ const NEW_SINGLE_LESSON_QUERY = gql`
         }
         testID
         answer
-        attempts
+        # attempts
       }
       quizResults {
         id
@@ -233,16 +240,16 @@ const NEW_SINGLE_LESSON_QUERY = gql`
           }
         }
       }
-      exams {
-        id
-        name
-        question
-        nodeID
-        nodeType
-        user {
-          id
-        }
-      }
+      # exams {
+      #   id
+      #   name
+      #   question
+      #   nodeID
+      #   nodeType
+      #   user {
+      #     id
+      #   }
+      # }
     }
   }
 `;
@@ -398,6 +405,12 @@ const NewSingleLesson = (props) => {
           let next = lesson.coursePage.lessons.find(
             (l) => l.number === lesson.number + 1
           );
+          let my_result;
+          if (me) {
+            my_result = lesson.lessonResults.find(
+              (l) => l.student.id === me.id
+            );
+          }
           return (
             <>
               {lesson && (
@@ -436,7 +449,7 @@ const NewSingleLesson = (props) => {
                       (lesson.user.id === me.id ||
                         me.permissions.includes("ADMIN")) && (
                         <Head2>
-                          {lesson.structure.length > 0 && (
+                          {lesson.structure.lessonItems.length > 0 && (
                             <div>
                               Режим истории →
                               <Link
@@ -457,17 +470,18 @@ const NewSingleLesson = (props) => {
                     <LessonPart>
                       <ReactCSSTransitionGroup transitionName="example">
                         <StoryEx
-                          tasks={lesson.structure}
+                          tasks={lesson.structure.lessonItems}
                           me={me}
                           lesson={lesson}
                           next={next}
+                          my_result={my_result}
                           coursePageID={lesson.coursePage.id}
                         />
                       </ReactCSSTransitionGroup>
                     </LessonPart>
-                    {me && (
+                    {/* {me && (
                       <Panel level={me.level.level} change={lesson.change} />
-                    )}
+                    )} */}
                   </Container>{" "}
                 </AreYouEnrolled>
               )}

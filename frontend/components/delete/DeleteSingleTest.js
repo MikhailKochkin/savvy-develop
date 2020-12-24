@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
 const DELETE_TEST_MUTATION = gql`
-  mutation DELETE_TEST_MUTATION($id: ID!) {
+  mutation DELETE_TEST_MUTATION($id: String!) {
     deleteNewTest(id: $id) {
       id
     }
@@ -18,11 +18,11 @@ const useStyles = makeStyles({
   button: {
     margin: "4% 0",
     fontSize: "1.6rem",
-    textTransform: "none"
-  }
+    textTransform: "none",
+  },
 });
 
-const DeleteSingleTest = props => {
+const DeleteSingleTest = (props) => {
   const { testId, lessonId } = props;
   const classes = useStyles();
   return (
@@ -32,8 +32,8 @@ const DeleteSingleTest = props => {
       refetchQueries={() => [
         {
           query: SINGLE_LESSON_QUERY,
-          variables: { id: lessonId }
-        }
+          variables: { id: lessonId },
+        },
       ]}
     >
       {(deleteTest, { error, loading }) => (
@@ -46,7 +46,7 @@ const DeleteSingleTest = props => {
                 "Вы точно хотите удалить этот тест? Тест исчезнет после перезагрузки страницы."
               )
             ) {
-              deleteTest().catch(error => {
+              deleteTest().catch((error) => {
                 alert(error.message);
               });
             }

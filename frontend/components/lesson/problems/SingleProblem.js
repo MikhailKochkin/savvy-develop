@@ -14,13 +14,13 @@ const CREATE_PROBLEMRESULT_MUTATION = gql`
   mutation CREATE_PROBLEMRESULT_MUTATION(
     $answer: String
     $revealed: [String!]
-    $lessonID: ID
-    $problemID: ID
+    $lessonId: String
+    $problemID: String
   ) {
     createProblemResult(
       answer: $answer
       revealed: $revealed
-      lessonID: $lessonID
+      lessonId: $lessonId
       problemID: $problemID
     ) {
       id
@@ -172,6 +172,7 @@ class SingleProblem extends Component {
   }
   render() {
     const { problem, me, userData, lesson, story } = this.props;
+    console.log(problem.id, userData);
     const data = userData
       .filter((result) => result.problem.id === problem.id)
       .filter((result) => result.student.id === me.id);
@@ -222,7 +223,7 @@ class SingleProblem extends Component {
                 <Mutation
                   mutation={CREATE_PROBLEMRESULT_MUTATION}
                   variables={{
-                    lessonID: this.props.lessonID,
+                    lessonId: this.props.lessonID,
                     answer: this.state.answer,
                     revealed: this.state.revealed,
                     problemID: this.props.problem.id,

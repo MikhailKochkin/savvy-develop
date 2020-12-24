@@ -10,12 +10,12 @@ import StoryUpdate from "./StoryUpdate";
 
 const UPDATE_LESSON_MUTATION = gql`
   mutation UPDATE_LESSON_MUTATION(
-    $id: ID!
+    $id: String!
     $number: Int
     $name: String
     $text: String
     $description: String
-    $type: Type
+    $type: String
     $change: String
     $challenge_num: Int
     $open: Boolean
@@ -32,11 +32,6 @@ const UPDATE_LESSON_MUTATION = gql`
       open: $open
     ) {
       id
-      number
-      name
-      text
-      description
-      change
     }
   }
 `;
@@ -146,18 +141,16 @@ export default class UpdateLesson extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-
+  handleBoolean = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    this.setState({ [name]: value === "true" });
+  };
   handleNumber = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     const val = Math.round(value);
     this.setState({ [name]: val });
-  };
-
-  handleBoolean = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    this.setState({ [name]: value === "true" });
   };
 
   myCallback = (dataFromChild) => {
@@ -175,113 +168,110 @@ export default class UpdateLesson extends Component {
 
   render() {
     const { lessonID, description, lesson, change } = this.props;
-    console.log(description, change);
     return (
       <PleaseSignIn>
-        <AreYouATeacher subject={lessonID}>
-          <>
-            <Title>Изменить урок</Title>
-            <Container>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Название урока"
-                defaultValue={lesson.name}
-                onChange={this.handleName}
-              />
+        <AreYouATeacher subject={lesson.coursePage.id}>
+          <Title>Изменить урок</Title>
+          <Container>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Название урока"
+              defaultValue={lesson.name}
+              onChange={this.handleName}
+            />
+            <input
+              type="number"
+              id="number"
+              name="number"
+              placeholder="Номер урока"
+              defaultValue={lesson.number}
+              onChange={this.handleNumber}
+            />
+
+            <select
+              name="type"
+              defaultValue={lesson.type}
+              onChange={this.handleName}
+            >
+              <option value="REGULAR">
+                Режим при открытии урока – Разработка
+              </option>
+              <option value="STORY">Режим при открытии урока – История</option>
+              <option value="CHALLENGE">
+                Режим при открытии урока – Испытание
+              </option>
+            </select>
+            {this.state.type === "CHALLENGE" && (
               <input
                 type="number"
-                id="number"
-                name="number"
-                placeholder="Номер урока"
-                defaultValue={lesson.number}
+                id="challenge_num"
+                name="challenge_num"
+                placeholder="Количество заданий"
+                defaultValue={this.state.challenge_num}
                 onChange={this.handleNumber}
-              />{" "}
-              <select
-                name="type"
-                defaultValue={lesson.type}
-                onChange={this.handleName}
-              >
-                <option value="REGULAR">
-                  Режим при открытии урока – Разработка
-                </option>
-                <option value="STORY">
-                  Режим при открытии урока – История
-                </option>
-                <option value="CHALLENGE">
-                  Режим при открытии урока – Испытание
-                </option>
-              </select>
-              {this.state.type === "CHALLENGE" && (
-                <input
-                  type="number"
-                  id="challenge_num"
-                  name="challenge_num"
-                  placeholder="Количество заданий"
-                  defaultValue={this.state.challenge_num}
-                  onChange={this.handleNumber}
-                />
-              )}
-              <select
-                name="open"
-                defaultValue={lesson.open === true}
-                onChange={this.handleBoolean}
-              >
-                <option value={true}>Открытый урок</option>
-                <option value={false}>Закрытый урок</option>
-              </select>
-              <Frame>
-                <DynamicHoverEditor
-                  index={1}
-                  name="description"
-                  getEditorText={this.myCallback2}
-                  placeholder="Описание урока"
-                  value={description}
-                />
-              </Frame>
-              <Frame>
-                <DynamicHoverEditor
-                  index={1}
-                  name="change"
-                  getEditorText={this.myCallback2}
-                  placeholder="Как измениться ученик после прохождения урока"
-                  value={change}
-                />
-              </Frame>
-              <DynamicLoadedEditor
-                getEditorText={this.myCallback}
-                previousText={lesson.text}
               />
-              <Mutation
-                mutation={UPDATE_LESSON_MUTATION}
-                variables={{
-                  id: lessonID,
-                  ...this.state,
-                }}
-                refetchQueries={() => [
-                  {
-                    query: SINGLE_LESSON_QUERY,
-                    variables: { id: lessonID },
-                  },
-                ]}
-              >
-                {(updateLesson, { loading, error }) => (
-                  <Button
-                    onClick={async (e) => {
-                      // Stop the form from submitting
-                      e.preventDefault();
-                      // call the mutation
-                      const res = await updateLesson();
-                      // change the page to the single case page
-                    }}
-                  >
-                    {loading ? "Сохраняем..." : "Сохранить"}
-                  </Button>
-                )}
-              </Mutation>
-            </Container>
-          </>
+            )}
+            <select
+              name="open"
+              defaultValue={lesson.open === true}
+              onChange={this.handleBoolean}
+            >
+              <option value={true}>Открытый урок</option>
+              <option value={false}>Закрытый урок</option>
+            </select>
+            <Frame>
+              <DynamicHoverEditor
+                index={1}
+                name="description"
+                getEditorText={this.myCallback2}
+                placeholder="Описание"
+                value={description}
+              />
+            </Frame>
+            <Frame>
+              <DynamicHoverEditor
+                index={1}
+                name="change"
+                getEditorText={this.myCallback2}
+                placeholder="Как измениться ученик после прохождения урока"
+                value={change}
+              />
+            </Frame>
+            <DynamicLoadedEditor
+              getEditorText={this.myCallback}
+              previousText={lesson.text}
+            />
+
+            <Mutation
+              mutation={UPDATE_LESSON_MUTATION}
+              variables={{
+                id: lessonID,
+                ...this.state,
+              }}
+              refetchQueries={() => [
+                {
+                  query: SINGLE_LESSON_QUERY,
+                  variables: { id: lessonID },
+                },
+              ]}
+            >
+              {(updateLesson, { loading, error }) => (
+                <Button
+                  onClick={async (e) => {
+                    // Stop the form from submitting
+                    e.preventDefault();
+                    // call the mutation
+                    const res = await updateLesson();
+                    // change the page to the single case page
+                  }}
+                >
+                  {loading ? "Сохраняем..." : "Сохранить"}
+                </Button>
+              )}
+            </Mutation>
+          </Container>
           <StoryUpdate lesson={lesson} />
         </AreYouATeacher>
       </PleaseSignIn>

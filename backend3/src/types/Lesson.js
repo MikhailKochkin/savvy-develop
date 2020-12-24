@@ -59,23 +59,24 @@ const LessonResults = objectType({
   },
 });
 
-// documents           Document[]
-// documentResults     DocumentResult[]
-// lessonFeedback      Feedback[]
-// lessonResults       LessonResult[]
-// newTests            NewTest[]
-// notes               Note[]
-// problems            Problem[]
-// problemResults      ProblemResult[]
-// quizes              Quiz[]
-// quizResults         QuizResult[]
-// shots               Shot[]
-// shotResults         ShotResult[]
-// testResults         TestResult[]
-// texteditors         TextEditor[]
-// textEditorResults   TextEditorResult[]
+const Feedback = objectType({
+  name: "Feedback",
+  definition(t) {
+    t.model.id();
+    t.model.text();
+    t.model.lessonId();
+    t.model.teacherId();
+    t.model.studentId();
+    t.model.lesson();
+    t.model.teacher();
+    t.model.student();
+    t.model.createdAt();
+    t.model.updatedAt();
+  },
+});
 
 module.exports = {
   Lesson,
   LessonResults,
+  Feedback,
 };

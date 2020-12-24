@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import { PAGE_ORDERS_QUERY } from "../../PaidApplications";
 
 const UPDATE_ORDER = gql`
-  mutation UPDATE_ORDER($id: ID!, $isPaid: Boolean!) {
+  mutation UPDATE_ORDER($id: String!, $isPaid: Boolean!) {
     updateOrder(id: $id, isPaid: $isPaid) {
       id
     }
@@ -13,7 +13,7 @@ const UPDATE_ORDER = gql`
 `;
 
 const Button = styled.button`
-  background: ${props => props.theme.red};
+  background: ${(props) => props.theme.red};
   border-radius: 5px;
   width: 110px;
   height: 38px;
@@ -26,29 +26,29 @@ const Button = styled.button`
   border: none;
   margin-top: 10px;
   &:active {
-    background-color: ${props => props.theme.darkRed};
+    background-color: ${(props) => props.theme.darkRed};
   }
 `;
 
-const RejectApplication = props => {
+const RejectApplication = (props) => {
   const onClick = async (e, updateOrder) => {
     e.preventDefault();
     props.getData("reject");
     updateOrder({
       variables: {
         id: props.orderID,
-        isPaid: false
-      }
+        isPaid: false,
+      },
     });
   };
   return (
     <div>
       <Mutation
         mutation={UPDATE_ORDER}
-        refetchQueries={[{ query: PAGE_ORDERS_QUERY }]}
+        // refetchQueries={[{ query: PAGE_ORDERS_QUERY }]}
       >
-        {updateOrder => (
-          <Button red onClick={e => onClick(e, updateOrder)}>
+        {(updateOrder) => (
+          <Button red onClick={(e) => onClick(e, updateOrder)}>
             Отклонить
           </Button>
         )}

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import renderHTML from "react-render-html";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import DeleteSingleConstruction from "../../delete/DeleteSingleConstructor";
 
 const Styles = styled.div`
   border: 1px solid #c4c4c4;
@@ -30,7 +28,7 @@ const Styles = styled.div`
   .box {
     padding: 0 15px;
     p {
-      margin-bottom: ;
+      margin-bottom: 10px;
     }
   }
   .number {
@@ -46,26 +44,10 @@ const Styles = styled.div`
 `;
 
 const Box = (props) => {
-  const [open, setOpen] = useState(false);
-  const [short, setShort] = useState();
-  const [text, setText] = useState();
-  useEffect(() => {
-    let a = props.option.replace("<p>", "").replace("</p>", "").split(" ");
-    let b;
-    if (a.length <= 15) {
-      b = a;
-      setShort(true);
-    } else {
-      b = a.slice(0, 15);
-      b.push(" ...");
-      setShort(false);
-    }
-    setText(b.join(" "));
-  }, [0]);
   return (
     <Styles>
       <div key={props.index} id={props.index + props.id}>
-       <div className="number">{props.index + 1}. </div>
+        <div className="number">{props.index + 1}. </div>
         <div className="box">{renderHTML(props.option)}</div>
       </div>
     </Styles>

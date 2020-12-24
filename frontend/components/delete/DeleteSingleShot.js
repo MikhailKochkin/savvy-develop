@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
 const DELETE_SHOT_MUTATION = gql`
-  mutation DELETE_SHOT_MUTATION($id: ID!) {
+  mutation DELETE_SHOT_MUTATION($id: String!) {
     deleteShot(id: $id) {
       id
     }
@@ -13,7 +13,7 @@ const DELETE_SHOT_MUTATION = gql`
 `;
 
 const Button = styled.button`
-  background: ${props => props.theme.red};
+  background: ${(props) => props.theme.red};
   width: 20%;
   color: white;
   padding: 1.5% 3%;
@@ -24,7 +24,7 @@ const Button = styled.button`
   cursor: pointer;
   outline: none;
   &:active {
-    background-color: ${props => props.theme.darkRed};
+    background-color: ${(props) => props.theme.darkRed};
   }
   @media (max-width: 800px) {
     width: 40%;
@@ -41,8 +41,8 @@ class DeleteSingleQuiz extends Component {
         refetchQueries={() => [
           {
             query: SINGLE_LESSON_QUERY,
-            variables: { id: lessonID }
-          }
+            variables: { id: lessonID },
+          },
         ]}
       >
         {(deleteShot, { error, loading }) => (
@@ -53,7 +53,7 @@ class DeleteSingleQuiz extends Component {
                   "Вы точно хотите удалить эту раскадровку? Она исчезнет после перезагрузки страницы."
                 )
               ) {
-                deleteShot().catch(error => {
+                deleteShot().catch((error) => {
                   alert(error.message);
                 });
               }

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
 const DELETE_CONSTRUCTION_MUTATION = gql`
-  mutation DELETE_CONSTRUCTION_MUTATION($id: ID!) {
+  mutation DELETE_CONSTRUCTION_MUTATION($id: String!) {
     deleteConstruction(id: $id) {
       id
     }

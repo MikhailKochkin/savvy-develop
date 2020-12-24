@@ -14,13 +14,13 @@ const CREATE_TEXTEDITOR_MUTATION = gql`
     $name: String!
     $text: String!
     $totalMistakes: Int
-    $lessonID: ID!
+    $lessonId: String!
   ) {
     createTextEditor(
       name: $name
       text: $text
       totalMistakes: $totalMistakes
-      lessonID: $lessonID
+      lessonId: $lessonId
     ) {
       id
     }
@@ -115,7 +115,6 @@ export default class CreateTextEditor extends Component {
 
   render() {
     const { lessonID } = this.props;
-    console.log(lessonID);
     return (
       <Width>
         <Advice>
@@ -147,7 +146,7 @@ export default class CreateTextEditor extends Component {
         <Mutation
           mutation={CREATE_TEXTEDITOR_MUTATION}
           variables={{
-            lessonID: lessonID,
+            lessonId: lessonID,
             totalMistakes: parseInt(this.state.totalMistakes),
             text: this.state.text,
             name: this.state.name,

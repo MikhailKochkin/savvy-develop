@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import moment from "moment";
+import renderHTML from "react-render-html";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: 1.4rem;
+  margin-bottom: 1%;
   p {
     margin: 0.5% 0;
   }
@@ -20,40 +24,54 @@ const Box = styled.div`
   margin-bottom: 1%;
   div {
     flex: 50%;
+    padding: 0 1%;
     &.column {
       padding-left: 2%;
       border-left: 1px solid #edefed;
+      .block {
+        padding: 2% 0;
+        border-bottom: 1px solid #edefed;
+      }
     }
   }
 `;
 
 class QuizResult extends Component {
   render() {
-    const { quizes, student } = this.props;
+    const { quizes, student, results } = this.props;
+    moment.locale("ru");
     return (
       <Container>
-        {/* {quizes.length === 0 && (
-          <li>
-            <b>Вопросы</b> не созданы
-          </li>
-        )} */}
         {quizes.length > 0 &&
-          quizes.map(q => (
+          quizes.map((q) => (
             <Box>
               <div>
                 <b>Вопрос: </b>
-                {q.question}
+                {renderHTML(q.question)}
               </div>
               <div className="column">
-                Правильный ответ:
-                {q.answer}
+                <div>
+                  <b>Правильный ответ:</b>
+                </div>{" "}
+                {renderHTML(q.answer)}
               </div>
               <div className="column">
-                {q.quizResults.filter(t => t.student.id === student.id).length >
-                0 ? (
-                  q.quizResults
-                    .filter(t => t.student.id === student.id)
-                    .map(t => <span>{t.answer}, </span>)
+                {/* <div>Полученные ответы:</div> */}
+                {results.filter((r) => r.quiz.id == q.id).length > 0 ? (
+                  results
+                    .filter((r) => r.quiz.id == q.id)
+                    .map((t) => (
+                      <div className="block">
+                        {t.answer}{" "}
+                        {t.correct &&
+                          (t.correct == true ? (
+                            <u>Правильно</u>
+                          ) : (
+                            "Неверно "
+                          ))}{" "}
+                        ({moment(t.createdAt).format("LLL")})
+                      </div>
+                    ))
                 ) : (
                   <span>Не выполнен</span>
                 )}

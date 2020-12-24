@@ -8,8 +8,8 @@ import Icon from "react-icons-kit";
 import { SINGLE_LESSON_QUERY } from "../SingleLesson";
 
 const CREATE_STATEMENT_MUTATION = gql`
-  mutation CREATE_STATEMENT_MUTATION($text: String!, $forum: ID!) {
-    createStatement(text: $text, forum: $forum) {
+  mutation CREATE_STATEMENT_MUTATION($text: String!, $forumId: String!) {
+    createStatement(text: $text, forumId: $forumId) {
       id
     }
   }
@@ -69,7 +69,7 @@ const CreateStatement = (props) => {
       <Mutation
         mutation={CREATE_STATEMENT_MUTATION}
         variables={{
-          forum: props.forum,
+          forumId: props.forum,
           text: text,
         }}
         refetchQueries={() => [

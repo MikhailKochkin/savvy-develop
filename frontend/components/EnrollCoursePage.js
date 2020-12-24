@@ -7,8 +7,8 @@ import { SINGLE_COURSEPAGE_QUERY } from "./course/CoursePage";
 
 const CREATE_PRIVATE_ORDER_MUTATION = gql`
   mutation createPrivateOrder(
-    $coursePage: ID!
-    $user: ID!
+    $coursePageId: String!
+    $userId: String!
     $promocode: String
   ) {
     createPrivateOrder(
@@ -22,8 +22,8 @@ const CREATE_PRIVATE_ORDER_MUTATION = gql`
 `;
 
 const ENROLL_COURSE_MUTATION = gql`
-  mutation ENROLL_COURSE_MUTATION($id: ID!, $coursePage: ID) {
-    enrollOnCourse(id: $id, coursePage: $coursePage) {
+  mutation ENROLL_COURSE_MUTATION($id: String!, $coursePageId: String) {
+    enrollOnCourse(id: $id, coursePageId: $coursePageId) {
       id
     }
   }
@@ -77,6 +77,7 @@ const EnrollCoursePage = (props) => {
   };
 
   const { coursePage, meData } = props;
+  console.log(props.coursePage.id);
   return (
     <>
       {(coursePage.courseType === "PUBLIC" ||

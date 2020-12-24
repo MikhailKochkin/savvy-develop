@@ -144,15 +144,14 @@ const SingleLesson_Menu = (props) => {
               </ChooseButton>
             </ButtonZone>
           )}
-          {/* {lesson.documents.length > 0 && (
-              <ButtonZone>
-                <ChooseButton name="document" onClick={(e) => onSwitch(e)}>
-                  {" "}
-                  Документы{" "}
-                </ChooseButton>
-              </ButtonZone>
-            )} */}
-
+          {lesson.documents.length > 0 && (
+            <ButtonZone>
+              <ChooseButton name="document" onClick={(e) => onSwitch(e)}>
+                {" "}
+                Документы{" "}
+              </ChooseButton>
+            </ButtonZone>
+          )}
           {lesson.newTests.length > 0 && (
             <ButtonZone>
               <ChooseButton name="test" onClick={(e) => onSwitch(e)}>
@@ -169,31 +168,31 @@ const SingleLesson_Menu = (props) => {
               </ChooseButton>
             </ButtonZone>
           )}
-          {/* {lesson.problems.length > 0 && (
-              <ButtonZone>
-                <ChooseButton name="problem" onClick={onSwitch}>
-                  {" "}
-                  Задачи{" "}
-                </ChooseButton>
-              </ButtonZone>
-            )}
-            {lesson.constructions.length > 0 && (
-              <ButtonZone>
-                <ChooseButton name="constructor" onClick={onSwitch}>
-                  {" "}
-                  Конструкторы{" "}
-                </ChooseButton>
-              </ButtonZone>
-            )}
-            {lesson.texteditors.length > 0 && (
-              <ButtonZone>
-                <ChooseButton name="textEditor" onClick={onSwitch}>
-                  {" "}
-                  Редакторы{" "}
-                </ChooseButton>
-              </ButtonZone>
-            )}
-            {lesson.exams.length > 0 && (
+          {lesson.problems.length > 0 && (
+            <ButtonZone>
+              <ChooseButton name="problem" onClick={onSwitch}>
+                {" "}
+                Задачи{" "}
+              </ChooseButton>
+            </ButtonZone>
+          )}
+          {lesson.constructions.length > 0 && (
+            <ButtonZone>
+              <ChooseButton name="constructor" onClick={onSwitch}>
+                {" "}
+                Конструкторы{" "}
+              </ChooseButton>
+            </ButtonZone>
+          )}
+          {lesson.texteditors.length > 0 && (
+            <ButtonZone>
+              <ChooseButton name="textEditor" onClick={onSwitch}>
+                {" "}
+                Редакторы{" "}
+              </ChooseButton>
+            </ButtonZone>
+          )}
+          {/*  {lesson.exams.length > 0 && (
               <ButtonZone>
                 <ChooseButton name="exam" onClick={onSwitch}>
                   {" "}
@@ -246,19 +245,10 @@ const SingleLesson_Menu = (props) => {
 
             <ButtonZone>
               <ChooseButton name="createProblem" onClick={onSwitch}>
-                {console.log(lesson.id)}
-                <Link
-                  href={{
-                    pathname: "/createProblem",
-                    query: {
-                      id: lesson.id,
-                    },
-                  }}
-                >
-                  <a>Новая задача</a>
-                </Link>
+                Новая задача
               </ChooseButton>
             </ButtonZone>
+
             <ButtonZone>
               <ChooseButton name="createConstructor" onClick={onSwitch}>
                 Новый конструктор

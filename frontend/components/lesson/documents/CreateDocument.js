@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import _ from "lodash";
 import CreateClauses from "./CreateClauses";
 import CreateTitle from "./CreateTitle";
 
-const CreateDocument = props => {
+const CreateDocument = (props) => {
   const [step, setStep] = useState(false);
   const [docID, setDocID] = useState("");
   const getStep = (data, id) => {

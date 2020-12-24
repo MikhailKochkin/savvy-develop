@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
+import dynamic from "next/dynamic";
 import { Message } from "../styles/Button";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
@@ -9,14 +10,14 @@ const CREATE_QUIZ_MUTATION = gql`
   mutation CREATE_QUIZ_MUTATION(
     $question: String!
     $answer: String!
-    $lessonID: ID!
+    $lessonId: String!
     $ifRight: String
     $ifWrong: String
   ) {
     createQuiz(
       question: $question
       answer: $answer
-      lessonID: $lessonID
+      lessonId: $lessonId
       ifRight: $ifRight
       ifWrong: $ifWrong
     ) {
@@ -66,16 +67,16 @@ const AnswerOption = styled.div`
 const Button = styled.button`
   padding: 1.5% 3%;
   font-size: 1.6rem;
-  width: 20%;
+  width: 30%;
   font-weight: 600;
   color: #fffdf7;
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   border: solid 1px white;
   border-radius: 5px;
   cursor: pointer;
   outline: none;
   &:active {
-    background: ${props => props.theme.darkGreen};
+    background: ${(props) => props.theme.darkGreen};
   }
 `;
 
@@ -84,8 +85,29 @@ const Title = styled.div`
   font-weight: 600;
   margin-bottom: 2%;
 `;
+const Comment = styled.div`
+  margin: 3% 0;
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  width: 100%;
+  min-height: 100px;
+  padding: 1.5%;
+  font-size: 1.4rem;
+  outline: 0;
+  &#ifRight {
+    border: 1px solid #84bc9c;
+  }
+  &#ifWrong {
+    border: 1px solid #de6b48;
+  }
+`;
 
-const CreateQuiz = props => {
+const DynamicLoadedEditor = dynamic(import("../editor/HoverEditor"), {
+  loading: () => <p>...</p>,
+  ssr: false,
+});
+
+const CreateQuiz = (props) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [ifRight, setIfRight] = useState("");
@@ -97,34 +119,34 @@ const CreateQuiz = props => {
       <Mutation
         mutation={CREATE_QUIZ_MUTATION}
         variables={{
-          lessonID: lessonID,
+          lessonId: lessonID,
           answer: answer,
           question: question,
           ifRight: ifRight,
-          ifWrong: ifWrong
+          ifWrong: ifWrong,
         }}
         refetchQueries={() => [
           {
             query: SINGLE_LESSON_QUERY,
-            variables: { id: lessonID }
-          }
+            variables: { id: lessonID },
+          },
         ]}
         awaitRefetchQueries={true}
       >
         {(createQuiz, { loading, error }) => (
           <Form
-            onSubmit={async e => {
+            onSubmit={async (e) => {
               e.preventDefault();
+              console.log(1);
               document.getElementById("Message").style.display = "block";
-              setTimeout(function() {
+              setTimeout(function () {
                 document.getElementById("Message")
                   ? (document.getElementById("Message").style.display = "none")
                   : "none";
               }, 1500);
-
+              console.log(2);
               const res = await createQuiz();
-              // this.setState({ id: res.data.createQuiz.id, show: false });
-              // props.getData(res.data.createQuiz.id);
+              console.log(res);
             }}
           >
             <fieldset>
@@ -136,49 +158,37 @@ const CreateQuiz = props => {
                 </Advice>
                 <Title>Новый вопрос</Title>
                 <AnswerOption>
+                  <Comment>
+                    <DynamicLoadedEditor
+                      id="question"
+                      name="question"
+                      placeholder="Вопрос"
+                      getEditorText={setQuestion}
+                    />
+                  </Comment>
                   <textarea
-                    cols={60}
-                    rows={6}
-                    id="question"
-                    name="question"
-                    required
-                    placeholder="Вопрос"
-                    value={question}
-                    onChange={e => setQuestion(e.target.value)}
-                  />
-                  <textarea
-                    cols={60}
-                    rows={6}
-                    spellCheck={true}
                     id="answer"
                     name="answer"
                     placeholder="Ответ"
-                    required
-                    value={answer}
-                    onChange={e => setAnswer(e.target.value)}
+                    defaultValue={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
                   />
-                  <textarea
-                    cols={60}
-                    rows={6}
-                    spellCheck={true}
-                    id="answer"
-                    name="answer"
-                    placeholder="Комментарий в случае правильного ответа"
-                    required
-                    value={ifRight}
-                    onChange={e => setIfRight(e.target.value)}
-                  />
-                  <textarea
-                    cols={60}
-                    rows={6}
-                    spellCheck={true}
-                    id="answer"
-                    name="answer"
-                    placeholder="Комментарий в случае  неправильного ответа"
-                    required
-                    value={ifWrong}
-                    onChange={e => setIfWrong(e.target.value)}
-                  />
+                  <Comment>
+                    <DynamicLoadedEditor
+                      id="answer"
+                      name="answer"
+                      placeholder="Комментарий в случае правильного ответа"
+                      getEditorText={setIfRight}
+                    />
+                  </Comment>
+                  <Comment>
+                    <DynamicLoadedEditor
+                      id="answer"
+                      name="answer"
+                      placeholder="Комментарий в случае правильного ответа"
+                      getEditorText={setIfWrong}
+                    />
+                  </Comment>
                 </AnswerOption>
 
                 <Button type="submit">

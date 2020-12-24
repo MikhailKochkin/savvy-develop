@@ -47,6 +47,19 @@ const AuthorNotification = (lesson, course, lessonID) => `
   </div>
 `;
 
+const newFeedbackNotification = (name, title, id, lesson) => `
+  <div className="email" style="
+    padding: 20px;
+    font-family: sans-serif;
+    line-height: 2;
+    font-size: 20px;
+  ">
+  <h4>${name}, добрый день!</h4>
+  <p>Преподаватель по курсу "${title}" оставил обратную связь по уроку "${lesson}" </p>
+  <p>Посмотрите, что написал преподаватель, <a href="https://besavvy.app/coursePage?id=${id}">по этой ссылке</a> в разделе "Обратная связь".</p>
+  </div>
+`;
+
 const Mutation = mutationType({
   name: "Mutation",
   definition(t) {
@@ -78,6 +91,15 @@ const Mutation = mutationType({
             uni: { connect: { id: uniID } },
             company: { connect: { id: company } },
             careerTrack: { connect: { id: careerTrackID } },
+          },
+        });
+
+        const UserLevel = await ctx.prisma.userLevel.create({
+          data: {
+            user: {
+              connect: { id: user.id },
+            },
+            level: 0,
           },
         });
 
@@ -463,35 +485,38 @@ const Mutation = mutationType({
             ...args,
           },
         });
-        // const test = await ctx.db.query.newTest(
-        //   { where: { id: testID } },
-        //   `{ id, answers, correct}`
-        // );
+        const test = await ctx.prisma.newTest.findUnique(
+          { where: { id: args.testID } },
+          `{ id, answers, correct}`
+        );
 
-        // let checker = [];
-        // test.correct.map((el, index) => {
-        //   if (el === true) {
-        //     checker.push(test.answers[index]);
-        //   }
-        // });
+        let checker = [];
+        test.correct.map((el, index) => {
+          if (el === true) {
+            checker.push(test.answers[index]);
+          }
+        });
 
-        // if (checker.join(", ") === args.answer) {
-        //   const user = await ctx.db.query.user(
-        //     { where: { id: ctx.request.userId } },
-        //     `{ id, level {id, level} }`
-        //   );
-        //   const updateUserLevel = await ctx.db.mutation.updateUserLevel(
-        //     {
-        //       data: {
-        //         level: user.level.level + 1,
-        //       },
-        //       where: {
-        //         id: user.level.id,
-        //       },
-        //     },
-        //     info
-        //   );
-        // }
+        if (checker.join(", ") === args.answer) {
+          const user = await ctx.prisma.user.findUnique(
+            {
+              where: { id: ctx.request.userId },
+              include: {
+                level: true,
+              },
+            },
+            `{ id, level {id, level} }`
+          );
+          console.log(user);
+          const updateUserLevel = await ctx.prisma.userLevel.update({
+            data: {
+              level: user.level.level + 1,
+            },
+            where: {
+              id: user.level.id,
+            },
+          });
+        }
 
         return TestResult;
       },
@@ -643,23 +668,25 @@ const Mutation = mutationType({
           },
         });
 
-        // if (args.correct === true) {
-        //   const user = await ctx.db.query.user(
-        //     { where: { id: ctx.request.userId } },
-        //     `{ id, level {id, level} }`
-        //   );
-        //   const updateUserLevel = await ctx.db.mutation.updateUserLevel(
-        //     {
-        //       data: {
-        //         level: user.level.level + 2,
-        //       },
-        //       where: {
-        //         id: user.level.id,
-        //       },
-        //     },
-        //     info
-        //   );
-        // }
+        if (args.correct === true) {
+          const user = await ctx.prisma.user.findUnique(
+            {
+              where: { id: ctx.request.userId },
+              include: {
+                level: true,
+              },
+            },
+            `{ id, level {id, level} }`
+          );
+          const updateUserLevel = await ctx.prisma.userLevel.update({
+            data: {
+              level: user.level.level + 2,
+            },
+            where: {
+              id: user.level.id,
+            },
+          });
+        }
 
         return QuizResult;
       },
@@ -822,22 +849,25 @@ const Mutation = mutationType({
           },
         });
 
-        // if (args.result === true) {
-        //   const user = await ctx.db.query.user(
-        //     { where: { id: ctx.request.userId } },
-        //     `{ id, level {id, level} }`
-        //   );
-        //   const updateUserLevel = await ctx.db.mutation.updateUserLevel(
-        //     {
-        //       data: {
-        //         level: user.level.level + 0.25,
-        //       },
-        //       where: {
-        //         id: user.level.id,
-        //       },
-        //     },
-        //   );
-        // }
+        if (args.result === true) {
+          const user = await ctx.prisma.user.findUnique(
+            {
+              where: { id: ctx.request.userId },
+              include: {
+                level: true,
+              },
+            },
+            `{ id, level {id, level} }`
+          );
+          const updateUserLevel = await ctx.prisma.userLevel.update({
+            data: {
+              level: user.level.level + 0.25,
+            },
+            where: {
+              id: user.level.id,
+            },
+          });
+        }
         return TextEditorResult;
       },
     });
@@ -965,22 +995,25 @@ const Mutation = mutationType({
           },
         });
 
-        // if (args.result === true) {
-        //   const user = await ctx.db.query.user(
-        //     { where: { id: ctx.request.userId } },
-        //     `{ id, level {id, level} }`
-        //   );
-        //   const updateUserLevel = await ctx.db.mutation.updateUserLevel(
-        //     {
-        //       data: {
-        //         level: user.level.level + 0.25,
-        //       },
-        //       where: {
-        //         id: user.level.id,
-        //       },
-        //     },
-        //   );
-        // }
+        if (args.result === true) {
+          const user = await ctx.prisma.user.findUnique(
+            {
+              where: { id: ctx.request.userId },
+              include: {
+                level: true,
+              },
+            },
+            `{ id, level {id, level} }`
+          );
+          const updateUserLevel = await ctx.prisma.userLevel.update({
+            data: {
+              level: user.level.level + 0.25,
+            },
+            where: {
+              id: user.level.id,
+            },
+          });
+        }
         return ConstructionResult;
       },
     });
@@ -1178,6 +1211,26 @@ const Mutation = mutationType({
       resolve: async (_, args, ctx) => {
         const forumId = args.forumId;
         delete args.forumId;
+        const author = await ctx.prisma.user.findMany({
+          where: { forums_some: { id: args.forum } },
+        });
+        const lesson = await ctx.prisma.lesson.findMany(
+          {
+            where: { forum: { id: args.forum } },
+            include: { coursePage: true },
+          },
+          `{id, coursePage {id, title}, name}`
+        );
+        const newMail = await client.sendEmail({
+          From: "Mikhail@besavvy.app",
+          To: author[0].email,
+          Subject: "Новое сообщение на форуме",
+          HtmlBody: AuthorNotification(
+            lesson[0].name,
+            lesson[0].coursePage.title,
+            lesson[0].id
+          ),
+        });
         const statement = await ctx.prisma.statement.create({
           data: {
             user: {
@@ -1631,6 +1684,148 @@ const Mutation = mutationType({
           data: { text },
         });
         return updatedPost;
+      },
+    });
+    t.field("remind", {
+      type: "CourseVisit",
+      args: {
+        id: stringArg(),
+        reminders: list(
+          arg({
+            type: "DateTime",
+          })
+        ),
+      },
+      resolve: async (_, { id, reminders }, ctx) => {
+        const updateCourseVisit = await ctx.prisma.courseVisit.update({
+          where: { id },
+          data: { reminders: { set: reminders } },
+        });
+
+        const users = await ctx.prisma.user.findMany({
+          where: { courseVisits: { some: { id: { equals: id } } } },
+        });
+
+        console.log(users);
+
+        const courseVisits = await ctx.prisma.courseVisit.findMany(
+          {
+            where: { id: id },
+            include: { coursePage: true },
+          },
+          `{ id, coursePage {id, title} }`
+        );
+
+        console.log(courseVisits);
+
+        const Reminder = await client.sendEmail({
+          From: "Mikhail@besavvy.app",
+          To: users[0].email,
+          Subject: "🥇 Только 4% заканчивают онлайн-курс. Будешь среди них?",
+          HtmlBody: ReminderEmail.ReminderEmail(
+            users[0].name,
+            courseVisits[0].coursePage.title,
+            courseVisits[0].coursePage.id
+          ),
+        });
+
+        return updateCourseVisit;
+      },
+    });
+    t.field("newWeek", {
+      type: "CourseVisit",
+      args: {
+        id: stringArg(),
+        reminders: list(
+          arg({
+            type: "DateTime",
+          })
+        ),
+      },
+      resolve: async (_, { id, reminders }, ctx) => {
+        const updateCourseVisit = await ctx.prisma.courseVisit.update({
+          where: { id },
+          data: { reminders: { set: reminders } },
+        });
+
+        const users = await ctx.prisma.user.findMany({
+          where: { courseVisits: { some: { id: { equals: id } } } },
+        });
+
+        console.log(users);
+
+        const courseVisits = await ctx.prisma.courseVisit.findMany(
+          {
+            where: { id: id },
+            include: { coursePage: true },
+          },
+          `{ id, coursePage {id, title} }`
+        );
+
+        console.log(courseVisits);
+
+        const NextWeek = await client.sendEmail({
+          From: "Mikhail@besavvy.app",
+          To: users[0].email,
+          Subject: "Новая неделя курса. Готовы?",
+          HtmlBody: NextWeekEmail.NextWeekEmail(
+            users[0].name,
+            courseVisits[0].coursePage.title,
+            courseVisits[0].coursePage.id
+          ),
+        });
+
+        return updateCourseVisit;
+      },
+    });
+    t.field("createFeedback", {
+      type: "Feedback",
+      args: {
+        text: stringArg(),
+        lessonId: stringArg(),
+        studentId: stringArg(),
+      },
+      resolve: async (_, args, ctx) => {
+        const user = await ctx.prisma.user.findUnique({
+          where: { id: args.studentId },
+        });
+        const coursePages = await ctx.prisma.coursePage.findMany({
+          where: { lessons: { some: { id: { equals: args.lessonId } } } },
+        });
+        const lesson = await ctx.prisma.lesson.findUnique({
+          where: { id: args.lessonId },
+        });
+        const FeedbackNotification = await client.sendEmail({
+          From: "Mikhail@besavvy.app",
+          To: user.email,
+          Subject: "BeSavvy: преподаватель проверил вашу работу",
+          HtmlBody: newFeedbackNotification(
+            user.name,
+            coursePages[0].title,
+            coursePages[0].id,
+            lesson.name
+          ),
+        });
+
+        console.log("studentId", args.studentId);
+        console.log("lessonId", args.lessonId);
+        console.log("teacherId", ctx.request.userId);
+
+        const Feedback = await ctx.prisma.feedback.create({
+          data: {
+            student: {
+              connect: { id: args.studentId },
+            },
+            teacher: {
+              connect: { id: ctx.request.userId },
+            },
+            lesson: {
+              connect: { id: args.lessonId },
+            },
+            text: args.text,
+          },
+        });
+        return Feedback;
       },
     });
   },

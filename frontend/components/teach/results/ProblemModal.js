@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import renderHTML from "react-render-html";
 import Modal from "styled-react-modal";
+import moment from "moment";
 
 const Box = styled.div`
   display: flex;
   justify-content: row;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   div {
     flex: 50%;
     &.column {
@@ -47,13 +48,15 @@ const Button = styled.button`
 
 class ProblemModal extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
-  toggleModal = e => {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  toggleModal = (e) => {
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
   };
   render() {
-    const { problem, student } = this.props;
+    moment.locale("ru");
+
+    const { problem, student, results } = this.props;
     return (
       <Box key={problem.id}>
         <div>
@@ -63,23 +66,22 @@ class ProblemModal extends Component {
         <div className="column">
           <div>Открытые подсказки:</div>
           <div>
-            {problem.problemResults.filter(t => t.student.id === student.id)
-              .length > 0 ? (
-              problem.problemResults
-                .filter(t => t.student.id === student.id)[0]
-                .revealed.map(t => <li>{t}</li>)
+            {results.filter((r) => r.problem.id === problem.id).length > 0 ? (
+              results
+                .filter((r) => r.problem.id === problem.id)[0]
+                .revealed.map((t) => <li>{t}</li>)
             ) : (
               <span>Не выполнена</span>
             )}
           </div>
         </div>
         <div className="column">
-          {problem.problemResults.filter(t => t.student.id === student.id)
-            .length > 0 ? (
-            problem.problemResults
-              .filter(t => t.student.id === student.id)
-              .map(t => (
+          {results.filter((t) => t.problem.id === problem.id).length > 0 ? (
+            results
+              .filter((t) => t.problem.id === problem.id)
+              .map((t) => (
                 <>
+                  {moment(t.createdAt).format("LLL")}
                   {t.answer.length < 200 ? (
                     <span>{renderHTML(t.answer)}</span>
                   ) : (
@@ -92,12 +94,11 @@ class ProblemModal extends Component {
                     onBackgroundClick={this.toggleModal}
                     onEscapeKeydown={this.toggleModal}
                   >
-                    {problem.problemResults.filter(
-                      t => t.student.id === student.id
-                    ).length > 0 ? (
-                      problem.problemResults
-                        .filter(t => t.student.id === student.id)
-                        .map(t => <span>{renderHTML(t.answer)}</span>)
+                    {results.filter((t) => t.problem.id === problem.id).length >
+                    0 ? (
+                      results
+                        .filter((t) => t.problem.id === problem.id)
+                        .map((t) => <span>{renderHTML(t.answer)}</span>)
                     ) : (
                       <span>Не выполнена</span>
                     )}

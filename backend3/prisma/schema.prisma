@@ -72,13 +72,13 @@ model Clause {
 }
 
 model Company {
-  id          String       @id @default(cuid())
-  name        String
-  paidMonths  Int?         @default(0)
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id         String       @id @default(cuid())
+  name       String
+  paidMonths Int?         @default(0)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
   coursePages CoursePage[]
-  hrs         User[]
+  hrs        User[]
 }
 
 model Construction {
@@ -116,49 +116,49 @@ model ConstructionResult {
 }
 
 model CoursePage {
-  id                String            @id @default(cuid())
-  title             String
-  description       String
-  image             String
-  banner            String?
-  news              String?           @default("Добро пожаловать на курс! Проходите уроки, выполняйте задания и выполняйте финальное задание!")
-  audience          String?
-  result            String?
-  tariffs           String?
-  methods           String?
-  video             String?
-  reviews           Json?
-  numInCareerTrack  Int?
-  published         Boolean?          @default(false)
-  uniID             String?           @default(cuid())
-  courseType        CourseType?
-  price             Int?
-  discountPrice     Int?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  weeks             Int?
-  subscription      Boolean?          @default(false)
-  subscriptionPrice Int?
-  batch             String?
-  openLesson        String?
-  tags              String[]
-  students          String[]
-  promocode         Json[]
-  userId            String
-  uniId             String?
-  companyId         String?
-  company           Company?          @relation(fields: [companyId], references: [id])
-  uni               Uni?              @relation(fields: [uniId], references: [id])
-  user              User              @relation(fields: [userId], references: [id])
-  applications      Application[]
-  visits            CourseVisit[]
-  lessons           Lesson[]
-  orders            Order[]
-  authors           User[]            @relation("AuthorsCoursePage")
-  careerTrackUnit   CareerTrackUnit[]
-  careerTrack       CareerTrack[]     @relation("CoursePageForCareer")
-  posts             Post[]            @relation("PostCoursePages")
-  new_students      User[]            @relation("UserSubjects")
+  id                    String            @id @default(cuid())
+  title                 String
+  description           String
+  image                 String
+  banner                String?
+  news                  String?           @default("Добро пожаловать на курс! Проходите уроки, выполняйте задания и выполняйте финальное задание!")
+  audience              String?
+  result                String?
+  tariffs               String?
+  methods               String?
+  video                 String?
+  reviews               Json?
+  numInCareerTrack      Int?
+  published             Boolean?          @default(false)
+  uniID                 String?           @default(cuid())
+  courseType            CourseType?
+  price                 Int?
+  discountPrice         Int?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  companyId               String?
+  weeks                 Int?
+  subscription          Boolean?          @default(false)
+  subscriptionPrice     Int?
+  batch                 String?
+  openLesson            String?
+  tags                  String[]
+  students              String[]
+  promocode             Json[]
+  userId                String
+  uniId                 String?
+  company               Company?          @relation(fields: [companyId], references: [id])
+  uni                   Uni?              @relation(fields: [uniId], references: [id])
+  user                  User              @relation(fields: [userId], references: [id])
+  applications          Application[]
+  visits                CourseVisit[]
+  lessons               Lesson[]
+  orders                Order[]
+  authors               User[]            @relation("AuthorsCoursePage")
+  careerTrackUnit       CareerTrackUnit[]
+  careerTrack           CareerTrack[]     @relation("CoursePageForCareer")
+  posts                 Post[]            @relation("PostCoursePages")
+  new_students          User[]            @relation("UserSubjects")
 }
 
 model CourseVisit {
@@ -210,8 +210,8 @@ model Feedback {
   studentId String
   lessonId  String?
   lesson    Lesson?  @relation(fields: [lessonId], references: [id])
-  teacher   User     @relation("TeacherFeedback", fields: [studentId], references: [id])
-  student   User     @relation("StudentFeedback", fields: [teacherId], references: [id])
+  teacher   User     @relation("TeacherFeedback", fields: [teacherId], references: [id])
+  student   User     @relation("StudentFeedback", fields: [studentId], references: [id])
 }
 
 model Forum {
@@ -220,8 +220,8 @@ model Forum {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   userId     String?
-  lessonId   String?
   user       User?       @relation(fields: [userId], references: [id])
+  lessonId   String?
   lesson     Lesson?
   rating     Rating[]
   statements Statement[]
@@ -343,9 +343,9 @@ model Order {
 model Post {
   id          String       @id @default(cuid())
   title       String?
-  createdAt   DateTime     @default(now())
   text        String?
   likes       Int?         @default(1)
+  createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   userId      String
   tags        String[]
@@ -536,67 +536,67 @@ model Uni {
 }
 
 model User {
-  id                  String               @id @default(cuid())
-  name                String
-  email               String               @unique
-  surname             String?
-  password            String
-  resetToken          String?
-  resetTokenExpiry    Float?
-  status              String?              @default("STUDENT")
-  uniID               String?              @default(cuid())
-  description         String?
-  resume              String?
-  coverLetter         String?
-  careerTrackID       String?              @default(cuid())
-  isFamiliar          Boolean              @default(false)
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  image               String?
-  favourites          String[]
-  subjects            String[]
-  interests           String[]
-  permissions         Permission[]
-  uniId               String?
-  companyId           String?
-  legalPortfolioId    String?              @unique
-  careerTrackId       String?              @unique
-  levelId             String?              @unique
-  careerTrack         CareerTrack?         @relation(fields: [careerTrackId], references: [id])
-  company             Company?             @relation(fields: [companyId], references: [id])
-  legalPortfolio      LegalPortfolio?      @relation(fields: [legalPortfolioId], references: [id])
-  level               UserLevel?           @relation(fields: [levelId], references: [id])
-  uni                 Uni?                 @relation(fields: [uniId], references: [id])
-  challengeResults    ChallengeResult[]
-  clauses             Clause[]
-  construction        Construction[]
-  constructionResults ConstructionResult[]
-  coursePages         CoursePage[]
-  courseVisits        CourseVisit[]
-  documents           Document[]
-  documentResults     DocumentResult[]
-  teacherFeedback     Feedback[]           @relation("TeacherFeedback")
-  studentFeedback     Feedback[]           @relation("StudentFeedback")
-  forums              Forum[]
-  lessons             Lesson[]
-  lessonResults       LessonResult[]
-  newTests            NewTest[]
-  notes               Note[]
-  orders              Order[]
-  posts               Post[]
-  problems            Problem[]
-  problemResults      ProblemResult[]
-  quizes              Quiz[]
-  quizResults         QuizResult[]
-  ratings             Rating[]
-  shots               Shot[]
-  shotResults         ShotResult[]
-  statements          Statement[]
-  testResults         TestResult[]
-  textEditor          TextEditor[]
-  textEditorResults   TextEditorResult[]
-  co_coursePages      CoursePage[]         @relation("AuthorsCoursePage")
-  new_subjects        CoursePage[]         @relation("UserSubjects")
+  id                          String               @id @default(cuid())
+  name                        String
+  surname                     String?
+  email                       String               @unique
+  password                    String
+  resetToken                  String?
+  resetTokenExpiry            Float?
+  status                      String?              @default("STUDENT")
+  uniID                       String?              @default(cuid())
+  description                 String?
+  resume                      String?
+  coverLetter                 String?
+  careerTrackID               String?              @default(cuid())
+  isFamiliar                  Boolean              @default(false)
+  createdAt                   DateTime             @default(now())
+  updatedAt                   DateTime             @updatedAt
+  image                       String?
+  favourites                  String[]
+  subjects                    String[]
+  interests                   String[]
+  permissions                 Permission[]
+  uniId                       String?
+  companyId                   String?
+  legalPortfolioId            String?              @unique
+  careerTrackId               String?              @unique
+  levelId                     String?              @unique
+  careerTrack                 CareerTrack?         @relation(fields: [careerTrackId], references: [id])
+  company                     Company?             @relation(fields: [companyId], references: [id])
+  legalPortfolio              LegalPortfolio?      @relation(fields: [legalPortfolioId], references: [id])
+  level                       UserLevel?           @relation(fields: [levelId], references: [id])
+  uni                         Uni?                 @relation(fields: [uniId], references: [id])
+  challengeResults            ChallengeResult[]
+  clauses                     Clause[]
+  construction                Construction[]
+  constructionResults         ConstructionResult[]
+  coursePages                 CoursePage[]
+  courseVisits                CourseVisit[]
+  documents                   Document[]
+  documentResults             DocumentResult[]
+  teacherFeedback             Feedback[]           @relation("TeacherFeedback")
+  studentFeedback             Feedback[]           @relation("StudentFeedback")
+  forums                      Forum[]
+  lessons                     Lesson[]
+  lessonResults               LessonResult[]
+  newTests                    NewTest[]
+  notes                       Note[]
+  orders                      Order[]
+  posts                       Post[]
+  problems                    Problem[]
+  problemResults              ProblemResult[]
+  quizes                      Quiz[]
+  quizResults                 QuizResult[]
+  ratings                     Rating[]
+  shots                       Shot[]
+  shotResults                 ShotResult[]
+  statements                  Statement[]
+  testResults                 TestResult[]
+  textEditor                  TextEditor[]
+  textEditorResults           TextEditorResult[]
+  co_coursePages              CoursePage[]         @relation("AuthorsCoursePage")
+  new_subjects                CoursePage[]         @relation("UserSubjects")
 }
 
 model UserLevel {
@@ -604,6 +604,7 @@ model UserLevel {
   level     Float?   @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    String?
   user      User?
 }
 

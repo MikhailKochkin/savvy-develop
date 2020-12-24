@@ -13,9 +13,9 @@ import ProblemBuilder from "./ProblemBuilder";
 
 const UPDATE_PROBLEM_MUTATION = gql`
   mutation UPDATE_PROBLEM_MUTATION(
-    $id: ID!
+    $id: String!
     $text: String
-    $nodeID: ID
+    $nodeID: String
     $nodeType: String
   ) {
     updateProblem(id: $id, text: $text, nodeID: $nodeID, nodeType: $nodeType) {

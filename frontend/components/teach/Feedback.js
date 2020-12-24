@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import renderHTML from "react-render-html";
 import styled from "styled-components";
 import moment from "moment";
@@ -9,32 +8,34 @@ const AllStyles = styled.div`
     font-size: 1.6rem;
     font-weight: bold;
   }
+  .time {
+    font-size: 1.3rem;
+    color: grey;
+  }
 `;
 
 const Styles = styled.div`
   border-bottom: 1px solid #edefed;
 `;
 
-class Feedback extends Component {
-  render() {
-    moment.locale("ru");
-    const { feedback, lesson } = this.props;
-    const final_feedback = feedback.filter(f => f.lesson.id === lesson);
-    return (
-      <AllStyles>
-        <div className="header">Отправленная обратная связь:</div>
-        {final_feedback.length === 0 ? <div>Нет обратной связи</div> : null}
-        {final_feedback.length > 0
-          ? final_feedback.map(m => (
-              <Styles>
-                {renderHTML(m.text)}
-                {moment(m.createdAt).format("LLL")}
-              </Styles>
-            ))
-          : null}
-      </AllStyles>
-    );
-  }
-}
+const Feedback = (props) => {
+  moment.locale("ru");
+  const { feedback, lesson } = props;
+  console.log(feedback);
+  return (
+    <AllStyles>
+      <div className="header">Отправленная обратная связь:</div>
+      {feedback.length === 0 ? <div>Нет обратной связи</div> : null}
+      {feedback.length > 0
+        ? feedback.map((m) => (
+            <Styles>
+              {renderHTML(m.text)}
+              <div className="time">{moment(m.createdAt).format("LLL")}</div>
+            </Styles>
+          ))
+        : null}
+    </AllStyles>
+  );
+};
 
 export default Feedback;

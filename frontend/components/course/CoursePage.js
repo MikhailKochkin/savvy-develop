@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Query } from "@apollo/client/react/components";
 import gql from "graphql-tag";
 import styled from "styled-components";
@@ -12,6 +12,8 @@ import TeacherCard from "./coursePageCards/TeacherCard";
 import SignInCard from "./coursePageCards/SignInCard";
 import Loading from "../Loading";
 import Feedback from "./Feedback";
+// import { Reviews } from "../../config";
+import { withTranslation } from "../../i18n";
 
 const SINGLE_COURSEPAGE_QUERY = gql`
   query SINGLE_COURSEPAGE_QUERY($id: String!) {
@@ -129,12 +131,26 @@ const Data = styled.div`
   p {
     margin: 0;
   }
+  img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50px;
+    object-fit: cover;
+  }
   .name {
+    display: flex;
+    flex-direction: row;
     font-size: 1.6rem;
     font-weight: bold;
     padding-bottom: 4%;
     padding-top: 4%;
     border-top: 1px solid #e4e4e4;
+    p {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 4%;
+    }
   }
   .company {
     font-size: 1.6rem;
@@ -146,11 +162,16 @@ const Data = styled.div`
     padding-top: 4%;
     padding-bottom: 4%;
   }
+  .rating {
+    padding-bottom: 4%;
+    font-size: 1.6rem;
+  }
   .track2 {
     font-size: 1.6rem;
     line-height: 1.4;
     padding-top: 0%;
-    padding-bottom: 4%;
+    padding-bottom: 2%;
+    margin-top: 3%;
   }
   .trackName {
     font-weight: 600;
@@ -180,11 +201,33 @@ const LessonImage = styled.img`
   }
 `;
 
-const Header = styled.div`
+const Header = styled.span`
   font-size: 2.4rem;
-  padding-bottom: 4%;
+  margin: 4% 0;
+  padding: 1%;
+  padding-right: 1.5%;
+  font-style: italic;
+  -webkit-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+  line-height: 1.8;
+  font-weight: bold;
+  background: #ffdad7;
+  transform: skew(-5deg);
+  -webkit-transform: skew(-5deg);
+  -moz-transform: skew(-5deg);
+  -o-transform: skew(-5deg);
+  /* transform: skew(10deg, 10deg); */
+`;
+
+const Header2 = styled.div`
+  font-size: 2rem;
   padding-top: 4%;
-  line-height: 1.4;
+  margin-bottom: 3%;
+  @media (max-width: 800px) {
+    font-size: 1.8rem;
+    margin-bottom: 6%;
+  }
 `;
 
 const Total = styled.div`
@@ -206,62 +249,89 @@ const Button = styled.button`
   padding-bottom: 10px;
   border-bottom: ${(props) =>
     props.primary ? "1px solid black" : "1px solid white"};
+  &#forum {
+    font-weight: bold;
+  }
 `;
 
-const SignInButton = styled.button`
-  background: #0846d8;
-  border-radius: 5px;
-  width: 20%;
-  height: 38px;
-  outline: 0;
-  color: white;
-  font-weight: 600;
-  font-size: 1.4rem;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  margin-top: 10px;
-  &:hover {
-    background: rgba(8, 70, 216, 0.85);
+const ReviewsStyles = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
+  flex-wrap: wrap;
+  margin: 2% 0;
+  .header {
+    font-size: 1.8rem;
+    font-weight: bold;
   }
-  &:active {
-    background-color: ${(props) => props.theme.darkGreen};
+  @media (max-width: 800px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  &:disabled {
+`;
+
+const Post = styled.div`
+  width: 45%;
+  border-top: 3px solid #02b3e4;
+  box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+  flex-basis: 45%;
+  background: #fff;
+  margin-bottom: 3%;
+  border-radius: 15px;
+  padding: 2%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .source {
+    & {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #000;
+      line-height: 0.1em;
+      margin: 20px 0 20px;
+    }
+
+    & span {
+      background: #fff;
+      padding: 0 30px;
+    }
+  }
+  .text {
+    cursor: pointer;
     &:hover {
-      background-color: #84bc9c;
+      text-decoration: underline;
     }
   }
   @media (max-width: 800px) {
-    width: 50%;
+    width: 95%;
+    padding: 4%;
   }
 `;
 
 const Details = styled.div`
-  margin: 3% 0;
-  padding: 0 2%;
+  margin: 0;
+  padding: 2%;
   font-size: 1.6rem;
-  .yellow {
+  background: #fafbfc;
+  .red {
     padding: 4%;
-    background: rgba(169, 210, 255, 0.3);
-    margin-top: 2%;
+    background: #6c4ae0;
+    color: white;
+    margin: 2% 0;
     width: 100%;
     @media (max-width: 800px) {
       padding: 20px;
     }
   }
-  .green {
+  .info {
     padding: 4%;
-    background: rgba(210, 246, 252, 0.3);
-    width: 100%;
-    @media (max-width: 800px) {
-      padding: 20px;
-    }
-  }
-  .blue {
-    padding: 4%;
-    background: rgba(121, 132, 238, 0.15);
-    margin-bottom: 4%;
+    background: #fff;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+    border-radius: 0.375rem;
+    margin: 2% 0;
     width: 100%;
     @media (max-width: 800px) {
       padding: 20px;
@@ -269,8 +339,15 @@ const Details = styled.div`
   }
   .header {
     font-size: 1.8rem;
-    font-weight: bold;
     margin-bottom: 1%;
+    text-align: center;
+    display: inline-block;
+    padding: 0 5%;
+    background-image: linear-gradient(90deg, #02b3e4 0, #02ccba);
+    color: white;
+    -webkit-transform: skew(-5deg);
+    -moz-transform: skew(-5deg);
+    -o-transform: skew(-5deg);
     @media (max-width: 800px) {
       font-size: 1.6rem;
     }
@@ -311,6 +388,9 @@ const CoursePage = (props) => {
     window.scrollTo(0, 0);
   };
   const me = useUser();
+  let my_reviews;
+  // my_reviews = Reviews.filter((r) => r.coursePage === props.id);
+  my_reviews = [];
   return (
     <>
       <div id="root"></div>
@@ -334,19 +414,23 @@ const CoursePage = (props) => {
             } else {
               price = coursePage.price;
             }
-            const studentsArray = [];
-            coursePage.students.map((student) => studentsArray.push(student));
-            console.log(me);
-            const new_subjectArray = [];
-            // me &&
-            //   me.new_subjects.map((new_subject) =>
-            //     new_subjectArray.push(new_subject.id)
-            //   );
+            let new_subjectArray = [];
+            me &&
+              me.new_subjects.map((new_subject) =>
+                new_subjectArray.push(new_subject.id)
+              );
 
             const applicationsList = [];
             coursePage.applications.map((application) =>
               applicationsList.push(application.applicantId)
             );
+
+            let weeks;
+            if (coursePage.weeks) {
+              weeks = coursePage.weeks;
+            } else {
+              weeks = 3;
+            }
 
             let lessonsList = [];
             coursePage.lessons.map((l) => lessonsList.push(l.id));
@@ -398,68 +482,40 @@ const CoursePage = (props) => {
                     </CourseInfo>
                     <Details>
                       {data.coursePage.audience && (
-                        <div className="yellow">
+                        <div className="info">
                           <div className="header">
-                            🙋🏻‍♀ Кому нужен этот курс?
+                            <span>{props.t("TA")}</span>
                           </div>
                           <div>{renderHTML(data.coursePage.audience)}</div>
                         </div>
                       )}
                       {data.coursePage.video && data.coursePage.video !== "" && (
                         <Video>
-                          <div className="header">
-                            Посмотрите презентацию курса от его автора:
-                          </div>
+                          {/* <div className="header">
+                                          Посмотрите презентацию курса от его
+                                          автора:
+                                        </div> */}
                           <iframe src={data.coursePage.video} allowFullScreen />
                         </Video>
                       )}
                       {data.coursePage.methods && (
-                        <div className="green">
-                          <div className="header">
-                            👨🏻‍🏫 👩🏼‍🏫 Об авторе курса и его подходах
-                          </div>
+                        <div className="info">
+                          <div className="header">{props.t("author")}</div>
                           <div>{renderHTML(data.coursePage.methods)}</div>
                         </div>
                       )}
-                      {openLesson.length > 0 && (
-                        <div className="openLesson">
-                          <div className="header">
-                            Посмотрите первый открытый урок уже сейчас!
-                          </div>
-                          {!me && (
-                            <>
-                              <p>
-                                Войдите или зарегистрируйтесь, чтобы это
-                                сделать.
-                              </p>
-                              <SignInButton onClick={(e) => scroll()}>
-                                Войти
-                              </SignInButton>
-                            </>
-                          )}
-                          {me &&
-                            openLesson.map((lesson, index) => (
-                              <LessonHeader
-                                me={me}
-                                key={lesson.id}
-                                name={lesson.name}
-                                lesson={lesson}
-                                coursePage={props.id}
-                                author={coursePage.user.id}
-                                students={coursePage.students}
-                                new_students={student_list}
-                                index={index + 1}
-                                coursePageId={coursePage.id}
-                              />
-                            ))}
+                      {data.coursePage.result && (
+                        <div className="info">
+                          <div className="header">{props.t("result")}</div>
+                          <div>{renderHTML(data.coursePage.result)}</div>
                         </div>
                       )}
-                      {data.coursePage.result && (
-                        <div className="blue">
+                      {data.coursePage.batch && (
+                        <div className="red">
                           <div className="header">
-                            🎁 Что вы получите в результате прохождения курса?
+                            Информация о следующем живом потоке
                           </div>
-                          <div>{renderHTML(data.coursePage.result)}</div>
+                          {renderHTML(data.coursePage.batch)}
                         </div>
                       )}
                     </Details>
@@ -480,16 +536,17 @@ const CoursePage = (props) => {
                       </Buttons>
                       {page === "lessons" && (
                         <>
-                          <Total>Всего: {lessons.length}</Total>
-                          {lessons
-                            // .sort((a, b) =>
-                            //   a.number > b.number ? 1 : -1
-                            // )
+                          <Total>
+                            {" "}
+                            {props.t("total")} {lessons.length}
+                          </Total>
+                          {[...coursePage.lessons]
+                            .sort((a, b) => (a.number > b.number ? 1 : -1))
                             .map((lesson, index) => (
                               <>
-                                {(index + 3) % 3 === 0 && (
+                                {(index + weeks) % weeks === 0 && (
                                   <div className="week">
-                                    Неделя {(index + 3) / 3}
+                                    {props.t("week")} {(index + weeks) / weeks}
                                   </div>
                                 )}
                                 <LessonHeader
@@ -499,33 +556,16 @@ const CoursePage = (props) => {
                                   lesson={lesson}
                                   coursePage={props.id}
                                   author={coursePage.user.id}
-                                  // students={coursePage.students}
-                                  openLesson={coursePage.openLesson}
+                                  students={coursePage.students}
                                   new_students={student_list}
                                   open={index + 1 === 1}
                                   index={index + 1}
+                                  coursePageId={coursePage.id}
                                 />
                               </>
                             ))}
                         </>
                       )}
-
-                      {/* {this.state.page === "forum" &&
-                                    new_subjectArray.includes(coursePage.id) ? (
-                                      me && (
-                                        <>
-                                          <Forum
-                                            coursePage={coursePage}
-                                            me={me}
-                                          />
-                                        </>
-                                      )
-                                    ) : (
-                                      <Comment>
-                                        Зарегистрируйтесь на курс, чтобы
-                                        получить доступ к форуму.
-                                      </Comment>
-                                    ))} */}
 
                       {page === "feedback" &&
                         (me && new_subjectArray.includes(coursePage.id) ? (
@@ -550,70 +590,73 @@ const CoursePage = (props) => {
                             заданиям.
                           </Comment>
                         ))}
-                      {/* {this.state.page === "finals" && (
-                                    <>
-                                      {me &&
-                                        (me.id === coursePage.user.id ||
-                                          me.permissions.includes("ADMIN")) &&
-                                        (coursePage.examQuestion ? (
-                                          <UpdateExamQuestion
-                                            id={this.props.id}
-                                          />
-                                        ) : (
-                                          <ExamQuestion id={this.props.id} />
-                                        ))}
-                                      {me &&
-                                        me.id !== coursePage.user.id &&
-                                        !me.permissions.includes("ADMIN") &&
-                                        (coursePage.examQuestion ? (
-                                          <ExamAnswer
-                                            id={this.props.id}
-                                            question={coursePage.examQuestion}
-                                          />
-                                        ) : (
-                                          <p>
-                                            На этом курсе пока нет финального
-                                            задания
-                                          </p>
-                                        ))}
-                                    </>
-                                  )} */}
                     </LessonsInfo>
                     <Details>
                       {data.coursePage.tariffs && (
-                        <div className="yellow">
-                          <div className="header">
-                            📚Как проходит обучение на разных тарифах?
-                          </div>
+                        <div className="info">
+                          <div className="header">{props.t("tariffs")}</div>
                           <div>{renderHTML(data.coursePage.tariffs)}</div>
                         </div>
                       )}
                     </Details>
-                    {/* {(
-                      !new_subjectArray.includes(coursePage.id)) && (
+                    {me &&
+                      !me.permissions.includes("ADMIN") &&
+                      !new_subjectArray.includes(coursePage.id) && (
+                        <RegisterCard
+                          me={me}
+                          coursePage={coursePage}
+                          price={price}
+                          subscription={coursePage.subscription}
+                          subscriptionPrice={coursePage.subscriptionPrice}
+                          discountPrice={coursePage.discountPrice}
+                          promocode={coursePage.promocode}
+                        />
+                      )}
+
+                    {me && me.permissions.includes("ADMIN") && (
                       <RegisterCard
                         me={me}
                         coursePage={coursePage}
                         price={price}
+                        subscription={coursePage.subscription}
+                        subscriptionPrice={coursePage.subscriptionPrice}
                         discountPrice={coursePage.discountPrice}
                         promocode={coursePage.promocode}
-                        studentsArray={studentsArray}
                       />
-                    )} */}
-                    {/* {data.coursePage.reviews.length > 0 && ( */}
-                    {/* <Reviews>
-                                  {coursePage.reviews.map((post) => (
-                                    <div>
-                                      <a
-                                        href={post.comment_src}
-                                        target="_blank"
-                                      >
-                                        <img src={post.img_src} />
-                                      </a>
-                                    </div>
-                                  ))}
-                                </Reviews> */}
-                    {/* )} */}
+                    )}
+
+                    {!me && (
+                      <RegisterCard
+                        me={me}
+                        coursePage={coursePage}
+                        price={price}
+                        subscription={coursePage.subscription}
+                        subscriptionPrice={coursePage.subscriptionPrice}
+                        discountPrice={coursePage.discountPrice}
+                        promocode={coursePage.promocode}
+                      />
+                    )}
+
+                    {my_reviews[0] && (
+                      <>
+                        <Header2>{props.t("reviews")}</Header2>
+                        <ReviewsStyles>
+                          {my_reviews[0].reviews.map((post, i) => (
+                            <Post color={i + 1}>
+                              <div>
+                                <div className="header">{post.author}</div>
+                                <a href={post.link} target="_blank">
+                                  <div className="text">{post.text}</div>
+                                </a>
+                              </div>
+                              <div className="source">
+                                <span>{post.source}</span>
+                              </div>
+                            </Post>
+                          ))}
+                        </ReviewsStyles>
+                      </>
+                    )}
                   </LessonStyles>
                 </Container>
               </>
@@ -625,5 +668,5 @@ const CoursePage = (props) => {
   );
 };
 
-export default CoursePage;
+export default withTranslation("course")(CoursePage);
 export { SINGLE_COURSEPAGE_QUERY };

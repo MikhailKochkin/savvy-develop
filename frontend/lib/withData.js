@@ -51,7 +51,6 @@ import { endpoint, prodEndpoint } from "../config";
 // import paginationField from "./paginationField";
 
 function createClient({ headers, initialState }) {
-  console.log("Here 1");
   return new ApolloClient({
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {

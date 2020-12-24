@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import renderHTML from "react-render-html";
+import moment from "moment";
 
 const Container = styled.div`
   display: flex;
@@ -24,9 +26,14 @@ const Box = styled.div`
   }
   div {
     flex: 50%;
+    padding: 0 1%;
     &.column {
       padding-left: 2%;
       border-left: 1px solid #edefed;
+      .block {
+        padding: 2% 0;
+        border-bottom: 1px solid #edefed;
+      }
     }
   }
 `;
@@ -39,33 +46,34 @@ class TestResult extends Component {
     return indexes;
   };
   render() {
-    const { newTests, student } = this.props;
+    const { newTests, student, results } = this.props;
+    moment.locale("ru");
+    console.log(newTests, results);
     return (
       <Container>
-        {/* {newTests.length === 0 && (
-          <span>
-            <b>Тесты</b> не созданы
-          </span>
-        )} */}
         {newTests.length > 0 &&
-          newTests.map(test => (
+          newTests.map((test) => (
             <Box>
               <div>
                 <b>Тест: </b>
-                {test.question[0]}
+                {renderHTML(test.question[0])}
               </div>
               <div className="column">
-                Правильный ответ:
-                {this.getAllIndexes(test.correct, true).map(i => (
-                  <li>{test.answers[i]}</li>
-                ))}
+                <div>
+                  <b>Правильный ответ:</b>
+                </div>
+                {this.getAllIndexes(test.correct, true).map((i) =>
+                  renderHTML(test.answers[i])
+                )}
               </div>
               <div className="column">
-                {test.testResults.filter(t => t.student.id === student.id)
-                  .length > 0 ? (
-                  test.testResults
-                    .filter(t => t.student.id === student.id)
-                    .map(t => <span>{t.answer + ", "}</span>)
+                {results.length > 0 ? (
+                  results.map((t) => (
+                    <div className="block">
+                      {renderHTML(t.answer)}({moment(t.createdAt).format("LLL")}
+                      )
+                    </div>
+                  ))
                 ) : (
                   <span>Не выполнен</span>
                 )}

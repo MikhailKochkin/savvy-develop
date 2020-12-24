@@ -11,30 +11,31 @@ const CURRENT_USER_QUERY = gql`
       name
       surname
       permissions
+      interests
       courseVisits {
         id
         reminders
       }
-      # teacherFeedback {
-      #   id
-      #   text
-      #   lesson {
-      #     id
-      #     name
-      #   }
-      # }
-      # level {
-      #   id
-      #   level
-      # }
-      # studentFeedback {
-      #   id
-      #   text
-      #   lesson {
-      #     id
-      #     name
-      #   }
-      # }
+      teacherFeedback {
+        id
+        text
+        lesson {
+          id
+          name
+        }
+      }
+      level {
+        id
+        level
+      }
+      studentFeedback {
+        id
+        text
+        lesson {
+          id
+          name
+        }
+      }
       new_subjects {
         id
       }
@@ -43,9 +44,9 @@ const CURRENT_USER_QUERY = gql`
         name
       }
       status
-      # lessonResults {
-      #   id
-      # }
+      lessonResults {
+        id
+      }
       uni {
         id
         title
@@ -58,18 +59,6 @@ const CURRENT_USER_QUERY = gql`
         #   id
         # }
       }
-      # examAnswers {
-      #   id
-      #   examQuestion {
-      #     id
-      #     question
-      #     coursePage {
-      #       title
-      #       id
-      #     }
-      #   }
-      #   answer
-      # }
       # isFamiliar
       # favourites
       # coverLetter

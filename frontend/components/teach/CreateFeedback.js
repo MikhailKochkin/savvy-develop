@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
 import dynamic from "next/dynamic";
-import { SINGLE_COURSEPAGE_QUERY } from "./Analytics";
+import { GET_FEEDBACK } from "./LessonData";
 import { send } from "react-icons-kit/fa/send";
 import Icon from "react-icons-kit";
 
 const CREATE_FEEDBACK_MUTATION = gql`
   mutation CREATE_FEEDBACK_MUTATION(
     $text: String!
-    $lesson: ID!
-    $student: ID!
+    $lessonId: String!
+    $studentId: String!
   ) {
-    createFeedback(text: $text, lesson: $lesson, student: $student) {
+    createFeedback(text: $text, lessonId: $lessonId, studentId: $studentId) {
       id
     }
   }
@@ -45,29 +45,29 @@ const Button = styled.button`
   width: 7%;
   color: #fffdf7;
   text-align: center;
-  background: ${props => props.theme.green};
+  background: ${(props) => props.theme.green};
   border: solid 1px white;
   border-radius: 5px;
   cursor: pointer;
   outline: none;
   &:active {
-    background: ${props => props.theme.darkGreen};
+    background: ${(props) => props.theme.darkGreen};
   }
 `;
 
 const DynamicLoadedEditor = dynamic(import("../editor/HoverEditor"), {
   loading: () => <p>...</p>,
-  ssr: false
+  ssr: false,
 });
 
 class CreateFeedback extends Component {
   state = {
-    text: ""
+    text: "",
   };
 
-  myCallback = dataFromChild => {
+  myCallback = (dataFromChild) => {
     this.setState({
-      text: dataFromChild
+      text: dataFromChild,
     });
   };
 
@@ -81,20 +81,20 @@ class CreateFeedback extends Component {
         <Mutation
           mutation={CREATE_FEEDBACK_MUTATION}
           variables={{
-            lesson,
-            student,
-            text: this.state.text
+            lessonId: lesson,
+            studentId: student,
+            text: this.state.text,
           }}
           refetchQueries={() => [
             {
-              query: SINGLE_COURSEPAGE_QUERY,
-              variables: { id: this.props.coursePage }
-            }
+              query: GET_FEEDBACK,
+              variables: { lessonId: lesson, userId: student },
+            },
           ]}
         >
           {(createFeedback, { loading, error }) => (
             <Button
-              onClick={async e => {
+              onClick={async (e) => {
                 e.preventDefault();
                 const res = await createFeedback();
               }}
@@ -109,4 +109,3 @@ class CreateFeedback extends Component {
 }
 
 export default CreateFeedback;
-export { SINGLE_COURSEPAGE_QUERY };

@@ -17,12 +17,16 @@ const Container = styled.div`
 
 class TexteditorResult extends Component {
   render() {
-    const { texteditors, student } = this.props;
+    const { texteditors, student, results } = this.props;
     return (
       <Container>
         {texteditors.length > 0 &&
-          texteditors.map(texteditor => (
-            <TexteditorModal texteditor={texteditor} student={student} />
+          texteditors.map((texteditor) => (
+            <TexteditorModal
+              texteditor={texteditor}
+              student={student}
+              results={results}
+            />
           ))}
       </Container>
     );

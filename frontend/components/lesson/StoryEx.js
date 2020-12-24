@@ -14,7 +14,6 @@ import Exam from "./exams/Exam";
 import Feed from "./Feed";
 
 const Container = styled.div`
-  /* font-size: 1.8rem; */
   .fade-enter {
     opacity: 0.01;
   }
@@ -36,27 +35,30 @@ const Container = styled.div`
 
 class StoryEx extends Component {
   render() {
-    const { tasks, me, lesson, num } = this.props;
+    const { tasks, me, lesson, next, coursePageID } = this.props;
     let components = [];
     tasks.map((task) => {
       let el;
       let item;
-      if (task.type === "Note") {
+      if (task.type.toLowerCase() === "note") {
         el = lesson.notes.find((note) => note.id === task.id);
         item = <Note text={el.text} me={me} story={true} note={el} />;
         components.push(item);
-      } else if (task.type === "NewTest") {
-        el = lesson.newTests.find((test) => test.id === task.id);
-        console.log(lesson.testResults);
+      } else if (task.type.toLowerCase() === "newtest") {
+        el = lesson.newTests.find((t) => t.id === task.id);
         item = (
           <SingleTest
             key={el.id}
             id={el.id}
+            testID={el.id}
             question={el.question}
             answers={el.answers}
             true={el.correct}
             user={el.user.id}
+            user_name={el.user}
             type={el.type}
+            ifRight={el.ifRight}
+            ifWrong={el.ifWrong}
             me={me}
             userData={lesson.testResults}
             lessonID={lesson.id}
@@ -66,15 +68,19 @@ class StoryEx extends Component {
           />
         );
         components.push(item);
-      } else if (task.type === "Quiz") {
+      } else if (task.type.toLowerCase() === "quiz") {
         el = lesson.quizes.find((quiz) => quiz.id === task.id);
         item = (
           <SingleQuiz
-            id={el.id}
             key={el.id}
+            id={el.id}
             question={el.question}
             answer={el.answer}
+            type={el.type}
+            check={el.check}
             me={me}
+            ifRight={el.ifRight}
+            ifWrong={el.ifWrong}
             type={el.type}
             hidden={true}
             userData={lesson.quizResults}
@@ -82,14 +88,14 @@ class StoryEx extends Component {
             quizID={el.id}
             user={el.user.id}
             story={true}
+            user_name={el.user}
           />
         );
         components.push(item);
-      } else if (task.type === "Shot") {
+      } else if (task.type.toLowerCase() === "shot") {
         el = lesson.shots.find((shot) => shot.id === task.id);
         item = (
           <Shots
-            id={el.id}
             key={el.id}
             comments={el.comments}
             parts={el.parts}
@@ -103,11 +109,10 @@ class StoryEx extends Component {
           />
         );
         components.push(item);
-      } else if (task.type === "Problem") {
+      } else if (task.type.toLowerCase() === "problem") {
         el = lesson.problems.find((problem) => problem.id === task.id);
         item = (
           <SingleProblem
-            id={el.id}
             key={el.id}
             problem={el}
             lessonID={lesson.id}
@@ -118,11 +123,10 @@ class StoryEx extends Component {
           />
         );
         components.push(item);
-      } else if (task.type === "TextEditor") {
+      } else if (task.type.toLowerCase() === "texteditor") {
         el = lesson.texteditors.find((texteditor) => texteditor.id === task.id);
         item = (
           <SingleTextEditor
-            id={el.id}
             key={el.id}
             lesson={lesson.id}
             textEditor={el}
@@ -132,11 +136,10 @@ class StoryEx extends Component {
           />
         );
         components.push(item);
-      } else if (task.type === "Construction") {
+      } else if (task.type.toLowerCase() === "construction") {
         el = lesson.constructions.find((con) => con.id === task.id);
         item = (
           <SingleConstructor
-            id={el.id}
             key={el.id}
             lessonID={lesson.id}
             construction={el}
@@ -148,17 +151,16 @@ class StoryEx extends Component {
           />
         );
         components.push(item);
-      } else if (task.type === "Exam") {
+      } else if (task.type.toLowerCase() === "exam") {
         el = lesson.exams.find((con) => con.id === task.id);
         item = (
           <Exam lesson={lesson} me={this.props.me} exam={el} story={true} />
         );
         components.push(item);
-      } else if (task.type === "Document") {
+      } else if (task.type.toLowerCase() === "document") {
         el = lesson.documents.find((con) => con.id === task.id);
         item = (
           <Document
-            id={el.id}
             key={el.id}
             clauses={el.clauses}
             title={el.title}
@@ -166,12 +168,11 @@ class StoryEx extends Component {
             documentID={el.id}
             user={lesson.user.id}
             lessonID={lesson.id}
-            // userData={lesson.documentResults}
             story={true}
           />
         );
         components.push(item);
-      } else if (task.type === "Forum") {
+      } else if (task.type.toLowerCase() === "forum") {
         el = lesson.forum;
         item = (
           <Forum
@@ -195,7 +196,15 @@ class StoryEx extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={10}
         >
-          <Feed components={components} num={num} />
+          <Feed
+            components={components}
+            next={next}
+            number_of_tasks={tasks.length}
+            coursePageID={coursePageID}
+            me={me}
+            lessonID={lesson.id}
+            my_result={this.props.my_result}
+          />
         </ReactCSSTransitionGroup>
       </Container>
     );

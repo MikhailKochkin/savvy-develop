@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import { Mutation } from "@apollo/client/react/components";
 import gql from "graphql-tag";
 import styled from "styled-components";
@@ -7,19 +7,21 @@ import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DeleteSingleQuiz from "../../delete/DeleteSingleQuiz";
 import UpdateQuiz from "./UpdateQuiz";
+import renderHTML from "react-render-html";
 import { CURRENT_USER_QUERY } from "../../User";
+import { withTranslation } from "../../../i18n";
 
 const CREATE_QUIZRESULT_MUTATION = gql`
   mutation CREATE_QUIZRESULT_MUTATION(
     $answer: String
-    $quiz: ID
-    $lessonID: ID
+    $quiz: String
+    $lessonId: String
     $correct: Boolean
   ) {
     createQuizResult(
       answer: $answer
       quiz: $quiz
-      lessonID: $lessonID
+      lessonId: $lessonId
       correct: $correct
     ) {
       id
@@ -32,10 +34,29 @@ const Styles = styled.div`
   flex-direction: column;
   width: ${(props) => (props.story ? "100%" : "95%")};
   margin-bottom: 3%;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   @media (max-width: 800px) {
     flex-direction: column;
   }
+`;
+
+const Options = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 60%;
+  max-width: 80%;
+  margin-bottom: 20px;
+`;
+
+const Option = styled.div`
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #c4c4c4;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 3%;
+  margin-bottom: 2%;
 `;
 
 const Question = styled.div`
@@ -44,6 +65,66 @@ const Question = styled.div`
   flex: 50%;
   margin-bottom: 3%;
   margin-top: ${(props) => (props.story ? "2%" : "0%")};
+  p {
+    margin: 0;
+  }
+  .question {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .question_name {
+    margin-left: 5px;
+    background: #00204e;
+    color: white;
+    border-radius: 50%;
+    padding: 2%;
+    height: 55px;
+    width: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .question_text {
+    background: #f3f3f3;
+    color: black;
+    border-radius: 25px;
+    padding: 2% 5%;
+    min-width: 40%;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .answer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .answer_name {
+    margin-right: 10px;
+    background: #00204e;
+    color: white;
+    border-radius: 50%;
+    padding: 2%;
+    height: 55px;
+    width: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .answer_test {
+    width: 50%;
+    border: 2px solid;
+    border-color: #f3f3f3;
+    border-radius: 25px;
+    padding: 2% 5%;
+    margin-bottom: 20px;
+  }
   button {
     width: 30%;
     padding: 2%;
@@ -59,92 +140,50 @@ const Question = styled.div`
   }
 `;
 
-const Textarea = styled.textarea`
-  height: 150px;
-  width: 100%;
-  border: 1px solid #c4c4c4;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+const Answer_text = styled.textarea`
+  height: 140px;
+  min-width: 60%;
+  max-width: 70%;
+  border: 2px solid;
+  border-color: ${(props) => props.inputColor};
   outline: 0;
+  resize: none;
+  border-radius: 25px;
+  padding: 3% 4%;
+  line-height: 1.8;
   font-family: Montserrat;
-  padding: 2%;
   font-size: 1.6rem;
-  margin-top: 3%;
-  @media (max-width: 800px) {
-    width: 100%;
-    height: 100px;
-  }
-`;
-
-const Answer = styled.div`
-  border: 1px solid #84bc9c;
-  border-radius: 5px;
-  width: 100%;
-  color: black;
-  padding: 2%;
-  min-height: 150px;
-  display: ${(props) => (props.display === "true" ? "none" : "block")};
-  margin-bottom: 3%;
-  @media (max-width: 800px) {
-    width: 100%;
-    height: 100px;
-  }
+  margin-bottom: 20px;
 `;
 
 const Group = styled.div`
-  display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  background: ${(props) => props.inputColor};
   width: 100%;
-  margin-bottom: 3%;
+  pointer-events: ${(props) => (props.progress === "true" ? "none" : "auto")};
+  display: ${(props) => (props.correct === "true" ? "none" : "flex")};
+  padding: 0.5% 0;
   div {
-    border: 1px solid #c4c4c4;
-    border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.5% 0;
     cursor: pointer;
-  }
-  #but2 {
-    width: 45%;
-    font-size: 1.6rem;
-    text-align: center;
-    &:hover {
-      -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-    }
   }
 `;
 
 const Button1 = styled.div`
-  width: 45%;
-  background: ${(props) => props.inputColor};
+  width: 60%;
   text-align: center;
+  background: #d2edfd;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000a60;
+  border: none;
   font-size: 1.6rem;
+  transition: all 0.3s ease;
+  display: ${(props) => (props.correct === "true" ? "none" : "block")};
+  pointer-events: ${(props) => (props.correct === "true" ? "none" : "auto")};
   &:hover {
-    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const Dots = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 90px;
-  .group {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    justify-content: space-between;
-    margin-top: 5%;
-  }
-  .dot {
-    width: 12px;
-    height: 12px;
-    background: #c4c4c4;
-    border-radius: 50%;
+    background: #a5dcfe;
   }
 `;
 
@@ -177,212 +216,283 @@ const Block = styled.div`
   }
 `;
 
-class SingleQuiz extends Component {
-  state = {
-    hidden: true,
-    testFormat: false,
-    answer: "",
-    correct: "",
-    inputColor: "none",
-    update: false,
-    sent: false,
-    move: false,
-    progress: "false",
-  };
+const SingleQuiz = (props) => {
+  const [answer, setAnswer] = useState(""); // The answer provided by the student
+  const [correct, setCorrect] = useState(""); // is the answer by the student correct?
+  const [update, setUpdate] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [hidden, setHidden] = useState(true); // is the answer to the question hidden?
+  const [hint, setHint] = useState(null); // give the hint to the student
+  const [showComment, setShowComment] = useState(false); // give the comment to the answer of the student
+  const [progress, setProgress] = useState("false");
+  const [inputColor, setInputColor] = useState("#f3f3f3");
 
-  onShow = (e) => {
-    if (this.state.correct !== "") {
-      this.setState((prevState) => ({ hidden: !prevState.hidden }));
-    } else {
-      alert("Сначала дайте свой ответ!");
-    }
-  };
-
-  onSend = async () => {
-    document.querySelector(".button").disabled = true;
-  };
-
-  onAnswer = async (e) => {
-    this.setState({ progress: "true" });
+  const onAnswer = async (e) => {
+    setProgress("true");
     let data1 = {
-      sentence1: this.props.answer.toLowerCase(),
-      sentence2: this.state.answer.toLowerCase(),
+      answer1: props.answer.toLowerCase(),
+      answer2: answer.toLowerCase(),
     };
-    const r = await fetch("https://dry-plains-91452.herokuapp.com/", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data1),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        if (res > 0.59) {
-          this.setState({
-            correct: "true",
-            inputColor: "rgba(50, 172, 102, 0.25)",
-          });
-          this.move("true");
-        } else {
-          this.setState({
-            correct: "false",
-            inputColor: "rgba(222, 107, 72, 0.5)",
-          });
-          this.move("false");
+    if (props.check === "WORD") {
+      if (props.answer.toLowerCase() === answer.toLowerCase()) {
+        setCorrect("true");
+        setInputColor("rgba(50, 172, 102, 0.25)");
+        onMove("true");
+      } else {
+        setCorrect("false");
+        setInputColor("rgba(222, 107, 72, 0.5)");
+        onMove("false");
+      }
+    } else {
+      const r = await fetch(
+        "https://arcane-refuge-67529.herokuapp.com/checker",
+        {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data1),
         }
-      })
-      .catch((err) => console.log(err));
-    this.setState({ progress: "false" });
+      )
+        .then((response) => response.json())
+        .then((res) => {
+          console.log(res);
+          if (parseFloat(res.res) > 69) {
+            console.log(res);
+            setCorrect("true");
+            setInputColor("rgba(50, 172, 102, 0.25)");
+            onMove("true");
+          } else {
+            setCorrect("false");
+            setInputColor("rgba(222, 107, 72, 0.5)");
+            if (typeof res.comment === "string") {
+              setHint(res.comment);
+            }
+            onMove("false");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    setProgress("false");
   };
 
-  move = (result) => {
+  const onMove = (result) => {
     // 1. if the data is sent for the first time
-    if (!this.state.sent) {
+    if (!sent) {
       // 2. and if we get the right answer
-      if (result === "true" && this.props.getData) {
+      if (result === "true" && props.getData) {
         // 3. and if this quiz is a part of an exam
-        this.props.getData(
-          this.props.next
-            ? [true, this.props.next.true]
-            : [true, { finish: "finish" }],
+        props.getData(
+          props.next && props.next.true
+            ? [true, props.next.true]
+            : [true, { type: "finish" }],
           "true"
         );
       }
       // 2. and if we get the wrong answer
-      else if (result === "false") {
+      else if (result === "false" && props.getData) {
         // 3. and if this quiz is a part of an exam
         // 4. we transfer the "false" data to the exam component
-        this.props.getData(
-          this.props.next
-            ? [false, this.props.next.false]
-            : [false, { finish: "finish" }]
+        props.getData(
+          props.next && props.next.false
+            ? [false, props.next.false]
+            : [false, { type: "finish" }]
         );
       }
-      this.setState({ sent: true });
+      setSent(true);
     }
   };
 
-  switch = () => {
-    this.setState((prev) => ({ update: !prev.update }));
-  };
-
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  render() {
-    const { me, user, exam, story, ifWrong, ifRight } = this.props;
-    console.log(this.props.userData, this.props.id);
-    const userData = this.props.userData.filter(
-      (el) => el.quiz.id === this.props.id
-    );
-    // .filter((el) => el.student.id === me.id);
-    console.log(userData);
-    return (
-      <Styles story={story}>
-        <Buttons>
-          {!exam && !story && (
-            <StyledButton onClick={this.switch}>Настройки</StyledButton>
-          )}
-          {me && me.id === user && !this.props.exam && !this.props.story ? (
-            <DeleteSingleQuiz
-              id={me.id}
-              quizID={this.props.quizID}
-              lessonID={this.props.lessonID}
-            />
-          ) : null}
-        </Buttons>
-        {!this.state.update && (
-          <>
-            <Question story={story}>
-              {this.props.question}
-              <Textarea
-                type="text"
-                className="answer"
-                name="answer"
-                required
-                onChange={this.handleChange}
-                placeholder="Ответ на вопрос..."
-              />
-            </Question>
-            <Progress display={this.state.progress}>
-              <CircularProgress />
-            </Progress>
-            <Group>
-              <Mutation
-                mutation={CREATE_QUIZRESULT_MUTATION}
-                variables={{
-                  quiz: this.props.quizID,
-                  lessonID: this.props.lessonID,
-                  answer: this.state.answer,
-                  correct: this.state.correct === "true",
-                }}
-                refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-              >
-                {(createQuizResult, { loading, error }) => (
-                  <Button1
-                    inputColor={this.state.inputColor}
-                    className="button"
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      if (this.props.type === "FORM") {
-                        const res1 = await this.onSend();
-                      } else {
-                        const res = await this.onAnswer();
-                      }
-                      this.setState({ progress: "false" });
-                      if (userData.length === 0) {
-                        console.log(1);
-                        const res0 = await createQuizResult();
-                      }
-                      console.log(2);
-                    }}
-                  >
-                    {this.props.type === "FORM" ? "Ответить" : "Проверить"}
-                  </Button1>
-                )}
-              </Mutation>
-              {this.props.type !== "FORM" && (
-                <div onClick={this.onShow} id="but2">
-                  {this.state.hidden === true
-                    ? "Открыть ответ"
-                    : "Скрыть ответ"}
-                </div>
-              )}
-            </Group>
-            <Answer display={this.state.hidden.toString()}>
-              {this.props.answer}
-              <div>
-                {this.state.correct === "true" && ifRight}
-                {this.state.correct === "false" && ifWrong}
-              </div>
-            </Answer>
-          </>
-        )}
-        {this.state.update && (
-          <UpdateQuiz
-            quizID={this.props.quizID}
-            lessonID={this.props.lessonID}
-            answer={this.props.answer}
-            question={this.props.question}
-            notes={this.props.notes}
-            quizes={this.props.quizes.filter((q) => q.id !== this.props.quizID)}
-            tests={this.props.tests}
-          />
-        )}
-        {this.props.exam && (
-          <Dots>
-            <div className="group">
-              <div className="dot"></div>
-              <div className="dot"></div>
-              <div className="dot"></div>
-            </div>
-          </Dots>
-        )}
-      </Styles>
-    );
+  const {
+    me,
+    user,
+    userData,
+    exam,
+    story,
+    ifWrong,
+    ifRight,
+    check,
+    user_name,
+  } = props;
+  let data;
+  if (me) {
+    data = userData
+      .filter((el) => el.quiz.id === props.id)
+      .filter((el) => el.student.id === me.id);
   }
-}
+  let student_name;
+  let author_name;
+  if (me) {
+    if (me.name && me.surname) {
+      student_name = (me.name.charAt(0) + me.surname.charAt(0)).toUpperCase();
+    } else {
+      student_name = (me.name.charAt(0) + me.name.charAt(1)).toUpperCase();
+    }
+  } else {
+    student_name = "СТ";
+  }
+  if (user_name && user_name.name && user_name.surname) {
+    author_name = (
+      user_name.name.charAt(0) + user_name.surname.charAt(0)
+    ).toUpperCase();
+  } else if (user_name && user_name.name) {
+    author_name = (
+      user_name.name.charAt(0) + user_name.name.charAt(1)
+    ).toUpperCase();
+  } else {
+    author_name = "НА";
+  }
+  return (
+    <Mutation
+      mutation={CREATE_QUIZRESULT_MUTATION}
+      variables={{
+        quiz: props.quizID,
+        lessonId: props.lessonID,
+        answer: answer,
+        correct: correct === "true",
+      }}
+      refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+    >
+      {(createQuizResult, { loading, error }) => (
+        <Styles story={story}>
+          <Buttons>
+            {!exam && !story && (
+              <StyledButton onClick={(e) => setUpdate(!update)}>
+                {!update ? props.t("update") : props.t("back")}
+              </StyledButton>
+            )}
+            {me && me.id === user && !props.exam && !props.story ? (
+              <DeleteSingleQuiz
+                id={me.id}
+                quizID={props.quizID}
+                lessonID={props.lessonID}
+              />
+            ) : null}
+          </Buttons>
+          {!update && (
+            <>
+              <Question story={story}>
+                <div className="question">
+                  <div className="question_text">
+                    {renderHTML(props.question)}
+                  </div>
+                  <div className="question_name">{author_name}</div>
+                </div>
+                <div className="answer">
+                  <div className="answer_name">{student_name}</div>
+                  <Answer_text
+                    type="text"
+                    required
+                    inputColor={inputColor}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    placeholder="..."
+                  />
+                </div>
+                <Progress display={progress}>
+                  <CircularProgress />
+                </Progress>
+                {correct === "true" && (
+                  <div className="question">
+                    <div className="question_text">{props.t("correct")}!</div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+                {correct === "true" && ifRight && ifRight !== "<p></p>" && (
+                  <div className="question">
+                    <div className="question_text">{renderHTML(ifRight)}</div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+                {correct === "false" && (
+                  <div className="question">
+                    <div className="question_text">{props.t("wrong")}...</div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+                {hint !== null && hint !== 0 && (
+                  <div className="question">
+                    <div className="question_text">
+                      {("Есть один комментарий. ", hint)}
+                    </div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+                {correct === "false" && ifWrong && ifWrong !== "<p></p>" && (
+                  <div className="question">
+                    <div className="question_text">{renderHTML(ifWrong)}</div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+                {correct !== "" && (
+                  <>
+                    <div className="question">
+                      <div className="question_text">{props.t("show")}</div>
+                      <div className="question_name">{author_name}</div>
+                    </div>
 
-export default SingleQuiz;
+                    <div className="answer">
+                      <div className="answer_name">{student_name}</div>
+                      <Options>
+                        <Option onClick={(e) => setHidden(false)}>
+                          {props.t("yes")}
+                        </Option>
+                        <Option onClick={(e) => setHidden(true)}>
+                          {props.t("no")}
+                        </Option>
+                      </Options>
+                    </div>
+                  </>
+                )}
+                {!hidden && (
+                  <div className="question">
+                    <div className="question_text">
+                      {props.t("correct_answer")}: {renderHTML(props.answer)}
+                    </div>
+                    <div className="question_name">{author_name}</div>
+                  </div>
+                )}
+              </Question>
+              <Group progress={progress} correct={correct}>
+                <Button1
+                  inputColor={inputColor}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    if (props.type === "FORM") {
+                      const res1 = await onSend();
+                    } else {
+                      const res = await onAnswer();
+                    }
+                    setProgress("false");
+                    if (data.length === 0) {
+                      const res0 = await createQuizResult();
+                    }
+                  }}
+                  correct={correct}
+                >
+                  {props.t("check")}
+                </Button1>
+              </Group>
+            </>
+          )}
+          {update && (
+            <UpdateQuiz
+              quizID={props.quizID}
+              lessonID={props.lessonID}
+              answer={props.answer}
+              question={props.question}
+              ifRight={ifRight}
+              ifWrong={ifWrong}
+              notes={props.notes}
+              next={props.next}
+              check={check}
+              quizes={props.quizes.filter((q) => q.id !== props.quizID)}
+              tests={props.tests}
+            />
+          )}
+        </Styles>
+      )}
+    </Mutation>
+  );
+};
+
+export default withTranslation("tasks")(SingleQuiz);

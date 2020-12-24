@@ -303,21 +303,6 @@ const RegisterCard = (props) => {
               )}
               {coursePage.courseType === "FORMONEY" && (
                 <>
-                  {/* {coursePage.tags.includes("Английский") && (
-                    <Time>
-                      <>
-                        {timeLeft.length ? (
-                          `${timeLeft[0]} ${day} ${timeLeft[1]}:${timeLeft[2]}:${timeLeft[3]} `
-                        ) : (
-                          <span>
-                            Время вышло! Уберем скидку в течение нескольких
-                            часов!
-                          </span>
-                        )}
-                      </>
-                    </Time>
-                  )} */}
-
                   <GridContainer>
                     <div className="Title">Выберите тариф:</div>
                     <div />
