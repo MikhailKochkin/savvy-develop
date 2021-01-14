@@ -11,7 +11,6 @@ const UPDATE_QUIZ_MUTATION = gql`
     $id: String!
     $question: String
     $answer: String
-    # $next: Json
     $check: String
     $ifRight: String
     $ifWrong: String
@@ -20,7 +19,6 @@ const UPDATE_QUIZ_MUTATION = gql`
       id: $id
       question: $question
       answer: $answer
-      # next: $next
       check: $check
       ifRight: $ifRight
       ifWrong: $ifWrong

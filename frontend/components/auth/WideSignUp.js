@@ -10,6 +10,40 @@ import { makeStyles } from "@material-ui/core/styles";
 import Error from "../ErrorMessage";
 import { CURRENT_USER_QUERY } from "../User";
 import { Unis, Companies, Tracks } from "../../config";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $name: String!
+    $surname: String!
+    $password: String!
+    $isFamiliar: Boolean!
+    $status: Status!
+    $company: String
+    $uniID: String
+    $careerTrackID: String
+  ) {
+    signup(
+      email: $email
+      name: $name
+      surname: $surname
+      password: $password
+      isFamiliar: $isFamiliar
+      status: $status
+      company: $company
+      uniID: $uniID
+      careerTrackID: $careerTrackID
+    ) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -115,22 +149,22 @@ const useStyles = makeStyles({
     width: "100%",
     marginBottom: "2%",
     fontSize: "1.4rem",
-    textTransform: "none"
+    textTransform: "none",
   },
   root: {
     marginBottom: "4%",
-    width: "100%"
+    width: "100%",
   },
   labelRoot: {
     fontSize: "1.5rem",
-    marginTop: 0
+    marginTop: 0,
   },
   formControl: {
-    fontSize: "1.5rem"
-  }
+    fontSize: "1.5rem",
+  },
 });
 
-const WideSignUp = props => {
+const WideSignUp = (props) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
@@ -145,7 +179,7 @@ const WideSignUp = props => {
 
   const classes = useStyles();
 
-  const move = e => {
+  const move = (e) => {
     const name = e.target.getAttribute("name");
     props.getData(name);
   };
@@ -162,14 +196,14 @@ const WideSignUp = props => {
         uniID: uniID,
         company: company,
         careerTrackID: careerTrackID,
-        isFamiliar: isFamiliar
+        isFamiliar: isFamiliar,
       }}
       refetchQueries={[{ query: CURRENT_USER_QUERY }]}
     >
       {(signup, { error, loading }) => (
         <Form
           method="post"
-          onSubmit={async e => {
+          onSubmit={async (e) => {
             e.preventDefault();
             if (!isFamiliar) {
               alert("Не забыли про согласие на обработку персональных данных?");
@@ -181,7 +215,8 @@ const WideSignUp = props => {
               alert("Укажите свою фамилию!");
               return;
             }
-            await signup();
+            const res = await signup();
+            cookies.set("token", res.data.signup.token);
             setEmail("");
             setName("");
             setSurname("");
@@ -203,7 +238,7 @@ const WideSignUp = props => {
               name="name"
               placeholder="Имя"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               label="Имя"
             />
             <Input
@@ -212,7 +247,7 @@ const WideSignUp = props => {
               name="surname"
               placeholder="Фамилия"
               value={surname}
-              onChange={e => setSurname(e.target.value)}
+              onChange={(e) => setSurname(e.target.value)}
               label="Фамилия"
             />
             <Input
@@ -221,7 +256,7 @@ const WideSignUp = props => {
               name="email"
               placeholder="Почта"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               label="Электронная почта"
             />
             <Input
@@ -230,7 +265,7 @@ const WideSignUp = props => {
               name="password"
               placeholder="Пароль"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               label="Пароль"
             />
             <div className="condition">Выберите ваш статутс на сайте:</div>
@@ -238,14 +273,14 @@ const WideSignUp = props => {
               className={classes.root}
               InputLabelProps={{
                 classes: {
-                  root: classes.labelRoot
-                }
+                  root: classes.labelRoot,
+                },
               }}
               id="standard-select-currency"
               select
               label="Select"
               value={status}
-              onChange={e => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value)}
             >
               <MenuItem key="STUDENT" value="STUDENT">
                 Студент
@@ -270,16 +305,16 @@ const WideSignUp = props => {
                   className={classes.root}
                   InputLabelProps={{
                     classes: {
-                      root: classes.labelRoot
-                    }
+                      root: classes.labelRoot,
+                    },
                   }}
                   id="standard-select-currency"
                   select
                   label="Select"
                   value={company}
-                  onChange={e => setCompany(e.target.value)}
+                  onChange={(e) => setCompany(e.target.value)}
                 >
-                  {Companies.map(co => (
+                  {Companies.map((co) => (
                     <MenuItem
                       key={Object.values(co)[0]}
                       value={Object.values(co)[0]}
@@ -299,16 +334,16 @@ const WideSignUp = props => {
                   className={classes.root}
                   InputLabelProps={{
                     classes: {
-                      root: classes.labelRoot
-                    }
+                      root: classes.labelRoot,
+                    },
                   }}
                   id="standard-select-currency"
                   select
                   label="Select"
                   value={uniID}
-                  onChange={e => setUniID(e.target.value)}
+                  onChange={(e) => setUniID(e.target.value)}
                 >
-                  {Unis.map(uni => (
+                  {Unis.map((uni) => (
                     <MenuItem
                       key={Object.values(uni)[0]}
                       value={Object.values(uni)[0]}
@@ -327,16 +362,16 @@ const WideSignUp = props => {
                   className={classes.root}
                   InputLabelProps={{
                     classes: {
-                      root: classes.labelRoot
-                    }
+                      root: classes.labelRoot,
+                    },
                   }}
                   id="standard-select-currency"
                   select
                   label="Select"
                   value={careerTrackID}
-                  onChange={e => setCareerTrackID(e.target.value)}
+                  onChange={(e) => setCareerTrackID(e.target.value)}
                 >
-                  {Tracks.map(track => (
+                  {Tracks.map((track) => (
                     <MenuItem
                       key={Object.values(track)[0]}
                       value={Object.values(track)[0]}
@@ -356,14 +391,14 @@ const WideSignUp = props => {
               className={classes.root}
               InputLabelProps={{
                 classes: {
-                  root: classes.labelRoot
-                }
+                  root: classes.labelRoot,
+                },
               }}
               id="standard-select-currency"
               select
               label="Select"
               value={isFamiliar}
-              onChange={e => setIsFamiliar(e.target.value)}
+              onChange={(e) => setIsFamiliar(e.target.value)}
             >
               <MenuItem key={23425} value={true}>
                 Да

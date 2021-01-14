@@ -1,12 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Mutation } from "@apollo/client/react/components";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import styled from "styled-components";
 import { CURRENT_USER_QUERY } from "../User";
-// import { i18n, withTranslation } from "../../i18n";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import { withTranslation } from "../../i18n";
 
 const SIGN_OUT_MUTATION = gql`
   mutation SIGN_OUT_MUTATION {
@@ -45,16 +42,12 @@ const Signout = (props) => (
       <Button
         onClick={async (e) => {
           const res = await signout();
-          cookies.remove("token");
-          console.log(1, res);
         }}
       >
-        {/* <a>{props.t("signout")}</a> */}
-        <a>Выйти</a>
+        <a>{props.t("signout")}</a>
       </Button>
     )}
   </Mutation>
 );
 
-// export default withTranslation("common")(Signout);
-export default Signout;
+export default withTranslation("common")(Signout);

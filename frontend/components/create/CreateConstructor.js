@@ -5,8 +5,6 @@ import _ from "lodash";
 import gql from "graphql-tag";
 import dynamic from "next/dynamic";
 import { Message } from "../styles/Button";
-import AreYouATeacher from "../auth/AreYouATeacher";
-import PleaseSignIn from "../auth/PleaseSignIn";
 import { SINGLE_LESSON_QUERY } from "../lesson/SingleLesson";
 
 const CREATE_CONSTRUCTION_MUTATION = gql`

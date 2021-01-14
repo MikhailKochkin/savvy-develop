@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 import styled from "styled-components";
 import Link from "next/link";
 import renderHTML from "react-render-html";
 import { SINGLE_COURSEPAGE_QUERY } from "../course/CoursePage";
-import { withTranslation } from "../../i18n";
+// import { withTranslation } from "../../i18n";
 
 const UPDATE_PUBLISHED_MUTATION = gql`
   mutation UPDATE_PUBLISHED_MUTATION($id: String!, $published: Boolean) {

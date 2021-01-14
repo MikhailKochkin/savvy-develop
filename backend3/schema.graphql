@@ -96,6 +96,19 @@ input CareerTrackWhereInput {
   updatedAt: DateTimeFilter
 }
 
+type ChallengeResult {
+  correct: Int
+  createdAt: DateTime!
+  id: String!
+  lesson: Lesson!
+  lessonId: String!
+  student: User!
+  studentId: String!
+  time: Int
+  updatedAt: DateTime!
+  wrong: Int
+}
+
 input ChallengeResultListRelationFilter {
   every: ChallengeResultWhereInput
   none: ChallengeResultWhereInput
@@ -116,6 +129,10 @@ input ChallengeResultWhereInput {
   time: IntNullableFilter
   updatedAt: DateTimeFilter
   wrong: IntNullableFilter
+}
+
+input ChallengeResultWhereUniqueInput {
+  id: String
 }
 
 type Clause {
@@ -202,6 +219,7 @@ input ConstructionListRelationFilter {
 
 type ConstructionResult {
   answer: String
+  attempts: Int
   construction: Construction
   constructionId: String
   constructionID: String
@@ -516,6 +534,8 @@ type DocumentResult {
   lesson: Lesson
   lessonId: String
   updatedAt: DateTime!
+  user: User
+  userId: String
 }
 
 input DocumentResultListRelationFilter {
@@ -729,6 +749,7 @@ input LegalPortfolioWhereInput {
 
 type Lesson {
   challenge_num: Int
+  challengeResults(after: ChallengeResultWhereUniqueInput, before: ChallengeResultWhereUniqueInput, first: Int, last: Int): [ChallengeResult!]!
   change: String
   constructionResults(after: ConstructionResultWhereUniqueInput, before: ConstructionResultWhereUniqueInput, first: Int, last: Int): [ConstructionResult!]!
   constructions(after: ConstructionWhereUniqueInput, before: ConstructionWhereUniqueInput, first: Int, last: Int): [Construction!]!
@@ -1298,6 +1319,8 @@ type ProblemResult {
   lessonId: String
   lessonID: String
   problem: Problem
+  problemId: String
+  problemID: String
   revealed: [String!]!
   student: User!
   studentId: String!
@@ -1424,6 +1447,7 @@ input QuizListRelationFilter {
 
 type QuizResult {
   answer: String
+  attempts: Int
   correct: Boolean
   createdAt: DateTime!
   id: String!
@@ -1713,6 +1737,7 @@ input StringNullableListFilter {
 
 type TestResult {
   answer: String
+  attempts: Int
   createdAt: DateTime!
   id: String!
   lesson: Lesson

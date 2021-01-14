@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { CSSTransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import SingleQuiz from "../quizes/SingleQuiz";
 import SingleTest from "../tests/SingleTest";
@@ -40,7 +40,7 @@ class Exam extends Component {
     componentList: [],
     new: "",
     results: [],
-    answers: []
+    answers: [],
   };
   updateArray = (data, type) => {
     console.log(data, type);
@@ -50,7 +50,7 @@ class Exam extends Component {
     let finish;
     if (Object.keys(data)[0] === "quiz") {
       let el = this.props.lesson.quizes.filter(
-        q => q.id === Object.values(data)[0]
+        (q) => q.id === Object.values(data)[0]
       )[0];
       newQuiz = (
         <SingleQuiz
@@ -70,18 +70,18 @@ class Exam extends Component {
         />
       );
 
-      this.setState(state => {
+      this.setState((state) => {
         const componentList = [...state.componentList, newQuiz];
         const results = [...state.results, type];
         return {
           componentList,
-          results
+          results,
         };
       });
     }
     if (Object.keys(data)[0] === "newTest") {
       let el = this.props.lesson.newTests.filter(
-        n => n.id === Object.values(data)[0]
+        (n) => n.id === Object.values(data)[0]
       )[0];
       newTest = (
         <SingleTest
@@ -103,18 +103,18 @@ class Exam extends Component {
           story={true}
         />
       );
-      this.setState(state => {
+      this.setState((state) => {
         const componentList = [...state.componentList, newTest];
         const results = [...state.results, type];
         return {
           componentList,
-          results
+          results,
         };
       });
     }
     if (Object.keys(data)[0] === "note") {
       let el = this.props.lesson.notes.filter(
-        q => q.id === Object.values(data)[0]
+        (q) => q.id === Object.values(data)[0]
       )[0];
       newNote = (
         <Note
@@ -129,12 +129,12 @@ class Exam extends Component {
           story={true}
         />
       );
-      this.setState(state => {
+      this.setState((state) => {
         const componentList = [...state.componentList, newNote];
         const results = [...state.results, type];
         return {
           componentList,
-          results
+          results,
         };
       });
     }
@@ -147,12 +147,12 @@ class Exam extends Component {
           lesson={this.props.lesson.id}
         />
       );
-      this.setState(state => {
+      this.setState((state) => {
         const componentList = [...state.componentList, finish];
         const results = [...state.results, type];
         return {
           componentList,
-          results
+          results,
         };
       });
     }
@@ -162,7 +162,7 @@ class Exam extends Component {
     let el;
     if (this.props.exam.nodeType === "quiz") {
       el = this.props.lesson.quizes.find(
-        quiz => quiz.id === this.props.exam.nodeID
+        (quiz) => quiz.id === this.props.exam.nodeID
       );
       newQuiz = (
         <SingleQuiz
@@ -184,10 +184,10 @@ class Exam extends Component {
         />
       );
     }
-    this.setState(state => {
+    this.setState((state) => {
       const componentList = [...state.componentList, newQuiz];
       return {
-        componentList
+        componentList,
       };
     });
   };
@@ -195,13 +195,13 @@ class Exam extends Component {
     return (
       <Styles>
         <Title>Начало экзамена</Title>
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionName="fade"
           transitionEnterTimeout={300}
           transitionLeaveTimeout={10}
         >
-          {this.state.componentList.map(el => el)}
-        </ReactCSSTransitionGroup>
+          {this.state.componentList.map((el) => el)}
+        </CSSTransitionGroup>
         {this.props.me &&
         this.props.me.id === this.props.exam.user.id &&
         !this.props.story ? (
@@ -219,7 +219,7 @@ class Exam extends Component {
 Exam.propTypes = {
   lesson: PropTypes.object.isRequired,
   me: PropTypes.object.isRequired,
-  exam: PropTypes.object.isRequired
+  exam: PropTypes.object.isRequired,
 };
 
 export default Exam;

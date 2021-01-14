@@ -259,8 +259,6 @@ class ProblemBuilder extends Component {
   };
 
   render() {
-    console.log(this.props.lessonID);
-
     return (
       <Styles>
         <div className="tree">

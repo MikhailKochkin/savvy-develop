@@ -123,6 +123,9 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     wrong?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
   }
+  ChallengeResultWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ClauseListRelationFilter: { // input type
     every?: NexusGenInputs['ClauseWhereInput'] | null; // ClauseWhereInput
     none?: NexusGenInputs['ClauseWhereInput'] | null; // ClauseWhereInput
@@ -1362,6 +1365,16 @@ export interface NexusGenObjects {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  ChallengeResult: { // root type
+    correct?: number | null; // Int
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lessonId: string; // String!
+    studentId: string; // String!
+    time?: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    wrong?: number | null; // Int
+  }
   Clause: { // root type
     commentary: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1392,6 +1405,7 @@ export interface NexusGenObjects {
   }
   ConstructionResult: { // root type
     answer?: string | null; // String
+    attempts?: number | null; // Int
     constructionId?: string | null; // String
     constructionID?: string | null; // String
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1454,6 +1468,7 @@ export interface NexusGenObjects {
     id: string; // String!
     lessonId?: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: string | null; // String
   }
   Feedback: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1570,6 +1585,8 @@ export interface NexusGenObjects {
     id: string; // String!
     lessonId?: string | null; // String
     lessonID?: string | null; // String
+    problemId?: string | null; // String
+    problemID?: string | null; // String
     revealed: string[]; // [String!]!
     studentId: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1592,6 +1609,7 @@ export interface NexusGenObjects {
   }
   QuizResult: { // root type
     answer?: string | null; // String
+    attempts?: number | null; // Int
     correct?: boolean | null; // Boolean
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
@@ -1642,6 +1660,7 @@ export interface NexusGenObjects {
   }
   TestResult: { // root type
     answer?: string | null; // String
+    attempts?: number | null; // Int
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     lessonId?: string | null; // String
@@ -1723,6 +1742,18 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  ChallengeResult: { // field return type
+    correct: number | null; // Int
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    lesson: NexusGenRootTypes['Lesson']; // Lesson!
+    lessonId: string; // String!
+    student: NexusGenRootTypes['User']; // User!
+    studentId: string; // String!
+    time: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    wrong: number | null; // Int
+  }
   Clause: { // field return type
     commentary: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1758,6 +1789,7 @@ export interface NexusGenFieldTypes {
   }
   ConstructionResult: { // field return type
     answer: string | null; // String
+    attempts: number | null; // Int
     construction: NexusGenRootTypes['Construction'] | null; // Construction
     constructionId: string | null; // String
     constructionID: string | null; // String
@@ -1838,6 +1870,8 @@ export interface NexusGenFieldTypes {
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     lessonId: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: string | null; // String
   }
   Feedback: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -1865,6 +1899,7 @@ export interface NexusGenFieldTypes {
   }
   Lesson: { // field return type
     challenge_num: number | null; // Int
+    challengeResults: NexusGenRootTypes['ChallengeResult'][]; // [ChallengeResult!]!
     change: string | null; // String
     constructionResults: NexusGenRootTypes['ConstructionResult'][]; // [ConstructionResult!]!
     constructions: NexusGenRootTypes['Construction'][]; // [Construction!]!
@@ -2057,6 +2092,8 @@ export interface NexusGenFieldTypes {
     lessonId: string | null; // String
     lessonID: string | null; // String
     problem: NexusGenRootTypes['Problem'] | null; // Problem
+    problemId: string | null; // String
+    problemID: string | null; // String
     revealed: string[]; // [String!]!
     student: NexusGenRootTypes['User']; // User!
     studentId: string; // String!
@@ -2100,6 +2137,7 @@ export interface NexusGenFieldTypes {
   }
   QuizResult: { // field return type
     answer: string | null; // String
+    attempts: number | null; // Int
     correct: boolean | null; // Boolean
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
@@ -2163,6 +2201,7 @@ export interface NexusGenFieldTypes {
   }
   TestResult: { // field return type
     answer: string | null; // String
+    attempts: number | null; // Int
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
@@ -2255,6 +2294,18 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  ChallengeResult: { // field return type name
+    correct: 'Int'
+    createdAt: 'DateTime'
+    id: 'String'
+    lesson: 'Lesson'
+    lessonId: 'String'
+    student: 'User'
+    studentId: 'String'
+    time: 'Int'
+    updatedAt: 'DateTime'
+    wrong: 'Int'
+  }
   Clause: { // field return type name
     commentary: 'String'
     createdAt: 'DateTime'
@@ -2290,6 +2341,7 @@ export interface NexusGenFieldTypeNames {
   }
   ConstructionResult: { // field return type name
     answer: 'String'
+    attempts: 'Int'
     construction: 'Construction'
     constructionId: 'String'
     constructionID: 'String'
@@ -2370,6 +2422,8 @@ export interface NexusGenFieldTypeNames {
     lesson: 'Lesson'
     lessonId: 'String'
     updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'String'
   }
   Feedback: { // field return type name
     createdAt: 'DateTime'
@@ -2397,6 +2451,7 @@ export interface NexusGenFieldTypeNames {
   }
   Lesson: { // field return type name
     challenge_num: 'Int'
+    challengeResults: 'ChallengeResult'
     change: 'String'
     constructionResults: 'ConstructionResult'
     constructions: 'Construction'
@@ -2589,6 +2644,8 @@ export interface NexusGenFieldTypeNames {
     lessonId: 'String'
     lessonID: 'String'
     problem: 'Problem'
+    problemId: 'String'
+    problemID: 'String'
     revealed: 'String'
     student: 'User'
     studentId: 'String'
@@ -2632,6 +2689,7 @@ export interface NexusGenFieldTypeNames {
   }
   QuizResult: { // field return type name
     answer: 'String'
+    attempts: 'Int'
     correct: 'Boolean'
     createdAt: 'DateTime'
     id: 'String'
@@ -2695,6 +2753,7 @@ export interface NexusGenFieldTypeNames {
   }
   TestResult: { // field return type name
     answer: 'String'
+    attempts: 'Int'
     createdAt: 'DateTime'
     id: 'String'
     lesson: 'Lesson'
@@ -2840,6 +2899,12 @@ export interface NexusGenArgTypes {
     }
   }
   Lesson: {
+    challengeResults: { // args
+      after?: NexusGenInputs['ChallengeResultWhereUniqueInput'] | null; // ChallengeResultWhereUniqueInput
+      before?: NexusGenInputs['ChallengeResultWhereUniqueInput'] | null; // ChallengeResultWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
     constructionResults: { // args
       after?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput
       before?: NexusGenInputs['ConstructionResultWhereUniqueInput'] | null; // ConstructionResultWhereUniqueInput

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-// import { Query } from "react-apollo";
+// import { Query } from "@apollo/client/react/components";
 import { useQuery, gql } from "@apollo/client";
 // import gql from "graphql-tag";
 import styled from "styled-components";
 import renderHTML from "react-render-html";
 import LessonHeader from "../lesson/LessonHeader";
-import User from "../User";
+import { useUser } from "../User";
 import FirstLesson from "./coursePageCards/FirstLesson";
 import RegisterCard from "./coursePageCards/RegisterCard";
 import StudentCard from "./coursePageCards/StudentCard";

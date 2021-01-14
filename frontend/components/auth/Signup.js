@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Mutation } from "@apollo/client/react/components";
 import styled from "styled-components";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import Router from "next/router";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -10,9 +10,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Error from "../ErrorMessage";
 import { CURRENT_USER_QUERY } from "../User";
 import { Unis, Companies, Tracks } from "../../config";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -20,8 +17,8 @@ const SIGNUP_MUTATION = gql`
     $name: String!
     $surname: String!
     $password: String!
-    # $isFamiliar: Boolean!
-    # $status: Status!
+    $isFamiliar: Boolean!
+    $status: Status!
     $company: String
     $uniID: String
     $careerTrackID: String
@@ -31,8 +28,8 @@ const SIGNUP_MUTATION = gql`
       name: $name
       surname: $surname
       password: $password
-      # isFamiliar: $isFamiliar
-      # status: $status
+      isFamiliar: $isFamiliar
+      status: $status
       company: $company
       uniID: $uniID
       careerTrackID: $careerTrackID
@@ -183,7 +180,6 @@ const Signup = (props) => {
               return;
             }
             const res = await signup();
-            cookies.set("token", res.data.signup.token);
             props.closeNavBar(true);
             setEmail("");
             setName("");
